@@ -3,7 +3,39 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const Student = require("../models/students");
 
+router.get("/all", (req, res, next) => {
+    Student.find()
+        .exec()
+        .then(doc => {
+            console.log("All categories", doc);
+            if (doc) {
+                res.status(200).json(doc);
+            } else {
+                res
+                    .status(404)
+                    .json({
+                        message: "Error in getting all categories"
+                    });
+            }
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            });
+        });
+});
+
+
+
+
+
+
 //POST - Add new student
+
+
+
+
 
 router.post("/", (req, res, next) => {
     const student = new Student({
