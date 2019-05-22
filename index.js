@@ -169,7 +169,7 @@ app.listen(process.env.PORT || 5000, async function () {
 
 
 //MLAB HEROKU
-mongoose.connect("mongodb://gradforce:gradforce1@ds259586.mlab.com:59586/heroku_vwxwm9k8", {useNewUrlParser: true})
+mongoose.connect("mongodb://backend:backend1234@ds259596.mlab.com:59596/heroku_xk93l586", {useNewUrlParser: true})
 
 
 //LOCAL HOSTING
