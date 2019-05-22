@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const Student = require("../models/students");
 var passport = require("passport");
-const nodemailer = require('nodemailer');
 const keys = require('../../config/keys');
 
 

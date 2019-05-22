@@ -1,22 +1,22 @@
+//External dependencies
+
 var express = require("express");
 var app = express();
 require('dotenv').config()
 const passport = require("passport");
-//const passportSetup = require("./config/passport-setup");
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 const cookieSession = require('cookie-session');
 var Student = require("./api/models/students");
 var LocalStrategy = require("passport-local");
-//var PassportLocalMongoose = require("passport-local-mongoose");
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const keys = require('./config/keys')
-//const cron = require("node-cron");
+
 
 //
-//GOOGLE AUTHn
+//GOOGLE AUTH
 //
 
 app.use(cookieSession({
@@ -130,22 +130,10 @@ passport.use(new FacebookStrategy({
   }));
 
 
-
-//for hiding credentials
-
-/*
-app.use(require('forest-express-mongoose').init({
-  modelsDir: __dirname + '/api/models',
-  envSecret: process.env.FOREST_ENV_SECRET,
-  authSecret: process.env.FOREST_AUTH_SECRET,
-  mongoose:require('mongoose'),
-}));
-*/
-
-
 //ejs view
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + '/assets'));
+
 //initialize body parser and morgan
 
 app.use(morgan('dev'));
@@ -163,21 +151,16 @@ app.use(require("express-session")({
 }));
 
 
-
-
 //
 // Routes
 //
 
-//var User = require("./api/models/users");
-
 const studentsRoutes = require('./api/routes/students');
 const authRoutes = require('./api/routes/auth');
-const landingRoutes = require('./api/routes/landing');
 const profileRoutes = require('./api/routes/profile');
+
 app.use('/students', studentsRoutes);
 app.use('/auth', authRoutes);
-app.use('/', landingRoutes);
 app.use('/profile', profileRoutes);
 
 app.listen(process.env.PORT || 5000, async function () {
@@ -186,14 +169,11 @@ app.listen(process.env.PORT || 5000, async function () {
 
 
 //MLAB HEROKU
-mongoose.connect("mongodb://gradforce:gradforce1@ds259586.mlab.com:59586/heroku_844c6wxc", {useNewUrlParser: true})
+mongoose.connect("mongodb://gradforce:gradforce1@ds259586.mlab.com:59586/heroku_vwxwm9k8", {useNewUrlParser: true})
 
-//MONGO ATLAS DATABASE
-// mongoose.connect('mongodb+srv://diego-re:' + process.env.MONGO_ATLAS_PW +
-// '@cluster0-y9ijb.mongodb.net/test?retryWrites=true');
 
 //LOCAL HOSTING
-//mongoose.connect("mongodb://localhost/gradforce-admin");
+//mongoose.connect("mongodb://localhost/gradforce-local");
 
 app.use((req, res, next) => {
   const error = new Error('Not found');
