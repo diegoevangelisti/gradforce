@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const Student = require("../models/students");
 
 router.get("/all", (req, res, next) => {
-    Student.find()
+    student.find()
         .exec()
         .then(doc => {
             console.log("All categories", doc);

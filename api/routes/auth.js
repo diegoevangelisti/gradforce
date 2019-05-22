@@ -66,7 +66,7 @@ router.get('/google', passport.authenticate('google', {
     'https://www.googleapis.com/auth/userinfo.email'
   ]
 }));
-
+/*
 router.get('/google/redirect',
   passport.authenticate('google', {
     failureRedirect: '/login'
@@ -91,7 +91,7 @@ router.get('/facebook/callback',
     // Successful authentication, redirect home.
     res.redirect('/profile/');
   });
-
+*/
 //logout routes
 router.get("/logout", (req, res, next) => {
   req.logout();
