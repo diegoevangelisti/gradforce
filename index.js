@@ -140,7 +140,7 @@ app.use(bodyParser.json());
 //Magic word for passport 
 
 app.use(require("express-session")({
-  secret: "My dear Gandalf from The Lord of the Rings",
+  secret: "Gandalf the grey",
   resave: false,
   saveUninitialized: false
 }));
@@ -149,7 +149,6 @@ app.use(require("express-session")({
 //
 // Routes
 //
-
 const authRoutes = require('./api/routes/auth');
 const profileRoutes = require('./api/routes/profile');
 const usersRoutes = require('./api/routes/users');
