@@ -11,32 +11,35 @@ var studentSchema = mongoose.Schema({
     fname: String,
     lname: String,
     DOB: Date,
+    companyName: String,
     email: String,
     photo: String,
-    phone_number: Number,
-    address: {
+    phoneNumber: Number,
+    address: { 
+        street: String,
+        unit: String,
         city: String,
-        suburn: String
+        suburb: String
     },
     education: {
-        education_status: String,
-        educational_provider: String,
-        start_date: Date,
-        end_date: Date,
+        educationStatus: String,
+        educationalProvider: String,
+        startDate: Date,
+        endDate: Date,
         course: String
     },
     work: [{
         company: String,
         country: String,
         role: String,
-        start_date: Date,
-        end_date: Date
+        startDate: Date,
+        endDate: Date
     }],
-    booking_date: Date,
+    bookingDate: Date,
     ranking: Number,
     Skills: {
         softs: [String],
-        skills: [String]
+        technicalSkills: [String]
     }
 });
 
