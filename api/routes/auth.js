@@ -26,7 +26,7 @@ router.get("/register/usertype", (req, res, next) => {
 });
 
 router.get("/register", (req, res) => {
-  res.render("../views/index");
+  res.send("Register page");
 });
 
 router.post("/register", (req, res) => {
@@ -56,11 +56,11 @@ router.post("/register", (req, res) => {
           if (err) {
             console.log(err);
             console.log("User not added, please check the form");
-            return res.render("../views/index");
+            return res.send("User not added, please check the form");
 
           } else {
             passport.authenticate("local")(req, res, function () {
-              res.redirect("/profile/");
+              res.send("Welcome to the future Profile page");
             });
           }
         });
@@ -77,9 +77,11 @@ router.get("/login", (req, res, next) => {
 });
 
 router.post("/login", passport.authenticate("local", {
-  successRedirect: "/profile/",
+  successRedirect: "login",
   failureRedirect: "login"
 }), function (req, res) {});
+
+
 
 //Google register/login routes
 
