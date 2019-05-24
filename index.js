@@ -7,23 +7,21 @@ const passport = require("passport");
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 const cookieSession = require('cookie-session');
-var Student = require("./api/models/students");
 var LocalStrategy = require("passport-local");
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
+var cookieParser = require('cookie-parser')
+
+app.use(cookieParser())
+
 const keys = require('./config/keys')
 
+var User = require("./api/models/users");
 
 //
 //GOOGLE AUTH
 //
-
-app.use(cookieSession({
-  maxAge: 24 * 60 * 10 * 1000,
-  keys: ['Frodo from the Shire']
-
-}));
 
 //initialize passport
 
@@ -32,18 +30,18 @@ app.use(cookieSession({
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.use(new LocalStrategy(Student.authenticate()));
-passport.serializeUser(Student.serializeUser());
-passport.deserializeUser(Student.deserializeUser());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
-passport.serializeUser((student, done) => {
-  done(null, student.id)
+passport.serializeUser((user, done) => {
+  done(null, user.id)
 
 })
 
 passport.serializeUser((id, done) => {
-  Student.findById(id).then((student) => {
-    done(null, student);
+  User.findById(id).then((user) => {
+    done(null, user);
   })
 })
 
@@ -56,33 +54,30 @@ passport.use(new GoogleStrategy({
 
   },
   (accessToken, refreshToken, profile, done) => {
-    Student.findOne({
+    User.findOne({
       email: profile.emails[0].value
-    }).then((currentStudent) => {
-        if (currentStudent) {
+    }).then((currentUser) => {
+        if (currentUser) {
           //already have the User
-          console.log('User is: ', currentStudent);
-          done(null, currentStudent);
+          console.log('User is: ', currentUser);
+          done(null, currentUser);
         } else {
           //create a new User
-          const student = new Student({
+          const user = new User({
             _id: Math.random()
               .toString(36)
               .substr(2, 9),
             username: profile.displayName,
             googleId: profile.id,
             email: profile.emails[0].value,
-            photo: profile.picture,
+            photo: profile.picture
+          })    
+          user.save().then((newUser) => {
+            console.log('new user created:' + newUser);
+            done(null, newUser);
           })
-          student.save().then((newStudent) => {
-            console.log('new user created:' + newStudent);
-            done(null, newStudent);
-          })
-
         }
-
       }
-
     )
   }));
 
@@ -99,20 +94,20 @@ passport.use(new FacebookStrategy({
     var query = {
       email: profile.emails[0].value
     };
-    Student.findOneAndUpdate(query, {
+    User.findOneAndUpdate(query, {
       photo: profile.photos[0].value,
       facebookId: profile.id
-    }).then((currentStudent) => {
+    }).then((currentUser) => {
 
-      if (currentStudent) {
+      if (currentUser) {
         //already have the User
-        currentStudent.photo = profile.photos[0].value
-        console.log('User is: ', currentStudent);
-        done(null, currentStudent);
+        currentUser.photo = profile.photos[0].value
+        console.log('User is: ', currentUser);
+        done(null, currentUser);
 
       } else {
         //create a new User
-        const student = new Student({
+        const user = new User({
           _id: Math.random()
             .toString(36)
             .substr(2, 9),
@@ -121,7 +116,7 @@ passport.use(new FacebookStrategy({
           photo: profile.photos[0].value,
           facebookId: profile.id
         })
-        student.save().then((newStudent) => {
+        user.save().then((newStudent) => {
           console.log('new user created:' + newStudent);
           done(null, newStudent);
         })
@@ -131,7 +126,7 @@ passport.use(new FacebookStrategy({
 
 
 //ejs view
-app.set("view engine", "ejs");
+//app.set("view engine", "ejs");
 app.use(express.static(__dirname + '/assets'));
 
 //initialize body parser and morgan
@@ -145,7 +140,7 @@ app.use(bodyParser.json());
 //Magic word for passport 
 
 app.use(require("express-session")({
-  secret: "My dear Gandalf from The Lord of the Rings",
+  secret: "Gandalf the grey",
   resave: false,
   saveUninitialized: false
 }));
@@ -154,12 +149,11 @@ app.use(require("express-session")({
 //
 // Routes
 //
-
-const studentsRoutes = require('./api/routes/students');
 const authRoutes = require('./api/routes/auth');
 const profileRoutes = require('./api/routes/profile');
+const usersRoutes = require('./api/routes/users');
 
-app.use('/students', studentsRoutes);
+app.use('/users', usersRoutes);
 app.use('/auth', authRoutes);
 app.use('/profile', profileRoutes);
 
