@@ -1,0 +1,42 @@
+.btn {
+    color: white;
+    border: none;
+    height: 40px;
+}
+
+.btniAlign {
+    float: left;
+    padding-left: 15px;
+    margin-top: 3px;
+}
+
+.btnsAlign {
+    float: right;
+    font-size: 13px;
+    margin-right: 15px;
+}
+
+
+.btnGreen {
+    background: $c_green;
+    height: 40px;
+
+    img {
+        float: right;
+        padding: 3px 15px 0 0px;
+    }
+
+    span {
+        float: left;
+        padding-left: 15px;
+        font-size: 15px;
+    }
+}
+
+.btnFb {
+    background: $c_fbblue;
+}
+
+.btnGoogle {
+    background: $c_gred;
+}

@@ -1,0 +1,64 @@
+@import 'abstracts/variables';
+
+@import 'base/typography';
+
+@import 'components/buttons';
+
+@import 'layout/footer';
+@import 'layout/header';
+@import 'layout/forms';
+@import 'layout/grid';
+@import 'layout/navigation';
+
+@import 'pages/index';
+@import 'pages/login';
+
+* {
+  box-sizing: border-box;
+  font-family: 'Montserrat', 'Lato', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+// GLOBAL --------------------
+.mb2 {
+  margin-bottom: 2px;
+}
+
+.mb15 {
+  margin-bottom: 15px;
+}
+
+.mb10 {
+  margin-bottom: 10px;
+}
+
+.mt5 {
+  margin-top: 5px;
+}
+
+h1 {
+  margin: 1em;
+}
+
+.text-input {
+  background: $c-white;
+  border: 1px solid $c-lightgray;
+  box-sizing: border-box;
+  height: 40px;
+  padding: 3px 15px;
+
+}
+
+input {
+  input::placeholder {
+    color: $c-midgray;
+    font-size: 12px;
+    // padding-left: 30px;
+  }
+}
+
+input[type='radio'],
+input[type='checkbox'] {
+  margin-right: 5px;
+}

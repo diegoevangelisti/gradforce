@@ -18,7 +18,7 @@ const keys = require('./config/keys')
 var User = require("./api/models/users");
 
 app.set('view engine', 'ejs');
-app.use(express.static("public"));
+app.use(express.static("views"));
 
 
 //Magic word for passport 
@@ -35,7 +35,10 @@ app.use(require("express-session")({
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.use(new LocalStrategy(User.authenticate()));
+passport.use(new LocalStrategy({
+  usernameField: 'email'
+}, User.authenticate()));
+
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
@@ -60,6 +63,8 @@ passport.use(new GoogleStrategy({
         //already have the User
         console.log('User is: ', currentUser);
         done(null, currentUser);
+        res.redirect("/profile");
+
       } else {
         //create a new User
         const user = new User({
@@ -75,6 +80,7 @@ passport.use(new GoogleStrategy({
           console.log('new user created:' + newUser);
           done(null, newUser);
         })
+        res.redirect("/profile");
       }
     })
   }));
