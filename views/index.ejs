@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <div w3-include-html="/partials/head.html"></div>
+
+    <script>
+        function includeHTML() {
+            var z, i, elmnt, file, xhttp;
+            /* Loop through a collection of all HTML elements: */
+            z = document.getElementsByTagName("*");
+            for (i = 0; i < z.length; i++) {
+                elmnt = z[i];
+                /*search for elements with a certain atrribute:*/
+                file = elmnt.getAttribute("w3-include-html");
+                if (file) {
+                    /* Make an HTTP request using the attribute value as the file name: */
+                    xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function () {
+                        if (this.readyState == 4) {
+                            if (this.status == 200) {
+                                elmnt.innerHTML = this.responseText;
+                            }
+                            if (this.status == 404) {
+                                elmnt.innerHTML = "Page not found.";
+                            }
+                            /* Remove the attribute, and call this function once more: */
+                            elmnt.removeAttribute("w3-include-html");
+                            includeHTML();
+                        }
+                    }
+                    xhttp.open("GET", file, true);
+                    xhttp.send();
+                    /* Exit the function: */
+                    return;
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div w3-include-html="/partials/header.html"></div>
+    <!-- page content after here -->
+    <main id="landing_page">
+        <!-- page content -->
+        <div id="slogan">
+            <h1>Talented Graduates, Managed By Us, Working For You.</h1>
+        </div>
+
+        <div id="banner">
+            <img src="/assets/img/banner_pic.jpg" alt="showcase_picture">
+        </div>
+
+        <!-- home page registration form -->
+        <div id="register">
+            <form id="formContainer" action="http://localhost:5000/auth/register" method="POST">
+                <h3 id="title" class="mb15">Sign up now</h3>
+                <span id="student">
+                    <input id="student-user" class="radioInput" type="radio"
+                        onclick="postForm('http://localhost:5000/auth/register/usertype?userType='+this.value)"
+                        name="userType" value="student">I'm looking for a
+                    job<br>
+                </span>
+                <span id="employer">
+                    <input id="employer-user" class="radioInput mb15" type="radio" name="userType"
+                        onclick="postForm('http://localhost:5000/auth/register/usertype?userType='+this.value)"
+                        value="employer">I'm looking to hire<br>
+                </span>
+                <input id="email" class="text-input mb10" type="text" name="email" placeholder="Email" value=""
+                    required>
+                <input id="fname" class="text-input" type="text" name="fName" placeholder="First Name" value=""
+                    required>
+                <input id="lname" class="text-input" type="text" name="lName" placeholder="Last Name" value="" required>
+                <input id="phone" class="text-input" type="text" name="phone" placeholder="Phone" value="" required>
+                <input id="pass" class="text-input mb10" type="password" name="password" placeholder="Enter a password"
+                    value="" required>
+
+                <span id="terms">
+                    <p class="mb2">By proceeding, I agree to GradForce's Terms of Use and acknowledge that I have
+                        read the <a href="#">Privacy Policy</a>.</p>
+                    <p class="mb15 mt5">I also agree that GradForce or its representatives may contact me by email,
+                        phone, or SMS (including by automated means) at the email address or number I provide,
+                        including for marketing purposes.</p>
+                </span>
+
+                <!-- Form registration button -->
+                <button id="next" class="btn btnGreen mb10">
+                    <span>NEXT</span>
+                    <img src="/assets/img/right_arrow.png" alt="arrow_png">
+                </button>
+            </form>
+            <div id="other-logins">
+                <!-- Social media registration buttons -->
+                <button id="facebook" class="btn btnFb mb2">
+                    <a id="postUserType" href="http://localhost:5000/auth/facebook"
+                        style="text-decoration: none; color:white">
+                        <i class="fa-lg fab fa-facebook-f btniAlign"></i>
+                        <span class="btnsAlign">Continue with Facebook</span>
+                    </a>
+                </button>
+                <button id="google" class="btn btnGoogle mb15">
+                    <a id="postUserType" href="http://localhost:5000/auth/google"
+                        style="text-decoration: none; color:white">
+                        <i class="fa-lg fab fa-google btniAlign"></i>
+                        <span class="btnsAlign">Continue with Google</span>
+                    </a>
+                </button>
+                <span id="signin" class="mb10">
+                    <p>You already have an account? <a href="/auth/login">Sign in</a></p>
+                </span>
+            </div>
+        </div>
+    </main> <!-- page content befoer here -->
+    <div w3-include-html="/partials/footer.html"></div>
+
+    <script>
+        includeHTML();
+    </script>
+</body>
+
+
+
+<script>
+    //Post userType when register with Google or Facebook
+    var user = document.getElementById('postUserType')
+    user.addEventListener("click", postForm("http://localhost:5000/auth/register/usertype"));
+
+    function postForm(url) {
+        return fetch(url, {
+                method: 'GET',
+                credentials: 'include'
+            })
+            .then(response => response.json())
+    }
+</script>
+
+</html>

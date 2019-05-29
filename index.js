@@ -6,44 +6,46 @@ require('dotenv').config()
 const passport = require("passport");
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
-const cookieSession = require('cookie-session');
 var LocalStrategy = require("passport-local");
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
-var cookieParser = require('cookie-parser')
+var cookieParser = require('cookie-parser');
 
-app.use(cookieParser())
+app.use(cookieParser());
 
 const keys = require('./config/keys')
-
 var User = require("./api/models/users");
 
-//
-//GOOGLE AUTH
-//
+app.set('view engine', 'ejs');
+app.use(express.static("views"));
 
-//initialize passport
 
-//Seting Passport for local authentication
+//Magic word for passport 
+
+app.use(require("express-session")({
+  secret: "My dear Gandalf from The Lord of the Rings",
+  resave: false,
+  saveUninitialized: false
+}));
+
+
+//Seting Passport for authentication
 
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.use(new LocalStrategy(User.authenticate()));
+passport.use(new LocalStrategy({
+  usernameField: 'email'
+}, User.authenticate()));
+
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-passport.serializeUser((user, done) => {
-  done(null, user.id)
 
-})
-
-passport.serializeUser((id, done) => {
-  User.findById(id).then((user) => {
-    done(null, user);
-  })
-})
+//
+//GOOGLE AUTH
+//
 
 //Setting passport for google authentication
 
@@ -57,28 +59,30 @@ passport.use(new GoogleStrategy({
     User.findOne({
       email: profile.emails[0].value
     }).then((currentUser) => {
-        if (currentUser) {
-          //already have the User
-          console.log('User is: ', currentUser);
-          done(null, currentUser);
-        } else {
-          //create a new User
-          const user = new User({
-            _id: Math.random()
-              .toString(36)
-              .substr(2, 9),
-            username: profile.displayName,
-            googleId: profile.id,
-            email: profile.emails[0].value,
-            photo: profile.picture
-          })    
-          user.save().then((newUser) => {
-            console.log('new user created:' + newUser);
-            done(null, newUser);
-          })
-        }
+      if (currentUser) {
+        //already have the User
+        console.log('User is: ', currentUser);
+        done(null, currentUser);
+        res.redirect("/profile");
+
+      } else {
+        //create a new User
+        const user = new User({
+          _id: Math.random()
+            .toString(36)
+            .substr(2, 9),
+          username: profile.displayName,
+          googleId: profile.id,
+          email: profile.emails[0].value,
+          photo: profile.picture
+        })
+        user.save().then((newUser) => {
+          console.log('new user created:' + newUser);
+          done(null, newUser);
+        })
+        res.redirect("/profile");
       }
-    )
+    })
   }));
 
 //facebook authentication
@@ -125,9 +129,7 @@ passport.use(new FacebookStrategy({
   }));
 
 
-//ejs view
-//app.set("view engine", "ejs");
-app.use(express.static(__dirname + '/assets'));
+
 
 //initialize body parser and morgan
 
@@ -136,15 +138,6 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(bodyParser.json());
-
-//Magic word for passport 
-
-app.use(require("express-session")({
-  secret: "Gandalf the grey",
-  resave: false,
-  saveUninitialized: false
-}));
-
 
 //
 // Routes
@@ -161,13 +154,13 @@ app.listen(process.env.PORT || 5000, async function () {
   console.log("listening on port " + (process.env.PORT || 5000));
 });
 
-
 //MLAB HEROKU
-mongoose.connect("mongodb://backend:backend1234@ds259596.mlab.com:59596/heroku_xk93l586", {useNewUrlParser: true})
-
+//mongoose.connect("mongodb://backend:backend1234@ds259596.mlab.com:59596/heroku_xk93l586", {useNewUrlParser: true})
 
 //LOCAL HOSTING
-//mongoose.connect("mongodb://localhost/gradforce-local");
+mongoose.connect("mongodb://localhost/gradforce-local", {
+  useNewUrlParser: true
+});
 
 app.use((req, res, next) => {
   const error = new Error('Not found');

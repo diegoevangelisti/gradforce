@@ -1,0 +1,16 @@
+#landing_page {
+  #register {
+    background: rgba($color: $c_lightgray, $alpha:0.85);
+    border-top: 4px solid #e5e5e5;
+    font-size: 12px;
+    margin-top: 3rem;
+    max-height: 540px;
+  }
+
+  #slogan {
+    h1 {
+      font-weight: 300;
+      margin: 3rem 0 1rem;
+    }
+  }
+}
