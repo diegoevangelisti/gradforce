@@ -4,8 +4,6 @@ const router = express.Router();
 var app = express();
 const User = require("../models/users");
 var passport = require("passport");
-const bodyParser = require('body-parser');
-
 
 
 //cookie session timelapse
@@ -32,11 +30,10 @@ router.get("/register/usertype", (req, res, next) => {
 });
 
 router.get("/register", (req, res) => {
-  res.render("../public/index");
+  res.render("../views/index");
 });
 
 router.post("/register", (req, res, next) => {
-
   User.findOne({
     email: req.body.email
   }).then((currentUser) => {
@@ -44,7 +41,7 @@ router.post("/register", (req, res, next) => {
     if (currentUser) {
       //already have the User
       console.log('Already exists: User is: ', currentUser);
-      res.send("done");
+      res.redirect("/profile");
     } else {
       User.register(new User({
           _id: Math.random()
@@ -62,7 +59,7 @@ router.post("/register", (req, res, next) => {
           if (err) {
             console.log(err);
             console.log("User not added, please check the form");
-            return res.render("../public/auth/register");
+            return res.render("../views/auth/register");
 
           }
           res.redirect("login");
@@ -84,7 +81,7 @@ router.post("/login", passport.authenticate("local", {
 });
 
 router.get("/login", (req, res, next) => {
-  res.render("../public/login");
+  res.render("../views/login");
 });
 
 
@@ -122,7 +119,7 @@ router.get('/google/redirect',
     });
 
     // Successful authentication
-    res.send('Welcome to the future Profile page');
+    res.redirect("/profile");
   });
 
 //
@@ -151,7 +148,7 @@ router.get('/facebook/callback', passport.authenticate('facebook', {
       }
     });
     // Successful authentication
-    res.send('Welcome to the future Profile page');
+    res.redirect("/profile");
   });
 
 //
