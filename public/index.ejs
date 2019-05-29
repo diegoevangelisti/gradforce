@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>GradForce | Find your first job</title>
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+</head>
+
+<script async defer crossorigin="anonymous"
+    src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v3.3&appId=1136811756491129">
+</script>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous"
+    src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v3.3&appId=1136811756491129&autoLogAppEvents=1">
+    function checkLoginState() {
+        FB.getLoginStatus(function (response) {
+            statusChangeCallback(response);
+        });
+    }
+</script>
+
+<body>
+    <main class="container">
+        <div class="logo">
+            <p>GradForce</p>
+        </div>
+        <div class="menu">
+            <ul>
+                <li><a href="#">How it Works</a></li>
+                <li><a href="#">Jobs</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+
+        <div class="blank">
+            <h3>
+            </h3>
+        </div>
+
+        <div class="slogan">
+            <h1>Talented Graduates, Managed By Us, Working For You.</h1>
+        </div>
+
+        <div class="banner">
+            <img src="/assets/img/banner_pic.jpg" alt="showcase_picture">
+        </div>
+
+        <!-- home page registration form -->
+        <div class="register">
+            <form id="formContainer" action="http://localhost:5000/auth/register" method="POST">
+                <h3 id="title" class="mb15">Sign up now</h3>
+                <span id="student">
+                    <input id="student-user" class="radioInput" type="radio"
+                        onclick="postForm('http://localhost:5000/auth/register/usertype?userType='+this.value)"
+                        name="userType" value="student">I'm looking for a
+                    job<br>
+                </span>
+                <span id="employer">
+                    <input id="employer-user" class="radioInput mb15" type="radio" name="userType"
+                        onclick="postForm('http://localhost:5000/auth/register/usertype?userType='+this.value)"
+                        value="employer">I'm looking to hire<br>
+                </span>
+                <input id="email" class="textInput mb10" type="text" name="email" placeholder="Email" value="" required>
+                <input id="fname" class="textInput" type="text" name="fName" placeholder="First Name" value="" required>
+                <input id="lname" class="textInput" type="text" name="lName" placeholder="Last Name" value="" required>
+                <input id="phone" class="textInput" type="text" name="phone" placeholder="Phone" value="" required>
+                <input id="pass" class="textInput mb10" type="password" name="password" placeholder="Enter a password"
+                    value="" required>
+
+                <span id="terms">
+                    <input class="mb15" type="checkbox" name="termsOfService" value="">I agree to the <a href="#">terms
+                        of
+                        service</a>.
+                </span>
+
+                <!-- Form registration button -->
+                <button id="next" class="btn btnGreen mb10">
+                    <span>NEXT</span>
+                    <img src="/assets/img/right_arrow.png" alt="arrow_png">
+                </button>
+                <!-- Social media registration buttons -->
+                <button id="facebook" class="btn btnFb mb2">
+                    <a id="postUserType" href="http://localhost:5000/auth/facebook"
+                        style="text-decoration: none; color:white">
+                        <i class="fa-lg fab fa-facebook-f btniAlign"></i>
+                        <span class="btnsAlign">Continue with Facebook</span>
+                    </a>
+                </button>
+                <button id="google" class="btn btnGoogle mb15">
+                    <a id="postUserType" href="http://localhost:5000/auth/google"
+                        style="text-decoration: none; color:white">
+                        <i class="fa-lg fab fa-google btniAlign"></i>
+                        <span class="btnsAlign">Continue with Google</span>
+                    </a>
+                </button>
+                <span id="signin" class="mb10">
+                    <p>You already have an account? <a href="/auth/login">Sign in</a></p>
+                </span>
+            </form>
+        </div>
+    </main>
+</body>
+
+<script>
+    
+    //Post userType when register with Google or Facebook
+    var user = document.getElementById('postUserType')
+    user.addEventListener("click", postForm("http://localhost:5000/auth/register/usertype"));
+
+    function postForm(url) {
+        return fetch(url, {
+                method: 'GET',
+                credentials: 'include'
+            })
+            .then(response => response.json())
+        }
+</script>
+
+</html>

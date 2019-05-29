@@ -4,16 +4,22 @@ const router = express.Router();
 var app = express();
 const User = require("../models/users");
 var passport = require("passport");
-const keys = require('../../config/keys');
-var cookieParser = require('cookie-parser')
+const bodyParser = require('body-parser');
+
+
+
+//cookie session timelapse
 
 app.use(session({
   secret: 'keyboard cat',
   cookie: {
-    maxAge: 300000
+    maxAge: 60000
   }
 }))
 
+//
+//Local registration routes
+//
 router.get("/register/usertype", (req, res, next) => {
 
   req.session.userType = req.query.userType;
@@ -26,10 +32,10 @@ router.get("/register/usertype", (req, res, next) => {
 });
 
 router.get("/register", (req, res) => {
-  res.send("Register page");
+  res.render("../public/index");
 });
 
-router.post("/register", (req, res) => {
+router.post("/register", (req, res, next) => {
 
   User.findOne({
     email: req.body.email
@@ -51,39 +57,40 @@ router.post("/register", (req, res) => {
           phone_number: req.body.phone,
           username: req.body.email,
         }),
-        req.body.pass,
+        req.body.password,
         function (err, user) {
           if (err) {
             console.log(err);
             console.log("User not added, please check the form");
-            return res.send("User not added, please check the form");
+            return res.render("../public/auth/register");
 
-          } else {
-            passport.authenticate("local")(req, res, function () {
-              res.send("Welcome to the future Profile page");
-            });
           }
+          res.redirect("login");
         });
     }
   })
 
 });
 
-
-router.get("/login", (req, res, next) => {
-
-  res.render("../views/auth/login");
-
-});
+//
+//Login routes
+//
 
 router.post("/login", passport.authenticate("local", {
-  successRedirect: "login",
-  failureRedirect: "login"
-}), function (req, res) {});
+  successRedirect: "../profile",
+  failureRedirect: "login",
+}), function (req, res) {
+  console.log("User: " + req.user);
+});
+
+router.get("/login", (req, res, next) => {
+  res.render("../public/login");
+});
 
 
-
+//
 //Google register/login routes
+//
 
 router.get('/google',
   passport.authenticate('google', {
@@ -118,8 +125,9 @@ router.get('/google/redirect',
     res.send('Welcome to the future Profile page');
   });
 
-
+//
 //Facebook register/login routes
+//
 
 router.get('/facebook', passport.authenticate('facebook'));
 
@@ -146,7 +154,10 @@ router.get('/facebook/callback', passport.authenticate('facebook', {
     res.send('Welcome to the future Profile page');
   });
 
-//logout routes
+//
+//Logout routes
+//
+
 router.get("/logout", (req, res, next) => {
   req.logout();
   res.redirect("/auth/login");

@@ -1,0 +1,265 @@
+$c_darkgray: #3C3C3C;
+$c_midgray: rgb(148, 148, 148);
+$c_lightgray: #F1F1F1;
+$c_green: #78C697;
+$c_fbblue: #486BA3;
+$c_gred: #E56148;
+
+* {
+    font-family: 'Montserrat', 'Lato', sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+// GLOBAL --------------------
+body {
+    margin: 0;
+    font-family: 'Montserrat';
+}
+
+.mb2 {
+    margin-bottom: 2px;
+}
+
+.mb15 {
+    margin-bottom: 15px;
+}
+
+.mb10 {
+    margin-bottom: 10px;
+}
+
+h1 {
+    margin: 1em;
+}
+
+.btn {
+    color: white;
+    border: none;
+    height: 40px;
+}
+
+.btniAlign {
+    float: left;
+    padding-left: 15px;
+    margin-top: 3px;
+}
+
+.btnsAlign {
+    float: right;
+    font-size: 13px;
+    margin-right: 15px;
+}
+
+
+.btnGreen {
+    background: $c_green;
+    height: 40px;
+
+    img {
+        float: right;
+        padding: 3px 15px 0 0px;
+    }
+
+    span {
+        float: left;
+        padding-left: 15px;
+        font-size: 15px;
+    }
+}
+
+.btnFb {
+    background: $c_fbblue;
+}
+
+.btnGoogle {
+    background: $c_gred;
+}
+
+#topBar {
+    background: #e5e5e5;
+    height: 20px;
+    width: 100%;
+}
+
+.banner img {
+    max-width: 100%;
+}
+
+
+// desktop version grid layout
+.container {
+    display: grid;
+    // width: 100%;
+    border-top: 15px solid #e5e5e5;
+    // 6 columns
+    grid-template-columns: 1fr 140px 10.5fr 2fr 350px 1fr;
+    grid-template-rows: repeat(5, auto);
+    grid-template-areas:
+        ". logo . menu menu ."
+        ". slogan slogan . . ."
+        "banner banner banner banner banner banner"
+        "banner banner banner banner banner banner"
+    ;
+}
+
+.logo {
+    grid-area: logo;
+
+    p {
+        background: black;
+        height: 50px;
+        color: white;
+        line-height: 50px;
+        text-align: center;
+        font-size: 20px;
+    }
+}
+
+.menu {
+    grid-area: menu;
+    justify-self: right;
+
+    ul {
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        line-height: 50px;
+    }
+
+    ul li {
+        float: left;
+    }
+
+    ul li a {
+        display: inline-block;
+        text-align: center;
+        text-decoration: none;
+        color: $c_darkgray;
+        padding: 0 0.6rem;
+    }
+}
+
+.slogan {
+    grid-area: slogan;
+    justify-self: start;
+    align-self: end;
+
+    h1 {
+        font-weight: 300;
+        margin: 3rem 0 1rem;
+    }
+}
+
+.banner {
+    grid-area: banner;
+}
+
+
+// REGISTER -----------
+.register {
+    grid-area: register;
+    grid-row: 2 / span 2;
+    grid-column: 5 / 6;
+    background: rgba($color: $c_lightgray, $alpha:0.85);
+    border-top: 4px solid #e5e5e5;
+    font-size: 12px;
+    margin-top: 3rem;
+
+    // IDs for grid-area
+    #title {
+        grid-area: title;
+    }
+
+    #student {
+        grid-area: student;
+    }
+
+    #employer {
+        grid-area: employer;
+    }
+
+    #email {
+        grid-area: email;
+    }
+
+    #fname {
+        grid-area: fname;
+    }
+
+    #lname {
+        grid-area: lname;
+    }
+
+    #phone {
+        grid-area: phone;
+    }
+
+    #pass {
+        grid-area: password;
+    }
+
+    #terms {
+        grid-area: terms;
+    }
+
+    #next {
+        grid-area: next;
+    }
+
+    #facebook {
+        grid-area: facebook;
+    }
+
+    #google {
+        grid-area: google;
+    }
+
+    #signin {
+        grid-area: signin;
+    }
+
+
+    #formContainer {
+        margin: 10px;
+        display: grid;
+        grid-template-columns: 160px 160px;
+        grid-gap: 0;
+        // align-items: left;
+        // grid-auto-flow: dense;
+        grid-template-areas:
+            "title title"
+            "student employer"
+            "email email"
+            "fname lname"
+            "phone phone"
+            "password password"
+            "terms terms"
+            "next next"
+            "facebook facebook"
+            "google google"
+            "signin signin"
+        ;
+    }
+
+    .textInput {
+        height: 40px;
+        box-sizing: border-box;
+        background: #FFFFFF;
+        border: 1px solid #F1F1F1;
+        padding: 3px 15px;
+    }
+
+    input::placeholder {
+        color: $c_midgray;
+        font-size: 12px;
+        // padding-left: 30px;
+    }
+
+    input[type="radio"],
+    input[type="checkbox"] {
+        margin-right: 5px;
+    }
+}
