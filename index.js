@@ -56,33 +56,41 @@ passport.use(new GoogleStrategy({
 
   },
   (accessToken, refreshToken, profile, done) => {
-    User.findOne({
-      email: profile.emails[0].value
-    }).then((currentUser) => {
-      if (currentUser) {
-        //already have the User
-        console.log('User is: ', currentUser);
-        done(null, currentUser);
-        res.redirect("/profile");
 
-      } else {
-        //create a new User
-        const user = new User({
-          _id: Math.random()
-            .toString(36)
-            .substr(2, 9),
-          username: profile.displayName,
-          googleId: profile.id,
-          email: profile.emails[0].value,
-          photo: profile.picture
-        })
-        user.save().then((newUser) => {
-          console.log('new user created:' + newUser);
-          done(null, newUser);
-        })
-        res.redirect("/profile");
-      }
-    })
+    var query = {
+      email: profile.emails[0].value
+    };
+    User.findOneAndUpdate(query, {
+        photo: profile.photos[0].value,
+        googleId: profile.id
+      })
+      .then((currentUser) => {
+
+        if (currentUser) {
+          //already have the User
+          console.log('User is: ', currentUser);
+          done(null, currentUser);
+
+        } else {
+          //create a new User
+          const user = new User({
+            _id: Math.random()
+              .toString(36)
+              .substr(2, 9),
+            username: profile.emails[0].value,
+            fname: profile.name.givenName,
+            lname: profile.name.familyName,
+            email: profile.emails[0].value,
+            photo: profile.picture,
+            googleId: profile.id
+          })
+          user.save().then((newUser) => {
+            console.log('new user created:' + newUser);
+            done(null, newUser);
+          })
+          res.redirect("/profile");
+        }
+      })
   }));
 
 //facebook authentication
@@ -99,36 +107,36 @@ passport.use(new FacebookStrategy({
       email: profile.emails[0].value
     };
     User.findOneAndUpdate(query, {
-      photo: profile.photos[0].value,
-      facebookId: profile.id
-    }).then((currentUser) => {
+        photo: profile.photos[0].value,
+        facebookId: profile.id
+      })
+      .then((currentUser) => {
 
-      if (currentUser) {
-        //already have the User
-        currentUser.photo = profile.photos[0].value
-        console.log('User is: ', currentUser);
-        done(null, currentUser);
+        if (currentUser) {
+          //already have the User
+          console.log('User is: ', currentUser);
+          done(null, currentUser);
 
-      } else {
-        //create a new User
-        const user = new User({
-          _id: Math.random()
-            .toString(36)
-            .substr(2, 9),
-          username: profile.displayName,
-          email: profile.emails[0].value,
-          photo: profile.photos[0].value,
-          facebookId: profile.id
-        })
-        user.save().then((newStudent) => {
-          console.log('new user created:' + newStudent);
-          done(null, newStudent);
-        })
-      }
-    })
+        } else {
+          //create a new User
+          const user = new User({
+            _id: Math.random()
+              .toString(36)
+              .substr(2, 9),
+            username: profile.emails[0].value,
+            fname: profile.name.givenName,
+            lname: profile.name.familyName,
+            email: profile.emails[0].value,
+            photo: profile.photos[0].value,
+            facebookId: profile.id
+          })
+          user.save().then((newStudent) => {
+            console.log('new user created:' + newStudent);
+            done(null, newStudent);
+          })
+        }
+      })
   }));
-
-
 
 
 //initialize body parser and morgan
