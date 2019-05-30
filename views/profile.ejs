@@ -43,10 +43,15 @@
   <div w3-include-html="/partials/header.html"></div>
 
   <main id="login-page">
-    
-        <h3 class="title-font mb10">Profile Page</h3>
-        <p>Welcome <%= user.username %></p>
-        
+
+    <h3 class="title-font mb10">Profile Page</h3>
+    <p>Welcome <%= user.username %></p>
+    <% if (user.photo) { %>
+    <img style="max-width:300px; height: 300px;" src="<%= user.photo %>" alt="">
+    <% } %>
+    <p>User type: <%= user.userType %></p>
+    <p>Name: <%= user.fname %></p>
+    <p>Last Name: <%= user.lname %></p>
   </main>
 
   <div w3-include-html="/partials/footer.html"></div>

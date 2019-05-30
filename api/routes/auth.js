@@ -41,15 +41,15 @@ router.post("/register", (req, res, next) => {
     if (currentUser) {
       //already have the User
       console.log('Already exists: User is: ', currentUser);
-      res.redirect("/profile");
+      res.redirect("login");
     } else {
       User.register(new User({
           _id: Math.random()
             .toString(36)
             .substr(2, 9),
           userType: req.body.userType,
-          fname: req.body.fname,
-          lname: req.body.lname,
+          fname: req.body.fName,
+          lname: req.body.lName,
           email: req.body.email,
           phone_number: req.body.phone,
           username: req.body.email,
@@ -77,6 +77,7 @@ router.post("/login", passport.authenticate("local", {
   successRedirect: "../profile",
   failureRedirect: "login",
 }), function (req, res) {
+  res.send(user._id)
   console.log("User: " + req.user);
 });
 

@@ -3,6 +3,8 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const User = require("../models/users");
 
+
+/*
 router.get("/all", (req, res, next) => {
     user.find()
         .exec()
@@ -27,14 +29,7 @@ router.get("/all", (req, res, next) => {
 });
 
 
-
-
-
-
 //POST - Add new user
-
-
-
 
 
 router.post("/", (req, res, next) => {
@@ -89,6 +84,6 @@ router.post("/", (req, res, next) => {
                 error: err
             });
         });
-});
+});*/
 
 module.exports = router;
