@@ -82,7 +82,8 @@ passport.use(new GoogleStrategy({
             lname: profile.name.familyName,
             email: profile.emails[0].value,
             photo: profile.picture,
-            googleId: profile.id
+            googleId: profile.id,
+            status: "profile incomplete"
           })
           user.save().then((newUser) => {
             console.log('new user created:' + newUser);
@@ -128,7 +129,8 @@ passport.use(new FacebookStrategy({
             lname: profile.name.familyName,
             email: profile.emails[0].value,
             photo: profile.photos[0].value,
-            facebookId: profile.id
+            facebookId: profile.id,
+            status: "profile incomplete"
           })
           user.save().then((newStudent) => {
             console.log('new user created:' + newStudent);
@@ -153,10 +155,12 @@ app.use(bodyParser.json());
 const authRoutes = require('./api/routes/auth');
 const profileRoutes = require('./api/routes/profile');
 const usersRoutes = require('./api/routes/users');
+const adminpanelRoutes = require('./api/routes/adminpanel');
 
 app.use('/users', usersRoutes);
 app.use('/auth', authRoutes);
 app.use('/profile', profileRoutes);
+app.use('/adminpanel', adminpanelRoutes);
 
 app.listen(process.env.PORT || 5000, async function () {
   console.log("listening on port " + (process.env.PORT || 5000));

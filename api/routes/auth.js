@@ -53,6 +53,7 @@ router.post("/register", (req, res, next) => {
           email: req.body.email,
           phone_number: req.body.phone,
           username: req.body.email,
+          status: "profile incomplete"
         }),
         req.body.password,
         function (err, user) {
@@ -69,6 +70,46 @@ router.post("/register", (req, res, next) => {
 
 });
 
+//
+//User register by admin
+//
+
+router.post("/register-by-admin", (req, res, next) => {
+  User.findOne({
+    email: req.body.email
+  }).then((currentUser) => {
+
+    if (currentUser) {
+      //already have the User
+      console.log('Already exists: User is: ', currentUser);
+      res.redirect("../adminpanel/tables");
+    } else {
+      User.register(new User({
+          _id: Math.random()
+            .toString(36)
+            .substr(2, 9),
+          userType: req.body.userType,
+          fname: req.body.fName,
+          lname: req.body.lName,
+          email: req.body.email,
+          phone_number: req.body.phone,
+          username: req.body.email,
+          status: "profile incomplete"
+        }),
+        req.body.password,
+        function (err, user) {
+          if (err) {
+            console.log(err);
+            console.log("User not added, please check the form");
+            return res.render("../views/admin-panel/tables");
+
+          }
+          res.redirect("../adminpanel/tables");
+        });
+    }
+  })
+
+});
 //
 //Login routes
 //
