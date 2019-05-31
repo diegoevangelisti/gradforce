@@ -12,6 +12,15 @@ router.get("/tables", (req, res) => {
   })
 });
 
+router.get("/calendar", (req, res) => {
+
+  User.find().then((users) => {
+    res.render("../views/admin-panel/calendar", {
+      users: users
+    });
+  })
+});
+
 router.get("/add-new-user", (req, res) => {
 
   User.find().then((users) => {

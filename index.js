@@ -128,7 +128,7 @@ passport.use(new FacebookStrategy({
             fname: profile.name.givenName,
             lname: profile.name.familyName,
             email: profile.emails[0].value,
-            photo: profile.photos[0].value,
+        //    photo: profile.photos[0].value,
             facebookId: profile.id,
             status: "profile incomplete"
           })
