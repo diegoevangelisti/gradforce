@@ -156,11 +156,13 @@ const authRoutes = require('./api/routes/auth');
 const profileRoutes = require('./api/routes/profile');
 const usersRoutes = require('./api/routes/users');
 const adminpanelRoutes = require('./api/routes/adminpanel');
+const mailRoutes = require('./api/routes/mail');
 
 app.use('/users', usersRoutes);
 app.use('/auth', authRoutes);
 app.use('/profile', profileRoutes);
 app.use('/adminpanel', adminpanelRoutes);
+app.use('/mail', mailRoutes);
 
 app.listen(process.env.PORT || 5000, async function () {
   console.log("listening on port " + (process.env.PORT || 5000));
