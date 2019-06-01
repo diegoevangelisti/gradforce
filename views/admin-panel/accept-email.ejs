@@ -49,8 +49,12 @@
                         </div>
                         <div class="form-group">
                             <div class="form-label-group">
-                                <textarea class="form-control" name="content" id="mail-content" rows="10"></textarea>
-
+                                <% if(type == "accept"){ %>
+                                    <textarea class="form-control" name="content" id="mail-content" rows="10">Accept</textarea>
+                                <% } %>
+                                <% if(type == "normal"){ %>
+                                    <textarea class="form-control" name="content" id="mail-content" rows="10">Normal</textarea>
+                                <% } %>
                             </div>
                         </div>
                         <button class="btn btn-primary btn-block" type="submit">

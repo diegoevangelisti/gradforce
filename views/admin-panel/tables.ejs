@@ -35,11 +35,18 @@
 
         .big {
             margin: 8px;
-            font-size: 30px;
+            font-size: 20px;
         }
 
         .med {
             font-size: 15px;
+        }
+
+        #table-rows:hover {
+
+            background: #e9ecef;
+            cursor: default;
+
         }
     </style>
 </head>
@@ -115,7 +122,7 @@
                                 </thead>
                                 <tbody>
                                     <% users.map((users, i) => { %>
-                                    <tr>
+                                    <tr id="table-rows">
                                         <!-- <td><%= users._id %></td> -->
                                         <td><%=(i+1) %></td>
                                         <td><%= users.fname %></td>
@@ -124,16 +131,23 @@
                                         <td><%= users.phone_number %></td>
                                         <td><%= users.userType %></td>
                                         <td><%= users.status %></td>
-                                        <td>
+                                        <td id="actions">
+                                            <% if(users.status == "profile incomplete"){ %>
                                             <div style="text-align: center">
-                                                
-                                                <a href="/adminpanel/accept-email/<%=users._id%>"><i class="fas fa-check-circle big" style="color:green"></i></a>
-                                                   <i class="fas fa-window-close big"
-                                                    style="color: red"></i></div>
+
+                                                <a href="/adminpanel/accept-email/<%=users._id%>/accept"><i
+                                                        class="fas fa-check-circle big" style="color:green"></i></a>
+                                                <i class="fas fa-window-close big" style="color: red"></i></div>
+                                            <% } %>
+                                            <% if(users.status != "profile incomplete"){ %>
+                                            <div style="text-align: center">Done</div>
+                                            <% } %>
                                         </td>
-                                        <td>
+                                        <td id="actions">
                                             <div style="text-align: center">
-                                                <i class="fas fa-edit med"></i><i class="far fa-envelope med"></i><i
+                                                <i class="fas fa-edit med"></i><a
+                                                    href="/adminpanel/accept-email/<%=users._id%>/normal"><i
+                                                        class="far fa-envelope med"></i></a><i
                                                     class="fas fa-minus-circle med" style="color:red"></i>
                                             </div>
                                         </td>

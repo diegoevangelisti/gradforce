@@ -39,12 +39,13 @@ router.get("/add-new-user", (req, res) => {
   })
 });
 
-router.get("/accept-email/:id", (req, res) => {
+router.get("/accept-email/:id/:type", (req, res) => {
   let id = req.params.id;
+  let type = req.params.type;
   User.findById(id)
     .then((user) => {
       res.render("../views/admin-panel/accept-email", {
-        user: user
+        user: user, type: type
       });
     })
 });
