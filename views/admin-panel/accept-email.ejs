@@ -25,7 +25,7 @@
         <div class="card card-register mx-auto mt-5">
             <div class="card-header">Send email for interview to: <%= user.fname %> <%= user.lname %></div>
             <div class="card-body">
-                <form action="/mail/id=<%= user._id %>" method="POST">
+                <form action="/mail/send-email/id=<%= user._id %>" method="POST">
                     <div class="form-group">
                         <div class="form-row">
                             <div class="col-md-6">

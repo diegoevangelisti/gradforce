@@ -173,8 +173,7 @@ app.listen(process.env.PORT || 5000, async function () {
 
 //LOCAL HOSTING
 mongoose.connect("mongodb://localhost/gradforce-local", {
-  useNewUrlParser: true
-});
+  useNewUrlParser: true, useFindAndModify: false });
 
 app.use((req, res, next) => {
   const error = new Error('Not found');

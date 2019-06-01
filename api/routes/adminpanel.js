@@ -1,6 +1,7 @@
 var express = require("express");
 const router = express.Router();
 const User = require("../models/users");
+const Mail = require("../models/mails");
 
 
 router.get("/tables", (req, res) => {
@@ -23,12 +24,13 @@ router.get("/calendar", (req, res) => {
 
 router.get("/email-template", (req, res) => {
 
-  User.find().then((users) => {
+  Mail.find().then((mails) => {
     res.render("../views/admin-panel/emails", {
-      users: users
+      mails: mails
     });
   })
 });
+
 
 router.get("/add-new-user", (req, res) => {
 

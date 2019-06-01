@@ -96,8 +96,14 @@
                         Email template</div>
                     <div class="card-body">
 
-                        <div id="summernote"></div>
-
+                        <div id="summernote">
+                            <% mails.map((mails, i) => { %>
+                            <%    if(mails.type == "accept") { %>
+                            <%= mails.content %>
+                            <%    }  %>
+                            <% }) %>
+                        </div>
+                        <button onclick="save()">Save</button>
 
                     </div>
                 </div>
@@ -162,8 +168,42 @@
 
     <script>
         $(document).ready(function () {
-            $('#summernote').summernote();
+            $('#summernote').summernote({
+                placeholder: 'Write here and press Save'
+            });
+
         });
+
+        function save() {
+            //
+            //Get plain text
+            //  
+            //  var plainText = $($("#summernote").summernote("code")).text();
+
+            //
+            //Get HTML
+            // ;
+            var markupStr = $($("#summernote").summernote("code")).text()
+            let htmldata = {
+                content: markupStr
+            };
+
+
+            fetch('/mail/template/epkc7wmd5', {
+                    method: 'POST',
+                    body: JSON.stringify(htmldata),
+                    headers: {
+                        'Content-type': 'application/json'
+                    }
+                })
+                .then(function (res) {
+                    return res.json();
+                })
+                .then(function (data) {
+                    alert(JSON.stringify(data))
+                    console.warn(data)
+                })
+        }
     </script>
 
 </body>
