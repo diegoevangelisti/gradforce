@@ -7,7 +7,34 @@ const Mail = require("../models/mails");
 router.get("/tables", (req, res) => {
 
   User.find().then((users) => {
-    res.render("../views/admin-panel/tables", {
+    res.render("../views/admin-panel/tables/tables", {
+      users: users
+    });
+  })
+});
+
+router.get("/tables-students", (req, res) => {
+
+  User.find().where("userType", "Student").then((users) => {
+    res.render("../views/admin-panel/tables/tables-students", {
+      users: users
+    });
+  })
+});
+
+router.get("/tables-employers", (req, res) => {
+
+  User.find().where("userType", "Employer").then((users) => {
+    res.render("../views/admin-panel/tables/tables-employers", {
+      users: users
+    });
+  })
+});
+
+router.get("/tables-students-status2", (req, res) => {
+
+  User.find().where("status", "Profile Complete").where("userType", "Student").then((users) => {
+    res.render("../views/admin-panel/tables/tables-students-status2", {
       users: users
     });
   })
@@ -51,5 +78,26 @@ router.get("/accept-email/:id/:type", (req, res) => {
       });
     })
 });
+
+router.get("/userprofile/student/:id", (req, res) => {
+  let id = req.params.id;
+  User.findById(id)
+    .then((user) => {
+      res.render("../views/admin-panel/profiles/student-profile", {
+        user: user
+      });
+    })
+});
+
+router.get("/userprofile/employer/:id", (req, res) => {
+  let id = req.params.id;
+  User.findById(id)
+    .then((user) => {
+      res.render("../views/admin-panel/profiles/employer-profile", {
+        user: user
+      });
+    })
+});
+
 
 module.exports = router;

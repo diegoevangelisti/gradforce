@@ -11,7 +11,7 @@ var userSchema = mongoose.Schema({
     password: String,
     fname: String,
     lname: String,
-    DOB: Date,
+    DOB: String,
     email: String,
     photo: String,
     phone_number: Number,

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>GradForce</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Custom styles for this template-->
+    <link href="/assets/css/sb-admin.css" rel="stylesheet">
+
+</head>
+
+<body class="bg-dark">
+
+    <div class="container">
+        <div class="card card-register mx-auto mt-5">
+            <div class="card-header">Student: <%= user.fname %> <%= user.lname %>
+                <!-- <p> <img class ="rounded" style="width: 15%; height: 15%" src="<%= user.photo %>" alt="Profile photo"> </p> -->
+            </div>
+            <div class="card-body">
+                <form action="/mail/send-email/id=<%= user._id %>" method="POST">
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="form-label-group">
+                                        <span>Email</span>
+                                        <p><%= user.email %></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="form-label-group">
+                                        <span>Phone number</span>
+                                        <% if (user.phone_number) { %>
+                                        <p><%= user.phone_number %></p>
+                                        <% } %>
+                                        <% if (!user.phone_number) { %>
+                                        <p>No data</p>
+                                        <% } %>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="form-label-group">
+                                        <span>Address</span>
+                                        <% if (user.address.street) { %>
+                                        <p><%= user.address.unit %>, <%= user.address.street %>. <%= user.address.city %>, <%= user.address.suburb %></p>
+                                        <% } %>
+                                        <% if (!user.address.street) { %>
+                                        <p>No data</p>
+                                        <% } %>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="form-label-group">
+                                        <span>Date of Birth</span>
+                                        <% if (user.DOB) { %>
+                                        <p><%= user.DOB %></p>
+                                        <% } %>
+                                        <% if (!user.DOB) { %>
+                                        <p>No data</p>
+                                        <% } %>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="form-label-group">
+                                        <span>Status</span>
+                                        <p><%= user.status %></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+                <div class="text-center" style="text-align: center">
+                    <a class="d-block small mt-3" href="/adminpanel/tables-employers">Return</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+</body>
+
+</html>

@@ -29,7 +29,7 @@
             color: #212529;
         }
 
-        
+
 
         .big {
             margin: 8px;
@@ -53,7 +53,7 @@
 <body id="page-top">
 
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
-        <a class="navbar-brand mr-1" href="/adminpanel/tables">GradForce Admin Panel</a>
+        <a class="navbar-brand mr-1" href="/adminpanel/tables/tables">GradForce Admin Panel</a>
         <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
             <i class="fas fa-bars"></i>
         </button>
@@ -64,17 +64,14 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-users" style="color: blue"></i>
+                    <i class="fas fa-users"></i>
                     <span>Users</span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-                    <a class="dropdown-item" href="/adminpanel/add-new-user">Add new user</a>
+                    <a class="dropdown-item" href="/adminpanel/tables/tables">All</a>
+                    <a class="dropdown-item" href="/adminpanel/tables-students">Students</a>
+                    <a class="dropdown-item" href="/adminpanel/tables-employers">Employers</a>
                 </div>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="/adminpanel/tables">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="/adminpanel/calendar">
@@ -91,68 +88,87 @@
         <div id="content-wrapper">
             <div class="container-fluid">
                 <!-- Breadcrumbs-->
-                <ol class="breadcrumb">
+                <!-- <ol class="breadcrumb">
                     <li class="breadcrumb-item">
                         <a href="#">Dashboard</a>
                     </li>
                     <li class="breadcrumb-item active">Users</li>
-                </ol>
+                </ol> -->
                 <!-- DataTables Example -->
                 <div class="card mb-3">
                     <div class="card-header">
-                        <i class="fas fa-table"></i>
-                        Users</div>
+                        <i class="fas fa-users"></i>
+                        All Users</div>
+                    <% let j = 0 %>
+
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <!-- <th>ID</th> -->
-                                        <th>#</th>
                                         <th>Name</th>
                                         <th>Last Name</th>
                                         <th>Email address</th>
-                                        <th>Phone</th>
                                         <th>User type</th>
                                         <th>Status</th>
-                                        <th>Accept</th>
+                                        <th>Description</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <% users.map((users, i) => { %>
                                     <tr id="table-rows">
-                                        <!-- <td><%= users._id %></td> -->
-                                        <td><%=(i+1) %></td>
                                         <td><%= users.fname %></td>
                                         <td><%= users.lname %></td>
                                         <td><%= users.email %></td>
-                                        <td><%= users.phone_number %></td>
                                         <td><%= users.userType %></td>
                                         <td><%= users.status %></td>
                                         <td id="actions">
-                                            <% if(users.status == "profile incomplete"){ %>
+                                            <!-- Status: 1. Profile Incomplete -->
+                                            <% if(users.status == "Profile Incomplete"){ %>
+                                            <div style="text-align: center">Waiting for User</div>
+                                            <% } %>
+                                            <!-- Status: 2. Profile Complete-->
+                                            <% if(users.status == "Profile Complete"){ %>
+                                            <% if(users.userType == "Student") { %>
+                                            <% j=j+1 %>
+                                            <% } %>
                                             <div style="text-align: center">
+                                                <a href="/adminpanel/accept-email/<%=users._id%>/accept">Interview
+                                                </a>/<a href="/adminpanel/accept-email/<%=users._id%>/upskilling">
+                                                    Upskilling</a>
+                                            </div>
 
-                                                <a href="/adminpanel/accept-email/<%=users._id%>/accept"><i
-                                                        class="fas fa-check-circle big" style="color:green"></i></a>
-                                                <i class="fas fa-window-close big" style="color: red"></i></div>
                                             <% } %>
-                                            <% if(users.status != "profile incomplete"){ %>
-                                            <div style="text-align: center">Done</div>
+                                            <!-- Status: 3.1. Interview date set-->
+                                            <% if(users.status == "Inverview date set"){ %>
                                             <% } %>
+                                            <!-- Status: 3.2 Upskilling-->
+                                            <% if(users.status == "Upskilling"){ %>
+                                            <div style="text-align: center">Upskilling</div>
+                                            <% } %>
+
                                         </td>
                                         <td id="actions">
                                             <div style="text-align: center">
+                                                <% if(users.userType == "Student") { %>
+                                                <a href="/adminpanel/userprofile/student/<%= users._id %>"><i class="far fa-eye med"></i></a>
+                                                <% } %>
+                                                <% if(users.userType == "Employer") { %>
+                                                    <a href="/adminpanel/userprofile/employer/<%= users._id %>"><i class="far fa-eye med"></i></a>
+                                                    <% } %>
                                                 <a href="/adminpanel/accept-email/<%=users._id%>/normal"><i
                                                         class="far fa-envelope med"></i></a><i
-                                                    class="fas fa-edit med"></i><i class="fas fa-minus-circle med"
-                                                    style="color:red"></i>
+                                                    class="fas fa-edit med"></i><i class="far fa-trash-alt med"></i>
                                             </div>
                                         </td>
                                     </tr>
                                     <% }) %>
                                 </tbody>
+                                <% if(j>0){ %>
+                                <p> <span style="color: red">Important!</span> <%= j %> student/s without an answer
+                                    <a href="/adminpanel/tables-students-status2"> View</a></p>
+                                <% } %>
                             </table>
                         </div>
                     </div>
@@ -197,7 +213,6 @@
             </div>
         </div>
     </div>
-
     <!-- Bootstrap core JavaScript-->
     <script src="/vendor/jquery/jquery.min.js"></script>
     <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -214,6 +229,7 @@
 
     <!-- Demo scripts for this page-->
     <script src="/assets/js/demo/datatables-demo.js"></script>
+
 
 </body>
 
