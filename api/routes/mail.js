@@ -55,8 +55,9 @@ router.post("/send-email/:id", (req, res) => {
 
 router.post("/template/:id", (req, res) => {
 
-    
     let cont = req.body.content;
+    let str = cont.replace("&lt;", "<");
+    cont = str.replace("&gt;", ">");
     Mail.findByIdAndUpdate(req.params.id, {
             content: cont
         })

@@ -180,10 +180,7 @@
             //  
             //  var plainText = $($("#summernote").summernote("code")).text();
 
-            //
-            //Get HTML
-            // ;
-            var markupStr = $($("#summernote").summernote("code")).text()
+            var markupStr = $("#summernote").summernote("code");
             let htmldata = {
                 content: markupStr
             };

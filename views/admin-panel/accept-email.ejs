@@ -18,8 +18,18 @@
     <link href="/assets/css/sb-admin.css" rel="stylesheet">
 
 </head>
+<style>
+    .font-custom {
 
-<body class="bg-dark">
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        font-size: 13px;
+        font-weight: 10;
+        line-height: 2;
+        color: #212529;
+    }
+</style>
+
+<body class="bg-dark font-custom">
 
     <div class="container">
         <div class="card card-register mx-auto mt-5">
@@ -31,8 +41,9 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <div class="form-label-group">
-                                        <input type="email" name="email" id="inputEmail" class="form-control"
-                                            required="required" autofocus="autofocus" value="<%= user.email %>">
+                                        <input type="email" name="email" id="inputEmail"
+                                            class="form-control font-custom" required="required" autofocus="autofocus"
+                                            value="<%= user.email %>">
                                         <label for="inputEmail">Email</label>
                                     </div>
                                 </div>
@@ -40,27 +51,38 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <div class="form-label-group">
-                                        <input type="text" name="subject" id="Subject" class="form-control"
+                                        <input type="text" name="subject" id="Subject" class="form-control font-custom"
                                             value="Interview with GradForce" required="required">
                                         <label for="firstName">Subject</label>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="form-label-group">
+                        <div class="form-group font-custom">
+                            <div class="form-label-group ">
                                 <% if(type == "accept"){ %>
-                                    <textarea class="form-control" name="content" id="mail-content" rows="10">Accept</textarea>
-                                <% } %>
+                                    <div contenteditable="true"  name="content" id="mail-content" rows="10">
+                                           <%= mail.content %> 
+                                    </div>
+                                    <% } %>
+
+
+
+
+
+
+                                <!-- <textarea class="form-control font-custom " name="content" id="mail-content" rows="10"></textarea>
+                               
                                 <% if(type == "normal"){ %>
-                                    <textarea class="form-control" name="content" id="mail-content" rows="10">Normal</textarea>
-                                <% } %>
+                                <textarea class="form-control font-custom" name="content" id="mail-content"
+                                    rows="10">Normal</textarea>
+                                <% } %> -->
                             </div>
                         </div>
-                        <button class="btn btn-primary btn-block" type="submit">
-                                <span>Send</span>
-                            </button>
-                        </div>          
+                        <button class="btn btn-primary btn-block font-custom" type="submit">
+                            <span>Send</span>
+                        </button>
+                    </div>
                 </form>
                 <div class="text-center" style="text-align: center">
                     <a class="d-block small mt-3" href="/adminpanel/tables">Return</a>

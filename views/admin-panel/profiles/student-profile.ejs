@@ -3,7 +3,7 @@
 
 <head>
 
-    <meta charset="utf-8">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -18,9 +18,27 @@
     <link href="/assets/css/sb-admin.css" rel="stylesheet">
 
 </head>
+<style>
+    .font-custom {
 
-<body class="bg-dark">
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        font-size: 13px;
+        font-weight: 10;
+        line-height: 2;
+        color: #212529;
+    }
 
+    .education p {
+
+        margin-bottom: 2px;
+    }
+
+    .student-title {
+        font-weight: bold;
+    }
+</style>
+
+<body class="bg-dark font-custom">
     <div class="container">
         <div class="card card-register mx-auto mt-5">
             <div class="card-header">Student: <%= user.fname %> <%= user.lname %>
@@ -33,7 +51,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <div class="form-label-group">
-                                        <span>Email</span>
+                                        <span class="student-title">Email</span>
                                         <p><%= user.email %></p>
                                     </div>
                                 </div>
@@ -41,7 +59,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <div class="form-label-group">
-                                        <span>Phone number</span>
+                                        <span class="student-title">Phone number</span>
                                         <% if (user.phone_number) { %>
                                         <p><%= user.phone_number %></p>
                                         <% } %>
@@ -54,9 +72,10 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <div class="form-label-group">
-                                        <span>Address</span>
+                                        <span class="student-title">Address</span>
                                         <% if (user.address.street) { %>
-                                        <p><%= user.address.unit %>, <%= user.address.street %>. <%= user.address.city %>, <%= user.address.suburb %></p>
+                                        <p><%= user.address.unit %>, <%= user.address.street %>.
+                                            <%= user.address.city %>, <%= user.address.suburb %></p>
                                         <% } %>
                                         <% if (!user.address.street) { %>
                                         <p>No data</p>
@@ -68,7 +87,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <div class="form-label-group">
-                                        <span>Date of Birth</span>
+                                        <span class="student-title">Date of Birth</span>
                                         <% if (user.DOB) { %>
                                         <p><%= user.DOB %></p>
                                         <% } %>
@@ -82,20 +101,87 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <div class="form-label-group">
-                                        <span>Status</span>
+                                        <span class="student-title">Status</span>
                                         <p><%= user.status %></p>
                                     </div>
                                 </div>
                             </div>
 
+                            <!-- Educational information -->
+                            <div class="col-md-12 education">
+                                <% if(!(user.education.length)){ %>
+                                <p>No Education Information</p>
+                                <% } %>
+                                <% if((user.education.length)){ %>
+                                <p class="student-title">Education</p>
+                                <div class="form-group">
+                                    <div class="form-label-group">
+                                        <% user.education.forEach(function(element, i){ %>
+                                        <p class="student-title"># <%= i+1 %></p>
+                                        <p>Educational Status:
+                                            <span><%= element.educational_status %></span>
+                                        </p>
+                                        <p>Educational Provider:
+                                            <span><%= element.educational_provider  %></span>
+                                        </p>
+                                        <p>Course:
+                                            <span><%= element.course  %></span>
+                                        </p>
+                                        <p>Start date:
+                                            <span><%= element.start_date %></span>
+                                        </p>
+                                        <p>End date:
+                                            <span><%= element.end_date  %></span>
+                                        </p>
+                                        <% }) %>
+                                    </div>
+                                </div>
+                                <% } %>
+                            </div>
+                            <!-- Work experience -->
+                            <div class="col-md-12 education">
+                                <% if(!(user.work.length)){ %>
+                                <p>No Work experience Information</p>
+                                <% } %>
+                                <% if((user.work.length)){ %>
+                                <p class="student-title">Work experience</p>
+                                <div class="form-group">
+                                    <div class="form-label-group">
+                                        <% user.work.forEach(function(element, i){ %>
+                                        <p class="student-title"># <%= i+1 %></p>
+                                        <p>Company:
+                                            <span><%= element.company %></span>
+                                        </p>
+                                        <p>Country:
+                                            <span><%= element.country  %></span>
+                                        </p>
+                                        <p>Role:
+                                            <span><%= element.role  %></span>
+                                        </p>
+                                        <p>Start date:
+                                            <span><%= element.start_date %></span>
+                                        </p>
+                                        <p>End date:
+                                            <span><%= element.end_date  %></span>
+                                        </p>
+                                        <p>Brief description:
+                                            <span><%= element.description %></span>
+                                        </p>
+                                        <% }) %>
+                                    </div>
+                                </div>
+                                <% } %>
+                            </div>
                         </div>
+
                     </div>
-                </form>
-                <div class="text-center" style="text-align: center">
-                    <a class="d-block small mt-3" href="/adminpanel/tables-students">Return</a>
-                </div>
+            </div>
+            </form>
+            <div class="text-center" style="text-align: center">
+                <a class="d-block small mt-3" href="/adminpanel/tables-students">Return</a>
             </div>
         </div>
+    </div>
     </div>
 
 

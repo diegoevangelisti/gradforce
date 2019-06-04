@@ -73,9 +73,13 @@ router.get("/accept-email/:id/:type", (req, res) => {
   let type = req.params.type;
   User.findById(id)
     .then((user) => {
-      res.render("../views/admin-panel/accept-email", {
-        user: user, type: type
-      });
+      Mail.find().where("type", type).then((mail) => {
+        res.render("../views/admin-panel/accept-email", {
+          user: user, type: type, mail: mail
+        });
+
+      })
+     
     })
 });
 

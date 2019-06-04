@@ -27,7 +27,9 @@ app.use(express.static("views"));
 
 const fs = require('fs');
 const readline = require('readline');
-const {google} = require('googleapis');
+const {
+  google
+} = require('googleapis');
 
 // If modifying these scopes, delete token.json.
 const SCOPES = ['https://www.googleapis.com/auth/contacts.readonly'];
@@ -50,9 +52,13 @@ fs.readFile('credentials.json', (err, content) => {
  * @param {function} callback The callback to call with the authorized client.
  */
 function authorize(credentials, callback) {
-  const {client_secret, client_id, redirect_uris} = credentials.installed;
+  const {
+    client_secret,
+    client_id,
+    redirect_uris
+  } = credentials.installed;
   const oAuth2Client = new google.auth.OAuth2(
-      client_id, client_secret, redirect_uris[0]);
+    client_id, client_secret, redirect_uris[0]);
 
   // Check if we have previously stored a token.
   fs.readFile(TOKEN_PATH, (err, token) => {
@@ -99,7 +105,10 @@ function getNewToken(oAuth2Client, callback) {
  * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
  */
 function listConnectionNames(auth) {
-  const service = google.people({version: 'v1', auth});
+  const service = google.people({
+    version: 'v1',
+    auth
+  });
   service.people.connections.list({
     resourceName: 'people/me',
     pageSize: 10,
@@ -123,8 +132,6 @@ function listConnectionNames(auth) {
 }
 
 //Google People ends
-
-
 
 //Magic word for passport 
 
@@ -233,7 +240,7 @@ passport.use(new FacebookStrategy({
             fname: profile.name.givenName,
             lname: profile.name.familyName,
             email: profile.emails[0].value,
-        //    photo: profile.photos[0].value,
+            //    photo: profile.photos[0].value,
             facebookId: profile.id,
             status: "profile incomplete"
           })
@@ -274,11 +281,13 @@ app.listen(process.env.PORT || 5000, async function () {
 });
 
 //MLAB HEROKU
-mongoose.connect("mongodb://backend:"+process.env.MLAB_PASSWORD+"@ds259596.mlab.com:59596/heroku_xk93l586", {useNewUrlParser: true})
+//mongoose.connect("mongodb://backend:"+process.env.MLAB_PASSWORD+"@ds259596.mlab.com:59596/heroku_xk93l586", {useNewUrlParser: true})
 
 //LOCAL HOSTING
-// mongoose.connect("mongodb://localhost/gradforce-local", {
-//   useNewUrlParser: true, useFindAndModify: false });
+mongoose.connect("mongodb://localhost/gradforce-local", {
+  useNewUrlParser: true,
+  useFindAndModify: false
+});
 
 app.use((req, res, next) => {
   const error = new Error('Not found');

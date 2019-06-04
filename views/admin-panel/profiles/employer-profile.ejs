@@ -18,8 +18,18 @@
     <link href="/assets/css/sb-admin.css" rel="stylesheet">
 
 </head>
+<style>
+    .font-custom {
 
-<body class="bg-dark">
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        font-size: 13px;
+        font-weight: 10;
+        line-height: 2;
+        color: #212529;
+    }
+</style>
+
+<body class="bg-dark font-custom">
 
     <div class="container">
         <div class="card card-register mx-auto mt-5">
@@ -56,7 +66,8 @@
                                     <div class="form-label-group">
                                         <span>Address</span>
                                         <% if (user.address.street) { %>
-                                        <p><%= user.address.unit %>, <%= user.address.street %>. <%= user.address.city %>, <%= user.address.suburb %></p>
+                                        <p><%= user.address.unit %>, <%= user.address.street %>.
+                                            <%= user.address.city %>, <%= user.address.suburb %></p>
                                         <% } %>
                                         <% if (!user.address.street) { %>
                                         <p>No data</p>
