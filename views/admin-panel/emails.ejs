@@ -80,11 +80,7 @@
                     <i class="far fa-calendar-alt"></i>
                     <span>Calendar</span></a>
             </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="/adminpanel/email-template">
-                    <i class="fas fa-envelope"></i>
-                    <span>Email</span></a>
-            </li>
+            
         </ul>
         <div id="content-wrapper">
 
@@ -98,7 +94,7 @@
 
                         <div id="summernote">
                             <% mails.map((mails, i) => { %>
-                            <%    if(mails.type == "accept") { %>
+                            <%    if(mails.type == "interview") { %>
                             <%= mails.content %>
                             <%    }  %>
                             <% }) %>
@@ -178,11 +174,11 @@
             //
             //Get plain text
             //  
-            //  var plainText = $($("#summernote").summernote("code")).text();
+              var plainText = $($("#summernote").summernote("code")).text();
 
-            var markupStr = $("#summernote").summernote("code");
+            //var markupStr = $("#summernote").summernote("code");
             let htmldata = {
-                content: markupStr
+                content: plainText
             };
 
 
