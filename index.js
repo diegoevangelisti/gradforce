@@ -266,11 +266,9 @@ app.use(bodyParser.json());
 //
 const authRoutes = require('./api/routes/auth');
 const profileRoutes = require('./api/routes/profile');
-const usersRoutes = require('./api/routes/users');
 const adminpanelRoutes = require('./api/routes/adminpanel');
 const mailRoutes = require('./api/routes/mail');
 
-app.use('/users', usersRoutes);
 app.use('/auth', authRoutes);
 app.use('/profile', profileRoutes);
 app.use('/adminpanel', adminpanelRoutes);
