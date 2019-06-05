@@ -49,15 +49,6 @@ router.get("/calendar", (req, res) => {
   })
 });
 
-router.get("/email-template", (req, res) => {
-
-  Mail.find().then((mails) => {
-    res.render("../views/admin-panel/emails", {
-      mails: mails
-    });
-  })
-});
-
 
 router.get("/add-new-user", (req, res) => {
 
@@ -68,19 +59,20 @@ router.get("/add-new-user", (req, res) => {
   })
 });
 
-router.get("/accept-email/:id/:type", (req, res) => {
-  let id = req.params.id;
+router.get("/send-email/:type/:id", (req, res) => {
+
   let type = req.params.type;
+  let id = req.params.id;
+
   User.findById(id)
     .then((user) => {
-      Mail.find().where("type", type).then((mail) => {
-        res.render("../views/admin-panel/accept-email", {
-          user: user, type: type, mail: mail
-        });
-
-      })
-     
+      console.log(user)
+      res.render("../views/admin-panel/send-email", {
+        user: user,
+        type: type
+      });
     })
+
 });
 
 router.get("/userprofile/student/:id", (req, res) => {
@@ -103,5 +95,48 @@ router.get("/userprofile/employer/:id", (req, res) => {
     })
 });
 
+router.get("/userprofile/student/edit/:id", (req, res) => {
+  let id = req.params.id;
+  User.findById(id)
+    .then((user) => {
+      res.render("../views/admin-panel/profiles/student-profile-edit", {
+        user: user
+      });
+    })
+});
+
+router.get("/userprofile/employer/edit/:id", (req, res) => {
+  let id = req.params.id;
+  User.findById(id)
+    .then((user) => {
+      res.render("../views/admin-panel/profiles/employer-profile-edit", {
+        user: user
+      });
+    })
+});
+
+router.post("/userprofile/employer/edit/:id", (req, res) => {
+  let addressUnit = req.body.addressUnit;
+  let addressStreet = req.body.addressStreet;
+  let addressCity = req.body.addressCity;
+  let addressSuburb = req.body.addressSuburb;
+
+  let query = {
+    _id: req.params.id
+  };
+
+  User.findOneAndUpdate(query, {
+      fname: req.body.fname,
+      lname: req.body.lname,
+      email: req.body.email,
+      phone_number: req.body.phone_number,
+      address: { street: addressStreet, unit: addressUnit, city: addressCity, suburb: addressSuburb }
+    }, {new: true})
+    .then((user) => {
+      res.render("../views/admin-panel/profiles/employer-profile", {
+        user: user
+      });
+    })
+});
 
 module.exports = router;
