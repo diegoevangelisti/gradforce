@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>GradForce</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Custom styles for this template-->
+    <link href="/assets/css/sb-admin.css" rel="stylesheet">
+
+</head>
+<style>
+    .font-custom {
+
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        font-size: 13px;
+        font-weight: 10;
+        line-height: 2;
+        color: #212529;
+    }
+
+    .med {
+        font-size: 15px;
+        margin: 5px;
+    }
+
+    .edit {
+        margin: 10px;
+    }
+</style>
+
+<body class="bg-dark font-custom">
+
+    <div class="container">
+        <div class="card card-register mx-auto mt-5">
+            <div class="card-header">Employer: <%= user.fname %> <%= user.lname %>
+                <div>
+                    <a href="/adminpanel/send-email/default/<%=user._id%>"><i class="far fa-envelope med"></i></a><i
+                        class="fas fa-edit med"></i><i class="far fa-trash-alt med"></i>
+                </div>
+            </div>
+            <div class="card-body">
+                <form action="/adminpanel/userprofile/employer/edit/<%= user._id%>" method="POST">
+                    <div class="form-group">
+                        <div class="form-row">
+                                <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="form-label-group">
+                                                <input type="text" name="fname" id="email-address"
+                                                    class="form-control font-custom" value="<%= user.fname%>"
+                                                    required="required">
+                                                <label for="fname">First Name</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="form-label-group">
+                                                <input type="text" name="lname" id="phone-number"
+                                                    class="form-control font-custom" value="<%= user.lname%>"
+                                                    required="required">
+                                                <label for="lname">Last Name</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="form-label-group">
+                                        <input type="text" name="email" id="email-address"
+                                            class="form-control font-custom" value="<%= user.email%>"
+                                            required="required">
+                                        <label for="email-address">Email</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="form-label-group">
+                                        <input type="text" name="phone_number" id="phone-number"
+                                            class="form-control font-custom" value="<%= user.phone_number%>"
+                                            required="required">
+                                        <label for="phone-number">Phone number</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="form-label-group">
+                                        <input type="text" name="addressUnit" id="address-unit"
+                                            class="form-control font-custom" value="<%= user.address.unit%>"
+                                            required="required">
+                                        <label for="addressUnit">Address - Unit</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-label-group">
+                                        <input type="text" name="addressStreet" id="address-street"
+                                            class="form-control font-custom" value="<%= user.address.street%>"
+                                            required="required">
+                                        <label for="address-steet">Address - Street</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="form-label-group">
+                                        <input type="text" name="addressCity" id="address-city"
+                                            class="form-control font-custom" value="<%= user.address.city%>"
+                                            required="required">
+                                        <label for="address-city">Address - City</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-label-group">
+                                        <input type="text" name="addressSuburb" id="address-suburb"
+                                            class="form-control font-custom" value="<%= user.address.suburb%>"
+                                            required="required">
+                                        <label for="address-suburb">Address - Suburb</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="form-label-group">
+                                        <input type="text" name="dob" id="dob" class="form-control font-custom"
+                                            value="<%= user.DOB%>" required="required">
+                                        <label for="dob">Date of birth</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-label-group">
+                                        <input type="text" name="user-status" id="user-status"
+                                            class="form-control font-custom" value="<%= user.status%>"
+                                            required="required">
+                                        <label for="user-status">Status</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center" style="text-align: center">
+                        <input type="submit" value="Save changes" class="btn btn-light font-custom edit">
+                        <button type="button" class="btn btn-light font-custom edit"
+                            onClick="javascript:history.go(-1)">Return</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+</body>
+
+</html>
