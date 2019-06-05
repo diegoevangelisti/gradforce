@@ -130,7 +130,8 @@ router.post("/userprofile/employer/edit/:id", (req, res) => {
       lname: req.body.lname,
       email: req.body.email,
       phone_number: req.body.phone_number,
-      address: { street: addressStreet, unit: addressUnit, city: addressCity, suburb: addressSuburb }
+      address: { street: addressStreet, unit: addressUnit, city: addressCity, suburb: addressSuburb },
+      DOB: req.body.dob
     }, {new: true})
     .then((user) => {
       res.render("../views/admin-panel/profiles/employer-profile", {

@@ -38,7 +38,7 @@
 
     <div class="container">
         <div class="card card-register mx-auto mt-5">
-            <div class="card-header">Employer: <%= user.fname %> <%= user.lname %>
+            <div class="card-header">Student: <%= user.fname %> <%= user.lname %>
                 <div>
                     <a href="/adminpanel/send-email/default/<%=user._id%>"><i class="far fa-envelope med"></i></a><i
                         class="fas fa-edit med"></i><i class="far fa-trash-alt med"></i>
@@ -61,6 +61,9 @@
                                     <div class="form-label-group">
                                         <span>Phone number</span>
                                         <% if (user.phone_number) { %>
+                                        <input type="text" name="phone-number" id="phone-number" class="form-control font-custom"
+                                            value="<%= user.phone_number%>" required="required">
+                                        <label for="phone-number">Phone number</label>
                                         <p><%= user.phone_number %></p>
                                         <% } %>
                                         <% if (!user.phone_number) { %>
@@ -111,9 +114,8 @@
                     </div>
                 </form>
                 <div class="text-center" style="text-align: center">
-                    <a style="text-decoration:none" href="/adminpanel/tables"><button type="button"
-                            class="btn btn-light font-custom">Return</button></a>
-
+                    <button type="button" class="btn btn-light font-custom"
+                        onClick="javascript:history.go(-1)">Return</button>
                 </div>
             </div>
         </div>
