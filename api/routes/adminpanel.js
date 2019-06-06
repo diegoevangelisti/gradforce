@@ -4,6 +4,13 @@ const User = require("../models/users");
 const Mail = require("../models/mails");
 
 
+router.get("/login", (req,res) => {
+
+  res.render("../views/admin-panel/login");
+
+})
+
+
 router.get("/tables", (req, res) => {
 
   User.find().then((users) => {
