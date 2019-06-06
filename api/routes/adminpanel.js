@@ -130,14 +130,54 @@ router.post("/userprofile/employer/edit/:id", (req, res) => {
       lname: req.body.lname,
       email: req.body.email,
       phone_number: req.body.phone_number,
-      address: { street: addressStreet, unit: addressUnit, city: addressCity, suburb: addressSuburb },
+      address: {
+        street: addressStreet,
+        unit: addressUnit,
+        city: addressCity,
+        suburb: addressSuburb
+      },
       DOB: req.body.dob
-    }, {new: true})
+    }, {
+      new: true
+    })
     .then((user) => {
       res.render("../views/admin-panel/profiles/employer-profile", {
         user: user
       });
     })
 });
+
+router.post("/userprofile/student/edit/:id", (req, res) => {
+  let addressUnit = req.body.addressUnit;
+  let addressStreet = req.body.addressStreet;
+  let addressCity = req.body.addressCity;
+  let addressSuburb = req.body.addressSuburb;
+  let query = {
+    _id: req.params.id
+  };
+
+  User.findOneAndUpdate(query, {
+      fname: req.body.fname,
+      lname: req.body.lname,
+      email: req.body.email,
+      phone_number: req.body.phone_number,
+      address: {
+        street: addressStreet,
+        unit: addressUnit,
+        city: addressCity,
+        suburb: addressSuburb
+      },
+      DOB: req.body.dob,
+      status: req.body.status
+    }, {
+      new: true
+    })
+    .then((user) => {
+      res.render("../views/admin-panel/profiles/student-profile", {
+        user: user
+      });
+    })
+});
+
 
 module.exports = router;
