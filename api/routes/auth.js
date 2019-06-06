@@ -53,7 +53,7 @@ router.post("/register", (req, res, next) => {
           email: req.body.email,
           phone_number: req.body.phone,
           username: req.body.email,
-          status: "profile incomplete"
+          status: "Profile Incomplete"
         }),
         req.body.password,
         function (err, user) {
@@ -94,7 +94,7 @@ router.post("/register-by-admin", (req, res, next) => {
           email: req.body.email,
           phone_number: req.body.phone,
           username: req.body.email,
-          status: "profile incomplete"
+          status: "Profile Incomplete"
         }),
         req.body.password,
         function (err, user) {

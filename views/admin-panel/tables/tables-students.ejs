@@ -76,13 +76,12 @@
                     <i class="far fa-calendar-alt"></i>
                     <span>Calendar</span></a>
             </li>
-            
         </ul>
         <div id="content-wrapper">
             <div class="container-fluid">
                 <div class="card mb-3">
                     <div class="card-header">
-                        <i class="fas fa-users"></i>
+                        <i class="fas fa-user-graduate"></i>
                         Students</div>
                     <% let j = 0 %>
 
@@ -134,11 +133,22 @@
                                         </td>
                                         <td id="actions">
                                             <div style="text-align: center">
+                                                <% if(users.userType == "Student") { %>
                                                 <a href="/adminpanel/userprofile/student/<%= users._id %>"><i
                                                         class="far fa-eye med"></i></a>
+                                                <a href="/adminpanel/userprofile/student/edit/<%=users._id%>/"><i
+                                                        class="fas fa-edit med"></i></a>
+                                                <% } %>
+                                                <% if(users.userType == "Employer") { %>
+                                                <a href="/adminpanel/userprofile/employer/<%= users._id %>"><i
+                                                        class="far fa-eye med"></i></a>
+                                                <a href="/adminpanel/userprofile/employer/edit/<%=users._id%>/"><i
+                                                        class="fas fa-edit med"></i></a>
+                                                <% } %>
                                                 <a href="/adminpanel/send-email/default/<%=users._id%>"><i
-                                                        class="far fa-envelope med"></i></a><i
-                                                    class="fas fa-edit med"></i><i class="far fa-trash-alt med"></i>
+                                                        class="far fa-envelope med"></i></a>
+
+                                                <i class="far fa-trash-alt med"></i>
                                             </div>
                                         </td>
                                     </tr>

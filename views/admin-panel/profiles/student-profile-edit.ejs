@@ -32,6 +32,10 @@
         font-size: 15px;
         margin: 5px;
     }
+
+    .edit {
+        margin: 10px;
+    }
 </style>
 
 <body class="bg-dark font-custom">
@@ -45,78 +49,110 @@
                 </div>
             </div>
             <div class="card-body">
-                <form action="/mail/send-email/id=<%= user._id %>" method="POST">
+                <form action="/adminpanel/userprofile/student/edit/<%= user._id%>" method="POST">
                     <div class="form-group">
                         <div class="form-row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <div class="form-label-group">
-                                        <span>Email</span>
-                                        <p><%= user.email %></p>
+                                        <input type="text" name="fname" id="fname" class="form-control font-custom"
+                                            value="<%= user.fname%>" required="required">
+                                        <label for="fname">First Name</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <div class="form-label-group">
-                                        <span>Phone number</span>
-                                        <% if (user.phone_number) { %>
-                                        <input type="text" name="phone-number" id="phone-number" class="form-control font-custom"
-                                            value="<%= user.phone_number%>" required="required">
+                                        <input type="text" name="lname" id="lname"
+                                            class="form-control font-custom" value="<%= user.lname%>"
+                                            required="required">
+                                        <label for="lname">Last Name</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="form-label-group">
+                                        <input type="text" name="email" id="email-address"
+                                            class="form-control font-custom" value="<%= user.email%>"
+                                            required="required">
+                                        <label for="email-address">Email</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="form-label-group">
+                                        <input type="text" name="phone_number" id="phone-number"
+                                            class="form-control font-custom" value="<%= user.phone_number%>"
+                                            required="required">
                                         <label for="phone-number">Phone number</label>
-                                        <p><%= user.phone_number %></p>
-                                        <% } %>
-                                        <% if (!user.phone_number) { %>
-                                        <p>No data</p>
-                                        <% } %>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <div class="form-label-group">
-                                        <span>Address</span>
-                                        <% if (user.address.street) { %>
-                                        <p><%= user.address.unit %>, <%= user.address.street %>.
-                                            <%= user.address.city %>, <%= user.address.suburb %></p>
-                                        <% } %>
-                                        <% if (!user.address.street) { %>
-                                        <p>No data</p>
-                                        <% } %>
-
+                                        <input type="text" name="addressUnit" id="address-unit"
+                                            class="form-control font-custom" value="<%= user.address.unit%>"
+                                            required="required">
+                                        <label for="addressUnit">Address - Unit</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-label-group">
+                                        <input type="text" name="addressStreet" id="address-street"
+                                            class="form-control font-custom" value="<%= user.address.street%>"
+                                            required="required">
+                                        <label for="address-steet">Address - Street</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <div class="form-label-group">
-                                        <span>Date of Birth</span>
-                                        <% if (user.DOB) { %>
-                                        <p><%= user.DOB %></p>
-                                        <% } %>
-                                        <% if (!user.DOB) { %>
-                                        <p>No data</p>
-                                        <% } %>
-
+                                        <input type="text" name="addressCity" id="address-city"
+                                            class="form-control font-custom" value="<%= user.address.city%>"
+                                            required="required">
+                                        <label for="address-city">Address - City</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-label-group">
+                                        <input type="text" name="addressSuburb" id="address-suburb"
+                                            class="form-control font-custom" value="<%= user.address.suburb%>"
+                                            required="required">
+                                        <label for="address-suburb">Address - Suburb</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <div class="form-label-group">
-                                        <span>Status</span>
-                                        <p><%= user.status %></p>
+                                        <input type="text" name="dob" id="dob" class="form-control font-custom"
+                                            value="<%= user.DOB%>" required="required">
+                                        <label for="dob">Date of birth</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-label-group">
+                                        <input type="text" name="status" id="user-status"
+                                            class="form-control font-custom" value="<%= user.status%>"
+                                            required="required">
+                                        <label for="user-status">Status</label>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
+                    <div class="text-center" style="text-align: center">
+                        <input type="submit" value="Save changes" class="btn btn-light font-custom edit">
+                        <button type="button" class="btn btn-light font-custom edit"
+                            onClick="javascript:history.go(-1)">Return</button>
+                    </div>
                 </form>
-                <div class="text-center" style="text-align: center">
-                    <button type="button" class="btn btn-light font-custom"
-                        onClick="javascript:history.go(-1)">Return</button>
-                </div>
+
             </div>
         </div>
     </div>
