@@ -195,7 +195,7 @@ passport.use(new GoogleStrategy({
             email: profile.emails[0].value,
             photo: profile.picture,
             googleId: profile.id,
-            status: "profile incomplete"
+            status: "Profile Incomplete"
           })
           user.save().then((newUser) => {
             console.log('new user created:' + newUser);
@@ -242,7 +242,7 @@ passport.use(new FacebookStrategy({
             email: profile.emails[0].value,
             //    photo: profile.photos[0].value,
             facebookId: profile.id,
-            status: "profile incomplete"
+            status: "Profile Incomplete"
           })
           user.save().then((newStudent) => {
             console.log('new user created:' + newStudent);
