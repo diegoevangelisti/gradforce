@@ -55,17 +55,17 @@
 
         <!-- home page registration form -->
         <div id="register">
-            <form id="formContainer" action="http://localhost:5000/auth/register" method="POST">
+            <form id="formContainer" action="/auth/register" method="POST">
                 <h3 id="title" class="mb15">Sign up now</h3>
                 <span id="student">
                     <input id="student-user" class="radioInput" type="radio"
-                        onclick="postForm('http://localhost:5000/auth/register/usertype?userType='+this.value)"
+                        onclick="postForm('/auth/register/usertype?userType='+this.value)"
                         name="userType" value="Student">I'm looking for a
                     job<br>
                 </span>
                 <span id="employer">
                     <input id="employer-user" class="radioInput mb15" type="radio" name="userType"
-                        onclick="postForm('http://localhost:5000/auth/register/usertype?userType='+this.value)"
+                        onclick="postForm('/auth/register/usertype?userType='+this.value)"
                         value="Employer">I'm looking to hire<br>
                 </span>
                 <input id="email" class="text-input mb10" type="email" name="email" placeholder="Email" value=""
@@ -94,14 +94,14 @@
             <div id="other-logins">
                 <!-- Social media registration buttons -->
                 <button id="facebook" class="btn btnFb mb2">
-                    <a id="postUserType" href="http://localhost:5000/auth/facebook"
+                    <a id="postUserType" href="/auth/facebook"
                         style="text-decoration: none; color:white">
                         <i class="fa-lg fab fa-facebook-f btniAlign"></i>
                         <span class="btnsAlign">Continue with Facebook</span>
                     </a>
                 </button>
                 <button id="google" class="btn btnGoogle mb15">
-                    <a id="postUserType" href="http://localhost:5000/auth/google"
+                    <a id="postUserType" href="/auth/google"
                         style="text-decoration: none; color:white">
                         <i class="fa-lg fab fa-google btniAlign"></i>
                         <span class="btnsAlign">Continue with Google</span>
@@ -125,7 +125,7 @@
 <script>
     //Post userType when register with Google or Facebook
     var user = document.getElementById('postUserType')
-    user.addEventListener("click", postForm("http://localhost:5000/auth/register/usertype"));
+    user.addEventListener("click", postForm("/auth/register/usertype"));
 
     function postForm(url) {
         return fetch(url, {

@@ -1,38 +1,44 @@
 var express = require("express");
 const router = express.Router();
 const User = require("../models/users");
-const Mail = require("../models/mails");
+const Admin = require("../models/admin");
 var passport = require("passport");
 
 
-function isLoggedIn(req, res, next) {
+
+function isAdminLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   }
-  res.redirect("login");
+  res.redirect("/adminpanel/login");
 }
 
-
 //
-//Login routes for admin
+//Log in and Log out routes for admin
 //
 
 router.post("/login", passport.authenticate("admin", {
-  successRedirect: "/adminpanel/tables",
-  failureRedirect: "/adminpanel/login",
+  successRedirect: "tables",
+  failureRedirect: "login",
 }), function (req, res) {
-  res.send(user._id)
-  console.log("User: " + req.user);
+  res.send(admin._id)
+  console.log("User: " + req.admin);
 });
 
 router.get("/login", (req, res, next) => {
-  res.render("../views/admin-panel/login", {
-    isLoggedIn: null
-  });
+  res.render("../views/admin-panel/login");
 });
 
+// router.get("/logout", (req, res, next) => {
+//   req.logout();
+//   res.redirect("/adminpanel/auth");
+// });
 
-router.get("/tables", isLoggedIn, (req, res) => {
+//
+// Tables routes
+//
+
+router.get("/tables", (req, res) => {
 
   User.find().then((users) => {
     res.render("../views/admin-panel/tables/tables", {
