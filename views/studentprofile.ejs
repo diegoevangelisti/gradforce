@@ -72,32 +72,38 @@
         <img class="editbtn" src="/assets/img/icons/edit.png" alt="edit icon">
       </a>
       <h1 class="mb15">About</h1>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur quae quos aspernatur culpa nihil nulla
-        perspiciatis dolore asperiores architecto beatae, consequuntur inventore eligendi autem sint quisquam officiis
-        temporibus sit illum! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non, nisi hic ut vitae
-        aspernatur id quibusdam quod tempora adipisci recusandae eveniet, necessitatibus quam! Voluptatem facere,
-        aperiam alias impedit ipsam autem.</p>
+      <p><% user.about%></p>
     </div>
 
     <!-- education info -->
     <div id="std-education" class="box">
-      <button class="btn">
-        <a href="#">
-          <img class="editbtn" src="/assets/img/icons/edit.png" alt="edit icon">
-        </a>
-      </button>
+      <a href="#">
+        <img class="editbtn" src="/assets/img/icons/edit.png" alt="edit icon">
+      </a>
       <a href="#">
         <img class="addbtn" src="/assets/img/icons/add.png" alt="edit icon">
       </a>
       <h1 class="mb15">Education</h1>
-      <h2>Auckland university of technology (AUT)</h2>
-      <p class="inline">Bachelor's</p>
-      <p class="inline"> in </p>
-      <p class="inline">Computer Engineering</p>
+      <!-- Show all Education -->
+      <% user.education.forEach(function(element, i){ %>
+      <% if(i == 0) { %>
+      <p class="inline"><%= element.course%></p>
       <br>
-      <p class="inline">2010</p>
+      <h2><%= element.educational_provider%></h2>
+      <p class="inline"><%= element.start_date%></p>
       <p class="inline"> - </p>
-      <p class="inline">2015</p>
+      <p class="inline"><%= element.end_date%></p>
+      <% } %>
+      <% if(i) { %>
+      <hr class="mt10 mb10">
+      <h2><%= element.educational_provider%></h2>
+      <p class="inline"><%= element.course%></p>
+      <br>
+      <p class="inline"><%= element.start_date%></p>
+      <p class="inline"> - </p>
+      <p class="inline"><%= element.end_date%></p>
+      <% } %>
+      <% }) %>
     </div>
 
     <!-- work experience -->
