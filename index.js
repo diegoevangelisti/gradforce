@@ -169,7 +169,7 @@ passport.deserializeUser(User.deserializeUser());
 //Setting passport for google authentication
 
 passport.use(new GoogleStrategy({
-    callbackURL: "/auth/google/redirect",
+    callbackURL: "https://gradforce-backend.herokuapp.com/auth/google/redirect",
     clientID: keys.google.clientID,
     clientSecret: keys.google.clientSecrect
 
