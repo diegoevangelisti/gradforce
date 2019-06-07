@@ -7,20 +7,12 @@ const Admin = require("../models/admin");
 var passport = require("passport");
 
 
-function isLoggedIn(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect("login");
-}
-
-
 //cookie session timelapse
 
 app.use(session({
   secret: 'keyboard cat',
   cookie: {
-    maxAge: 60000
+    maxAge: 300
   }
 }))
 
@@ -126,13 +118,13 @@ router.post("/register-by-admin", (req, res, next) => {
 
 router.post("/new-admin", (req, res) => {
   Admin.register(new Admin({
-    _id: Math.random()
-      .toString(36)
-      .substr(2, 9),
-    username: req.body.email,
-    email: req.body.email,
-  }),
-  req.body.password,
+      _id: Math.random()
+        .toString(36)
+        .substr(2, 9),
+      username: req.body.email,
+      email: req.body.email,
+    }),
+    req.body.password,
     function (err) {
       if (err) {
         console.log(err);
@@ -166,7 +158,6 @@ router.get("/login", (req, res, next) => {
 });
 
 
-
 //
 //Google register/login routes
 //
@@ -187,15 +178,17 @@ router.get('/google/redirect',
 
     console.log("USER TYPE: " + req.session.userType);
     console.log("Session id checking: " + req.session.id);
-    console.log("Username:" + req.session.passport.user);
+    console.log("Username:" + req.user.username);
 
     //Find the user and update it with the usertype 
 
     User.findOne({
-      username: req.session.passport.user
+      username: req.user.username
     }, function (err, doc) {
       if (!doc.userType) {
+
         doc.userType = req.session.userType;
+        console.log("NEW USER TYPE: " + req.user.userType);
         doc.save();
       }
     });
@@ -215,17 +208,20 @@ router.get('/facebook/callback', passport.authenticate('facebook', {
     failureRedirect: '/login'
   }),
   function (req, res) {
+
     console.log("USER TYPE: " + req.session.userType);
     console.log("Session id checking: " + req.session.id);
-    console.log("Username:" + req.session.passport.user);
+    console.log("Username:" + req.user.username);
 
     //Find the user and update it with the usertype 
 
     User.findOne({
-      username: req.session.passport.user
+      username: req.user.username
     }, function (err, doc) {
       if (!doc.userType) {
+
         doc.userType = req.session.userType;
+        console.log("NEW USER TYPE: " + req.user.userType);
         doc.save();
       }
     });

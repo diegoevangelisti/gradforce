@@ -29,16 +29,16 @@ router.get("/login", (req, res, next) => {
   res.render("../views/admin-panel/login");
 });
 
-// router.get("/logout", (req, res, next) => {
-//   req.logout();
-//   res.redirect("/adminpanel/auth");
-// });
+router.get("/logout", (req, res, next) => {
+  req.logout();
+  res.redirect("/adminpanel/login");
+});
 
 //
 // Tables routes
 //
 
-router.get("/tables", (req, res) => {
+router.get("/tables", isAdminLoggedIn, (req, res) => {
 
   User.find().then((users) => {
     res.render("../views/admin-panel/tables/tables", {
@@ -47,7 +47,7 @@ router.get("/tables", (req, res) => {
   })
 });
 
-router.get("/tables-students", (req, res) => {
+router.get("/tables-students", isAdminLoggedIn, (req, res) => {
 
   User.find().where("userType", "Student").then((users) => {
     res.render("../views/admin-panel/tables/tables-students", {
@@ -56,7 +56,7 @@ router.get("/tables-students", (req, res) => {
   })
 });
 
-router.get("/tables-employers", (req, res) => {
+router.get("/tables-employers", isAdminLoggedIn, (req, res) => {
 
   User.find().where("userType", "Employer").then((users) => {
     res.render("../views/admin-panel/tables/tables-employers", {
@@ -65,7 +65,7 @@ router.get("/tables-employers", (req, res) => {
   })
 });
 
-router.get("/tables-students-status2", (req, res) => {
+router.get("/tables-students-status2", isAdminLoggedIn, (req, res) => {
 
   User.find().where("status", "Profile Complete").where("userType", "Student").then((users) => {
     res.render("../views/admin-panel/tables/tables-students-status2", {
@@ -74,7 +74,7 @@ router.get("/tables-students-status2", (req, res) => {
   })
 });
 
-router.get("/calendar", (req, res) => {
+router.get("/calendar", isAdminLoggedIn, (req, res) => {
 
   User.find().then((users) => {
     res.render("../views/admin-panel/calendar", {
@@ -84,7 +84,7 @@ router.get("/calendar", (req, res) => {
 });
 
 
-router.get("/add-new-user", (req, res) => {
+router.get("/add-new-user", isAdminLoggedIn, (req, res) => {
 
   User.find().then((users) => {
     res.render("../views/admin-panel/register", {
@@ -93,7 +93,7 @@ router.get("/add-new-user", (req, res) => {
   })
 });
 
-router.get("/send-email/:type/:id", (req, res) => {
+router.get("/send-email/:type/:id", isAdminLoggedIn, (req, res) => {
 
   let type = req.params.type;
   let id = req.params.id;
@@ -109,7 +109,7 @@ router.get("/send-email/:type/:id", (req, res) => {
 
 });
 
-router.get("/userprofile/student/:id", (req, res) => {
+router.get("/userprofile/student/:id", isAdminLoggedIn, (req, res) => {
   let id = req.params.id;
   User.findById(id)
     .then((user) => {
@@ -214,5 +214,23 @@ router.post("/userprofile/student/edit/:id", (req, res) => {
     })
 });
 
+router.get('/deleteuser/:id', (req, res) => {
+  let id = req.params.id;
+  User.find({
+      _id: id
+    })
+    .remove()
+    .exec()
+    .then(result => {
+      console.log(result);
+      res.redirect("/adminpanel/tables");
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({
+        error: err
+      });
+    });
+})
 
 module.exports = router;

@@ -50,11 +50,16 @@
 
 <body id="page-top">
 
-    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
-        <a class="navbar-brand mr-1" href="/adminpanel/tables/tables">GradForce Admin Panel</a>
+    <nav class="navbar navbar-dark bg-dark static-top">
         <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
-            <i class="fas fa-bars"></i>
+            <i class="fas fa-bars"></i><a style="margin-left: 10px" class="navbar-brand mr-1"
+                href="/adminpanel/tables">GradForce Admin Panel</a>
         </button>
+        <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+        </button>
+        <button class="btn btn-outline-secondary" type="submit"><a style="text-decoration: none; color: white"
+                href="/adminpanel/logout">Log
+                out</a></button>
     </nav>
     <div id="wrapper">
         <!-- Sidebar -->
@@ -69,6 +74,8 @@
                     <a class="dropdown-item" href="/adminpanel/tables">All</a>
                     <a class="dropdown-item" href="/adminpanel/tables-students">Students</a>
                     <a class="dropdown-item" href="/adminpanel/tables-employers">Employers</a>
+                    </br>
+                    <a class="dropdown-item" href="/adminpanel/add-new-user"><i class="fas fa-user-plus"></i> Add</a>
                 </div>
             </li>
             <li class="nav-item active">
@@ -76,7 +83,6 @@
                     <i class="far fa-calendar-alt"></i>
                     <span>Calendar</span></a>
             </li>
-
         </ul>
         <div id="content-wrapper">
             <div class="container-fluid">
@@ -121,8 +127,10 @@
                                                 <a href="/adminpanel/userprofile/employer/<%= users._id %>"><i
                                                         class="far fa-eye med"></i></a>
                                                 <a href="/adminpanel/send-email/default/<%=users._id%>"><i
-                                                        class="far fa-envelope med"></i></a><i
-                                                    class="fas fa-edit med"></i><i class="far fa-trash-alt med"></i>
+                                                        class="far fa-envelope med"></i></a> <a
+                                                    href="/adminpanel/userprofile/employer/edit/<%=users._id%>/"><i
+                                                        class="fas fa-edit med"></i></a><i
+                                                    class="far fa-trash-alt med"></i>
                                             </div>
                                         </td>
                                     </tr>

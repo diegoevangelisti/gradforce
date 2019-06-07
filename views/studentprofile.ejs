@@ -61,10 +61,11 @@
       <p class="mb10"><%= user.email%></p>
       <label for="phone">Phone number:</label>
       <p class="mb10"><%= user.phone_number%></p>
+      <% if(user.address.street) { %>
       <label for="address">Address:</label>
       <p><%= user.address.unit%>, <%= user.address.street%></p>
       <p class="mb2"><%= user.address.city%>, <%= user.address.suburb%></p>
-
+      <% } %>
     </div>
     <!-- about me paragraph -->
     <div id="std-about" class="box">

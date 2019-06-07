@@ -45,7 +45,7 @@
             <div class="card-header">Student: <%= user.fname %> <%= user.lname %>
                 <div>
                     <a href="/adminpanel/send-email/default/<%=user._id%>"><i class="far fa-envelope med"></i></a><i
-                        class="fas fa-edit med"></i><i class="far fa-trash-alt med"></i>
+                        class="far fa-trash-alt med"></i>
                 </div>
             </div>
             <div class="card-body">
@@ -64,9 +64,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <div class="form-label-group">
-                                        <input type="text" name="lname" id="lname"
-                                            class="form-control font-custom" value="<%= user.lname%>"
-                                            required="required">
+                                        <input type="text" name="lname" id="lname" class="form-control font-custom"
+                                            value="<%= user.lname%>" required="required">
                                         <label for="lname">Last Name</label>
                                     </div>
                                 </div>

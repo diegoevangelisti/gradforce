@@ -49,12 +49,16 @@
 </head>
 
 <body id="page-top">
-
-    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
-        <a class="navbar-brand mr-1" href="/adminpanel/tables">GradForce Admin Panel</a>
+    <nav class="navbar navbar-dark bg-dark static-top">
         <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
-            <i class="fas fa-bars"></i>
+            <i class="fas fa-bars"></i><a style="margin-left: 10px" class="navbar-brand mr-1"
+                href="/adminpanel/tables">GradForce Admin Panel</a>
         </button>
+        <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+        </button>
+        <button class="btn btn-outline-secondary" type="submit"><a style="text-decoration: none; color: white"
+                href="/adminpanel/logout">Log
+                out</a></button>
     </nav>
     <div id="wrapper">
         <!-- Sidebar -->
@@ -69,6 +73,8 @@
                     <a class="dropdown-item" href="/adminpanel/tables">All</a>
                     <a class="dropdown-item" href="/adminpanel/tables-students">Students</a>
                     <a class="dropdown-item" href="/adminpanel/tables-employers">Employers</a>
+                    </br>
+                    <a class="dropdown-item" href="/adminpanel/add-new-user"><i class="fas fa-user-plus"></i> Add</a>
                 </div>
             </li>
             <li class="nav-item active">
