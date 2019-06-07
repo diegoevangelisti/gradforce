@@ -16,6 +16,7 @@ app.use(cookieParser());
 
 const keys = require('./config/keys')
 var User = require("./api/models/users");
+var Admin = require("./api/models/admin");
 
 app.set('view engine', 'ejs');
 app.use(express.static("views"));
@@ -147,9 +148,15 @@ app.use(require("express-session")({
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.use(new LocalStrategy({
+passport.use("local", new LocalStrategy({
   usernameField: 'email'
 }, User.authenticate()));
+
+
+ passport.use("admin", new LocalStrategy({
+   usernameField: 'email'
+ }, Admin.authenticate()));
+
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
@@ -260,6 +267,11 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(bodyParser.json());
+
+app.use(function (req, res, next) {
+  res.locals.login = req.isAuthenticated();
+  next();
+});
 
 //
 // Routes
