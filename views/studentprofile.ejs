@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <div w3-include-html="/partials/head.html"></div>
+
+  <script>
+    function includeHTML() {
+      var z, i, elmnt, file, xhttp;
+      /* Loop through a collection of all HTML elements: */
+      z = document.getElementsByTagName("*");
+      for (i = 0; i < z.length; i++) {
+        elmnt = z[i];
+        /*search for elements with a certain atrribute:*/
+        file = elmnt.getAttribute("w3-include-html");
+        if (file) {
+          /* Make an HTTP request using the attribute value as the file name: */
+          xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function () {
+            if (this.readyState == 4) {
+              if (this.status == 200) {
+                elmnt.innerHTML = this.responseText;
+              }
+              if (this.status == 404) {
+                elmnt.innerHTML = "Page not found.";
+              }
+              /* Remove the attribute, and call this function once more: */
+              elmnt.removeAttribute("w3-include-html");
+              includeHTML();
+            }
+          }
+          xhttp.open("GET", file, true);
+          xhttp.send();
+          /* Exit the function: */
+          return;
+        }
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <!-- <div w3-include-html="/partials/header.ejs"></div> -->
+  <% include ./partials/header %>
+  <main id="std-profile">
+    <div id="std-details" class="box">
+      <a href="#">
+        <img class="editbtn" src="/assets/img/icons/edit.png" alt="edit icon">
+      </a>
+      <% if(user.photo){ %>
+      <img class="centerimg mb10" src="<%= user.photo%>" alt="No photo">
+      <% } %>
+      <% if(!user.photo){ %>
+      <img class="centerimg mb10" src="/assets/img/profile-placeholder.jpg" alt="No photo">
+      <% } %>
+      <h1 class="center" id="title"><%= user.fname %> <%= user.lname %></h1>
+      <h2 class="center mb15" id="title">Full Stack Developer</h2>
+      <hr class="mb10">
+      <h2 class="mb10">Contact Information</h2>
+      <label for="email">Email address:</label>
+      <p class="mb10"><%= user.email%></p>
+      <label for="phone">Phone number:</label>
+      <p class="mb10"><%= user.phone_number%></p>
+      <label for="address">Address:</label>
+      <p><%= user.address.unit%>, <%= user.address.street%></p>
+      <p class="mb2"><%= user.address.city%>, <%= user.address.suburb%></p>
+
+    </div>
+    <!-- about me paragraph -->
+    <div id="std-about" class="box">
+      <a href="#">
+        <img class="editbtn" src="/assets/img/icons/edit.png" alt="edit icon">
+      </a>
+      <h1 class="mb15">About</h1>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur quae quos aspernatur culpa nihil nulla
+        perspiciatis dolore asperiores architecto beatae, consequuntur inventore eligendi autem sint quisquam officiis
+        temporibus sit illum! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non, nisi hic ut vitae
+        aspernatur id quibusdam quod tempora adipisci recusandae eveniet, necessitatibus quam! Voluptatem facere,
+        aperiam alias impedit ipsam autem.</p>
+    </div>
+
+    <!-- education info -->
+    <div id="std-education" class="box">
+      <button class="btn">
+        <a href="#">
+          <img class="editbtn" src="/assets/img/icons/edit.png" alt="edit icon">
+        </a>
+      </button>
+      <a href="#">
+        <img class="addbtn" src="/assets/img/icons/add.png" alt="edit icon">
+      </a>
+      <h1 class="mb15">Education</h1>
+      <h2>Auckland university of technology (AUT)</h2>
+      <p class="inline">Bachelor's</p>
+      <p class="inline"> in </p>
+      <p class="inline">Computer Engineering</p>
+      <br>
+      <p class="inline">2010</p>
+      <p class="inline"> - </p>
+      <p class="inline">2015</p>
+    </div>
+
+    <!-- work experience -->
+    <div id="std-experience" class="box">
+      <a href="#">
+        <img class="editbtn" src="/assets/img/icons/edit.png" alt="edit icon">
+      </a>
+      <a href="#">
+        <img class="addbtn" src="/assets/img/icons/add.png" alt="edit icon">
+      </a>
+      <h1 class="mb15">Work Experience</h1>
+      <h2>Senior developer</h2>
+
+      <p>ADP</p>
+
+      <p class="inline">2015</p>
+      <p class="inline"> - </p>
+      <p class="inline">Present</p>
+      <br>
+
+      <p class="inline">Auckland</p>
+      <p class="inline"> - </p>
+      <p class="inline">New Zealand</p>
+    </div>
+  </main>
+
+  <div w3-include-html="/partials/footer.html"></div>
+
+  <script>
+    includeHTML();
+  </script>
+</body>
+
+</html>
