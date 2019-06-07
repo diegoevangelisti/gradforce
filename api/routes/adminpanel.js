@@ -2,16 +2,37 @@ var express = require("express");
 const router = express.Router();
 const User = require("../models/users");
 const Mail = require("../models/mails");
+var passport = require("passport");
 
 
-router.get("/login", (req,res) => {
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect("login");
+}
 
-  res.render("../views/admin-panel/login");
 
-})
+//
+//Login routes for admin
+//
+
+router.post("/login", passport.authenticate("admin", {
+  successRedirect: "/adminpanel/tables",
+  failureRedirect: "/adminpanel/login",
+}), function (req, res) {
+  res.send(user._id)
+  console.log("User: " + req.user);
+});
+
+router.get("/login", (req, res, next) => {
+  res.render("../views/admin-panel/login", {
+    isLoggedIn: null
+  });
+});
 
 
-router.get("/tables", (req, res) => {
+router.get("/tables", isLoggedIn, (req, res) => {
 
   User.find().then((users) => {
     res.render("../views/admin-panel/tables/tables", {
@@ -143,7 +164,8 @@ router.post("/userprofile/employer/edit/:id", (req, res) => {
         city: addressCity,
         suburb: addressSuburb
       },
-      DOB: req.body.dob
+      DOB: req.body.dob,
+      status: req.body.status
     }, {
       new: true
     })
