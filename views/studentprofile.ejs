@@ -54,7 +54,7 @@
       <img class="centerimg mb10" src="/assets/img/profile-placeholder.jpg" alt="No photo">
       <% } %>
       <h1 class="center" id="title"><%= user.fname %> <%= user.lname %></h1>
-      <h2 class="center mb15" id="title">Full Stack Developer</h2>
+      <h2 class="center mb15" id="title"><%= user.title %></h2>
       <hr class="mb10">
       <h2 class="mb10">Contact Information</h2>
       <label for="email">Email address:</label>
@@ -72,7 +72,7 @@
         <img class="editbtn" src="/assets/img/icons/edit.png" alt="edit icon">
       </a>
       <h1 class="mb15">About</h1>
-      <p><% user.about%></p>
+      <p><%= user.about%></p>
     </div>
 
     <!-- education info -->
@@ -87,7 +87,7 @@
       <!-- Show all Education -->
       <% user.education.forEach(function(element, i){ %>
       <% if(i == 0) { %>
-      <p class="inline"><%= element.course%></p>
+      <p class="inline" style="font-weight: bold"><%= element.course%></p>
       <br>
       <h2><%= element.educational_provider%></h2>
       <p class="inline"><%= element.start_date%></p>
@@ -105,7 +105,6 @@
       <% } %>
       <% }) %>
     </div>
-
     <!-- work experience -->
     <div id="std-experience" class="box">
       <a href="#">
@@ -115,18 +114,32 @@
         <img class="addbtn" src="/assets/img/icons/add.png" alt="edit icon">
       </a>
       <h1 class="mb15">Work Experience</h1>
-      <h2>Senior developer</h2>
-
-      <p>ADP</p>
-
-      <p class="inline">2015</p>
-      <p class="inline"> - </p>
-      <p class="inline">Present</p>
+      <!-- Show all work experience -->
+      <% user.work.forEach(function(element, i){ %>
+      <% if(i == 0) { %>
+      <p class="inline" style="font-weight: bold"><%= element.role%></p>
       <br>
-
-      <p class="inline">Auckland</p>
+      <p class="inline"><%= element.company%></p>
+      <br>
+      <p class="inline"><%= element.start_date%></p>
       <p class="inline"> - </p>
-      <p class="inline">New Zealand</p>
+      <p class="inline"><%= element.end_date%></p>
+      <br>
+      <p class="inline"><%= element.description%></p>
+      <% } %>
+      <% if(i) { %>
+      <hr class="mt10 mb10">
+      <p class="inline" style="font-weight: bold"><%= element.role%></p>
+      <br>
+      <p class="inline"><%= element.company%></p>
+      <br>
+      <p class="inline"><%= element.start_date%></p>
+      <p class="inline"> - </p>
+      <p class="inline"><%= element.end_date%></p>
+      <br>
+      <p class="inline"><%= element.description%></p>
+      <% } %>
+      <% }) %>
     </div>
   </main>
 
