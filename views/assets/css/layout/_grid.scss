@@ -4,7 +4,7 @@ body {
 
   #header {
     display: grid;
-    grid-template-columns: 2rem 140px auto 2rem;
+    grid-template-columns: 8% 140px auto 8%;
     grid-template-rows: 1;
 
     .logo {
@@ -24,8 +24,8 @@ body {
 // LANDING PAGE GRID SYSTEM --------------
 #landing_page {
   display: grid;
-  grid-template-columns: 2rem 11fr 2fr 340px 2rem;
-  grid-template-rows: repeat(3, auto), 5rem;
+  grid-template-columns: 8% 11fr 2fr 400px 8%;
+  grid-template-rows: repeat(3, auto);
 
   #slogan {
     grid-column: 2 / 3;
@@ -46,7 +46,7 @@ body {
   #formContainer {
     display: grid;
     grid-gap: 0;
-    grid-template-columns: 160px 160px;
+    grid-template-columns: 190px 190px;
     margin: 10px;
     // align-items: left;
     // grid-auto-flow: dense;
@@ -70,7 +70,7 @@ body {
   #other-logins {
     display: grid;
     grid-gap: 0;
-    grid-template-columns: 160px 160px;
+    grid-template-columns: 190px 190px;
     // margin: 10px;
     // align-items: left;
     // grid-auto-flow: dense;
@@ -116,19 +116,11 @@ body {
     }
 
     #pass {
-      p {
-        font-size: 10px;
-      }
-
       grid-area: password;
     }
 
     #terms {
       grid-area: terms;
-
-      p {
-        font-size: 10px;
-      }
     }
 
     #next {
@@ -164,5 +156,34 @@ body {
     display: grid;
     grid-template-columns: 400px;
     grid-template-rows: repeat(7, auto);
+  }
+}
+
+// student profile
+#std-profile {
+  display: grid;
+  grid-template-columns: 8% 1.2fr 4fr 8%;
+  grid-template-rows: repeat(3, auto);
+  grid-gap: 10px;
+
+  #std-details {
+    grid-column-start: 2;
+    grid-row: 1 / 4;
+    // grid-auto-rows: minmax(min-content, max-content);
+    max-height: 500px;
+  }
+
+  #std-about {
+    grid-column-start: 3;
+  }
+
+  #std-education {
+    grid-column-start: 3;
+    grid-row-start: 2;
+  }
+
+  #std-experience {
+    grid-column-start: 3;
+    grid-row-start: 3;
   }
 }

@@ -73,6 +73,8 @@
                     <a class="dropdown-item" href="/adminpanel/tables">All</a>
                     <a class="dropdown-item" href="/adminpanel/tables-students">Students</a>
                     <a class="dropdown-item" href="/adminpanel/tables-employers">Employers</a>
+                    </br>
+                    <a class="dropdown-item" href="/adminpanel/add-new-user"><i class="fas fa-user-plus"></i> Add</a>
                 </div>
             </li>
             <li class="nav-item active">
@@ -107,6 +109,7 @@
                                 <tbody>
                                     <% users.map((users, i) => { %>
                                     <tr id="table-rows">
+                                      <%  if(users.userType !== "Admin") { %>
                                         <td><%= users.fname %></td>
                                         <td><%= users.lname %></td>
                                         <td><%= users.email %></td>
@@ -158,6 +161,7 @@
                                                 <i class="far fa-trash-alt med"></i>
                                             </div>
                                         </td>
+                                    <% } %>
                                     </tr>
                                     <% }) %>
                                 </tbody>

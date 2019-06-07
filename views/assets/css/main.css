@@ -1,6 +1,29 @@
 .title-font {
   font-family: 'Lato';
-  font-size: 15px;
+  font-size: 2rem;
+  font-weight: 300;
+}
+
+h1 {
+  font-size: 1.6rem;
+  font-family: 'Lato';
+  font-weight: 300;
+  margin: 1em;
+}
+
+h2 {
+  font-size: 0.94rem;
+  font-family: 'Lato';
+  font-weight: 100;
+}
+
+label {
+  font-size: 0.8rem;
+}
+
+p {
+  font-family: 'Lato';
+  font-size: 1rem;
   font-weight: 100;
 }
 
@@ -110,8 +133,8 @@ body {
 body #header {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 2rem 140px auto 2rem;
-      grid-template-columns: 2rem 140px auto 2rem;
+  -ms-grid-columns: 8% 140px auto 8%;
+      grid-template-columns: 8% 140px auto 8%;
   -ms-grid-rows: 1;
       grid-template-rows: 1;
 }
@@ -137,10 +160,10 @@ body #header .menu {
 #landing_page {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 2rem 11fr 2fr 340px 2rem;
-      grid-template-columns: 2rem 11fr 2fr 340px 2rem;
-  -ms-grid-rows: (auto)[3], 5rem;
-      grid-template-rows: repeat(3, auto), 5rem;
+  -ms-grid-columns: 8% 11fr 2fr 400px 8%;
+      grid-template-columns: 8% 11fr 2fr 400px 8%;
+  -ms-grid-rows: (auto)[3];
+      grid-template-rows: repeat(3, auto);
 }
 
 #landing_page #slogan {
@@ -171,19 +194,19 @@ body #header .menu {
   display: -ms-grid;
   display: grid;
   grid-gap: 0;
-  -ms-grid-columns: 160px 160px;
-      grid-template-columns: 160px 160px;
+  -ms-grid-columns: 190px 190px;
+      grid-template-columns: 190px 190px;
   margin: 10px;
-      grid-template-areas: "title title" "student employer" "email email" "fname lname" "phone phone" "password password" "terms terms" "next next" "facebook facebook" "google google" "signin signin" "other-logins other-logins";
+      grid-template-areas: "title title" "student employer" "email email" "fname lname" "phone phone" "password password" "terms terms" "next next" "facebook facebook" "google google" "signin signin" "other-logins other-logins";
 }
 
 #landing_page #other-logins {
   display: -ms-grid;
   display: grid;
   grid-gap: 0;
-  -ms-grid-columns: 160px 160px;
-      grid-template-columns: 160px 160px;
-      grid-template-areas: "facebook facebook" "google google" "signin signin";
+  -ms-grid-columns: 190px 190px;
+      grid-template-columns: 190px 190px;
+      grid-template-areas: "facebook facebook" "google google" "signin signin";
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -241,19 +264,11 @@ body #header .menu {
   grid-area: password;
 }
 
-#landing_page #register #pass p {
-  font-size: 10px;
-}
-
 #landing_page #register #terms {
   -ms-grid-row: 7;
   -ms-grid-column: 1;
   -ms-grid-column-span: 2;
   grid-area: terms;
-}
-
-#landing_page #register #terms p {
-  font-size: 10px;
 }
 
 #landing_page #register #next {
@@ -311,16 +326,59 @@ body #header .menu {
       grid-template-rows: repeat(7, auto);
 }
 
+#std-profile {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 8% 1.2fr 4fr 8%;
+      grid-template-columns: 8% 1.2fr 4fr 8%;
+  -ms-grid-rows: (auto)[3];
+      grid-template-rows: repeat(3, auto);
+  grid-gap: 10px;
+}
+
+#std-profile #std-details {
+  -ms-grid-column: 2;
+      grid-column-start: 2;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 3;
+  grid-row: 1 / 4;
+  max-height: 500px;
+}
+
+#std-profile #std-about {
+  -ms-grid-column: 3;
+      grid-column-start: 3;
+}
+
+#std-profile #std-education {
+  -ms-grid-column: 3;
+      grid-column-start: 3;
+  -ms-grid-row: 2;
+      grid-row-start: 2;
+}
+
+#std-profile #std-experience {
+  -ms-grid-column: 3;
+      grid-column-start: 3;
+  -ms-grid-row: 3;
+      grid-row-start: 3;
+}
+
 #landing_page #register {
   background: rgba(241, 241, 241, 0.85);
   border-top: 4px solid #e5e5e5;
   font-size: 12px;
   margin-top: 3rem;
-  max-height: 540px;
+  max-height: 580px;
+}
+
+#landing_page #register p {
+  font-size: 1.25em;
 }
 
 #landing_page #slogan h1 {
-  font-weight: 300;
+  font-size: 40px;
+  font-weight: 400;
   margin: 3rem 0 1rem;
 }
 
@@ -329,7 +387,30 @@ body #header .menu {
 }
 
 #login-page p {
-  font-size: 12px;
+  font-size: 0.9rem;
+}
+
+#std-profile {
+  margin-top: 3rem;
+}
+
+#std-profile h1 {
+  margin: 0;
+}
+
+#std-profile #std-details {
+  -ms-flex-line-pack: center;
+      align-content: center;
+  background: #fff;
+}
+
+#std-profile #std-details img:nth-child(2) {
+  width: 10rem;
+  border-radius: 50%;
+}
+
+#std-profile #std-about {
+  position: relative;
 }
 
 * {
@@ -340,12 +421,20 @@ body #header .menu {
   padding: 0;
 }
 
+body {
+  background: #F5F5F5;
+}
+
 .mb2 {
   margin-bottom: 2px;
 }
 
 .mb15 {
-  margin-bottom: 15px;
+  margin-bottom: 15px !important;
+}
+
+.mt30 {
+  margin-top: 30px;
 }
 
 .mb10 {
@@ -354,10 +443,6 @@ body #header .menu {
 
 .mt5 {
   margin-top: 5px;
-}
-
-h1 {
-  margin: 1em;
 }
 
 .text-input {
@@ -392,5 +477,44 @@ input input::placeholder {
 input[type='radio'],
 input[type='checkbox'] {
   margin-right: 5px;
+}
+
+.center {
+  text-align: center;
+}
+
+.centerimg {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+hr {
+  border: 1px solid #F1F1F1;
+}
+
+.box {
+  background: #FFFFFF;
+  -webkit-box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.23);
+          box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.23);
+  border-radius: 2px;
+  position: relative;
+  padding: 25px 20px 25px;
+}
+
+.editbtn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.addbtn {
+  position: absolute;
+  top: 20px;
+  right: 50px;
+}
+
+.inline {
+  display: inline;
 }
 /*# sourceMappingURL=main.css.map */
