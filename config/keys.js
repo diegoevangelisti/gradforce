@@ -7,8 +7,5 @@ module.exports = {
     facebook: {
         APP_ID: "1136811756491129",
         APP_SECRET: "238cd148a366ea584fcb702020d76fea"
-    },
-    gmail: {
-        GRADFORCE: "Aspire2gf"
     }
 }

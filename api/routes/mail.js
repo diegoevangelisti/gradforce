@@ -31,7 +31,7 @@ router.post("/send-email/:id", (req, res) => {
                 secure: true, // use SSL
                 auth: {
                     user: 'gradforce.co.nz@gmail.com',
-                    pass: keys.gmail.GRADFORCE
+                    pass: process.env.GMAIL
                 }
             });
 
