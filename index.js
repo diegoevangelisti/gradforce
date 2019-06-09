@@ -108,7 +108,7 @@ passport.use("admin", new LocalStrategy({
 //Setting passport for google authentication
 
 passport.use(new GoogleStrategy({
-    callbackURL: "http://localhost:5000/auth/google/redirect",
+    callbackURL: "/auth/google/redirect",
     clientID: keys.google.clientID,
     clientSecret: keys.google.clientSecrect
 
