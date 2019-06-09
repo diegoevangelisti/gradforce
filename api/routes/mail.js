@@ -48,7 +48,7 @@ router.post("/send-email/:id", (req, res) => {
         }
 
         main().catch(console.error);
-        res.redirect("../adminpanel/tables");
+        res.redirect("/adminpanel/tables");
     })
 });
 
