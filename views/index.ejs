@@ -2,6 +2,13 @@
 <html lang="en">
 
 <head>
+    <script>
+        window.onload = function () {
+            setTimeout(function () {
+                document.body.style.opacity = "100";
+            }, 500);
+        };
+    </script>
     <div w3-include-html="/partials/head.html"></div>
 
     <script>
@@ -40,6 +47,11 @@
 </head>
 
 <body>
+    <style>
+        body {
+            opacity: 0;
+        }
+    </style>
     <!-- <div w3-include-html="/partials/header.ejs"></div> -->
     <% include ./partials/header %>
     <!-- page content after here -->
