@@ -32,7 +32,7 @@ router.get("/register/usertype", (req, res, next) => {
 
 router.get("/register", (req, res) => {
   res.render("../views/index", {
-    isLoggedIn: null
+    isLoggedIn: null, SignUp: "Yes"
   })
 });
 
@@ -181,7 +181,7 @@ router.post("/login", passport.authenticate("local", {
 
 router.get("/login", (req, res, next) => {
   res.render("../views/login", {
-    isLoggedIn: null
+    isLoggedIn: null, SignUp: null
   });
 });
 
