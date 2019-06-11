@@ -90,7 +90,6 @@
         </ul>
         <div id="content-wrapper">
             <div class="container-fluid">
-                <!-- DataTables Example -->
                 <div class="card mb-3">
                     <div class="card-header">
                         <i class="fas fa-users"></i>
@@ -121,30 +120,30 @@
                                         <td><%= users.userType %></td>
                                         <td><%= users.status %></td>
                                         <td id="actions">
-                                            <!-- Status: 1. Profile Incomplete -->
-                                            <% if(users.status == "Profile Incomplete"){ %>
-                                            <div style="text-align: center">Waiting for User</div>
-                                            <% } %>
-                                            <!-- Status: 2. Profile Complete-->
-                                            <% if(users.status == "Profile Complete"){ %>
+
+                                            <!-- Students -->
                                             <% if(users.userType == "Student") { %>
+
+                                            <!-- Decription for status equals complete -->
+                                            <% if(users.status == "Profile Complete"){ %>
+                                            <!-- Count the number of students waiting for an answer -->
                                             <% j=j+1 %>
-                                            <% } %>
                                             <div style="text-align: center">
                                                 <a href="/adminpanel/send-email/interview/<%=users._id%>">Interview
                                                 </a>or<a href="/adminpanel/send-email/upskilling/<%=users._id%>">
                                                     Upskilling</a>
                                             </div>
-
                                             <% } %>
-                                            <!-- Status: 3.1. Interview date set-->
-                                            <% if(users.status == "Inverview date set"){ %>
+                                            <!-- Decription for status different than complete -->
+                                            <% if(!(users.status == "Profile Complete")){ %>
+                                            <div style="text-align: center"><%= users.description%></div>
                                             <% } %>
-                                            <!-- Status: 3.2 Upskilling-->
-                                            <% if(users.status == "Upskilling"){ %>
-                                            <div style="text-align: center">Upskilling</div>
                                             <% } %>
 
+                                            <!-- Employers -->
+                                            <% if(users.userType == "Employer") { %>
+                                            <div style="text-align: center"><%= users.description%></div>
+                                            <% } %>
                                         </td>
                                         <td id="actions">
                                             <div style="text-align: center">
@@ -172,7 +171,7 @@
                                 </tbody>
                                 <% if(j>0){ %>
                                 <p> <span style="color: red">Important!</span> <%= j %> student/s without an answer
-                                    <a href="/adminpanel/tables-students-status2"> View</a></p>
+                                    <a href="/adminpanel/tables-students-status2">View</a></p>
                                 <% } %>
                             </table>
                         </div>
