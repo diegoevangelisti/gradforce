@@ -131,6 +131,17 @@ passport.use(new GoogleStrategy({
 
         } else {
           //create a new User
+          let description = "";
+          switch (req.body.userType) {
+
+            case "Student":
+              description = "Waiting for Student";
+              break;
+            case "Employer":
+              description = "Waiting for Employer";
+              break;
+          }
+          //Create a new User
           const user = new User({
             _id: Math.random()
               .toString(36)
@@ -141,7 +152,8 @@ passport.use(new GoogleStrategy({
             email: profile.emails[0].value,
             photo: profile.picture,
             googleId: profile.id,
-            status: "Profile Incomplete"
+            status: "Profile Incomplete",
+            description: description
           })
           user.save().then((newUser) => {
             console.log('new user created:' + newUser);
@@ -177,7 +189,17 @@ passport.use(new FacebookStrategy({
           done(null, currentUser);
 
         } else {
-          //create a new User
+          let description = "";
+          switch (req.body.userType) {
+
+            case "Student":
+              description = "Waiting for Student";
+              break;
+            case "Employer":
+              description = "Waiting for Employer";
+              break;
+          }
+          //Create a new User
           const user = new User({
             _id: Math.random()
               .toString(36)
@@ -188,7 +210,8 @@ passport.use(new FacebookStrategy({
             email: profile.emails[0].value,
             //    photo: profile.photos[0].value,
             facebookId: profile.id,
-            status: "Profile Incomplete"
+            status: "Profile Incomplete",
+            description: description
           })
           user.save().then((newStudent) => {
             console.log('new user created:' + newStudent);
@@ -230,13 +253,15 @@ app.listen(process.env.PORT || 5000, async function () {
 });
 
 //MLAB HEROKU
-mongoose.connect("mongodb://backend:"+process.env.MLAB_PASSWORD+"@ds259596.mlab.com:59596/heroku_xk93l586", {useNewUrlParser: true})
+mongoose.connect("mongodb://backend:" + process.env.MLAB_PASSWORD + "@ds259596.mlab.com:59596/heroku_xk93l586", {
+  useNewUrlParser: true
+})
 
 //LOCAL HOSTING
- /* mongoose.connect("mongodb://localhost/gradforce-local", {
-    useNewUrlParser: true,
-    useFindAndModify: false
-  });*/
+/* mongoose.connect("mongodb://localhost/gradforce-local", {
+   useNewUrlParser: true,
+   useFindAndModify: false
+ });*/
 
 app.use((req, res, next) => {
   const error = new Error('Not found');

@@ -119,7 +119,7 @@ router.get("/userprofile/student/:id", isAdminLoggedIn, (req, res) => {
     })
 });
 
-router.get("/userprofile/employer/:id", (req, res) => {
+router.get("/userprofile/employer/:id", isAdminLoggedIn, (req, res) => {
   let id = req.params.id;
   User.findById(id)
     .then((user) => {
@@ -129,7 +129,7 @@ router.get("/userprofile/employer/:id", (req, res) => {
     })
 });
 
-router.get("/userprofile/student/edit/:id", (req, res) => {
+router.get("/userprofile/student/edit/:id", isAdminLoggedIn, (req, res) => {
   let id = req.params.id;
   User.findById(id)
     .then((user) => {
@@ -139,7 +139,7 @@ router.get("/userprofile/student/edit/:id", (req, res) => {
     })
 });
 
-router.get("/userprofile/employer/edit/:id", (req, res) => {
+router.get("/userprofile/employer/edit/:id", isAdminLoggedIn, (req, res) => {
   let id = req.params.id;
   User.findById(id)
     .then((user) => {
@@ -149,11 +149,21 @@ router.get("/userprofile/employer/edit/:id", (req, res) => {
     })
 });
 
-router.post("/userprofile/employer/edit/:id", (req, res) => {
+router.post("/userprofile/employer/edit/:id", isAdminLoggedIn, (req, res) => {
   let addressUnit = req.body.addressUnit;
   let addressStreet = req.body.addressStreet;
   let addressCity = req.body.addressCity;
   let addressSuburb = req.body.addressSuburb;
+  let description = "";
+
+  switch (req.body.status) {
+    case "Profile Incomplete":
+      description = "Waiting for Employer";
+      break;
+    case "Profile Complete":
+      description = "Employer ready to hire";
+      break;
+  }
 
   let query = {
     _id: req.params.id
@@ -171,7 +181,8 @@ router.post("/userprofile/employer/edit/:id", (req, res) => {
         suburb: addressSuburb
       },
       DOB: req.body.dob,
-      status: req.body.status
+      status: req.body.status,
+      description: description
     }, {
       new: true
     })
@@ -182,11 +193,37 @@ router.post("/userprofile/employer/edit/:id", (req, res) => {
     })
 });
 
-router.post("/userprofile/student/edit/:id", (req, res) => {
+router.post("/userprofile/student/edit/:id", isAdminLoggedIn, (req, res) => {
   let addressUnit = req.body.addressUnit;
   let addressStreet = req.body.addressStreet;
   let addressCity = req.body.addressCity;
   let addressSuburb = req.body.addressSuburb;
+  let description = "";
+
+  switch (req.body.status) {
+    case "Profile Incomplete":
+      description = "Waiting for Student";
+      break;
+    case "Profile Complete":
+      description = "Interview/Upskilling";
+      break;
+    case "Interview mail sent":
+      description = "Interview in progress";
+      break;
+    case "Upskilling mail sent":
+      description = "Upskilling in progress";
+      break;
+    case "Interview completed":
+      description = "Interview completed";
+      break;
+    case "Interview with Employer":
+      description = "Interview with Employer set";
+      break;
+    case "Employed":
+      description = "Student Employed";
+      break;
+  }
+
   let query = {
     _id: req.params.id
   };
@@ -203,7 +240,8 @@ router.post("/userprofile/student/edit/:id", (req, res) => {
         suburb: addressSuburb
       },
       DOB: req.body.dob,
-      status: req.body.status
+      status: req.body.status,
+      description: description
     }, {
       new: true
     })
@@ -214,7 +252,7 @@ router.post("/userprofile/student/edit/:id", (req, res) => {
     })
 });
 
-router.get('/deleteuser/:id', (req, res) => {
+router.get('/deleteuser/:id', isAdminLoggedIn, (req, res) => {
   let id = req.params.id;
   User.find({
       _id: id

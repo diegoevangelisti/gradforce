@@ -10,7 +10,7 @@ var passport = require("passport");
 //cookie session timelapse
 
 app.use(session({
-  secret: 'keyboard cat',
+  secret: 'Nothing else matters',
   cookie: {
     maxAge: 300
   }
@@ -42,10 +42,20 @@ router.post("/register", (req, res, next) => {
   }).then((currentUser) => {
 
     if (currentUser) {
-      //already have the User
+      //The user exists
       console.log('Already exists: User is: ', currentUser);
       res.redirect("login");
     } else {
+      let description = "";
+      switch (req.body.userType) {
+
+        case "Student":
+          description = "Waiting for Student";
+          break;
+        case "Employer":
+          description = "Waiting for Employer";
+          break;
+      }
       User.register(new User({
           _id: Math.random()
             .toString(36)
@@ -56,7 +66,8 @@ router.post("/register", (req, res, next) => {
           email: req.body.email,
           phone_number: req.body.phone,
           username: req.body.email,
-          status: "Profile Incomplete"
+          status: "Profile Incomplete",
+          description: description
         }),
         req.body.password,
         function (err, user) {
@@ -87,6 +98,16 @@ router.post("/register-by-admin", (req, res, next) => {
       console.log('Already exists: User is: ', currentUser);
       res.redirect("../adminpanel/tables");
     } else {
+      let description = "";
+      switch (req.body.userType) {
+
+        case "Student":
+          description = "Waiting for Student";
+          break;
+        case "Employer":
+          description = "Waiting for Employer";
+          break;
+      }
       User.register(new User({
           _id: Math.random()
             .toString(36)
@@ -97,7 +118,8 @@ router.post("/register-by-admin", (req, res, next) => {
           email: req.body.email,
           phone_number: req.body.phone,
           username: req.body.email,
-          status: "Profile Incomplete"
+          status: "Profile Incomplete",
+          description: description
         }),
         req.body.password,
         function (err, user) {
