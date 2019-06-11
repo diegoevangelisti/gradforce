@@ -43,7 +43,7 @@
             <div class="card-header">Send email to: <%= user.fname %> <%= user.lname %></div>
             <% } %>
             <div class="card-body">
-                <form action="/mail/send-email/id=<%= user._id %>" method="POST">
+                <form action="/mail/send-email/<%= user._id %>" method="POST">
                     <div class="form-group">
                         <div class="form-row">
                             <div class="col-md-6">
@@ -59,20 +59,29 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <div class="form-label-group">
+
                                         <% if(type == "interview"){ %>
                                         <input type="text" name="subject" id="Subject" class="form-control font-custom"
                                             value="Interview with GradForce" required="required">
                                         <label for="firstName">Subject</label>
+                                        <!-- send type of email: Interview -->
+                                        <input name="type" type="hidden" value="interview">
                                         <% } %>
+
                                         <% if(type == "upskilling"){ %>
                                         <input type="text" name="subject" id="Subject" class="form-control font-custom"
                                             value="Upskilling Workshops - GradForce" required="required">
                                         <label for="firstName">Subject</label>
+                                        <!-- send type of email: Upskilling -->
+                                        <input name="type" type="hidden" value="upskilling">
                                         <% } %>
+
                                         <% if(type == "default"){ %>
                                         <input type="text" name="subject" id="Subject" class="form-control font-custom"
                                             value="Hello from GradForce" required="required">
                                         <label for="firstName">Subject</label>
+                                        <!-- send type of email: Default -->
+                                        <input name="type" type="hidden" value="default">
                                         <% } %>
                                     </div>
                                 </div>

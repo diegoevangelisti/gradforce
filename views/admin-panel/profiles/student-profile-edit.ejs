@@ -136,10 +136,16 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="form-label-group">
-                                        <input type="text" name="status" id="user-status"
-                                            class="form-control font-custom" value="<%= user.status%>"
-                                            required="required">
-                                        <label for="user-status">Status</label>
+                                        <select id="user-status" name="status" class="form-control font-custom">
+                                            <option value="<%=user.status%>">Status: <%= user.status%></option>
+                                            <option>Profile Incomplete</option>
+                                            <option>Profile Complete</option>
+                                            <option>Interview mail sent</option>
+                                            <option>Upskilling mail sent</option>
+                                            <option>Interview completed</option>
+                                            <option>Interview with Employer</option>
+                                            <option>Employed</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -147,9 +153,10 @@
                     </div>
                     <div class="text-center" style="text-align: center">
                         <input type="submit" value="Save changes" class="btn btn-light font-custom edit">
-                        <button type="button" class="btn btn-light font-custom edit"
-                            onClick="javascript:history.go(-1)">Return</button>
-                    </div>
+                        <div class="text-center" style="text-align: center">
+                            <a style="text-decoration: none" href="/adminpanel/tables"><button type="button"
+                                    class="btn btn-light font-custom">Return</button></a>
+                        </div>
                 </form>
 
             </div>

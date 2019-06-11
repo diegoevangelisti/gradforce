@@ -138,10 +138,11 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="form-label-group">
-                                        <input type="text" name="status" id="user-status"
-                                            class="form-control font-custom" value="<%= user.status%>"
-                                            required="required">
-                                        <label for="user-status">Status</label>
+                                        <select id="user-status" name="status" class="form-control font-custom">
+                                            <option value="<%= user.status%>">Status: <%= user.status%></option>
+                                            <option>Profile Incomplete</option>
+                                            <option>Profile Complete</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
