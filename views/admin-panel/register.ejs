@@ -16,14 +16,22 @@
 
   <!-- Custom styles for this template-->
   <link href="/assets/css/sb-admin.css" rel="stylesheet">
+  <style>
+    .font-custom {
 
+      font-family: -apple-system, BlinkMacSyst emFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+      font-size: 13px;
+      font-weight: 10;
+      line-height: 2;
+      color: #212529;
+    }
+  </style>
 </head>
 
-<body class="bg-dark">
-
-  <div class="container">
+<body class="bg-dark font-custom">
+  <div class="container font-custom">
     <div class="card card-register mx-auto mt-5">
-      <div class="card-header">Add a new User</div>
+      <div class="card-header">Add New User</div>
       <div class="card-body">
         <form action="/auth/register-by-admin" method="POST">
           <div class="form-group">
@@ -96,14 +104,17 @@
               </div>
             </div>
           </div>
-          <button class="btn btn-primary btn-block" type="submit">
-            <span>Register</span>
-          </button>
-        </form>
-        <div class="text-center" style="text-align: center">
-          <a class="d-block small mt-3" href="/adminpanel/tables">Return</a>
-        </div>
+          <div style="text-align: center">
+            <button class="btn btn-light font-custom" style="background: lightblue" type="submit">
+              <span>Register</span> </button>
+          </div>
+          <div style="text-align: center">
+            <a class="btn btn-light font-custom" href="/adminpanel/tables">Return</a>
+          </div>
       </div>
+
+      </form>
+
     </div>
   </div>
 

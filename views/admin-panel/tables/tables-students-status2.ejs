@@ -89,8 +89,6 @@
                     <div class="card-header">
                         <i class="fas fa-users"></i>
                         Students</div>
-                    <% let j = 0 %>
-
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -109,7 +107,7 @@
                                     <tr id="table-rows">
                                         <td><%= users.fname %></td>
                                         <td><%= users.lname %></td>
-                                        <td><%= users.email %></td>>
+                                        <td><%= users.email %></td>
                                         <td><%= users.status %></td>
                                         <td>
                                             <div style="text-align: center">
@@ -134,7 +132,7 @@
                                     <% }) %>
                                 </tbody>
                                 <div>
-                                    <p> <a href="/adminpanel/tables-students">View All Students</a> </p>
+                                    <p><a href="/adminpanel/tables-students">View All Students</a></p>
                                 </div>
                             </table>
                         </div>

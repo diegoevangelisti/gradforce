@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -16,7 +15,6 @@
 
     <!-- Custom styles for this template-->
     <link href="/assets/css/sb-admin.css" rel="stylesheet">
-
 </head>
 <style>
     .font-custom {
@@ -28,105 +26,87 @@
         color: #212529;
     }
 
+    .education p {
+
+        margin-bottom: 2px;
+    }
+
+    .student-title {
+        font-weight: bold;
+    }
+
+    .big {
+        font-size: 20px;
+        margin-top: 2px;
+        margin-bottom: 2px;
+    }
+
     .med {
         font-size: 15px;
-        margin: 5px;
+    }
+
+    .normal {
+        font-weight: normal;
+        margin-bottom: 2px;
+    }
+
+    .sub-title {
+        font-size: 18px;
+        font-weight: normal;
+    }
+
+    .very-small {
+        font-size: 11.5px;
+    }
+
+    #editprofile-button:hover {
+        opacity: 0.9;
     }
 </style>
 
 <body class="bg-dark font-custom">
-
     <div class="container">
         <div class="card card-register mx-auto mt-5">
-            <div class="card-header">Employer: <%= user.fname %> <%= user.lname %>
-                <div>
-                    <a href="/adminpanel/send-email/default/<%=user._id%>"><i class="far fa-envelope med"></i></a><i
-                        class="fas fa-edit med"></i><i class="far fa-trash-alt med"></i>
-                </div>
-            </div>
-            <div class="card-body">
-                <form action="/mail/send-email/id=<%= user._id %>" method="POST">
-                    <div class="form-group">
-                        <div class="form-row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <div class="form-label-group">
-                                        <span>Email</span>
-                                        <p><%= user.email %></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <div class="form-label-group">
-                                        <span>Phone number</span>
-                                        <% if (user.phone_number) { %>
-                                        <p><%= user.phone_number %></p>
-                                        <% } %>
-                                        <% if (!user.phone_number) { %>
-                                        <p>No data</p>
-                                        <% } %>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <div class="form-label-group">
-                                        <span>Address</span>
-                                        <% if (user.address.street) { %>
-                                        <p><%= user.address.unit %>, <%= user.address.street %>.
-                                            <%= user.address.city %>, <%= user.address.suburb %></p>
-                                        <% } %>
-                                        <% if (!user.address.street) { %>
-                                        <p>No data</p>
-                                        <% } %>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <div class="form-label-group">
-                                        <span>Date of Birth</span>
-                                        <% if (user.DOB) { %>
-                                        <p><%= user.DOB %></p>
-                                        <% } %>
-                                        <% if (!user.DOB) { %>
-                                        <p>No data</p>
-                                        <% } %>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <div class="form-label-group">
-                                        <span>Status</span>
-                                        <p><%= user.status %></p>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-3">
+                        <p><img style="width: 80%; height: 80%; border-radius: 50%" src="<%= user.photo %>"
+                                alt="Profile photo"></p>
                     </div>
-                </form>
-                <div class="text-center" style="text-align: center">
-                    <a style="text-decoration:none" href="/adminpanel/tables"><button type="button"
-                            class="btn btn-light font-custom">Return</button></a>
+                    <div class="col-9">
+                        <p class="inline student-title big"><%= user.fname %> <%= user.lname %><span class="sub-title">
+                                | <%=user.title%></span></p>
+                        <p class="inline student-title med normal"><i class="far fa-envelope-open"></i>
+                            <%= user.email %>
+                            <a class="very-small" href="/adminpanel/send-email/default/<%= user._id %>">Send email</a>
+                        </p>
+                        <% if (user.address.street) { %>
+                        <p class="inline student-title med normal"><i class="fas fa-map-marker-alt"></i>
+                            <%= user.address.unit %>, <%= user.address.street %>.
+                            <%= user.address.city %>, <%= user.address.suburb %></p>
+                        <% } %>
 
+                        <% if (user.phone_number) { %>
+                        <p class="inline student-title med normal"><i class="fas fa-phone-volume"></i>
+                            <%= user.phone_number %>
+                        </p>
+                        <% } %>
+                        <p><%= user.status %> | <%= user.description %></p>
+                    </div>
+                </div>
+                <div class="text-center" style="text-align: center">
+                    <a style="text-decoration: none" href="/adminpanel/tables"><button type="button"
+                            id="editprofile-button" class="btn btn-light font-custom"
+                            style="background: lightblue">Return</button></a>
                 </div>
             </div>
         </div>
     </div>
-
-
     <!-- Bootstrap core JavaScript-->
     <script src="/vendor/jquery/jquery.min.js"></script>
     <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
     <!-- Core plugin JavaScript-->
     <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
-
 </body>
 
 </html>

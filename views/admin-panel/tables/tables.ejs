@@ -49,6 +49,21 @@
         i {
             text-decoration: none;
         }
+
+        .sidebar .navbar-nav {
+            width: 80%;
+        }
+
+        .none {
+            color: black;
+            opacity: 0.95;
+        }
+
+        .none :hover {
+            opacity: 0.7;
+            color: black;
+            text-decoration: none;
+        }
     </style>
 </head>
 
@@ -101,6 +116,7 @@
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
+                                        <th>Photo</th>
                                         <th>Name</th>
                                         <th>Last Name</th>
                                         <th>Email address</th>
@@ -113,7 +129,10 @@
                                 <tbody>
                                     <% users.map((users, i) => { %>
                                     <tr id="table-rows">
-                                        <%  if(users.userType !== "Admin") { %>
+                                        <td>
+                                            <img style="width: 70px; height: 70px; border-radius: 50%"
+                                                src="<%= users.photo %>" alt="Profile photo">
+                                        </td>
                                         <td><%= users.fname %></td>
                                         <td><%= users.lname %></td>
                                         <td><%= users.email %></td>
@@ -145,32 +164,35 @@
                                             <div style="text-align: center"><%= users.description%></div>
                                             <% } %>
                                         </td>
-                                        <td id="actions">
-                                            <div style="text-align: center">
+                                        <td id="actions" style="padding-left: 1px; padding-right: 1px;">
+                                            <div class="center none">
                                                 <% if(users.userType == "Student") { %>
-                                                <a href="/adminpanel/userprofile/student/<%= users._id %>"><i
+                                                <a class="center none"
+                                                    href="/adminpanel/userprofile/student/<%= users._id %>"><i
                                                         class="far fa-eye med"></i></a>
-                                                <a href="/adminpanel/userprofile/student/edit/<%=users._id%>/"><i
+                                                <a class="center none"
+                                                    href="/adminpanel/userprofile/student/edit/<%=users._id%>/"><i
                                                         class="fas fa-edit med"></i></a>
                                                 <% } %>
                                                 <% if(users.userType == "Employer") { %>
-                                                <a href="/adminpanel/userprofile/employer/<%= users._id %>"><i
+                                                <a class="center none"
+                                                    href="/adminpanel/userprofile/employer/<%= users._id %>"><i
                                                         class="far fa-eye med"></i></a>
-                                                <a href="/adminpanel/userprofile/employer/edit/<%=users._id%>/"><i
+                                                <a class="center none"
+                                                    href="/adminpanel/userprofile/employer/edit/<%=users._id%>/"><i
                                                         class="fas fa-edit med"></i></a>
                                                 <% } %>
-                                                <a href="/adminpanel/send-email/default/<%=users._id%>"><i
+                                                <a class="center none"
+                                                    href="/adminpanel/send-email/default/<%=users._id%>"><i
                                                         class="far fa-envelope med"></i></a>
-                                                <a href="/adminpanel/deleteuser/<%=users._id%>"><i
-                                                        class="far fa-trash-alt med"></i></a>
                                             </div>
                                         </td>
-                                        <% } %>
                                     </tr>
                                     <% }) %>
                                 </tbody>
                                 <% if(j>0){ %>
-                                <p> <span style="color: red">Important!</span> <%= j %> student/s are waiting for an answer
+                                <p> <span style="color: red">Important!</span> <%= j %> student/s are waiting for an
+                                    answer
                                     <a href="/adminpanel/tables-students-status2">View</a></p>
                                 <% } %>
                             </table>

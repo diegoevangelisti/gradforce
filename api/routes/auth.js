@@ -32,7 +32,8 @@ router.get("/register/usertype", (req, res, next) => {
 
 router.get("/register", (req, res) => {
   res.render("../views/index", {
-    isLoggedIn: null, SignUp: "Yes"
+    isLoggedIn: null,
+    SignUp: "Yes"
   })
 });
 
@@ -67,6 +68,7 @@ router.post("/register", (req, res, next) => {
           phone_number: req.body.phone,
           username: req.body.email,
           status: "Profile Incomplete",
+          photo: "/assets/img/profile-placeholder.jpg",
           description: description,
           dates: {
             created: new Date().toLocaleString()
@@ -121,6 +123,7 @@ router.post("/register-by-admin", (req, res, next) => {
           email: req.body.email,
           phone_number: req.body.phone,
           username: req.body.email,
+          photo: "/assets/img/profile-placeholder.jpg",
           status: "Profile Incomplete",
           description: description,
           dates: {
@@ -181,7 +184,8 @@ router.post("/login", passport.authenticate("local", {
 
 router.get("/login", (req, res, next) => {
   res.render("../views/login", {
-    isLoggedIn: null, SignUp: null
+    isLoggedIn: null,
+    SignUp: null
   });
 });
 
