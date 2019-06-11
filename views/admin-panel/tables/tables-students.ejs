@@ -99,7 +99,6 @@
                                         <th>Name</th>
                                         <th>Last Name</th>
                                         <th>Email address</th>
-                                        <th>User type</th>
                                         <th>Status</th>
                                         <th>Description</th>
                                         <th>Actions</th>
@@ -111,31 +110,22 @@
                                         <td><%= users.fname %></td>
                                         <td><%= users.lname %></td>
                                         <td><%= users.email %></td>
-                                        <td><%= users.userType %></td>
                                         <td><%= users.status %></td>
-                                        <td id="actions">
-                                            <!-- Status: 1. Profile Incomplete -->
-                                            <% if(users.status == "Profile Incomplete"){ %>
-                                            <div style="text-align: center">Waiting for Student</div>
-                                            <% } %>
-                                            <!-- Status: 2. Profile Complete-->
+                                        <td>
+                                            <!-- Decription for status equals complete -->
                                             <% if(users.status == "Profile Complete"){ %>
+                                            <!-- Count the number of students waiting for an answer -->
                                             <% j=j+1 %>
                                             <div style="text-align: center">
                                                 <a href="/adminpanel/send-email/interview/<%=users._id%>">Interview
                                                 </a>or<a href="/adminpanel/send-email/upskilling/<%=users._id%>">
                                                     Upskilling</a>
                                             </div>
-
                                             <% } %>
-                                            <!-- Status: 3.1. Interview date set-->
-                                            <% if(users.status == "Inverview date set"){ %>
+                                            <!-- Decription for status different than complete -->
+                                            <% if(!(users.status == "Profile Complete")){ %>
+                                            <div style="text-align: center"><%= users.description%></div>
                                             <% } %>
-                                            <!-- Status: 3.2 Upskilling-->
-                                            <% if(users.status == "Upskilling"){ %>
-                                            <div style="text-align: center">Upskilling</div>
-                                            <% } %>
-
                                         </td>
                                         <td id="actions">
                                             <div style="text-align: center">
@@ -145,16 +135,10 @@
                                                 <a href="/adminpanel/userprofile/student/edit/<%=users._id%>/"><i
                                                         class="fas fa-edit med"></i></a>
                                                 <% } %>
-                                                <% if(users.userType == "Employer") { %>
-                                                <a href="/adminpanel/userprofile/employer/<%= users._id %>"><i
-                                                        class="far fa-eye med"></i></a>
-                                                <a href="/adminpanel/userprofile/employer/edit/<%=users._id%>/"><i
-                                                        class="fas fa-edit med"></i></a>
-                                                <% } %>
                                                 <a href="/adminpanel/send-email/default/<%=users._id%>"><i
                                                         class="far fa-envelope med"></i></a>
-
-                                                <i class="far fa-trash-alt med"></i>
+                                                <a href="/adminpanel/deleteuser/<%=users._id%>"><i
+                                                        class="far fa-trash-alt med"></i></a>
                                             </div>
                                         </td>
                                     </tr>
@@ -162,7 +146,8 @@
                                 </tbody>
                                 <div>
                                     <% if(j>0){ %>
-                                    <p> <span style="color: red">Important!</span> <%= j %> student/s without an answer
+                                    <p> <span style="color: red">Important!</span> <%= j %> student/s are waiting for an
+                                        answer
                                         <a href="/adminpanel/tables-students-status2"> View</a></p>
                                     <% } %>
                                 </div>
@@ -190,25 +175,6 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- Bootstrap core JavaScript-->
     <script src="/vendor/jquery/jquery.min.js"></script>
     <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

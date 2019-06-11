@@ -19,6 +19,11 @@ var userSchema = mongoose.Schema({
     status: String,
     description: String,
     about: String,
+    dates: {
+        created: Date,
+        updated: Date,
+        lastMailSent: Date
+    },
     address: {
         street: String,
         unit: String,

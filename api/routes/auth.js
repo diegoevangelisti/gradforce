@@ -67,7 +67,10 @@ router.post("/register", (req, res, next) => {
           phone_number: req.body.phone,
           username: req.body.email,
           status: "Profile Incomplete",
-          description: description
+          description: description,
+          dates: {
+            created: new Date().toLocaleString()
+          }
         }),
         req.body.password,
         function (err, user) {
@@ -119,7 +122,10 @@ router.post("/register-by-admin", (req, res, next) => {
           phone_number: req.body.phone,
           username: req.body.email,
           status: "Profile Incomplete",
-          description: description
+          description: description,
+          dates: {
+            created: new Date().toLocaleString()
+          }
         }),
         req.body.password,
         function (err, user) {
@@ -208,9 +214,19 @@ router.get('/google/redirect',
       username: req.user.username
     }, function (err, doc) {
       if (!doc.userType) {
-
+        console.log("NEW USER TYPE: " + req.session.userType);
         doc.userType = req.session.userType;
-        console.log("NEW USER TYPE: " + req.user.userType);
+        let description = "";
+        switch (doc.userType) {
+          case "Student":
+            description = "Waiting for Student";
+            break;
+          case "Employer":
+            description = "Waiting for Employer";
+            break;
+
+        }
+        doc.description = description;
         doc.save();
       }
     });
@@ -241,9 +257,18 @@ router.get('/facebook/callback', passport.authenticate('facebook', {
       username: req.user.username
     }, function (err, doc) {
       if (!doc.userType) {
-
+        console.log("NEW USER TYPE: " + req.session.userType);
         doc.userType = req.session.userType;
-        console.log("NEW USER TYPE: " + req.user.userType);
+        let description = "";
+        switch (doc.userType) {
+          case "Student":
+            description = "Waiting for Student";
+            break;
+          case "Employer":
+            description = "Waiting for Employer";
+            break;
+        }
+        doc.description = description;
         doc.save();
       }
     });

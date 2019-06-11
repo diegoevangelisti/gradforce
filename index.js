@@ -105,7 +105,7 @@ passport.use("admin", new LocalStrategy({
 //GOOGLE AUTH
 //
 
-//Setting passport for google authentication
+//Register / Login with Google
 
 passport.use(new GoogleStrategy({
     callbackURL: "/auth/google/redirect",
@@ -130,17 +130,6 @@ passport.use(new GoogleStrategy({
           done(null, currentUser);
 
         } else {
-          //create a new User
-          let description = "";
-          switch (req.body.userType) {
-
-            case "Student":
-              description = "Waiting for Student";
-              break;
-            case "Employer":
-              description = "Waiting for Employer";
-              break;
-          }
           //Create a new User
           const user = new User({
             _id: Math.random()
@@ -153,7 +142,9 @@ passport.use(new GoogleStrategy({
             photo: profile.picture,
             googleId: profile.id,
             status: "Profile Incomplete",
-            description: description
+            dates: {
+              created: new Date().toLocaleString()
+            }
           })
           user.save().then((newUser) => {
             console.log('new user created:' + newUser);
@@ -164,7 +155,11 @@ passport.use(new GoogleStrategy({
       })
   }));
 
-//facebook authentication
+//
+//FACEBOOK AUTH
+//
+
+//Register / Login with Google
 
 passport.use(new FacebookStrategy({
     clientID: keys.facebook.APP_ID,
@@ -208,10 +203,13 @@ passport.use(new FacebookStrategy({
             fname: profile.name.givenName,
             lname: profile.name.familyName,
             email: profile.emails[0].value,
-            //    photo: profile.photos[0].value,
+            photo: profile.photos[0].value,
             facebookId: profile.id,
             status: "Profile Incomplete",
-            description: description
+            description: description,
+            dates: {
+              created: new Date().toLocaleString()
+            }
           })
           user.save().then((newStudent) => {
             console.log('new user created:' + newStudent);

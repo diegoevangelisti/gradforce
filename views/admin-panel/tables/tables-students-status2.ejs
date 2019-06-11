@@ -99,7 +99,6 @@
                                         <th>Name</th>
                                         <th>Last Name</th>
                                         <th>Email address</th>
-                                        <th>User type</th>
                                         <th>Status</th>
                                         <th>Description</th>
                                         <th>Actions</th>
@@ -110,40 +109,25 @@
                                     <tr id="table-rows">
                                         <td><%= users.fname %></td>
                                         <td><%= users.lname %></td>
-                                        <td><%= users.email %></td>
-                                        <td><%= users.userType %></td>
+                                        <td><%= users.email %></td>>
                                         <td><%= users.status %></td>
-                                        <td id="actions">
-                                            <!-- Status: 1. Profile Incomplete -->
-                                            <% if(users.status == "Profile Incomplete"){ %>
-                                            <div style="text-align: center">Waiting for Student</div>
-                                            <% } %>
-                                            <!-- Status: 2. Profile Complete-->
-                                            <% if(users.status == "Profile Complete"){ %>
-                                            <% j=j+1 %>
+                                        <td>
                                             <div style="text-align: center">
                                                 <a href="/adminpanel/send-email/interview/<%=users._id%>">Interview
                                                 </a>or<a href="/adminpanel/send-email/upskilling/<%=users._id%>">
                                                     Upskilling</a>
                                             </div>
-
-                                            <% } %>
-                                            <!-- Status: 3.1. Interview date set-->
-                                            <% if(users.status == "Inverview date set"){ %>
-                                            <% } %>
-                                            <!-- Status: 3.2 Upskilling-->
-                                            <% if(users.status == "Upskilling"){ %>
-                                            <div style="text-align: center">Upskilling</div>
-                                            <% } %>
-
                                         </td>
                                         <td id="actions">
                                             <div style="text-align: center">
                                                 <a href="/adminpanel/userprofile/student/<%= users._id %>"><i
                                                         class="far fa-eye med"></i></a>
+                                                <a href="/adminpanel/userprofile/student/edit/<%=users._id%>/"><i
+                                                        class="fas fa-edit med"></i></a>
                                                 <a href="/adminpanel/send-email/default/<%=users._id%>"><i
-                                                        class="far fa-envelope med"></i></a><i
-                                                    class="fas fa-edit med"></i><i class="far fa-trash-alt med"></i>
+                                                        class="far fa-envelope med"></i></a>
+                                                <a href="/adminpanel/deleteuser/<%=users._id%>"><i
+                                                        class="far fa-trash-alt med"></i></a>
                                             </div>
                                         </td>
                                     </tr>

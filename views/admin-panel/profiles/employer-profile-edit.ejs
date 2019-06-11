@@ -44,8 +44,8 @@
         <div class="card card-register mx-auto mt-5">
             <div class="card-header">Employer: <%= user.fname %> <%= user.lname %>
                 <div>
-                    <a href="/adminpanel/send-email/default/<%=user._id%>"><i class="far fa-envelope med"></i></a><i
-                        class="far fa-trash-alt med"></i>
+                    <a href="/adminpanel/send-email/default/<%=user._id%>"><i class="far fa-envelope med"></i></a>
+                    <a href="/adminpanel/deleteuser/<%=user._id%>"><i class="far fa-trash-alt med"></i></a>
                 </div>
             </div>
             <div class="card-body">
@@ -86,8 +86,7 @@
                                 <div class="form-group">
                                     <div class="form-label-group">
                                         <input type="text" name="phone_number" id="phone-number"
-                                            class="form-control font-custom" value="<%= user.phone_number%>"
-                                            required="required">
+                                            class="form-control font-custom" value="<%= user.phone_number%>">
                                         <label for="phone-number">Phone number</label>
                                     </div>
                                 </div>
@@ -96,16 +95,14 @@
                                 <div class="form-group">
                                     <div class="form-label-group">
                                         <input type="text" name="addressUnit" id="address-unit"
-                                            class="form-control font-custom" value="<%= user.address.unit%>"
-                                            required="required">
+                                            class="form-control font-custom" value="<%= user.address.unit%>">
                                         <label for="addressUnit">Address - Unit</label>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="form-label-group">
                                         <input type="text" name="addressStreet" id="address-street"
-                                            class="form-control font-custom" value="<%= user.address.street%>"
-                                            required="required">
+                                            class="form-control font-custom" value="<%= user.address.street%>">
                                         <label for="address-steet">Address - Street</label>
                                     </div>
                                 </div>
@@ -114,16 +111,14 @@
                                 <div class="form-group">
                                     <div class="form-label-group">
                                         <input type="text" name="addressCity" id="address-city"
-                                            class="form-control font-custom" value="<%= user.address.city%>"
-                                            required="required">
+                                            class="form-control font-custom" value="<%= user.address.city%>">
                                         <label for="address-city">Address - City</label>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="form-label-group">
                                         <input type="text" name="addressSuburb" id="address-suburb"
-                                            class="form-control font-custom" value="<%= user.address.suburb%>"
-                                            required="required">
+                                            class="form-control font-custom" value="<%= user.address.suburb%>">
                                         <label for="address-suburb">Address - Suburb</label>
                                     </div>
                                 </div>
@@ -132,7 +127,7 @@
                                 <div class="form-group">
                                     <div class="form-label-group">
                                         <input type="text" name="dob" id="dob" class="form-control font-custom"
-                                            value="<%= user.DOB%>" required="required">
+                                            value="<%= user.DOB%>">
                                         <label for="dob">Date of birth</label>
                                     </div>
                                 </div>
@@ -149,9 +144,10 @@
                         </div>
                     </div>
                     <div class="text-center" style="text-align: center">
-                        <input type="submit" value="Save changes" class="btn btn-light font-custom edit">
-                        <button type="button" class="btn btn-light font-custom edit"
-                            onClick="javascript:history.go(-1)">Return</button>
+                        <a style="text-decoration: none" href="/adminpanel/tables"><button type="button"
+                                class="btn btn-light font-custom">Return</button></a>
+                        <input type="submit" style="background: lightblue" value="Save changes"
+                            class="btn btn-light font-custom edit">
                     </div>
                 </form>
 
