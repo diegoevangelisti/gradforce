@@ -61,12 +61,20 @@ p {
   font-size: 15px;
 }
 
+.btnGray {
+  background: #949494 !important;
+}
+
 .btnFb {
   background: #486ba3;
 }
 
 .btnGoogle {
   background: #e56148;
+}
+
+.addbtn, .editbtn {
+  float: right;
 }
 
 #header {
@@ -197,7 +205,18 @@ body #header .menu {
   -ms-grid-columns: 190px 190px;
       grid-template-columns: 190px 190px;
   margin: 10px;
-      grid-template-areas: "title title" "student employer" "email email" "fname lname" "phone phone" "password password" "terms terms" "next next" "facebook facebook" "google google" "signin signin" "other-logins other-logins";
+      grid-template-areas: "title title"
+ "student employer"
+ "email email"
+ "fname lname"
+ "phone phone"
+ "password password"
+ "terms terms"
+ "next next"
+ "facebook facebook"
+ "google google"
+ "signin signin"
+ "other-logins other-logins";
 }
 
 #landing_page #other-logins {
@@ -206,7 +225,9 @@ body #header .menu {
   grid-gap: 0;
   -ms-grid-columns: 190px 190px;
       grid-template-columns: 190px 190px;
-      grid-template-areas: "facebook facebook" "google google" "signin signin";
+      grid-template-areas: "facebook facebook"
+ "google google"
+ "signin signin";
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -409,10 +430,6 @@ body #header .menu {
   border-radius: 50%;
 }
 
-#std-profile #std-about {
-  position: relative;
-}
-
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -439,10 +456,6 @@ body {
 
 .mb10 {
   margin-bottom: 10px;
-}
-
-.mt10 {
-  margin-top: 10px;
 }
 
 .mt5 {
@@ -506,19 +519,126 @@ hr {
   padding: 25px 20px 25px;
 }
 
-.editbtn {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-}
-
-.addbtn {
-  position: absolute;
-  top: 20px;
-  right: 50px;
-}
-
 .inline {
   display: inline;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  padding-top: 100px;
+  /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: black;
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #F5F5F5;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 80%;
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+/* The Close Button */
+.close {
+  color: #949494;
+  float: right;
+  font-size: 40px;
+  line-height: 30px;
+  font-weight: lighter;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  height: 60px;
+  padding: 15px 16px;
+  background-color: #F5F5F5;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.modal-body #edit-form-content {
+  padding: 16px;
+}
+
+.modal-body label {
+  font-family: 'Lato';
+  font-size: 1rem;
+  font-weight: 100;
+}
+
+.modal-body textarea {
+  width: 100%;
+  min-height: 100px;
+}
+
+.modal-footer {
+  background: #F5F5F5;
+  height: 60px;
+  position: relative;
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.modal-footer #modal-footer-buttons {
+  position: absolute;
+  right: 16px;
+  margin: 10px 0px;
+}
+
+.modal-footer #modal-footer-buttons button span {
+  padding: 10px;
+  font-size: 15px;
 }
 /*# sourceMappingURL=main.css.map */

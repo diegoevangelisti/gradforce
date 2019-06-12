@@ -9,6 +9,9 @@
       }, 300);
     };
   </script>
+  <script src="ejs.min.js"></script>
+
+
   <div w3-include-html="/partials/head.html"></div>
 
   <script>
@@ -79,80 +82,244 @@
       <p class="mb2"><%= user.address.city%>, <%= user.address.suburb%></p>
       <% } %>
     </div>
+
+    <!-- Modal for details section -->
+    <div id="details-modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="close" id="closeDetails" onclick="closeModal(id)">&times;</span>
+          <h1>Details</h1>
+        </div>
+        <div class="modal-body">
+          <form id="edit-about-form" action="" method="">
+            <div id="edit-form-content">
+              <label for="about-summary" class="mb2">
+                Summary
+              </label>
+              <br>
+              <textarea name="summary" id="about-summary" class=""></textarea>
+            </div>
+            <div class="modal-footer">
+              <div id="modal-footer-buttons">
+                <button type="" id="cancel" class="btn btnGreen btnGray mt10">
+                  <span>Cancel</span>
+                </button>
+                <button type="submit" class="btn btnGreen mt10">
+                  <span>Save</span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
     <!-- about me paragraph -->
     <div id="std-about" class="box">
-      <a href="#">
-        <img class="editbtn" src="/assets/img/icons/edit.png" alt="edit icon">
-      </a>
-      <h1 class="mb15">About</h1>
-      <p><%= user.about%></p>
+      <!-- Trigger/Open The Modal -->
+
+      <div class="about-info">
+        <a id="std-about-edit">
+          <img class="editbtn" src="assets/img/icons/edit.png" alt="edit icon">
+        </a>
+        <h1 class="mb15">About</h1>
+        <p><%= user.about%></p>
+      </div>
+    </div>
+    <!-- about popup for editing -->
+    <!-- The Modal -->
+    <div id="about-modal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="close" id="closeAbout" onclick="closeModal(id)">&times;</span>
+          <h1>About</h1>
+        </div>
+        <div class="modal-body">
+          <form id="edit-about-form" action="" method="">
+            <div id="edit-form-content">
+              <label for="about-summary" class="mb2">
+                Summary
+              </label>
+              <br>
+              <textarea name="summary" id="about-summary" class=""><%= user.about %></textarea>
+            </div>
+            <div class="modal-footer">
+              <div id="modal-footer-buttons">
+                <button type="" id="cancel" class="btn btnGreen btnGray mt10">
+                  <span>Cancel</span>
+                </button>
+                <button type="submit" class="btn btnGreen mt10">
+                  <span>Save</span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
 
     <!-- education info -->
     <div id="std-education" class="box">
-      <a href="#">
-        <img class="editbtn" src="/assets/img/icons/edit.png" alt="edit icon">
-      </a>
-      <a href="#">
-        <img class="addbtn" src="/assets/img/icons/add.png" alt="edit icon">
-      </a>
-      <h1 class="mb15">Education</h1>
+      <div>
+        <a class="addbtn" href="#">
+          <img src="assets/img/icons/add.png" alt="edit icon">
+        </a>
+        <h1 class="mb15">Education</h1>
+      </div>
       <!-- Show all Education -->
       <% user.education.forEach(function(element, i){ %>
-      <% if(i == 0) { %>
-      <p class="inline" style="font-weight: bold"><%= element.course%></p>
-      <br>
-      <h2><%= element.educational_provider%></h2>
-      <p class="inline"><%= element.start_date%></p>
-      <p class="inline"> - </p>
-      <p class="inline"><%= element.end_date%></p>
-      <% } %>
-      <% if(i) { %>
-      <hr class="mt10 mb10">
-      <h2><%= element.educational_provider%></h2>
-      <p class="inline"><%= element.course%></p>
-      <br>
-      <p class="inline"><%= element.start_date%></p>
-      <p class="inline"> - </p>
-      <p class="inline"><%= element.end_date%></p>
-      <% } %>
-      <% }) %>
+      <div class="education-info">
+        <a class="editbtn" id="std-education-edit">
+          <img class="" src="assets/img/icons/edit.png" alt="edit icon">
+        </a>
+        <% if(i == 0) { %>
+        <p class="inline" style="font-weight: bold"><%= element.course%></p>
+        <br>
+        <h2><%= element.educational_provider%></h2>
+        <p class="inline"><%= element.start_date%></p>
+        <p class="inline"> - </p>
+        <p class="inline"><%= element.end_date%></p>
+        <% } %>
+        <% if(i) { %>
+        <hr class="mt10 mb10">
+        <h2><%= element.educational_provider%></h2>
+        <p class="inline"><%= element.course%></p>
+        <br>
+        <p class="inline"><%= element.start_date%></p>
+        <p class="inline"> - </p>
+        <p class="inline"><%= element.end_date%></p>
+        <% } %>
+        <% }) %>
+      </div>
     </div>
+
+    <!-- Modal for education section -->
+    <div id="education-modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="close" id="closeEducation" onclick="closeModal(id)">&times;</span>
+          <h1>Education</h1>
+        </div>
+        <div class="modal-body">
+          <form id="edit-about-form" action="" method="">
+            <div id="edit-form-content">
+              <label for="uni" class="mb2">
+                university
+              </label>
+              <br>
+              <input id="uni" class="text-input mb10" type="text" name="email" placeholder="Email" value="">
+
+            </div>
+            <div class="modal-footer">
+              <div id="modal-footer-buttons">
+                <button type="" id="cancel" class="btn btnGreen btnGray mt10">
+                  <span>Cancel</span>
+                </button>
+                <button type="submit" class="btn btnGreen mt10">
+                  <span>Save</span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
     <!-- work experience -->
     <div id="std-experience" class="box">
-      <a href="#">
-        <img class="editbtn" src="/assets/img/icons/edit.png" alt="edit icon">
-      </a>
-      <a href="#">
-        <img class="addbtn" src="/assets/img/icons/add.png" alt="edit icon">
-      </a>
-      <h1 class="mb15">Work Experience</h1>
+      <div>
+        <a class="addbtn" href="#">
+          <img src="assets/img/icons/add.png" alt="edit icon">
+        </a>
+        <h1 class="mb15">Work Experience</h1>
+      </div>
+      <% count = 0 %>
       <!-- Show all work experience -->
       <% user.work.forEach(function(element, i){ %>
-      <% if(i == 0) { %>
-      <p class="inline" style="font-weight: bold"><%= element.role%></p>
-      <br>
-      <p class="inline"><%= element.company%></p>
-      <br>
-      <p class="inline"><%= element.start_date%></p>
-      <p class="inline"> - </p>
-      <p class="inline"><%= element.end_date%></p>
-      <br>
-      <p class="inline"><%= element.description%></p>
-      <% } %>
-      <% if(i) { %>
-      <hr class="mt10 mb10">
-      <p class="inline" style="font-weight: bold"><%= element.role%></p>
-      <br>
-      <p class="inline"><%= element.company%></p>
-      <br>
-      <p class="inline"><%= element.start_date%></p>
-      <p class="inline"> - </p>
-      <p class="inline"><%= element.end_date%></p>
-      <br>
-      <p class="inline"><%= element.description%></p>
-      <% } %>
-      <% }) %>
+      <% count = count + 1; %>
+      <div class="experience-info">
+        <a class="editbtn" id="std-experience-edit-<%= i %>">
+          <img src="assets/img/icons/edit.png" alt="edit icon">
+        </a>
+        <% if(i == 0) { %>
+        <p class="inline" style="font-weight: bold"><%= element.role%></p>
+        <br>
+        <p class="inline"><%= element.company%></p>
+        <br>
+        <p class="inline"><%= element.start_date%></p>
+        <p class="inline"> - </p>
+        <p class="inline"><%= element.end_date%></p>
+        <br>
+        <p class="inline"><%= element.description%></p>
+        <% } %>
+        <% if(i) { %>
+        <hr class="mt10 mb10">
+        <p class="inline" style="font-weight: bold"><%= element.role%></p>
+        <br>
+        <p class="inline"><%= element.company%></p>
+        <br>
+        <p class="inline"><%= element.start_date%></p>
+        <p class="inline"> - </p>
+        <p class="inline"><%= element.end_date%></p>
+        <br>
+        <p class="inline"><%= element.description%></p>
+        <% } %>
+        <% }) %>
+      </div>
+    </div>
+
+    <!-- Modal for experience section -->
+    <div id="experience-modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="close" id="closeExperience" onclick="closeModal(id)">&times;</span>
+          <h1>Experience</h1>
+        </div>
+        <div class="modal-body">
+          <form id="edit-about-form" action="" method="">
+            <div id="edit-form-content">
+              <label for="company" class="mb2">
+                Role
+              </label>
+              <br>
+              <input id="role" class="text-input mb10" type="text" name="role" value="">
+            </div>
+            <div id="edit-form-content">
+              <label for="" class="mb2">
+                Company
+              </label>
+              <br>
+              <input id="company" class="text-input mb10" type="text" name="company" value="">
+            </div>
+            <div id="edit-form-content">
+              <label for="" class="mb2">
+                Start Year
+              </label>
+              <br>
+              <input id="start-year" class="text-input mb10" type="text" name="start-year" value="">
+            </div>
+            <div id="edit-form-content">
+              <label for="" class="mb2">
+                End Year (Leave black if you still work there)
+              </label>
+              <br>
+              <input id="end-year" class="text-input mb10" type="text" name="end-year" value="">
+            </div>
+            <div class="modal-footer">
+              <div id="modal-footer-buttons">
+                <button type="" id="cancel" class="btn btnGreen btnGray mt10">
+                  <span>Cancel</span>
+                </button>
+                <button type="submit" class="btn btnGreen mt10">
+                  <span>Save</span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   </main>
 
@@ -160,7 +327,96 @@
 
   <script>
     includeHTML();
+
+    // Get the modals
+    var detailsModal = document.getElementById("details-modal");
+    var aboutModal = document.getElementById("about-modal");
+    var educationModal = document.getElementById("education-modal");
+    var experienceModal = document.getElementById("experience-modal");
+
+    // Get the buttons that opens the modals
+    var detailsEditBtn = document.getElementById("std-details-edit");
+    var aboutEditBtn = document.getElementById("std-about-edit");
+    var educationEditBtn = document.getElementById("std-education-edit");
+    var experienceEditBtn = [];
+    var i = 0;
   </script>
+
+  <%  for(var i = 0; i < count; ++i) { %>
+  <script>
+    experienceEditBtn[i] = document.getElementById("std-experience-edit-"+i);
+    ++i;
+  </script>
+  <% } %>
+
+
+  <script>
+    // Get the <span> elements that close the modals
+    var span = document.getElementsByClassName("close")[0];
+    var cancelBtn = document.getElementById("cancel");
+
+    // When the user clicks the button, open the specific modal 
+    aboutEditBtn.onclick = function () {
+      aboutModal.style.display = "block";
+    }
+    educationEditBtn.onclick = function () {
+      educationModal.style.display = "block";
+    }
+    i = 0;
+  </script>
+
+  <% for(var i=0 ; i< count ; ++i) { %>
+  <script>
+    experienceEditBtn[i].onclick = function () {
+        document.getElementById("role").value = '<%= user.work[i].role %>';
+        document.getElementById("company").value = '<%= user.work[i].company %>';
+        document.getElementById("start-year").value = '<%= user.work[i].start_date %>';
+        document.getElementById("end-year").value = '<%= user.work[i].end_date %>';
+        experienceModal.style.display = "block";
+      }
+      ++i;
+  </script>
+  <% } %>
+  <script>
+    detailsEditBtn.onclick = function () {
+      detailsModal.style.display = "block";
+    }
+
+    cancelBtn.onclick = function () {
+      modal.style.display = "block";
+    }
+
+
+    function closeModal(modelName) {
+      switch (modelName) {
+        case "closeAbout":
+          aboutModal.style.display = "none";
+          break;
+        case "closeDetails":
+          detailsModal.style.display = "none";
+          break;
+        case "closeExperience":
+          experienceModal.style.display = "none";
+          break;
+        case "closeEducation":
+          educationModal.style.display = "none";
+          break;
+      }
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    // span.onclick = function () {
+    //   aboutModal.style.display = "none";
+    // }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/ejs@2.6.1/lib/ejs.min.js"></script>
 </body>
 
 </html>

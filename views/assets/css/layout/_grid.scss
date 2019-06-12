@@ -170,7 +170,8 @@ body {
     grid-column-start: 2;
     grid-row: 1 / 4;
     // grid-auto-rows: minmax(min-content, max-content);
-    max-height: 500px;
+    max-height: 400px;
+    // height: auto;
   }
 
   #std-about {

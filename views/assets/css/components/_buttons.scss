@@ -33,10 +33,18 @@
     }
 }
 
+.btnGray {
+    background: $c-midgray !important;
+}
+
 .btnFb {
     background: $c_fbblue;
 }
 
 .btnGoogle {
     background: $c_gred;
+}
+
+.addbtn, .editbtn {
+    float: right;
 }
