@@ -181,18 +181,8 @@ passport.use(new FacebookStrategy({
           //already have the User
           console.log('User is: ', currentUser);
           done(null, currentUser);
-
         } else {
-          let description = "";
-          switch (req.body.userType) {
-
-            case "Student":
-              description = "Waiting for Student";
-              break;
-            case "Employer":
-              description = "Waiting for Employer";
-              break;
-          }
+          
           //Create a new User
           const user = new User({
             _id: Math.random()
