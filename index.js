@@ -195,7 +195,7 @@ passport.use(new FacebookStrategy({
             photo: profile.photos[0].value,
             facebookId: profile.id,
             status: "Profile Incomplete",
-            description: description,
+            //description: description,
             dates: {
               created: new Date().toLocaleString()
             }
