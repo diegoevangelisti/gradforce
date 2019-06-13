@@ -68,7 +68,7 @@
   <% include ./partials/header %>
   <main id="std-profile">
     <div id="std-details" class="box">
-      <a href="#">
+      <a id="std-details-edit">
         <img class="editbtn" src="/assets/img/icons/edit.png" alt="edit icon">
       </a>
       <% if(user.photo){ %>
@@ -100,13 +100,34 @@
           <h1>Details</h1>
         </div>
         <div class="modal-body">
-          <form id="edit-about-form" action="" method="">
+          <form id="edit-about-form" action="/profile/update-details/<%= user._id %>?_method=PUT" method="POST">
             <div id="edit-form-content">
-              <label for="about-summary" class="mb2">
-                Summary
+              <label for="fname" class="mb2">
+                First Name
               </label>
               <br>
-              <textarea name="summary" id="about-summary" class=""></textarea>
+              <input name="fname" id="fname" class="text-input mb10" value="<%= user.fname%>">
+            </div>
+            <div id="edit-form-content">
+              <label for="lname" class="mb2">
+                Last Name
+              </label>
+              <br>
+              <input name="lname" id="lname" class="text-input mb10" value="<%= user.lname%>">
+            </div>
+            <div id="edit-form-content">
+              <label for="title" class="mb2">
+                Title
+              </label>
+              <br>
+              <input name="title" id="title" class="text-input mb10" value="<%= user.title%>">
+            </div>
+            <div id="edit-form-content">
+              <label for="phone" class="mb2">
+                Phone
+              </label>
+              <br>
+              <input name="phone" id="phone" class="text-input mb10" value="<%= user.phone_number%>">
             </div>
             <div class="modal-footer">
               <div id="modal-footer-buttons">
@@ -122,12 +143,9 @@
         </div>
       </div>
     </div>
-
-
     <!-- about me paragraph -->
     <div id="std-about" class="box">
       <!-- Trigger/Open The Modal -->
-
       <div class="about-info">
         <a id="std-about-edit">
           <img class="editbtn" src="assets/img/icons/edit.png" alt="edit icon">
@@ -146,7 +164,7 @@
           <h1>About</h1>
         </div>
         <div class="modal-body">
-          <form id="edit-about-form" action="" method="">
+          <form id="edit-about-form" action="/profile/update-about/<%= user._id%>?_method=PUT" method="POST">
             <div id="edit-form-content">
               <label for="about-summary" class="mb2">
                 Summary
@@ -215,11 +233,10 @@
           <form id="edit-about-form" action="" method="">
             <div id="edit-form-content">
               <label for="uni" class="mb2">
-                university
+                Educational Provider
               </label>
               <br>
               <input id="uni" class="text-input mb10" type="text" name="email" placeholder="Email" value="">
-
             </div>
             <div class="modal-footer">
               <div id="modal-footer-buttons">
@@ -288,7 +305,7 @@
           <h1>Experience</h1>
         </div>
         <div class="modal-body">
-          <form id="edit-about-form" action="/profile/update/<%= user._id %>?_method=PUT" method="POST">
+          <form id="edit-about-form" action="/profile/update-work-experience/<%= user._id %>?_method=PUT" method="POST">
             <div id="edit-form-content">
               <label for="company" class="mb2">
                 Role
@@ -312,7 +329,7 @@
             </div>
             <div id="edit-form-content">
               <label for="" class="mb2">
-                End Year (Leave black if you still work there)
+                End Year (or Present)
               </label>
               <br>
               <input id="end_year" class="text-input mb10" type="text" name="end_year" value="">
@@ -322,10 +339,9 @@
                 Description
               </label>
               <br>
-              <input id="work_description" class="text-input mb10" width="200" type="text" name="work_description"
-                value="">
+              <input id="work_description" class="text-input mb10" type="text" name="work_description" value="">
             </div>
-            <input id="experienceNumber" name="experienceNumber" type="text">
+            <input type="hidden" id="experienceNumber" name="experienceNumber" type="text">
             <div class="modal-footer">
               <div id="modal-footer-buttons">
                 <button type="button" id="cancel" class="btn btnGreen btnGray mt10">
@@ -391,7 +407,7 @@
         document.getElementById("company").value = '<%= user.work[i].company %>';
         document.getElementById("start_year").value = '<%= user.work[i].start_date %>';
         document.getElementById("end_year").value = '<%= user.work[i].end_date %>';
-        // document.getElementById("work_description") = '<%= user.work[i].description %>';
+        document.getElementById("work_description").value = '<%= user.work[i].description %>';
         document.getElementById("experienceNumber").value = '<%= i %>';
         experienceModal.style.display = "block";
       }

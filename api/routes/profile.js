@@ -23,7 +23,7 @@ router.get("/", isLoggedIn, (req, res) => {
 
 //Update user information
 
-router.put("/update/:id", isLoggedIn, (req, res) => {
+router.put("/update-work-experience/:id", isLoggedIn, (req, res) => {
 
   let id = req.params.id;
   let index = req.body.experienceNumber;
@@ -49,5 +49,54 @@ router.put("/update/:id", isLoggedIn, (req, res) => {
   res.redirect("/profile");
 
 });
+
+router.put("/update-about/:id", isLoggedIn, (req, res) => {
+
+  let id = req.params.id;
+
+  User.findByIdAndUpdate(id).then((user) => {
+
+    user.about = req.body.summary
+    user.save()
+      .then(user => {
+        console.log(user);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({
+          error: err
+        });
+      });
+  })
+  res.redirect("/profile");
+
+});
+
+router.put("/update-details/:id", isLoggedIn, (req, res) => {
+
+  let id = req.params.id;
+
+  User.findByIdAndUpdate(id).then((user) => {
+
+    user.fname = req.body.fname,
+    user.lname = req.body.lname,
+    user.title = req.body.title,
+    user.phone_number = req.body.phone
+
+    user.save()
+      .then(user => {
+        console.log(user);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({
+          error: err
+        });
+      });
+  })
+  res.redirect("/profile");
+
+});
+
 
 module.exports = router;
