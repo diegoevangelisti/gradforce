@@ -11,6 +11,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 var cookieParser = require('cookie-parser');
+var methodOverride = require('method-override');
 
 app.use(cookieParser());
 
@@ -20,7 +21,7 @@ var Admin = require("./api/models/admin");
 
 app.set('view engine', 'ejs');
 app.use(express.static("views"));
-
+app.use(methodOverride("_method"));
 
 //
 // Redirect to Register page

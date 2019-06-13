@@ -9,9 +9,18 @@
       }, 300);
     };
   </script>
-  <script src="ejs.min.js"></script>
-
-
+  <!-- One reload to refresh the content -->
+  <script type='text/javascript'>
+    (function () {
+      if (window.localStorage) {
+        if (!localStorage.getItem('firstLoad')) {
+          localStorage['firstLoad'] = true;
+          window.location.reload();
+        } else
+          localStorage.removeItem('firstLoad');
+      }
+    })();
+  </script>
   <div w3-include-html="/partials/head.html"></div>
 
   <script>
@@ -271,6 +280,7 @@
     </div>
 
     <!-- Modal for experience section -->
+    <!-- Modal for experience section -->
     <div id="experience-modal" class="modal">
       <div class="modal-content">
         <div class="modal-header">
@@ -278,7 +288,7 @@
           <h1>Experience</h1>
         </div>
         <div class="modal-body">
-          <form id="edit-about-form" action="" method="">
+          <form id="edit-about-form" action="/profile/update/<%= user._id %>?_method=PUT" method="POST">
             <div id="edit-form-content">
               <label for="company" class="mb2">
                 Role
@@ -298,18 +308,27 @@
                 Start Year
               </label>
               <br>
-              <input id="start-year" class="text-input mb10" type="text" name="start-year" value="">
+              <input id="start_year" class="text-input mb10" type="text" name="start_year" value="">
             </div>
             <div id="edit-form-content">
               <label for="" class="mb2">
                 End Year (Leave black if you still work there)
               </label>
               <br>
-              <input id="end-year" class="text-input mb10" type="text" name="end-year" value="">
+              <input id="end_year" class="text-input mb10" type="text" name="end_year" value="">
             </div>
+            <div id="edit-form-content">
+              <label for="" class="mb2">
+                Description
+              </label>
+              <br>
+              <input id="work_description" class="text-input mb10" width="200" type="text" name="work_description"
+                value="">
+            </div>
+            <input id="experienceNumber" name="experienceNumber" type="text">
             <div class="modal-footer">
               <div id="modal-footer-buttons">
-                <button type="" id="cancel" class="btn btnGreen btnGray mt10">
+                <button type="button" id="cancel" class="btn btnGreen btnGray mt10">
                   <span>Cancel</span>
                 </button>
                 <button type="submit" class="btn btnGreen mt10">
@@ -344,7 +363,7 @@
 
   <%  for(var i = 0; i < count; ++i) { %>
   <script>
-    experienceEditBtn[i] = document.getElementById("std-experience-edit-"+i);
+    experienceEditBtn[i] = document.getElementById("std-experience-edit-" + i);
     ++i;
   </script>
   <% } %>
@@ -370,8 +389,10 @@
     experienceEditBtn[i].onclick = function () {
         document.getElementById("role").value = '<%= user.work[i].role %>';
         document.getElementById("company").value = '<%= user.work[i].company %>';
-        document.getElementById("start-year").value = '<%= user.work[i].start_date %>';
-        document.getElementById("end-year").value = '<%= user.work[i].end_date %>';
+        document.getElementById("start_year").value = '<%= user.work[i].start_date %>';
+        document.getElementById("end_year").value = '<%= user.work[i].end_date %>';
+        // document.getElementById("work_description") = '<%= user.work[i].description %>';
+        document.getElementById("experienceNumber").value = '<%= i %>';
         experienceModal.style.display = "block";
       }
       ++i;
