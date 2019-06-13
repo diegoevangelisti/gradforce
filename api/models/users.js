@@ -31,12 +31,12 @@ var userSchema = mongoose.Schema({
         suburb: String
     },
     education: [{
-        educational_status: String,
+        course: String,
         educational_provider: String,
         start_date: String,
         end_date: String,
-        course: String,
         description: String
+        
     }],
     work: [{
         company: String,

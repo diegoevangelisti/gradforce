@@ -196,9 +196,11 @@
         <h1 class="mb15">Education</h1>
       </div>
       <!-- Show all Education -->
+      <% counter = 0 %>
       <% user.education.forEach(function(element, i){ %>
+      <% counter = counter + 1; %>
       <div class="education-info">
-        <a class="editbtn" id="std-education-edit">
+        <a class="editbtn" id="std-education-edit-<%= i %>">
           <img class="" src="assets/img/icons/edit.png" alt="edit icon">
         </a>
         <% if(i == 0) { %>
@@ -208,6 +210,8 @@
         <p class="inline"><%= element.start_date%></p>
         <p class="inline"> - </p>
         <p class="inline"><%= element.end_date%></p>
+        <br>
+        <p class="inline"><%= element.description%></p>
         <% } %>
         <% if(i) { %>
         <hr class="mt10 mb10">
@@ -217,6 +221,8 @@
         <p class="inline"><%= element.start_date%></p>
         <p class="inline"> - </p>
         <p class="inline"><%= element.end_date%></p>
+        <br>
+        <p class="inline"><%= element.description%></p>
         <% } %>
         <% }) %>
       </div>
@@ -230,14 +236,43 @@
           <h1>Education</h1>
         </div>
         <div class="modal-body">
-          <form id="edit-about-form" action="" method="">
+          <form id="edit-about-form" action="/profile/update-education/<%= user._id %>?_method=PUT" method="POST">
             <div id="edit-form-content">
-              <label for="uni" class="mb2">
+              <label for="course" class="mb2">
+                Course
+              </label>
+              <br>
+              <input id="course" class="text-input mb10" type="text" name="course" value="">
+            </div>
+            <div id="edit-form-content">
+              <label for="provider" class="mb2">
                 Educational Provider
               </label>
               <br>
-              <input id="uni" class="text-input mb10" type="text" name="email" placeholder="Email" value="">
+              <input id="provider" class="text-input mb10" type="text" name="provider" value="">
             </div>
+            <div id="edit-form-content">
+              <label for="start_year_edu" class="mb2">
+                Start Year
+              </label>
+              <br>
+              <input id="start_year_edu" class="text-input mb10" type="text" name="start_year_edu" value="">
+            </div>
+            <div id="edit-form-content">
+              <label for="end_year_edu" class="mb2">
+                End Year
+              </label>
+              <br>
+              <input id="end_year_edu" class="text-input mb10" type="text" name="end_year_edu" value="">
+            </div>
+            <div id="edit-form-content">
+              <label for="description_edu" class="mb2">
+                Description
+              </label>
+              <br>
+              <input id="description_edu" class="text-input mb10" type="text" name="description_edu" value="">
+            </div>
+            <input type="hidden" id="educationNumber" name="educationNumber" type="text">
             <div class="modal-footer">
               <div id="modal-footer-buttons">
                 <button type="" id="cancel" class="btn btnGreen btnGray mt10">
@@ -305,7 +340,8 @@
           <h1>Experience</h1>
         </div>
         <div class="modal-body">
-          <form id="edit-about-form" action="/profile/update-work-experience/<%= user._id %>?_method=PUT" method="POST">
+          <form id="edit-experience-form" action="/profile/update-work-experience/<%= user._id %>?_method=PUT"
+            method="POST">
             <div id="edit-form-content">
               <label for="company" class="mb2">
                 Role
@@ -372,7 +408,7 @@
     // Get the buttons that opens the modals
     var detailsEditBtn = document.getElementById("std-details-edit");
     var aboutEditBtn = document.getElementById("std-about-edit");
-    var educationEditBtn = document.getElementById("std-education-edit");
+    var educationEditBtn = [];
     var experienceEditBtn = [];
     var i = 0;
   </script>
@@ -386,6 +422,16 @@
 
 
   <script>
+    j = 0;
+  </script>
+  <%  for(var i = 0; i < counter; ++i) { %>
+  <script>
+    educationEditBtn[j] = document.getElementById("std-education-edit-" + j);
+    ++j;
+  </script>
+  <% } %>
+
+  <script>
     // Get the <span> elements that close the modals
     var span = document.getElementsByClassName("close")[0];
     var cancelBtn = document.getElementById("cancel");
@@ -394,12 +440,10 @@
     aboutEditBtn.onclick = function () {
       aboutModal.style.display = "block";
     }
-    educationEditBtn.onclick = function () {
-      educationModal.style.display = "block";
-    }
     i = 0;
   </script>
 
+  <!-- Keep all work experience's ID in an array -->
   <% for(var i=0 ; i< count ; ++i) { %>
   <script>
     experienceEditBtn[i].onclick = function () {
@@ -415,6 +459,25 @@
   </script>
   <% } %>
   <script>
+    j = 0;
+  </script>
+  <!-- Keep all education's ID in an array -->
+  <% for(var i=0 ; i< counter ; ++i) { %>
+  <script>
+    educationEditBtn[j].onclick = function () {
+        document.getElementById("course").value = '<%= user.education[i].course %>';
+        document.getElementById("provider").value = '<%= user.education[i].educational_provider %>';
+        document.getElementById("start_year_edu").value = '<%= user.education[i].start_date %>';
+        document.getElementById("end_year_edu").value = '<%= user.education[i].end_date %>';
+        document.getElementById("description_edu").value = '<%= user.education[i].description %>';
+        document.getElementById("educationNumber").value = '<%= i %>';
+        educationModal.style.display = "block";
+      }
+      ++j;
+  </script>
+  <% } %>
+
+  <script>
     detailsEditBtn.onclick = function () {
       detailsModal.style.display = "block";
     }
@@ -422,7 +485,6 @@
     cancelBtn.onclick = function () {
       modal.style.display = "block";
     }
-
 
     function closeModal(modelName) {
       switch (modelName) {
@@ -447,13 +509,15 @@
     // }
 
     // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function (event) {
+
+    // NOT WORKING
+
+    /*window.onclick = function (event) {
       if (event.target == modal) {
         modal.style.display = "none";
       }
-    }
+    }*/
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/ejs@2.6.1/lib/ejs.min.js"></script>
 </body>
 
 </html>
