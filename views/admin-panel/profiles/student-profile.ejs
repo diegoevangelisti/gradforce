@@ -104,6 +104,20 @@
             <div class="card-body">
                 <div class="form-group">
                     <div class="form-row">
+                        <% if((user.about)){ %>
+                        <div class="col-md-12 education">
+                            <p class="inline student-title big">About</p>
+                        </div>
+                        <div class="col-12 education">
+                            <div class="form-group">
+                                <div class="form-label-group">
+                                    <p style="background-color:rgba(0, 0, 0, 0.008);">
+                                        <span><%= user.about%></span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
                         <!-- Work experience -->
                         <div class="col-md-12 education">
                             <% if((user.work.length)){ %>

@@ -130,15 +130,15 @@
                                     <% users.map((users, i) => { %>
                                     <tr id="table-rows">
                                         <td>
-                                            <img style="width: 70px; height: 70px; "
-                                                src="<%= users.photo %>" alt="Profile photo">
+                                            <img style="width: 70px; height: 70px; " src="<%= users.photo %>"
+                                                alt="Profile photo">
                                         </td>
                                         <td><%= users.fname %></td>
                                         <td><%= users.lname %></td>
                                         <td><%= users.email %></td>
                                         <td><%= users.userType %></td>
                                         <td><%= users.status %></td>
-                                        <td id="actions">
+                                        <td id="description">
 
                                             <!-- Students -->
                                             <% if(users.userType == "Student") { %>
