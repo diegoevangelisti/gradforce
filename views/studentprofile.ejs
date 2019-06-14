@@ -190,8 +190,8 @@
     <!-- education info -->
     <div id="std-education" class="box">
       <div>
-        <a class="addbtn" href="#">
-          <img src="assets/img/icons/add.png" alt="edit icon">
+        <a class="addbtn" id="add-education" href="#">
+          <img src="assets/img/icons/add.png" alt="add icon">
         </a>
         <h1 class="mb15">Education</h1>
       </div>
@@ -215,28 +215,88 @@
         <% } %>
         <% if(i) { %>
         <hr class="mt10 mb10">
-        <h2><%= element.educational_provider%></h2>
-        <p class="inline"><%= element.course%></p>
+        <p class="inline" style="font-weight: bold"><%= element.course%></p>
         <br>
+        <h2><%= element.educational_provider%></h2>
         <p class="inline"><%= element.start_date%></p>
         <p class="inline"> - </p>
         <p class="inline"><%= element.end_date%></p>
         <br>
         <p class="inline"><%= element.description%></p>
         <% } %>
-        <% }) %>
       </div>
+      <% }) %>
     </div>
 
-    <!-- Modal for education section -->
+    <!-- Modal for edit education section -->
     <div id="education-modal" class="modal">
       <div class="modal-content">
         <div class="modal-header">
           <span class="close" id="closeEducation" onclick="closeModal(id)">&times;</span>
-          <h1>Education</h1>
+          <h1 id="education_title">Education</h1>
         </div>
         <div class="modal-body">
           <form id="edit-about-form" action="/profile/update-education/<%= user._id %>?_method=PUT" method="POST">
+            <div id="edit-form-content">
+              <label for="course" class="mb2">
+                Course
+              </label>
+              <br>
+              <input id="course" class="text-input mb10" type="text" name="course" value="">
+            </div>
+            <div id="edit-form-content">
+              <label for="provider" class="mb2">
+                Educational Provider
+              </label>
+              <br>
+              <input id="provider" class="text-input mb10" type="text" name="provider" value="">
+            </div>
+            <div id="edit-form-content">
+              <label for="start_year_edu" class="mb2">
+                Start Year
+              </label>
+              <br>
+              <input id="start_year_edu" class="text-input mb10" type="text" name="start_year_edu" value="">
+            </div>
+            <div id="edit-form-content">
+              <label for="end_year_edu" class="mb2">
+                End Year
+              </label>
+              <br>
+              <input id="end_year_edu" class="text-input mb10" type="text" name="end_year_edu" value="">
+            </div>
+            <div id="edit-form-content">
+              <label for="description_edu" class="mb2">
+                Description
+              </label>
+              <br>
+              <input id="description_edu" class="text-input mb10" type="text" name="description_edu" value="">
+            </div>
+            <input type="hidden" id="educationNumber" name="educationNumber" type="text">
+            <div class="modal-footer">
+              <div id="modal-footer-buttons">
+                <button type="" id="cancel" class="btn btnGreen btnGray mt10">
+                  <span>Cancel</span>
+                </button>
+                <button type="submit" class="btn btnGreen mt10">
+                  <span>Save</span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for adding  education section -->
+    <div id="education-modal-add" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="close" id="closeEducation" onclick="closeModal(id)">&times;</span>
+          <h1 id="education_title">Education</h1>
+        </div>
+        <div class="modal-body">
+          <form id="edit-about-form" action="/profile/add-education/<%= user._id %>" method="POST">
             <div id="edit-form-content">
               <label for="course" class="mb2">
                 Course
@@ -400,17 +460,20 @@
     includeHTML();
 
     // Get the modals
-    var detailsModal = document.getElementById("details-modal");
-    var aboutModal = document.getElementById("about-modal");
-    var educationModal = document.getElementById("education-modal");
-    var experienceModal = document.getElementById("experience-modal");
+    let detailsModal = document.getElementById("details-modal");
+    let aboutModal = document.getElementById("about-modal");
+    let educationModal = document.getElementById("education-modal");
+    let educationModalAdd = document.getElementById("education-modal-add");
+    let experienceModal = document.getElementById("experience-modal");
 
     // Get the buttons that opens the modals
-    var detailsEditBtn = document.getElementById("std-details-edit");
-    var aboutEditBtn = document.getElementById("std-about-edit");
-    var educationEditBtn = [];
-    var experienceEditBtn = [];
-    var i = 0;
+    let addEducation = document.getElementById("add-education");
+
+    let detailsEditBtn = document.getElementById("std-details-edit");
+    let aboutEditBtn = document.getElementById("std-about-edit");
+    let educationEditBtn = [];
+    let experienceEditBtn = [];
+    let i = 0;
   </script>
 
   <%  for(var i = 0; i < count; ++i) { %>
@@ -478,9 +541,18 @@
   <% } %>
 
   <script>
+    //
+    addEducation.onclick = function () {
+      document.getElementById("education_title").innerHTML = "Add Education";
+      educationModalAdd.style.display = "block";
+
+    }
+
     detailsEditBtn.onclick = function () {
       detailsModal.style.display = "block";
     }
+
+
 
     cancelBtn.onclick = function () {
       modal.style.display = "block";

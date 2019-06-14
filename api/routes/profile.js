@@ -131,5 +131,39 @@ router.put("/update-education/:id", isLoggedIn, (req, res) => {
 
 });
 
+//Update Education information
+
+router.post("/add-education/:id", isLoggedIn, (req, res) => {
+
+  let id = req.params.id;
+
+  let objEducation = {
+    course: req.body.course,
+    educational_provider: req.body.provider,
+    start_date: req.body.start_year_edu,
+    end_date: req.body.end_year_edu,
+    description: req.body.description_edu
+  }
+
+  User.findOneAndUpdate({
+      _id: id
+    }, {
+      $push: {
+        education: objEducation
+      }
+    },
+    function (error, user) {
+      if (error) {
+        console.log(error);
+      } else {
+        user.save();
+        console.log(user);
+      }
+    });
+
+  res.redirect("/profile");
+
+});
+
 
 module.exports = router;
