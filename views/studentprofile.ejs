@@ -131,8 +131,8 @@
             </div>
             <div class="modal-footer">
               <div id="modal-footer-buttons">
-                <button type="" id="cancel" class="btn btnGreen btnGray mt10">
-                  <span>Cancel</span>
+                <button type="button" id="cancel" class="btn btnGreen btnGray mt10">
+                    <span id="closeDetails" onclick="closeModal(id)">Cancel</span>
                 </button>
                 <button type="submit" class="btn btnGreen mt10">
                   <span>Save</span>
@@ -170,12 +170,13 @@
                 Summary
               </label>
               <br>
-              <textarea name="summary" id="about-summary" class="" placeholder="Where are you from, and define yourself in just one sentence"><%= user.about %></textarea>
+              <textarea name="summary" id="about-summary" class=""
+                placeholder="Where are you from, and define yourself in just one sentence"><%= user.about %></textarea>
             </div>
             <div class="modal-footer">
               <div id="modal-footer-buttons">
-                <button type="" id="cancel" class="btn btnGreen btnGray mt10">
-                  <span>Cancel</span>
+                <button type="button" id="cancel" class="btn btnGreen btnGray mt10">
+                    <span id="closeAbout" onclick="closeModal(id)">Cancel</span>
                 </button>
                 <button type="submit" class="btn btnGreen mt10">
                   <span>Save</span>
@@ -233,7 +234,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <span class="close" id="closeEducation" onclick="closeModal(id)">&times;</span>
-          <h1 id="education_title">Education</h1>
+          <h1 id="education_title">Edit Education</h1>
         </div>
         <div class="modal-body">
           <form id="edit-about-form" action="/profile/update-education/<%= user._id %>?_method=PUT" method="POST">
@@ -275,8 +276,8 @@
             <input type="hidden" id="educationNumber" name="educationNumber" type="text">
             <div class="modal-footer">
               <div id="modal-footer-buttons">
-                <button type="" id="cancel" class="btn btnGreen btnGray mt10">
-                  <span>Cancel</span>
+                <button type="button" id="cancel" class="btn btnGreen btnGray mt10">
+                    <span id="closeEducation" onclick="closeModal(id)">Cancel</span>
                 </button>
                 <button type="submit" class="btn btnGreen mt10">
                   <span>Save</span>
@@ -292,8 +293,8 @@
     <div id="education-modal-add" class="modal">
       <div class="modal-content">
         <div class="modal-header">
-          <span class="close" id="closeEducation" onclick="closeModal(id)">&times;</span>
-          <h1 id="education_title">Education</h1>
+          <span class="close" id="closeEducationAdd" onclick="closeModal(id)">&times;</span>
+          <h1 id="education_title">Add Education</h1>
         </div>
         <div class="modal-body">
           <form id="edit-about-form" action="/profile/add-education/<%= user._id %>" method="POST">
@@ -335,8 +336,8 @@
             <input type="hidden" id="educationNumber" name="educationNumber" type="text">
             <div class="modal-footer">
               <div id="modal-footer-buttons">
-                <button type="" id="cancel" class="btn btnGreen btnGray mt10">
-                  <span>Cancel</span>
+                <button type="button" id="cancel" class="btn btnGreen btnGray mt10">
+                    <span id="closeEducationAdd" onclick="closeModal(id)">Cancel</span>
                 </button>
                 <button type="submit" class="btn btnGreen mt10">
                   <span>Save</span>
@@ -352,7 +353,7 @@
     <div id="std-experience" class="box">
       <div>
         <a class="addbtn" href="#">
-          <img src="assets/img/icons/add.png" alt="edit icon">
+          <img id="add-experience" src="assets/img/icons/add.png" alt="edit icon">
         </a>
         <h1 class="mb15">Work Experience</h1>
       </div>
@@ -392,12 +393,11 @@
     </div>
 
     <!-- Modal for experience section -->
-    <!-- Modal for experience section -->
     <div id="experience-modal" class="modal">
       <div class="modal-content">
         <div class="modal-header">
           <span class="close" id="closeExperience" onclick="closeModal(id)">&times;</span>
-          <h1>Experience</h1>
+          <h1>Update Work Experience</h1>
         </div>
         <div class="modal-body">
           <form id="edit-experience-form" action="/profile/update-work-experience/<%= user._id %>?_method=PUT"
@@ -441,7 +441,66 @@
             <div class="modal-footer">
               <div id="modal-footer-buttons">
                 <button type="button" id="cancel" class="btn btnGreen btnGray mt10">
-                  <span>Cancel</span>
+                    <span id="closeExperience" onclick="closeModal(id)">Cancel</span>
+                </button>
+                <button type="submit" class="btn btnGreen mt10">
+                  <span>Save</span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- Modal for adding experience section -->
+    <div id="experience-modal-add" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="close" id="closeExperienceAdd" onclick="closeModal(id)">&times;</span>
+          <h1 id="experience_title">Add Working experience</h1>
+        </div>
+        <div class="modal-body">
+          <form id="edit-experience-form" action="/profile/add-work-experience/<%= user._id %>" method="POST">
+            <div id="edit-form-content">
+              <label for="company" class="mb2">
+                Role
+              </label>
+              <br>
+              <input id="role" class="text-input mb10" type="text" name="role" value="">
+            </div>
+            <div id="edit-form-content">
+              <label for="" class="mb2">
+                Company
+              </label>
+              <br>
+              <input id="company" class="text-input mb10" type="text" name="company" value="">
+            </div>
+            <div id="edit-form-content">
+              <label for="" class="mb2">
+                Start Year
+              </label>
+              <br>
+              <input id="start_year" class="text-input mb10" type="text" name="start_year" value="">
+            </div>
+            <div id="edit-form-content">
+              <label for="" class="mb2">
+                End Year (or Present)
+              </label>
+              <br>
+              <input id="end_year" class="text-input mb10" type="text" name="end_year" value="">
+            </div>
+            <div id="edit-form-content">
+              <label for="" class="mb2">
+                Description
+              </label>
+              <br>
+              <input id="work_description" class="text-input mb10" type="text" name="work_description" value="">
+            </div>
+            <input type="hidden" id="experienceNumber" name="experienceNumber" type="text">
+            <div class="modal-footer">
+              <div id="modal-footer-buttons">
+                <button type="button" id="cancel" class="btn btnGreen btnGray mt10">
+                  <span id="closeExperienceAdd" onclick="closeModal(id)">Cancel</span>
                 </button>
                 <button type="submit" class="btn btnGreen mt10">
                   <span>Save</span>
@@ -465,10 +524,15 @@
     let educationModal = document.getElementById("education-modal");
     let educationModalAdd = document.getElementById("education-modal-add");
     let experienceModal = document.getElementById("experience-modal");
+    let experienceModalAdd = document.getElementById("experience-modal-add");
 
     // Get the buttons that opens the modals
-    let addEducation = document.getElementById("add-education");
 
+    //to add
+    let addEducation = document.getElementById("add-education");
+    let addExperience = document.getElementById("add-experience");
+
+    //to edit
     let detailsEditBtn = document.getElementById("std-details-edit");
     let aboutEditBtn = document.getElementById("std-about-edit");
     let educationEditBtn = [];
@@ -541,18 +605,20 @@
   <% } %>
 
   <script>
-    //
+    //Add education button
     addEducation.onclick = function () {
-      document.getElementById("education_title").innerHTML = "Add Education";
       educationModalAdd.style.display = "block";
 
+    }
+
+    //Add work experience button
+    addExperience.onclick = function () {
+      experienceModalAdd.style.display = "block";
     }
 
     detailsEditBtn.onclick = function () {
       detailsModal.style.display = "block";
     }
-
-
 
     cancelBtn.onclick = function () {
       modal.style.display = "block";
@@ -572,13 +638,24 @@
         case "closeEducation":
           educationModal.style.display = "none";
           break;
+        case "closeEducationAdd":
+          educationModalAdd.style.display = "none";
+          break;
+        case "closeExperienceAdd":
+          experienceModalAdd.style.display = "none";
+          break;
       }
     }
 
     // When the user clicks on <span> (x), close the modal
-    // span.onclick = function () {
-    //   aboutModal.style.display = "none";
-    // }
+    span.onclick = function () {
+      aboutModal.style.display = "none";
+      detailsModal.style.display = "none";
+      experienceModal.style.display = "none";
+      educationModal.style.display = "none";
+      experienceModalAdd.style.display = "none";
+      educationModalAdd.style.display = "none";
+    }
 
     // When the user clicks anywhere outside of the modal, close it
 

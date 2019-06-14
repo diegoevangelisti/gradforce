@@ -165,7 +165,7 @@ passport.use(new GoogleStrategy({
 passport.use(new FacebookStrategy({
     clientID: keys.facebook.APP_ID,
     clientSecret: keys.facebook.APP_SECRET,
-    callbackURL: "https://gradforce-backend.herokuapp.com/auth/facebook/callback",
+    callbackURL: "/auth/facebook/callback",
     profileFields: ['id', 'emails', 'picture.type(large)', 'name', 'displayName']
   },
   (accessToken, refreshToken, profile, done) => {

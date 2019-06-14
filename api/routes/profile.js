@@ -165,5 +165,37 @@ router.post("/add-education/:id", isLoggedIn, (req, res) => {
 
 });
 
+router.post("/add-work-experience/:id", isLoggedIn, (req, res) => {
+
+  let id = req.params.id;
+
+  let objExperience = {
+    role: req.body.role,
+    company: req.body.company,
+    start_date: req.body.start_year,
+    end_date: req.body.end_year,
+    description: req.body.work_description
+  }
+
+  User.findOneAndUpdate({
+      _id: id
+    }, {
+      $push: {
+        work: objExperience
+      }
+    },
+    function (error, user) {
+      if (error) {
+        console.log(error);
+      } else {
+        user.save();
+        console.log(user);
+      }
+    });
+
+  res.redirect("/profile");
+
+});
+
 
 module.exports = router;
