@@ -112,7 +112,7 @@ router.put("/update-education/:id", isLoggedIn, (req, res) => {
   User.findByIdAndUpdate(id).then((user) => {
 
     user.education[index].course = req.body.course
-    user.education[index].eductional_provider = req.body.provider
+    user.education[index].educational_provider = req.body.provider
     user.education[index].start_date = req.body.start_year_edu
     user.education[index].end_date = req.body.end_year_edu
     user.education[index].description = req.body.description_edu
