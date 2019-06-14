@@ -1,0 +1,357 @@
+[
+{
+    "_id" : "kvq4gs9w4",
+    "Skills" : {
+        "softs" : [],
+        "skills" : []
+    },
+    "userType" : "Student",
+    "fname" : "Emilia",
+    "lname" : "Nicasio",
+    "email" : "emilianicasio@hotmail.com",
+    "phone_number" : 225871043,
+    "username" : "emilianicasio@hotmail.com",
+    "title" : "Pottery Specialist",
+    "status" : "Profile Complete",
+    "about" : "Self-confident and experience Pottery worker. I can form strong, vitreous stoneware and porcelain pieces, all of which are microwave and dishwasher safe",
+    "photo" : "https://scontent-syd2-1.xx.fbcdn.net/v/t1.0-1/p160x160/49946680_10219037161468104_4409354915181232128_n.jpg?_nc_cat=108&_nc_ht=scontent-syd2-1.xx&oh=1dec3421ea4b90453e4f1245042386ab&oe=5D8ECE86",
+    "education" : [ 
+        {
+            "educational_status" : "Studying",
+            "educational_provider" : "Aspire2 International",
+            "start_date" : "2018",
+            "end_date" : "2019",
+            "course" : "Graduate Diploma in Arts Level 7"
+        }
+    ],
+    "work" : [ 
+        {
+            "company" : "Arts of Baires, Inc.",
+            "country" : "Argentina",
+            "start_date" : "2017",
+            "end_date" : "2018",
+            "description" : "Designing and creating special pottery staff according to client's requirements",
+            "role" : "Main pottery assistant"
+        }, 
+        {
+            "company" : "Auckland Arts & Co.",
+            "country" : "New Zealand",
+            "start_date" : "15-Nov-2018",
+            "end_date" : "Present",
+            "description" : "Helping artist to create pottery stuff according to their designs",
+            "role" : "Pottery creater"
+        }
+    ],
+    "salt" : "5d6b344b8815e63f79fc882d2058a9bce61cdc55840577b858149d51d831961c",
+    "hash" : "96fd08d56de0730b782391d8bcbb314991494502a16e5222e5d0be4c16997255505b99edb9692a29f5fd50e98b00b6cc14df333e88d31dcc6ca1f5201522d8d1d684764cb92ca775816af23c6afb7dbcc36b60ef56b3ca56ce7f4a03b2f318d9c102cbcfd4fa5239935caf18c899ccb17a994b1eacf68776bf8438d0a6011985fa3ac4ec4f8ebe6f68620a2eaed92e962e4373a19abffacc6e11173e83f2fd140cf2f2241798cb28fe1c50d4748f1c777e4bc871eb88643a2e365974f55984fa1f10ba8763827eada0563aa558dc66d936e466a75e397eb3e36d9585a5fee942463985248d1d45f429ee975ba6cceeb60870d7f1beb9b91fb1a4b4a7c123068f36c781ef71a2919393a8230b7e0e1058889203f6908497c22ef02ab7e818679cb88e48bc99eb4924ef2bdda68142128173bcb58a8bee71cd3a686a80634210def9fec5b66c995fbaaaf045929eaf42f94e02335f8d9b3228db5f5b6c04f4778b94ded35361bdf796266b6bc3ea192a6783aa13e930043002a5bc7a2ddfaa7d34f98201e53d1d379742ef74eeaa7d8ecc6a39cbd3a78bd0e87547ed2213c652a223f5086f791cf35aa57cdf09cc2203a8a1045c898135f55396386076b7d0d2015a9665c0630716bff6c96949ae26183a117af5fb18e4a25a9c3715929c59ea92f4f21c48b002de1902ea351e8fa6c36a3e931b133fb0a14b4b82cbd6a2d15548",
+    "__v" : 0,
+    "DOB" : "05/04/1985",
+    "address" : {
+        "street" : "8 Scotia Pl.",
+        "unit" : "5C",
+        "city" : "Auckland ",
+        "suburb" : "Auckland Central"
+    },
+    "description" : "Interview/Upskilling"
+},
+{
+    "_id" : "92u3nqa9d",
+    "Skills" : {
+        "softs" : [],
+        "skills" : []
+    },
+    "userType" : "Employer",
+    "fname" : "Saeed",
+    "lname" : "Masoodnia",
+    "email" : "masoodnia.saeed@gmail.com",
+    "phone_number" : 258777414,
+    "username" : "masoodnia.saeed@gmail.com",
+    "status" : "Profile Incomplete",
+    "education" : [],
+    "work" : [],
+    "salt" : "7b152bb257df32932baf07fe76a4cc08e881e717811f2a175f04ac6d4d9b168b",
+    "hash" : "b3294708b2b4b4093f774cef360fe1244d642b0631c86c2cb96853790093b531f4c8915595a16ee12ca0c876578869f5a240643c4b111941e359f2c173dc72b6a95ac6263ad963d2c68e1ce6f2bf8297839808ebb5a4869c9baf8dffc4b7d8437bed40ac02495a0876afa4289ce89ac8be4e9eb0fe6dbd16ff7cdc301d7e185be825ff4c5e1e0f89ba861a61d70a8acd89e6e0e2981114871464bd96e7e723a7fd3647b18cb33eea4419647970a2884f51674b879c018b67578ceeca4376b98e5a7716e1b90931c233dde09454b8958b03716d0bcf54df7413d5f80de66ab5576c76226154b2ff8bff0e3a9b15d7c893a6843835c5a302d27c630bd009ca942b3ffd7f60b62468b4744914c01ce1c158ffb5f774c7f3936f76ffec2f873dd9080ef36daae81ddc386e29e8bd8bde68c284c649e2d828f4ef6edc21bb9584a4007ed879d6197c86abe888218a45949c32645b63b6d39ca1184c798315b6fe96dbca061746ba76360c2bfe1cbc8c6ab5be9e01e030dd6d18e720a8ca05296f19194b59dba45b2723deaa1e40a26bb8b2cb5c34708a2b48b3e0e821e11d0de2cc9f7e2d97e65e275160241aa32079df1496b7d76a8d41eaa83de708c816350be3f095c5e33d6bd6ea4cc275b31c49f44b7fe04f27754b98f6366bd6194b46ef6ce7f2f22d02beb8e8272d2f0bc11d5451356ec809aa7f5902c9f4ca3f7cd7eae130",
+    "__v" : 0,
+    "googleId" : "102708143921475093181",
+    "photo" : "https://lh4.googleusercontent.com/-uNWGPjMLNSo/AAAAAAAAAAI/AAAAAAAAAAw/JZZ_Y1T9mNg/photo.jpg"
+},
+{
+    "_id" : "3mlln82cs",
+    "Skills" : {
+        "softs" : [],
+        "skills" : []
+    },
+    "fname" : "Sheldon",
+    "lname" : "Cooper",
+    "email" : "sheldoncooper@hotmail.com",
+    "phone_number" : 254114785,
+    "username" : "sheldoncooper@hotmail.com",
+    "status" : "Profile Complete",
+    "photo" : "https://pbs.twimg.com/profile_images/951114308263514112/-t-CESJM_400x400.jpg",
+    "description" : "Employer ready to hire",
+    "userType" : "Employer",
+    "title" : "Dr. in Physics",
+    "education" : [],
+    "work" : [],
+    "salt" : "dfd83e34cba58368ae595022e4096ee2e05403ba291d7baf3e1d5420ab31b9dd",
+    "hash" : "f199bf455f6e8fba4ba2cf0d959373e6c8cff80af3f971abb6decf793b83329ce3c7ef289cf107d29c0cd5e16183dcf925e95a9ef2330e2848b2971f2522494097db2c3443a6ecaa007b6d80e473f99cbe4f361dc86aee3bc9ae431db475160d7c1ee2d5501cec72a9be972f28c18ada7fd2443a119ec8c4ec9aecb1484604178b5f484367c7d2b3ab062609d077cf3efa3c5fae9fb9d7d49e26a413617408860178211b337af15383bdeba59935ecb616e11d026612d01c50eadf2bef7b0564b3c81ba53163587a49844a06998cde16f84186e06a33a62528f0fe9c0b7ec440507292f53f8ce500ea6cde6a596f20c2b110cdea6061e0244880e3a3c8c4d99550f951732996b06dc1822cbc10be70297b97e797fd31095e77e635004447b65254c9200e44783e8f15c2df09e1b2dece18e9e25c93f2372681e6d8ff66bac8b56d775b2273e58fe3532dcbde295db54fb0a7e849846ea6fb9ac0f68416baaa5ad4cfa273938e35a962e29a266ca1f79f87dbd9bbd3e3c6649db3d3941fc03e12754cd384435b9d3e83c1d3b128111cc39bd80c8cce50df33488b22b13cd7650eb2a7ef2be07b62372548fda08d4a02c9cfd72ef54caa59e15e35bff918a7395e28655fae8468c67a52767f2541c817655f02f3b729ac8718d04af80e04b8c0b3e06e537888fe22e197f5e2d2a349cd258acbe5aaba4afe78623bf33a05d82cf7",
+    "__v" : 0,
+    "DOB" : "",
+    "address" : {
+        "street" : "Big Bang Rd",
+        "unit" : "58",
+        "city" : "Pasadena",
+        "suburb" : "Pasadena Suburbs"
+    },
+    "about" : "Sheldon is often described as a stereotypical \"geek\". He is usually characterized as being extremely intelligent, detail-oriented, eccentric, and occasionally disturbing. Despite his intelligence, he often displays childlike qualities, such as extreme stubbornness and a lack of common sense."
+},
+{
+    "_id" : "48idqmrce",
+    "Skills" : {
+        "softs" : [],
+        "skills" : []
+    },
+    "fname" : "Tony",
+    "lname" : "Montana",
+    "email" : "tony@gmail.com",
+    "phone_number" : 25558744,
+    "username" : "tony@gmail.com",
+    "status" : "Profile Incomplete",
+    "userType" : "Student",
+    "education" : [],
+    "work" : [],
+    "salt" : "3f7292b5000175dcc00a0c64b261369b758331ae6b595400daa28222ac3b8909",
+    "hash" : "27bb8a922cfadf4a315fb0481c4120e77c7c317a50b2073c3a097f727a2f41a8fe71d5ca1ac61c5dd11c8e2dd0b7bfde0824b9c575a3ad114ac039b5b5b9b35d5a8ef4c91908de55fca4a7f06218a909138bfb574abf3c98c0e17ec8ce0ca2847af490e43afb4e1d644435d5ec3c92dbed18a5563a648e9d41e0c9c696df86532c62ce5dfac5651621f17bbebe20a01aab53fe2f6e12b90d739222e4c69ef2143fc73df3966a3ee62c3d1837636af2960555340b81dc0fd1926850b59ae199ad9f586f028f21fcc1961064ac02f8855362f1731cd10ddbc2e8c86cffb0897bb27a189f2421bc33466d97f8030bca7bd5fcc515e74ef64caaf7c8e407428d4d8278baa743aeebaf26c3177c1af0a0a2ead8b664132da1ece329489397135f7662c225afae10b18a8725f3699f1462a0109f895849b1ece259cbeefb497dbc323ad9d47e25f35ee299f8b4599ca97a86f95b23f4ec841ca5a72079793a601bc54faf2e6b3464b2acff5b60dfb4c8f673be28684d1d097ed9afb33d1df2a904b40f6002834bbcc183be101ed9c8f7da15b50c0a9c36e92d2f2edbd2d0bbb8298260642acb558ae0163d115e3d0e9b801f32312d2cb31cf39a5397c920d43213d6c149561c85b8f6177f2d1dca621b7ca8af2ca894be3355a4ed31ea8d8e6208fb114976226774e9930f179e5b4a238efb6ba459aa8d82afb012b2fd048e7a899307",
+    "__v" : 0
+},
+{
+    "_id" : "a4r5n548j",
+    "Skills" : {
+        "softs" : [],
+        "skills" : []
+    },
+    "fname" : "Tommy",
+    "lname" : "Dunster",
+    "email" : "tommydunster@yahoo.com.ar",
+    "phone_number" : 2258741664.0,
+    "username" : "tommydunster@yahoo.com.ar",
+    "status" : "Profile Incomplete",
+    "userType" : "Student",
+    "education" : [],
+    "work" : [],
+    "salt" : "dda4c7f037ef1ba47052f10bfafec2cdc30df2bde41449693661356e53c8eb9c",
+    "hash" : "4d06e7daeb205500393116a126ff1cccc9e89d6ab02882ad3766bc57110048efa03b06eb3d18ebf7c8d0306746e5215758f521455b721524b4cf9b6d49f357b80e308cf19fd917a562936292981f1e662fda7e02949f682a15959782779792f560ed6d6aae95e5bae7c24662998cffa21ff53adeb60e989cb32871be3b32001de1466592ba9cf53c34b6d151a9bd724fe875c99a11dd0ad775952012bae684cdb9832ad68ca46251fba5e4351752fcce8a664b1ad9a878b67263009606d79bdfc403337667eea5281ff005a0372d337ac774eb65c7f87bc48e63f3c2b67ed01137baf8f5021dfac3fb5b2c9457782f8354929a7b2a3b0519966eede0c33df33c176bd1dce76396acf756ac55c0b62fc8a5286189309d5ef8c7e25b5a681bb70eb41763fcb5688a6ec165c93f37c1880f8d23cffa1d1456a0a6300b8b3310f63a7341cb75e41ce43c216e9cccf10ef809320c9c6c6faf484355e55a45e0a4ce82711bcb01d398b5f14654c058d6bf25fb83a71589d201b1210f4a673b9d30f3dc9d82eca5c3ca589b6e545e6fe86af50e3551eb60c48ed8e28fd8a0cc16125182018be78d60cc066bea0195bba7ba1653676e299fb45d03cacaa866faaa2e1dfff81482537a8fe2b81d54fbad319381502a7b5096c9437181fcb1333b83aac4c47dbc48868959eeb647a0481cb4a7a5f12a46f5e867c0bb7e5658cfe3dac32b0d",
+    "__v" : 0
+},
+{
+    "_id" : "u0xnqnist",
+    "Skills" : {
+        "softs" : [],
+        "skills" : []
+    },
+    "userType" : "Employer",
+    "fname" : "Thomas",
+    "lname" : "Edwards",
+    "email" : "thomas@hotmail.com",
+    "phone_number" : 22255587,
+    "username" : "thomas@hotmail.com",
+    "status" : "Profile Incomplete",
+    "education" : [],
+    "work" : [],
+    "salt" : "de57cd35bb4d504db671a3bf72a57502fd6c4010427240551bc782601fedc6a8",
+    "hash" : "ac95656bf6e98e1e1375fb5aa64a06009eaf4895d83166ccd4cac2aefd3339d03d315463f58029ea0c171b582c2ae66b9032f58e859091b93143d17c43e90d28ab30be285d9b8cda5c835f69114c06b589bc3c3f5372a8cdbb80c9f83a48050dfec7cf59c4a721b36a77705e56cd97e90fe79ddbab144d5610b7d40cca0a352e779a129fed88e358a64224685c3c148a8406e1140bfdb1f6db85a7113b44c281ff33c361f728c586d3557fba5361b5beac196d31e079c2de2fe9b41bd63606cc5e8ae4791d4c89d7f86f3832dcffb3ca6a281cbb3ed7ff87737b304bcb60dd2c8b52a3997a29943d3748dcd28af999c799fc327744a9ead2bceb9aba6e6fc9b7ee89c3a0f370a0f61ec782cce5c1ec20614c3204fa9563c3a435567387ef27d83512e76cde4be8d67eaa34170cdd90ffaf80880fa9ab69d82aa6227674c268bb779379347fd53fdfefdae87a13f757f21e93e1ce3a5f0b2a7cf1ead933ca181b53be4444bc469444bf3333bdb3c962639af35071c7c5cf40cec1e93318c673b49164fb9d265f892e4f8caae019a84a8fa2c7f3900e0dd7a573dfba8264aa9776d753bd5408d9bed89324e0156c30c864517a8580e29b26ba8f03ad2a9c078cffa9e97303978f1dd6f4f892c6bd481113bafdc96c20f48f07e767e5013388eb3036895156033201f9e0829341f640d357889bfd0c8e24bcadb6637e73dc7e1278",
+    "__v" : 0,
+    "DOB" : "17/06/1980",
+    "address" : {
+        "street" : "Albert St.",
+        "unit" : "10C",
+        "city" : "Auckland",
+        "suburb" : "Grey Lynn"
+    }
+},
+{
+    "_id" : "p9qpdkkzb",
+    "Skills" : {
+        "softs" : [],
+        "skills" : []
+    },
+    "username" : "evangelistidiego@gmail.com",
+    "fname" : "Diego Raul",
+    "lname" : "Evangelisti",
+    "email" : "evangelistidiego@gmail.com",
+    "googleId" : "111171410713428060046",
+    "status" : "Profile Complete",
+    "description" : "Interview/Upskilling",
+    "title" : "Jr. Software Developer",
+    "education" : [ 
+        {
+            "educational_status" : "Studying",
+            "educational_provider" : "Aspire2 International",
+            "start_date" : "2018",
+            "end_date" : "2019",
+            "course" : "Graduate Diploma in IT Level 7",
+            "description" : "HTML, CSS, JS, PHP, MySQL, Ind.Project"
+        }
+    ],
+    "work" : [ 
+        {
+            "company" : "Aspire2 Int.",
+            "country" : "New Zealand",
+            "start_date" : "2019",
+            "end_date" : "Present",
+            "description" : "Tutor assistant in Java Programming classes for GraDip Level 7.",
+            "role" : "IT Tutor Assistant "
+        }
+    ],
+    "about" : "I'm and Electronics Engineer from Argentina, with a good experience programming in NodeJS, mongoDB, RESTful API. Also I have passion for Web scraping. \r\nI love running, coffee and Pugs",
+    "__v" : 0,
+    "photo" : "https://lh3.googleusercontent.com/a-/AAuE7mADHxCbqO77h46ykT6rZQvcgU0o49MftSq1W6oUFw",
+    "facebookId" : "10219042270074047",
+    "DOB" : "01/03/1985",
+    "address" : {
+        "street" : "8 Scotia Place",
+        "unit" : "5C",
+        "city" : "Auckland",
+        "suburb" : "Auckland Central"
+    },
+    "phone_number" : 225869441,
+    "userType" : "Student"
+},
+{
+    "_id" : "ojjdgs5j9",
+    "Skills" : {
+        "softs" : [],
+        "skills" : []
+    },
+    "userType" : "Student",
+    "fname" : "Tim",
+    "lname" : "Harris",
+    "email" : "timharris@gmail.com",
+    "phone_number" : 255874584,
+    "username" : "timharris@gmail.com",
+    "status" : "Profile Incomplete",
+    "education" : [],
+    "work" : [],
+    "salt" : "b2ea7de3a3ad7880db752fcfd5649c3731831a022a2f6b9026a7d84a498c8627",
+    "hash" : "7fa12e33792863e8425e061bcbceb155faf0667e154c14718fc53101986351833a6ecc3623c1862e1270fd7ebdaf9dedd11bdaf41bad11f142b26be453407327d6c887dc76ffa1af3b885d262f176ae9aafc16be7ea0ae17656bacf6d57c2a59936a527f8d8b8d390d5d9b01e1a493d043b3d23e70c6212127e88244cedf1957624387605cb19cbfe27513b9074461a59b3c8bf683e6a445d42f18e75723e6bd155412a46d93943742797797cdfcf1857f7cfd2f00bfcc7267150b776a852eec196992212e172a7976b91cae93e56586107f21690482f71ba9e966232e2fbe9a0acf382b018f87812222f777a3be59f1dcab3cdf60bd8629453623d842fc5854903780ce7b8b2da795aaf423e01037ef60d682a7a9647758a3169b79bc580caef80197292936cccec61a2257e9788a775eb0380094130f867c064e40392fac64c79a1b2829debb97d624b8101795ea9d8339cb51372ad91f54f2e678d04f7e1be0c740e2e3af7c33dc06bebadd510bf69263e280a575d25988ca2c7df6204e696483312663f72ec81f253c81b85e31df6935067ce7fbb47a09b0a2d0ef12abe32ac37b1a57bfca3a38d3e7494c45cd858cf84c7d9b885f1063fb06c5c15f2c821eaa730044cfd5e54c60229b6835eeaa34c299950c534ab961955ad883612e2d1b2b0de22a9728f37ed15de31aad54ce562fb3d7e8eead1a1b29a22f109dd22b",
+    "__v" : 0
+},
+{
+    "_id" : "vy4nagh0a",
+    "Skills" : {
+        "softs" : [],
+        "skills" : []
+    },
+    "userType" : "Student",
+    "fname" : "Emma",
+    "lname" : "Ham",
+    "email" : "ham38538821@gmail.com",
+    "phone_number" : 2108216229,
+    "username" : "ham38538821@gmail.com",
+    "status" : "Profile Incomplete",
+    "education" : [],
+    "work" : [],
+    "salt" : "539c0222b59152fad737ff2d90351ca81620875f4441a966cc455aaa3e7525c6",
+    "hash" : "7c0ffbd4b0543821c49063e21e96c9ae957722a30dbf017ff0ce9048b011fd12b6befc6ab6afcb67f80c2f4497c825815a169c7ae2698b0dc1e286257ab2c826ccc84a4e50de0aa2c0161742e380e91831045759aef7bdf16152a137c822420a8306b8c581693aee9f41db1424f2fe4cd45f7a5d67f7cfcedbbd514bb4813f2dc81877ced6c1006c6c291ede48a2179eb2dbdb6ce9f92586cec15bb8e70f2ad6e577c3095ceb49ed814d4f6468364cb07848136547957137369cc583d28f4d1464c32bf11d2547b20a8506080fd753ccf85ab09425baae8cfc91bd141cc600a9ad2727c91b2e5988cba3ddb5b5cfabb7fc1d352f7a6da5771f648df44a441432c0017e2e287ea2ea1e6a57aafb2572e6d3c59ed79b6b362535614935a55845d8cb99f3acc730bf29e59affebd59bb727d2fbc620ceb08f73d6949643d6c4902f9375140ad26f5ac0bfd1b8ea5e04705a0b25b28ac59eaab29288c21879090b60f16361736da368857feb74f326daec9f8c9bac0ac1eaba458ea4c3814e7afa6df2ef612b2b68e1a86716c2862693a6f56b44a14fa73c88f5d34c3bd50a998566e5a6c122947cfbc8135d85ad1784f20e797f78e412834b7e001b7b5549d21f174038fa885c52c19bae29bc67c76ccdaef087eb872a750975d74ee8092e599be751ce9bbd105ec160eb17c6ded560e62cb805e55d2f683818782ab3c496026d20",
+    "__v" : 0,
+    "DOB" : "14/09/1990",
+    "address" : {
+        "street" : "105 Southern Street",
+        "unit" : "4C",
+        "city" : "Auckland",
+        "suburb" : "Ponsonby"
+    }
+},
+{
+    "_id" : "0esto2w62",
+    "Skills" : {
+        "softs" : [],
+        "skills" : []
+    },
+    "userType" : "Student",
+    "fname" : "Leslie",
+    "lname" : "Sikos",
+    "email" : "lesliesikos@gmail.com",
+    "phone_number" : 218741010,
+    "username" : "lesliesikos@gmail.com",
+    "status" : "Profile Incomplete",
+    "description" : "Waiting for Student",
+    "photo" : "http://res.cloudinary.com/yaffa-publishing/image/fetch/q_auto:best,c_fill,w_300,g_faces:center,f_auto/http%3A%2F%2Fyaffa-cdn.s3.amazonaws.com%2Fadnews%2Flive%2Fimages%2FdmImage%2FSourceImage%2Fjames-hudson2.jpg",
+    "education" : [],
+    "work" : [],
+    "salt" : "d9747ec7674270c3803f6c84393bbc7d5ac362de48d9dbc2bc9f20fcbf3662f1",
+    "hash" : "9ef7bfdee9f6659d0971860251a67ffe7108266bb0122189a9ab3a5330fb989a30df35a0ff554143b37eea99cd6b04b5a5cd399bfc62c3e3e7c5bfb5c6849b62fdff25d2bb8eddf646b5ff1960bc9e3f3c869625712c7d3935305ecad95d2eccc4d203683612c4a41ba76a48a8357bb51700dfde165b76df3a7edfaa359a36efe89d297d1aa3018a7d12c7c645b90668dcfa5cd09b860283187a7e2c6f3234a1b95f65b86204a0965dcff37ea063e1f0d9ead04d6301667f94ae57d514dc0e8cbbe7d871b04f8468de9124d38f937797ca44c4f549435ba775eaba5085f342696e0b8548fc85c49584bec36d10c88a821025fe1233f221799e7061c614e5a9eb322da6478a723b311636f8107ed5f88f9bdbeb62f9c8ed495f9b053fe94050580c498e9b52e76c51823d19c658f80aac7ba1c955ae2742c58eacbc07790d9bbd26b0889ecf4bae112703ef12a1712a85b63442cc99e2c5a3768415adfec3f64afc36839230bad9a85f9678c8f41c399417d21bf4fce7ccc3440ad8881ace78385193e513c87d1ed19f2ec5b6e509311df5c5c6ffdc1c69dc3d8a3492b312e43d22459429b567b5b987c4d0ac848bc6ecf7118456314166d9adb05438294244d72bf3ae9a2eec41d7cf760808c4ff46e67fb45aac3d35d49639540aa6638c9372a5c9032549c08e3c23dcd1ffd3d76d66973411c8d11102310836b9516d49a62b",
+    "__v" : 0,
+    "DOB" : "",
+    "address" : {
+        "street" : "Elliot Rd.",
+        "unit" : "14",
+        "city" : "Hamilton",
+        "suburb" : "Hamilton CBD"
+    }
+},
+{
+    "_id" : "33zs78fss",
+    "Skills" : {
+        "softs" : [],
+        "skills" : []
+    },
+    "userType" : "Student",
+    "fname" : "Michael",
+    "lname" : "Lennon",
+    "email" : "testuser@yahoo.com",
+    "phone_number" : 258744465,
+    "username" : "testuser@yahoo.com",
+    "status" : "Profile Incomplete",
+    "education" : [],
+    "work" : [],
+    "salt" : "5ba848c32707b1b9eb64987825e9b7932c75c4322291c690bb5fd66676db1ce2",
+    "hash" : "07d30a60f26372ba22f1b94e1f1d256b5475a45809545f893a7cd74efe8ba6399077928939dba9f832a39a4b07c8a2b9c3a2fad6a20adadb4f4e75b1e86b1ca747be87172b394362816b6d6f0feae78149d8f3c69567c593cf037ab898aaa75fdd727a97ecc9ae112ad448ea9feef2a3dec47ecdfd34c936cc524469a025365cf613a3a202aa30a059d12dd7b5b713f54a6f6c6142883d410177515d249de05e5fcd179971f9ff39f58a3917b438df95eb446beb6b25987f2a2585e76c3c15595f85efa447374318a287ded46f5b0ebc560dc228f2dc6ced83c4ab81116b10d9ce924ad110e3ae32659543283e2cf2cc8b92898e89c9446dc490d22d00d511ce484a65b3b5bbec4bec86d2de947e6a60262d0c7eb1917239e11bdad5fa7a653ad0c420c5fa2705c52b84a69e725fe1acd36b04c12c8f73b2a3722dc2f860453311d1d563425c63a23913940479a21b7b5aadacd1b359364a2a66f607d78eb84c083cbc495dd8aabb2a4de8decac646d69c25fed0807f33eed2ede5e8e45cce9a501b05653da302446f6630e7be5a248c017533ee204a74ab3193e437cdd612eeb62911e192f16dd258f81f68bbb15eac83f1cb153bd250f2e766ec9f33d3289ba77cfe500b177d2b5f0999c0c40f30c0e44864086fc71294e6785a8a3a25c7aa88f76b6b3519e286f88bb6a05f0b57b5bcbc74c08c79a6d17e91cb19ba88b745",
+    "__v" : 0
+},
+{
+    "_id" : "6g88kcvs1",
+    "Skills" : {
+        "softs" : [],
+        "skills" : []
+    },
+    "userType" : "Employer",
+    "fname" : "GradForce",
+    "lname" : "Inc",
+    "email" : "gradforce.co.nz@gmail.com",
+    "phone_number" : 21698745,
+    "username" : "gradforce.co.nz@gmail.com",
+    "status" : "Profile Incomplete",
+    "education" : [],
+    "work" : [],
+    "salt" : "adf7386d4c03e08c6eb7b3e2702901f420ba8a39ca482e1819c464326d385e6e",
+    "hash" : "0690e47a806b8c7f2623c37e5965cf613b7b7c4564fbbe22e08cc02758bb06d4cbc36466f55a14b8a25e718286e1e3ae1f2db0021b2bf9d7c7a489526754332a45de4a03e1175cb63f81baa0362ed5ee65c4088be764148cf110596aae9b4812b5759a33ea0307fa64ea20ea886bfb1cf206c9fd4e86779919de53f9091e4cbabef39f23a52443830edda4d241d6208660e96f964ba949cf3196851bd409f1b642251145fb5b168eae9b988d59ec27bf4c9ae6de6069bcaed6abb9eba2bd0939f5b8774e12f21e27237997daae4767714564c2f6cd61fcb46027d632ac2d88092fa2f6a533b81db51c909a23f07dcb289f273c4b85df69a1a3111ec7341c7f3e8260eb42c8d1e0a2d62b25471cc9dbc5aac3d4acce76912306ca6d027c8d21c6f5a55783133df35f9327405b614b94f091c010dcfcfe122f9ebe9234cc4fd7f67526e6a9063d30bba681f33920cfda1731bd8e1d91096447269ca8030591c885ebe81ef9c9e8922b253412554840e003491a2f2bf284171ce671439cd2787ce4525b42afabf028c69922870c4b5c1bf368571d062e8f543d09b0342861ef7af6251f8ad84128943aaf17a031c6f0eab194a9595eeb4c24ce3871821c9d09691b67242b7d4e03b0e7b7c02b34e270718619207d15785238693dbe3527db2a49338d20abf9ebbd6f343a3e89fee53b92ef9e1a835bae6e4f4722e9474506a6f0ce",
+    "__v" : 0
+},
+{
+    "_id" : "ne66grscs",
+    "Skills" : {
+        "softs" : [],
+        "skills" : []
+    },
+    "userType" : "Student",
+    "fname" : "Leonard",
+    "lname" : "Hofstadter",
+    "email" : "leonarhofstader@olx.com",
+    "phone_number" : 215874410,
+    "username" : "leonarhofstader@olx.com",
+    "status" : "Profile Incomplete",
+    "photo" : "https://pbs.twimg.com/profile_images/2654852680/87ee5ed912ea7364a29a380be9b22285_400x400.jpeg",
+    "description" : "Waiting for Student",
+    "dates" : {
+        "created" : ISODate("2019-06-13T14:55:18.000Z")
+    },
+    "education" : [],
+    "work" : [],
+    "salt" : "538b574c8fc2a5176e6094aae6e96c505484e025ce517e0186cffaad34e511c6",
+    "hash" : "7777160e8846049cb016821dbbc49516c1389df9b916ba86597a1b77118181b729d12f221cb25f05bc407333e25818d30616e43366c3024c13474d2c1776e7a9ba0219b7abe20694bc0018938234b94280d0496b318a02e39bbfa80c19d147e451af55a3d84f402832f6e52de6b9009ad480311360375b428abeab8f1a5f330225c356d81ac1744f56775c51d025b02d03a5485b605180ce4ba4d180254f056351780960f6f9e4a91b4c1bdec8e25e47ca1a702cf12f5e37e5a99e222bb5c141bcc58e1a2694b5875ffe04436d9a7b74e3574a3f08d1e757c97c085f44e0e0bbcc3aebc99f94de114b91d9ae10f56d01f1e0503767fb1dd75ecb7151ce41888389cfac415c1c5464f04a8e6ac30ae50ef6b4828dc1b73d8b66c721aa4e2053c37fa6bf9f30eb4f388fb1d80a37256c7fe524217fd506e04f5a5bc5518775ddeaabf8fb555976d0819348d06bcb6d26f64fb93e99252c67646b7d95a6d263eb98679bb54a2894b558a6839b189f8ade14c7165dd704468b0ce96a2ecad347f70a8d383011bac5db5aa50a77a7af4267e3195ad71f193022ac697c4919f2d549d27772d58f9948d4d88737dae4dae6b6009eccc207b978eeeb0d4d07e706b160c62a1f3df9bf7b484e23e8db763390d210714f465ca4bcce6cbd0a586395dd1ca2b041337b79440e786657294603cf6fad80d8c3fac364a25e0d7edaa9d433f4f8",
+    "__v" : 0,
+    "about" : " Leonard is an experimental physicist, who shares an apartment with colleague and best friend Dr. Sheldon Cooper (Jim Parsons).",
+    "title" : "Caltech experimental physicist"
+}
+]
