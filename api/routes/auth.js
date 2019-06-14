@@ -275,9 +275,13 @@ router.get('/facebook/callback', passport.authenticate('facebook', {
         doc.description = description;
         doc.save();
       }
+      res.redirect("/profile");
     });
     // Successful authentication
-    res.redirect("/profile");
+
+
+   
+
   });
 
 //

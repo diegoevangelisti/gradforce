@@ -59,7 +59,6 @@ router.post("/send-email/:id", (req, res) => {
                     to: email,
                     subject: subject,
                     text: content,
-                    // html: "<b>Hello world?</b>" // html body
                 });
 
                 console.log("Message sent: %s", info.messageId);

@@ -9,9 +9,18 @@
       }, 300);
     };
   </script>
-  <script src="ejs.min.js"></script>
-
-
+  <!-- One reload to refresh the content -->
+  <script type='text/javascript'>
+    (function () {
+      if (window.localStorage) {
+        if (!localStorage.getItem('firstLoad')) {
+          localStorage['firstLoad'] = true;
+          window.location.reload();
+        } else
+          localStorage.removeItem('firstLoad');
+      }
+    })();
+  </script>
   <div w3-include-html="/partials/head.html"></div>
 
   <script>
@@ -59,7 +68,7 @@
   <% include ./partials/header %>
   <main id="std-profile">
     <div id="std-details" class="box">
-      <a href="#">
+      <a id="std-details-edit">
         <img class="editbtn" src="/assets/img/icons/edit.png" alt="edit icon">
       </a>
       <% if(user.photo){ %>
@@ -91,13 +100,34 @@
           <h1>Details</h1>
         </div>
         <div class="modal-body">
-          <form id="edit-about-form" action="" method="">
+          <form id="edit-about-form" action="/profile/update-details/<%= user._id %>?_method=PUT" method="POST">
             <div id="edit-form-content">
-              <label for="about-summary" class="mb2">
-                Summary
+              <label for="fname" class="mb2">
+                First Name
               </label>
               <br>
-              <textarea name="summary" id="about-summary" class=""></textarea>
+              <input name="fname" id="fname" class="text-input mb10" value="<%= user.fname%>">
+            </div>
+            <div id="edit-form-content">
+              <label for="lname" class="mb2">
+                Last Name
+              </label>
+              <br>
+              <input name="lname" id="lname" class="text-input mb10" value="<%= user.lname%>">
+            </div>
+            <div id="edit-form-content">
+              <label for="title" class="mb2">
+                Title
+              </label>
+              <br>
+              <input name="title" id="title" class="text-input mb10" value="<%= user.title%>">
+            </div>
+            <div id="edit-form-content">
+              <label for="phone" class="mb2">
+                Phone
+              </label>
+              <br>
+              <input name="phone" id="phone" class="text-input mb10" value="<%= user.phone_number%>">
             </div>
             <div class="modal-footer">
               <div id="modal-footer-buttons">
@@ -113,12 +143,9 @@
         </div>
       </div>
     </div>
-
-
     <!-- about me paragraph -->
     <div id="std-about" class="box">
       <!-- Trigger/Open The Modal -->
-
       <div class="about-info">
         <a id="std-about-edit">
           <img class="editbtn" src="assets/img/icons/edit.png" alt="edit icon">
@@ -137,7 +164,7 @@
           <h1>About</h1>
         </div>
         <div class="modal-body">
-          <form id="edit-about-form" action="" method="">
+          <form id="edit-about-form" action="/profile/update-about/<%= user._id%>?_method=PUT" method="POST">
             <div id="edit-form-content">
               <label for="about-summary" class="mb2">
                 Summary
@@ -169,9 +196,11 @@
         <h1 class="mb15">Education</h1>
       </div>
       <!-- Show all Education -->
+      <% counter = 0 %>
       <% user.education.forEach(function(element, i){ %>
+      <% counter = counter + 1; %>
       <div class="education-info">
-        <a class="editbtn" id="std-education-edit">
+        <a class="editbtn" id="std-education-edit-<%= i %>">
           <img class="" src="assets/img/icons/edit.png" alt="edit icon">
         </a>
         <% if(i == 0) { %>
@@ -181,6 +210,8 @@
         <p class="inline"><%= element.start_date%></p>
         <p class="inline"> - </p>
         <p class="inline"><%= element.end_date%></p>
+        <br>
+        <p class="inline"><%= element.description%></p>
         <% } %>
         <% if(i) { %>
         <hr class="mt10 mb10">
@@ -190,6 +221,8 @@
         <p class="inline"><%= element.start_date%></p>
         <p class="inline"> - </p>
         <p class="inline"><%= element.end_date%></p>
+        <br>
+        <p class="inline"><%= element.description%></p>
         <% } %>
         <% }) %>
       </div>
@@ -203,15 +236,43 @@
           <h1>Education</h1>
         </div>
         <div class="modal-body">
-          <form id="edit-about-form" action="" method="">
+          <form id="edit-about-form" action="/profile/update-education/<%= user._id %>?_method=PUT" method="POST">
             <div id="edit-form-content">
-              <label for="uni" class="mb2">
-                university
+              <label for="course" class="mb2">
+                Course
               </label>
               <br>
-              <input id="uni" class="text-input mb10" type="text" name="email" placeholder="Email" value="">
-
+              <input id="course" class="text-input mb10" type="text" name="course" value="">
             </div>
+            <div id="edit-form-content">
+              <label for="provider" class="mb2">
+                Educational Provider
+              </label>
+              <br>
+              <input id="provider" class="text-input mb10" type="text" name="provider" value="">
+            </div>
+            <div id="edit-form-content">
+              <label for="start_year_edu" class="mb2">
+                Start Year
+              </label>
+              <br>
+              <input id="start_year_edu" class="text-input mb10" type="text" name="start_year_edu" value="">
+            </div>
+            <div id="edit-form-content">
+              <label for="end_year_edu" class="mb2">
+                End Year
+              </label>
+              <br>
+              <input id="end_year_edu" class="text-input mb10" type="text" name="end_year_edu" value="">
+            </div>
+            <div id="edit-form-content">
+              <label for="description_edu" class="mb2">
+                Description
+              </label>
+              <br>
+              <input id="description_edu" class="text-input mb10" type="text" name="description_edu" value="">
+            </div>
+            <input type="hidden" id="educationNumber" name="educationNumber" type="text">
             <div class="modal-footer">
               <div id="modal-footer-buttons">
                 <button type="" id="cancel" class="btn btnGreen btnGray mt10">
@@ -271,6 +332,7 @@
     </div>
 
     <!-- Modal for experience section -->
+    <!-- Modal for experience section -->
     <div id="experience-modal" class="modal">
       <div class="modal-content">
         <div class="modal-header">
@@ -278,7 +340,8 @@
           <h1>Experience</h1>
         </div>
         <div class="modal-body">
-          <form id="edit-about-form" action="" method="">
+          <form id="edit-experience-form" action="/profile/update-work-experience/<%= user._id %>?_method=PUT"
+            method="POST">
             <div id="edit-form-content">
               <label for="company" class="mb2">
                 Role
@@ -298,18 +361,26 @@
                 Start Year
               </label>
               <br>
-              <input id="start-year" class="text-input mb10" type="text" name="start-year" value="">
+              <input id="start_year" class="text-input mb10" type="text" name="start_year" value="">
             </div>
             <div id="edit-form-content">
               <label for="" class="mb2">
-                End Year (Leave black if you still work there)
+                End Year (or Present)
               </label>
               <br>
-              <input id="end-year" class="text-input mb10" type="text" name="end-year" value="">
+              <input id="end_year" class="text-input mb10" type="text" name="end_year" value="">
             </div>
+            <div id="edit-form-content">
+              <label for="" class="mb2">
+                Description
+              </label>
+              <br>
+              <input id="work_description" class="text-input mb10" type="text" name="work_description" value="">
+            </div>
+            <input type="hidden" id="experienceNumber" name="experienceNumber" type="text">
             <div class="modal-footer">
               <div id="modal-footer-buttons">
-                <button type="" id="cancel" class="btn btnGreen btnGray mt10">
+                <button type="button" id="cancel" class="btn btnGreen btnGray mt10">
                   <span>Cancel</span>
                 </button>
                 <button type="submit" class="btn btnGreen mt10">
@@ -339,18 +410,28 @@
     var experienceAddBtn = document.getElementById("experience-add");
     var detailsEditBtn = document.getElementById("std-details-edit");
     var aboutEditBtn = document.getElementById("std-about-edit");
-    var educationEditBtn = document.getElementById("std-education-edit");
+    var educationEditBtn = [];
     var experienceEditBtn = [];
     var i = 0;
   </script>
 
   <%  for(var i = 0; i < count; ++i) { %>
   <script>
-    experienceEditBtn[i] = document.getElementById("std-experience-edit-"+i);
+    experienceEditBtn[i] = document.getElementById("std-experience-edit-" + i);
     ++i;
   </script>
   <% } %>
 
+
+  <script>
+    j = 0;
+  </script>
+  <%  for(var i = 0; i < counter; ++i) { %>
+  <script>
+    educationEditBtn[j] = document.getElementById("std-education-edit-" + j);
+    ++j;
+  </script>
+  <% } %>
 
   <script>
     // Get the <span> elements that close the modals
@@ -361,6 +442,7 @@
     aboutEditBtn.onclick = function () {
       aboutModal.style.display = "block";
     }
+<<<<<<< HEAD
     educationEditBtn.onclick = function () {
       educationModal.style.display = "block";
     }
@@ -370,21 +452,45 @@
     experienceAddBtn.onclick = function() {
       experienceModal.style.display = "block";
     }
+=======
+>>>>>>> ef6c7921fb4f148659c28a55c0d4ade7045689ef
     i = 0;
   </script>
 
+  <!-- Keep all work experience's ID in an array -->
   <% for(var i=0 ; i< count ; ++i) { %>
   <script>
     experienceEditBtn[i].onclick = function () {
         document.getElementById("role").value = '<%= user.work[i].role %>';
         document.getElementById("company").value = '<%= user.work[i].company %>';
-        document.getElementById("start-year").value = '<%= user.work[i].start_date %>';
-        document.getElementById("end-year").value = '<%= user.work[i].end_date %>';
+        document.getElementById("start_year").value = '<%= user.work[i].start_date %>';
+        document.getElementById("end_year").value = '<%= user.work[i].end_date %>';
+        document.getElementById("work_description").value = '<%= user.work[i].description %>';
+        document.getElementById("experienceNumber").value = '<%= i %>';
         experienceModal.style.display = "block";
       }
       ++i;
   </script>
   <% } %>
+  <script>
+    j = 0;
+  </script>
+  <!-- Keep all education's ID in an array -->
+  <% for(var i=0 ; i< counter ; ++i) { %>
+  <script>
+    educationEditBtn[j].onclick = function () {
+        document.getElementById("course").value = '<%= user.education[i].course %>';
+        document.getElementById("provider").value = '<%= user.education[i].educational_provider %>';
+        document.getElementById("start_year_edu").value = '<%= user.education[i].start_date %>';
+        document.getElementById("end_year_edu").value = '<%= user.education[i].end_date %>';
+        document.getElementById("description_edu").value = '<%= user.education[i].description %>';
+        document.getElementById("educationNumber").value = '<%= i %>';
+        educationModal.style.display = "block";
+      }
+      ++j;
+  </script>
+  <% } %>
+
   <script>
     detailsEditBtn.onclick = function () {
       detailsModal.style.display = "block";
@@ -393,7 +499,6 @@
     cancelBtn.onclick = function () {
       modal.style.display = "block";
     }
-
 
     function closeModal(modelName) {
       switch (modelName) {
@@ -418,13 +523,15 @@
     // }
 
     // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function (event) {
+
+    // NOT WORKING
+
+    /*window.onclick = function (event) {
       if (event.target == modal) {
         modal.style.display = "none";
       }
-    }
+    }*/
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/ejs@2.6.1/lib/ejs.min.js"></script>
 </body>
 
 </html>
