@@ -205,18 +205,7 @@ body #header .menu {
   -ms-grid-columns: 190px 190px;
       grid-template-columns: 190px 190px;
   margin: 10px;
-      grid-template-areas: "title title"
- "student employer"
- "email email"
- "fname lname"
- "phone phone"
- "password password"
- "terms terms"
- "next next"
- "facebook facebook"
- "google google"
- "signin signin"
- "other-logins other-logins";
+      grid-template-areas: "title title" "student employer" "email email" "fname lname" "phone phone" "password password" "terms terms" "next next" "facebook facebook" "google google" "signin signin" "other-logins other-logins";
 }
 
 #landing_page #other-logins {
@@ -225,9 +214,7 @@ body #header .menu {
   grid-gap: 0;
   -ms-grid-columns: 190px 190px;
       grid-template-columns: 190px 190px;
-      grid-template-areas: "facebook facebook"
- "google google"
- "signin signin";
+      grid-template-areas: "facebook facebook" "google google" "signin signin";
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -363,7 +350,7 @@ body #header .menu {
   -ms-grid-row: 1;
   -ms-grid-row-span: 3;
   grid-row: 1 / 4;
-  max-height: 500px;
+  max-height: 400px;
 }
 
 #std-profile #std-about {
@@ -554,7 +541,7 @@ hr {
   margin: auto;
   padding: 0;
   border: 1px solid #888;
-  width: 80%;
+  width: 50%;
   -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   -webkit-animation-name: animatetop;
@@ -603,7 +590,7 @@ hr {
 }
 
 .modal-header {
-  height: 60px;
+  height: 70px;
   padding: 15px 16px;
   background-color: #F5F5F5;
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);

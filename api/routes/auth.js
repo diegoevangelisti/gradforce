@@ -278,11 +278,23 @@ router.get('/facebook/callback', passport.authenticate('facebook', {
       res.redirect("/profile");
     });
     // Successful authentication
-
-
-   
-
   });
+
+
+//
+// Forget password
+//
+
+//Page
+
+router.get("/forgetpassword", (req, res) => {
+
+  res.render("../views/forgetpassword", {
+    isLoggedIn: null,
+    SignUp: null
+  });
+})
+
 
 //
 //Logout routes

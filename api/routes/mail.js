@@ -60,7 +60,6 @@ router.post("/send-email/:id", (req, res) => {
                     subject: subject,
                     text: content,
                 });
-
                 console.log("Message sent: %s", info.messageId);
                 console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
             }
