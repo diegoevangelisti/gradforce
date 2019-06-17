@@ -136,20 +136,36 @@ router.put("/update-education/:id", isLoggedIn, (req, res) => {
 router.post("/add-education/:id", isLoggedIn, (req, res) => {
 
   let id = req.params.id;
+  let current = "Current";
+  let previous = "Previous";
+
+  let currentEducation = {
+    education_type: current,
+    course: req.body.current_course,
+    educational_provider: req.body.current_provider,
+    start_date: req.body.current_start_year,
+    end_date: req.body.current_end_year
+  };
 
   let objEducation = {
-    course: req.body.course,
-    educational_provider: req.body.provider,
-    start_date: req.body.start_year_edu,
-    end_date: req.body.end_year_edu,
-    description: req.body.description_edu
+    education_type: previous,
+    course: req.body.previous_course,
+    educational_provider: req.body.previous_provider,
+    start_date: req.body.previous_start_year,
+    end_date: req.body.previous_end_year
   }
+  console.log("EDUC STS: " + req.body.education_status)
+  //Just add previous education for post-graduate students
+  // if (req.body.education_status == "Graduate") {
 
   User.findOneAndUpdate({
       _id: id
     }, {
       $push: {
         education: objEducation
+      },
+      $set: {
+        education_status: req.body.education_status
       }
     },
     function (error, user) {
@@ -157,13 +173,37 @@ router.post("/add-education/:id", isLoggedIn, (req, res) => {
         console.log(error);
       } else {
         user.save();
-        console.log(user);
+        //console.log(user);
       }
     });
 
   res.redirect("/profile");
+  // }
 
+  /*else {
+
+     User.findOneAndUpdate({
+         _id: id
+       }, {
+         $push: {
+           education: currentEducation,
+           education: previousEducation
+         }
+       },
+       function (error, user) {
+         if (error) {
+           console.log(error);
+         } else {
+           user.save();
+           console.log(user);
+         }
+       });
+     res.redirect("/profile");
+   }*/
 });
+
+
+
 
 router.post("/add-work-experience/:id", isLoggedIn, (req, res) => {
 

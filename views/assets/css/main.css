@@ -73,7 +73,7 @@ p {
   background: #e56148;
 }
 
-.addbtn, .editbtn {
+.addbtn, .editbtn, .delbtn {
   float: right;
 }
 
