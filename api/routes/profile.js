@@ -147,59 +147,76 @@ router.post("/add-education/:id", isLoggedIn, (req, res) => {
     end_date: req.body.current_end_year
   };
 
-  let objEducation = {
+  let previousEducation = {
     education_type: previous,
     course: req.body.previous_course,
     educational_provider: req.body.previous_provider,
     start_date: req.body.previous_start_year,
     end_date: req.body.previous_end_year
   }
-  console.log("EDUC STS: " + req.body.education_status)
+
   //Just add previous education for post-graduate students
-  // if (req.body.education_status == "Graduate") {
+  if (req.body.education_status == "Graduate") {
 
-  User.findOneAndUpdate({
-      _id: id
-    }, {
-      $push: {
-        education: objEducation
+    User.findOneAndUpdate({
+        _id: id
+      }, {
+        $push: {
+          education: previousEducation
+        },
+        $set: {
+          education_status: req.body.education_status
+        }
       },
-      $set: {
-        education_status: req.body.education_status
-      }
-    },
-    function (error, user) {
-      if (error) {
-        console.log(error);
-      } else {
-        user.save();
-        //console.log(user);
-      }
-    });
+      function (error, user) {
+        if (error) {
+          console.log(error);
+        } else {
+          user.save();
+          //console.log(user);
+        }
+      });
 
-  res.redirect("/profile");
-  // }
+    res.redirect("/profile");
+  } else {
 
-  /*else {
+    User.findOneAndUpdate({
+        _id: id
+      }, {
+        $push: {
+          education: currentEducation,
+          previousEducation
+        },
+        $set: {
+          education_status: req.body.education_status
+        }
+      },
+      function (error, user) {
+        if (error) {
+          console.log(error);
+        } else {
+          user.save();
+          console.log(user);
+        }
+      });
+    User.findOneAndUpdate({
+        _id: id
+      }, {
+        $push: {
+          education: previousEducation
+        },
+      },
+      function (error, user) {
+        if (error) {
+          console.log(error);
+        } else {
+          user.save();
+          console.log(user);
+        }
+      });
 
-     User.findOneAndUpdate({
-         _id: id
-       }, {
-         $push: {
-           education: currentEducation,
-           education: previousEducation
-         }
-       },
-       function (error, user) {
-         if (error) {
-           console.log(error);
-         } else {
-           user.save();
-           console.log(user);
-         }
-       });
-     res.redirect("/profile");
-   }*/
+    res.redirect("/profile");
+  }
 });
 
 
