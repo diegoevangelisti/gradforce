@@ -159,24 +159,23 @@
         <p><%= user.about%></p>
       </div>
     </div>
-    <!-- about popup for editing -->
+    <!-- About popup for editing -->
     <!-- The Modal -->
     <div id="about-modal" class="modal">
       <!-- Modal content -->
       <div class="modal-content">
         <div class="modal-header">
           <span class="close" id="closeAbout" onclick="closeModal(id)">&times;</span>
-          <h1>About</h1>
+          <h1>About you</h1>
         </div>
         <div class="modal-body">
           <form id="edit-about-form" action="/profile/update-about/<%= user._id%>?_method=PUT" method="POST">
             <div id="edit-form-content">
-              <label for="about-summary" class="mb2">
-                Summary
+              <label for="about-summary" class="mb10 mt10">
+                Define yourself in a <span style="font-weight: bold">short sentence</span>  
               </label>
               <br>
-              <input name="summary" id="about-summary" class="text-input mb10" placeholder="Something about you"
-                vl></input>
+              <input maxlength="90" name="summary" id="about-summary" class="about text-input mt10 mb10" value="<%= user.about %>">
             </div>
             <div class="modal-footer">
               <div id="modal-footer-buttons">
