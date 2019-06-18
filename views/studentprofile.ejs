@@ -91,13 +91,10 @@
       <h2 class="mb10">Contact Information</h2>
       <label for="email">Email address:</label>
       <p class="mb10"><%= user.email%></p>
+      <% if(user.phone_number){ %>
       <label for="phone">Phone number:</label>
       <p class="mb10"><%= user.phone_number%></p>
-      <!-- <% if(user.address.street) { %>
-      <label for="address">Address:</label>
-      <p><%= user.address.unit%>, <%= user.address.street%></p>
-      <p class="mb2"><%= user.address.city%>, <%= user.address.suburb%></p>
-      <% } %> -->
+      <% } %>
     </div>
 
     <!-- Modal for details section -->
@@ -399,7 +396,7 @@
                     Where are you currently studying?
                   </label>
                   <br>
-                  <select name="provider" id="provider" class="text-input mb10" type="text">
+                  <select name="current_provider" id="provider" class="text-input mb10" type="text">
                     <option>Abacus Institute of Studies (Auckland)</option>
                     <option>AGI (Auckland)</option>
                     <option>AMES - The Institute of IT (Auckland)</option>
@@ -466,21 +463,21 @@
                     Course or Bachelor
                   </label>
                   <br>
-                  <input id="course" class="text-input mb10" type="text" name="course" value="">
+                  <input id="course" class="text-input mb10" type="text" name="current_course" value="">
                 </div>
                 <div id="current-start-year">
                   <label for="current-start-year" class="mb2">
                     Start Year
                   </label>
                   <br>
-                  <input id="start_year" class="text-input mb10" type="text" name="start_year" value="">
+                  <input id="start_year" class="text-input mb10" type="text" name="current_start_year" value="">
                 </div>
                 <div id="current-end-year">
                   <label for="end_yer" class="mb2">
                     End Year
                   </label>
                   <br>
-                  <input id="end_year" class="text-input mb10" type="text" name="end_year" value="">
+                  <input id="end_year" class="text-input mb10" type="text" name="current_end_year" value="">
                 </div>
               </div>
 
@@ -491,7 +488,7 @@
                     Where have you studied?
                   </label>
                   <br>
-                  <select name="provider" id="provider_list" class="text-input mb10" type="text">
+                  <select name="previous_provider" id="provider_list" class="text-input mb10" type="text">
                     <option>Abacus Institute of Studies (Auckland)</option>
                     <option>AGI (Auckland)</option>
                     <option>AMES - The Institute of IT (Auckland)</option>
@@ -558,21 +555,21 @@
                     Course or Bachelor
                   </label>
                   <br>
-                  <input id="course" class="text-input mb10" type="text" name="course" value="">
+                  <input id="course" class="text-input mb10" type="text" name="previous_course" value="">
                 </div>
                 <div id="previous-start-year">
                   <label for="previous-start-year" class="mb2">
                     Start Year
                   </label>
                   <br>
-                  <input id="start_year" class="text-input mb10" type="text" name="start_year" value="">
+                  <input id="start_year" class="text-input mb10" type="text" name="previous_start_year" value="">
                 </div>
                 <div id="previous-end-year">
                   <label for="previous_end_yer" class="mb2">
                     End Year
                   </label>
                   <br>
-                  <input id="end_year" class="text-input mb10" type="text" name="end_year" value="">
+                  <input id="end_year" class="text-input mb10" type="text" name="previous_end_year" value="">
                 </div>
               </div>
             </div>
@@ -865,6 +862,7 @@
   <script>
     //Add education button
     addEducation.onclick = function () {
+      
       educationModalAdd.style.display = "block";
     }
 
@@ -1006,8 +1004,8 @@
     }
 
     setTimeout(function () {
-      // var popupShown = 0;
-      var popupShown = Cookies.get('colorboxShown');
+       var popupShown = 0;
+      //var popupShown = Cookies.get('colorboxShown');
 
       if (popupShown) {
         console.log("Cookie found. No action necessary");

@@ -209,8 +209,7 @@ router.post("/add-education/:id", isLoggedIn, (req, res) => {
         _id: id
       }, {
         $push: {
-          education: currentEducation,
-          previousEducation
+          education: currentEducation
         },
         $set: {
           education_status: req.body.education_status
@@ -242,8 +241,6 @@ router.post("/add-education/:id", isLoggedIn, (req, res) => {
     res.redirect("/profile");
   }
 });
-
-
 
 
 router.post("/add-work-experience/:id", isLoggedIn, (req, res) => {
