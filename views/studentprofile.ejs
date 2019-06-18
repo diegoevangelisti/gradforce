@@ -247,7 +247,7 @@
           <h1 id="education_title">Delete Education</h1>
         </div>
         <div class="modal-body">
-          <form id="delete-education-form" action="/profile/delete-education/<%= user._id %>?_method=DELETE"
+          <form id="delete-education-form" action="/profile/delete-education/<%= user._id %>?_method=PUT"
             method="POST">
             <div id="edit-form-content">
               <p class="title mt10 mb10">Are you sure you want to delete this education record ?</p>
@@ -1164,8 +1164,6 @@
   </script>
   <% } %>
 
-
-
   <script>
     j = 0;
   </script>
@@ -1185,6 +1183,7 @@
     educationDeleteBtn[j].onclick = function () {
 
         deleteEducationModal.style.display = "block";
+        document.getElementById("educationNumber").value = '<%= i %>';
       }
       ++j;
   </script>

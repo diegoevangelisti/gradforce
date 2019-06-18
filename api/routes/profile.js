@@ -131,7 +131,33 @@ router.put("/update-education/:id", isLoggedIn, (req, res) => {
 
 });
 
-//Update Education information
+//Delete Education
+
+router.put("/delete-education/:id", isLoggedIn, (req, res) => {
+
+  let id = req.params.id;
+  let index = req.body.educationNumber;
+
+  User.findByIdAndUpdate(id).then((user) => {
+    
+    user.education.splice(index,1); 
+ 
+    user.save()
+      .then(user => {
+        console.log(user);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({
+          error: err
+        });
+      });
+  })
+  res.redirect("/profile");
+
+});
+
+//Add Education 
 
 router.post("/add-education/:id", isLoggedIn, (req, res) => {
 
