@@ -25,6 +25,10 @@ body {
   background: $c-bg;
 }
 
+.title {
+  font-size: 22px;
+}
+
 // GLOBAL --------------------
 .mb2 {
   margin-bottom: 2px;
@@ -49,10 +53,22 @@ body {
 .text-input {
   background: $c-white;
   border: 1px solid $c-lightgray;
-  box-sizing: border-box;
+  //box-sizing: border-box;
   height: 40px;
   padding: 3px 15px;
 
+}
+.year {
+  width: 80px;
+  max-width: 80%;
+}
+.course {
+  width: 300px;
+  max-width: 80%;
+}
+.provider{
+  width: 400px;
+  max-width: 80%;
 }
 
 input {

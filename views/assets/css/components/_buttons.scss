@@ -36,6 +36,18 @@
 
 .btnGray {
     background: $c-midgray !important;
+
+    img {
+        float: right;
+        padding: 3px 15px 0 0px;
+    }
+
+    span {
+        float: left;
+        padding-left: 10px;
+        padding-right: 10px;
+        font-size: 15px;
+    }
 }
 
 .btnFb {
@@ -46,6 +58,8 @@
     background: $c_gred;
 }
 
-.addbtn, .editbtn, .delbtn {
+.addbtn,
+.editbtn,
+.delbtn {
     float: right;
 }

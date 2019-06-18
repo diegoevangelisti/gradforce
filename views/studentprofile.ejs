@@ -248,7 +248,7 @@
                 Educational Provider
               </label>
               <br>
-              <select name="provider" id="provider" class="text-input mb10" type="text">
+              <select name="provider" id="provider" class="provider text-input mb10" type="text">
                 <option>Abacus Institute of Studies (Auckland)</option>
                 <option>AGI (Auckland)</option>
                 <option>AMES - The Institute of IT (Auckland)</option>
@@ -316,21 +316,21 @@
                 Course or Bachelor
               </label>
               <br>
-              <input id="course" class="text-input mb10" type="text" name="course" value="">
+              <input id="course" class="course text-input mb10" type="text" name="course" value="">
             </div>
             <div id="start-year-edit">
               <label for="tart-year-edit" class="mb2">
                 Start Year
               </label>
               <br>
-              <input id="start_year" class="text-input mb10" type="text" name="start_year_edu" value="">
+              <input id="start_year" class="year text-input mb10" type="text" name="start_year_edu" value="">
             </div>
             <div id="end-year-edit">
               <label for="previous-start-year-edit" class="mb2">
                 End Year
               </label>
               <br>
-              <input id="end_year" class="text-input mb10" type="text" name="end_year_edu" value="">
+              <input id="end_year" class="year text-input mb10" type="text" name="end_year_edu" value="">
             </div>
             <input type="hidden" id="educationNumber" name="educationNumber" type="text">
             <div class="modal-footer">
@@ -392,10 +392,7 @@
               <!-- Current Study -->
               <div id="current-study" style="display: none">
                 <div id="current-providers">
-                  <label for="current_provider" class="mb2">
-                    Where are you currently studying?
-                  </label>
-                  <br>
+                  <p class="mt10 mb2">Where are you<span style="font-weight: bold"> currently </span>studying?</p>
                   <select name="current_provider" id="current_provider_list" class="text-input mb10" type="text">
                     <option>Abacus Institute of Studies (Auckland)</option>
                     <option>AGI (Auckland)</option>
@@ -464,38 +461,34 @@
                     Course or Bachelor
                   </label>
                   <br>
-                  <input id="current_course" class="text-input mb10" type="text" name="current_course" value="">
+                  <input id="current_course" class="course text-input mb10" type="text" name="current_course" value="">
                 </div>
                 <div id="current-start-year">
                   <label for="current-start-year" class="mb2">
                     Start Year
                   </label>
                   <br>
-                  <input id="current_start_year" class="text-input mb10" type="text" name="current_start_year" value="">
+                  <input id="current_start_year" class="year text-input mb10" type="text" name="current_start_year" value="">
                 </div>
                 <div id="current-end-year">
                   <label for="end_yer" class="mb2">
                     End Year
                   </label>
                   <br>
-                  <input id="current_end_year" class="text-input mb10" type="text" name="current_end_year" value="">
+                  <input id="current_end_year" class="year text-input mb10" type="text" name="current_end_year" value="">
                 </div>
               </div>
-
               <!-- Button to continue with Previous Study -->
-              <div id="next-education" style="display: none">
-                <button type="button" class="btn btnGreen mt10">
+              <div>
+                <button id="next-education" style="display: none" type="button" class="btn btnGreen mt10 mb10">
                   <span id="nextEducation">Continue</span>
                 </button>
               </div>
               <!-- Previous Study -->
               <div id="previous-study" style="display: none">
                 <div id="previous-provider">
-                  <label for="previous_provider" class="mb2">
-                    Where have you studied?
-                  </label>
-                  <br>
-                  <select name="previous_provider_list" id="previous_provider_list" class="text-input mb10" type="text">
+                  <p class="mt10 mb2">Where<span style="font-weight: bold"> have </span>you studied?</p>
+                  <select name="previous_provider_list" id="previous_provider_list" class="provider text-input mb10" type="text">
                     <option>Abacus Institute of Studies (Auckland)</option>
                     <option>AGI (Auckland)</option>
                     <option>AMES - The Institute of IT (Auckland)</option>
@@ -563,14 +556,14 @@
                     Course or Bachelor
                   </label>
                   <br>
-                  <input id="course" class="text-input mb10" type="text" name="previous_course" value="">
+                  <input id="course" class="course text-input mb10" type="text" name="previous_course" value="">
                 </div>
                 <div id="previous-start-year">
                   <label for="previous-start-year" class="mb2">
                     Start Year
                   </label>
                   <br>
-                  <input id="start_year" class="text-input mb10" type="text" name="previous_start_year" value="">
+                  <input id="start_year" class="year text-input mb10" type="text" name="previous_start_year" value="">
                 </div>
                 <div id="previous-end-year">
                   <label for="previous_end_yer" class="mb2">
@@ -581,30 +574,27 @@
                 </div>
               </div>
               <!-- Button to go back to Current Study -->
-              <div id="back-education" style="display: none">
-                <button type="button" class="btn btnGreen mt10">
+              <div>
+                <button id="back-education" style="display: none" type="button" class="btn btnGray mt10 mb10">
                   <span id="backEducation">Go back</span>
                 </button>
               </div>
               <!-- Add other previous education button -->
               <div id="add-other-previous-education-title" style="display: none">
-                <h1 class="mt10">Add other previous education</h1>
+                <p class="title mt30 mb15">Add other previous education</p>
               </div>
-              <div id="add-other-previous-education">
-                <button type="button" class="btn btnGreen mt10" style="background: #74bdc5">
+              <div>
+                <button id="add-other-previous-education" type="button" class="btn btnGreen mt10 mb10"
+                  style="background: #74bdc5">
                   <span id="addOtherEducation" style="text-align: center; padding: 4px;"><i class="fas fa-plus"></i> Add
                     other previous education</span>
                 </button>
               </div>
               <!-- Other Previous Study -->
               <div id="other-previous-study" style="display: none">
-                <hr>
                 <div id="other_previous-provider">
-                  <label for="previous_provider" class="mb2">
-                    Where have you studied?
-                  </label>
-                  <br>
-                  <select name="previous_provider" id="provider_list" class="text-input mb10" type="text">
+                  <p class="mt10 mb2">Where<span style="font-weight: bold"> have </span>you studied?</p>
+                  <select name="previous_provider" id="provider_list" class="provider text-input mb10" type="text">
                     <option>Abacus Institute of Studies (Auckland)</option>
                     <option>AGI (Auckland)</option>
                     <option>AMES - The Institute of IT (Auckland)</option>
@@ -671,14 +661,14 @@
                     Course or Bachelor
                   </label>
                   <br>
-                  <input id="course" class="text-input mb10" type="text" name="other_previous_course" value="">
+                  <input id="course" class="course text-input mb10" type="text" name="other_previous_course" value="">
                 </div>
                 <div id="previous-start-year">
                   <label for="previous-start-year" class="mb2">
                     Start Year
                   </label>
                   <br>
-                  <input id="start_year" class="text-input mb10" type="text" name="other_previous_start_year" value="">
+                  <input id="start_year" class="year text-input mb10" type="text" name="other_previous_start_year" value="">
                 </div>
                 <div id="previous-end-year">
                   <label for="previous_end_year" class="mb2">
@@ -690,8 +680,8 @@
               </div>
               <!-- Button to cancel adding other previous education -->
               <button type="button" style="display: none" id="cancel-add-other-previous-education"
-                class="btn btnGray mt10">
-                <span id="cancelAddOtherEducation" style="text-align: center; padding: 4px;">Cancel</span>
+                class="btn btnGray mt10 mb10">
+                <span>Cancel</span>
               </button>
             </div>
             <input type="hidden" id="education_status" name="education_status" type="text">
@@ -782,7 +772,7 @@
                 Start Year
               </label>
               <br>
-              <input id="start_year" class="text-input mb10" type="text" name="start_year" value="">
+              <input id="start_year" class="year text-input mb10" type="text" name="start_year" value="">
             </div>
             <div id="edit-form-content">
               <label for="" class="mb2">
@@ -841,7 +831,7 @@
                 Start Year
               </label>
               <br>
-              <input id="start_year" class="text-input mb10" type="text" name="start_year" value="">
+              <input id="start_year" class="year text-input mb10" type="text" name="start_year" value="">
             </div>
             <div id="edit-form-content">
               <label for="" class="mb2">
@@ -1116,10 +1106,10 @@
     }
 
     var status = document.getElementById("education_status");
-    //Show or hide current or previos study input according to study-type
 
+
+    //Show or hide current or previous study input according to study-type
     document.getElementById('Undergraduate').onclick = () => {
-
 
       previousStudy.style.display = 'none';
       currentStudy.style.display = 'block';
@@ -1127,8 +1117,11 @@
       backEducation.style.display = "none";
       education_status.value = "Undergraduate";
       addOtherEducation.style.display = "block";
-
+      otherEducation.style.display = "none";
+      AddOtherEducationTitle.style.display = "none";
+      cancelAddOtherEducation.style.display = "none";
     }
+
     document.getElementById('Graduate').onclick = () => {
 
       previousStudy.style.display = 'block';
@@ -1137,8 +1130,12 @@
       backEducation.style.display = "none";
       education_status.value = "Graduate";
       addOtherEducation.style.display = "block";
+      otherEducation.style.display = "none";
+      AddOtherEducationTitle.style.display = "none";
+      cancelAddOtherEducation.style.display = "none";
 
     }
+
     document.getElementById('Post-graduate').onclick = () => {
 
       previousStudy.style.display = 'none';
@@ -1148,6 +1145,9 @@
       education_status.value = "Post-graduate";
       addOtherEducation.style.display = "block";
       backEducation.style.display = "none"
+      otherEducation.style.display = "none";
+      AddOtherEducationTitle.style.display = "none";
+      cancelAddOtherEducation.style.display = "none";
 
     }
 
@@ -1185,6 +1185,7 @@
       return result;
     }
 
+    //Submit form after saving the selected current and previous providers
     document.getElementById("education-form-submit").onclick = () => {
       GetSelectedCurrentProvider();
       GetSelectedPreviousProvider();
@@ -1230,8 +1231,8 @@
     }
 
     setTimeout(function () {
-      //var popupShown = 0;
-      var popupShown = Cookies.get('colorboxShown');
+      var popupShown = 0;
+      //var popupShown = Cookies.get('colorboxShown');
 
       if (popupShown) {
         console.log("Cookie found. No action necessary");

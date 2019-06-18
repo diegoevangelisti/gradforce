@@ -66,6 +66,18 @@ p {
   background: #949494 !important;
 }
 
+.btnGray img {
+  float: right;
+  padding: 3px 15px 0 0px;
+}
+
+.btnGray span {
+  float: left;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 15px;
+}
+
 .btnFb {
   background: #486ba3;
 }
@@ -74,7 +86,9 @@ p {
   background: #e56148;
 }
 
-.addbtn, .editbtn, .delbtn {
+.addbtn,
+.editbtn,
+.delbtn {
   float: right;
 }
 
@@ -430,6 +444,10 @@ body {
   background: #F5F5F5;
 }
 
+.title {
+  font-size: 22px;
+}
+
 .mb2 {
   margin-bottom: 2px;
 }
@@ -453,10 +471,23 @@ body {
 .text-input {
   background: #fff;
   border: 1px solid #f1f1f1;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
   height: 40px;
   padding: 3px 15px;
+}
+
+.year {
+  width: 80px;
+  max-width: 80%;
+}
+
+.course {
+  width: 300px;
+  max-width: 80%;
+}
+
+.provider {
+  width: 400px;
+  max-width: 80%;
 }
 
 input input::-webkit-input-placeholder {
