@@ -359,10 +359,10 @@
         <div class="modal-header">
           <span class="close" id="closeEducationAdd" onclick="closeModal(id)">&times;</span>
           <h1 id="education_title">Add Education</h1>
-          <p>Help us connect with the rigth companies in the field of your study</p>
+          <p>Help us connect with the right companies in the field of your study</p>
         </div>
         <div class="modal-body">
-          <form id="edit-about-form" action="/profile/add-education/<%= user._id %>" method="POST">
+          <form id="current-education-form" action="/profile/add-education/<%= user._id %>" method="POST">
             <div id="edit-form-content">
               <label for="course" class="mb2">
                 What is your current education status?
@@ -391,12 +391,12 @@
               </div>
               <!-- Current Study -->
               <div id="current-study" style="display: none">
-                <div id="current-provider">
+                <div id="current-providers">
                   <label for="current_provider" class="mb2">
                     Where are you currently studying?
                   </label>
                   <br>
-                  <select name="current_provider" id="provider" class="text-input mb10" type="text">
+                  <select name="current_provider" id="current_provider_list" class="text-input mb10" type="text">
                     <option>Abacus Institute of Studies (Auckland)</option>
                     <option>AGI (Auckland)</option>
                     <option>AMES - The Institute of IT (Auckland)</option>
@@ -457,33 +457,149 @@
                     <option>Yoobee School of Design (Christchurch)</option>
                     <option>Yoobee School of Design (Wellington)</option>
                   </select>
+                  <input id="selected_current_provider" name="selected_current_provider" type="hidden">
                 </div>
                 <div id="current-course">
                   <label for="current_course" class="mb2">
                     Course or Bachelor
                   </label>
                   <br>
-                  <input id="course" class="text-input mb10" type="text" name="current_course" value="">
+                  <input id="current_course" class="text-input mb10" type="text" name="current_course" value="">
                 </div>
                 <div id="current-start-year">
                   <label for="current-start-year" class="mb2">
                     Start Year
                   </label>
                   <br>
-                  <input id="start_year" class="text-input mb10" type="text" name="current_start_year" value="">
+                  <input id="current_start_year" class="text-input mb10" type="text" name="current_start_year" value="">
                 </div>
                 <div id="current-end-year">
                   <label for="end_yer" class="mb2">
                     End Year
                   </label>
                   <br>
-                  <input id="end_year" class="text-input mb10" type="text" name="current_end_year" value="">
+                  <input id="current_end_year" class="text-input mb10" type="text" name="current_end_year" value="">
                 </div>
               </div>
 
+              <!-- Button to continue with Previous Study -->
+              <div id="next-education" style="display: none">
+                <button type="button" class="btn btnGreen mt10">
+                  <span id="nextEducation">Continue</span>
+                </button>
+              </div>
               <!-- Previous Study -->
               <div id="previous-study" style="display: none">
                 <div id="previous-provider">
+                  <label for="previous_provider" class="mb2">
+                    Where have you studied?
+                  </label>
+                  <br>
+                  <select name="previous_provider_list" id="previous_provider_list" class="text-input mb10" type="text">
+                    <option>Abacus Institute of Studies (Auckland)</option>
+                    <option>AGI (Auckland)</option>
+                    <option>AMES - The Institute of IT (Auckland)</option>
+                    <option>Animation College</option>
+                    <option>Ara Institute of Canterbury</option>
+                    <option>Aspire2 International</option>
+                    <option>Auckland Institute of Studies</option>
+                    <option>Auckland University of Technology (AUT)</option>
+                    <option>Avonmore Tertiary Institute</option>
+                    <option>AWI International Education Group (Auckland)</option>
+                    <option>Computer Power Plus</option>
+                    <option>Cornell Institute of Business and Technology (Auckland)</option>
+                    <option>Eastern Institute of Technology</option>
+                    <option>EDENZ Colleges (Auckland)</option>
+                    <option>Enspiral Dev Academy (Auckland)</option>
+                    <option>Enspiral Dev Academy (Wellington)</option>
+                    <option>ICL Graduate Business School (Auckland)</option>
+                    <option>Kiwi Institute of Training and Education</option>
+                    <option>Launchspace Academy</option>
+                    <option>Lincoln University</option>
+                    <option>Massey University (Albany)</option>
+                    <option>Massey University (Palmerston North)</option>
+                    <option>Massey University (Wellington)</option>
+                    <option>Media Design School (Auckland)</option>
+                    <option>MIT - Manukau Institute of Technology (Auckland)</option>
+                    <option>National Technology Institute (NTEC)</option>
+                    <option>Nelson Marlborough Institute of Technology (NMIT)</option>
+                    <option>Newton College of Business and Technology (Auckland)</option>
+                    <option>North Tec</option>
+                    <option>NZEI -New Zealand Education Institute (Wellington)</option>
+                    <option>NZIST (Auckland)</option>
+                    <option>NZSE (Auckland)</option>
+                    <option>Open Polytechnic</option>
+                    <option>Otago Polytechnic</option>
+                    <option>Regent International Education Group (Auckland)</option>
+                    <option>Royal Business College</option>
+                    <option>Southern Institute of Technology (SIT)</option>
+                    <option>Tasman International Academies (Auckland)</option>
+                    <option>Techtorium (Auckland)</option>
+                    <option>Toi Ohomai Institute of Technology</option>
+                    <option>UCOL (Palmerston North)</option>
+                    <option>Udacity</option>
+                    <option>Unitec Institute of Technology (Auckland)</option>
+                    <option>University of Auckland</option>
+                    <option>University of Canterbury</option>
+                    <option>University of Otago</option>
+                    <option>University of Waikato</option>
+                    <option>UUNZ Institute of Business (Auckland)</option>
+                    <option>Victoria University of Wellington</option>
+                    <option>Vision College</option>
+                    <option>Wellington ICT Graduate School (WICTGS)</option>
+                    <option>Wellington Institute of Technology (Weltec)</option>
+                    <option>Whitireia (Auckland)</option>
+                    <option>Whitireia (Christchurch)</option>
+                    <option>Whitireia (Wellington)</option>
+                    <option>Wintec (Hamilton)</option>
+                    <option>Yoobee School of Design (Auckland)</option>
+                    <option>Yoobee School of Design (Christchurch)</option>
+                    <option>Yoobee School of Design (Wellington)</option>
+                  </select>
+                  <input id="selected_previous_provider" name="selected_previous_provider" type="hidden">
+                </div>
+                <div id="previous-course">
+                  <label for="previous_course" class="mb2">
+                    Course or Bachelor
+                  </label>
+                  <br>
+                  <input id="course" class="text-input mb10" type="text" name="previous_course" value="">
+                </div>
+                <div id="previous-start-year">
+                  <label for="previous-start-year" class="mb2">
+                    Start Year
+                  </label>
+                  <br>
+                  <input id="start_year" class="text-input mb10" type="text" name="previous_start_year" value="">
+                </div>
+                <div id="previous-end-year">
+                  <label for="previous_end_yer" class="mb2">
+                    End Year
+                  </label>
+                  <br>
+                  <input id="end_year" class="text-input mb10" type="text" name="previous_end_year" value="">
+                </div>
+              </div>
+              <!-- Button to go back to Current Study -->
+              <div id="back-education" style="display: none">
+                <button type="button" class="btn btnGreen mt10">
+                  <span id="backEducation">Go back</span>
+                </button>
+              </div>
+              <!-- Add other previous education button -->
+              <div id="add-other-previous-education-title" style="display: none">
+                <h1 class="mt10">Add other previous education</h1>
+              </div>
+              <div id="add-other-previous-education">
+                <button type="button" class="btn btnGreen mt10" style="background: #74bdc5">
+                  <span id="addOtherEducation" style="text-align: center; padding: 4px;"><i class="fas fa-plus"></i> Add
+                    other previous education</span>
+                </button>
+              </div>
+              <!-- Other Previous Study -->
+              <div id="other-previous-study" style="display: none">
+                <hr>
+                <div id="other_previous-provider">
                   <label for="previous_provider" class="mb2">
                     Where have you studied?
                   </label>
@@ -551,27 +667,32 @@
                   </select>
                 </div>
                 <div id="previous-course">
-                  <label for="previous_course" class="mb2">
+                  <label for="other_previous_course" class="mb2">
                     Course or Bachelor
                   </label>
                   <br>
-                  <input id="course" class="text-input mb10" type="text" name="previous_course" value="">
+                  <input id="course" class="text-input mb10" type="text" name="other_previous_course" value="">
                 </div>
                 <div id="previous-start-year">
                   <label for="previous-start-year" class="mb2">
                     Start Year
                   </label>
                   <br>
-                  <input id="start_year" class="text-input mb10" type="text" name="previous_start_year" value="">
+                  <input id="start_year" class="text-input mb10" type="text" name="other_previous_start_year" value="">
                 </div>
                 <div id="previous-end-year">
-                  <label for="previous_end_yer" class="mb2">
+                  <label for="previous_end_year" class="mb2">
                     End Year
                   </label>
                   <br>
-                  <input id="end_year" class="text-input mb10" type="text" name="previous_end_year" value="">
+                  <input id="end_year" class="text-input mb10" type="text" name="other_previous_end_year" value="">
                 </div>
               </div>
+              <!-- Button to cancel adding other previous education -->
+              <button type="button" style="display: none" id="cancel-add-other-previous-education"
+                class="btn btnGray mt10">
+                <span id="cancelAddOtherEducation" style="text-align: center; padding: 4px;">Cancel</span>
+              </button>
             </div>
             <input type="hidden" id="education_status" name="education_status" type="text">
             <div class="modal-footer">
@@ -579,7 +700,7 @@
                 <button type="button" id="cancel" class="btn btnGreen btnGray mt10">
                   <span id="closeEducationAdd" onclick="closeModal(id)">Cancel</span>
                 </button>
-                <button type="submit" class="btn btnGreen mt10">
+                <button type="button" class="btn btnGreen mt10" id="education-form-submit">
                   <span>Save</span>
                 </button>
               </div>
@@ -781,11 +902,19 @@
     let experienceModal = document.getElementById("experience-modal");
     let experienceModalAdd = document.getElementById("experience-modal-add");
 
+
     // Get the buttons that opens the modals
 
     //to add
     let addEducation = document.getElementById("add-education");
     let addExperience = document.getElementById("add-experience");
+    let nextEducation = document.getElementById("next-education");
+    let backEducation = document.getElementById("back-education");
+    let addOtherEducation = document.getElementById("add-other-previous-education");
+    let AddOtherEducationTitle = document.getElementById("add-other-previous-education-title");
+    let cancelAddOtherEducation = document.getElementById("cancel-add-other-previous-education");
+    let otherEducation = document.getElementById("other-previous-study");
+
 
     //to edit
     let detailsEditBtn = document.getElementById("std-details-edit");
@@ -862,8 +991,28 @@
   <script>
     //Add education button
     addEducation.onclick = function () {
-      
+
       educationModalAdd.style.display = "block";
+      addOtherEducation.style.display = "none";
+    }
+
+    //Add other previous education button
+
+    addOtherEducation.onclick = function () {
+
+      addOtherEducation.style.display = "none";
+      otherEducation.style.display = "block";
+      cancelAddOtherEducation.style.display = "block";
+      AddOtherEducationTitle.style.display = "block";
+
+    }
+
+    cancelAddOtherEducation.onclick = function () {
+      addOtherEducation.style.display = "block";
+      otherEducation.style.display = "none";
+      cancelAddOtherEducation.style.display = "none";
+      AddOtherEducationTitle.style.display = "none";
+
     }
 
     //Add work experience button
@@ -878,6 +1027,7 @@
     cancelBtn.onclick = function () {
       modal.style.display = "block";
     }
+
 
     function closeModal(modelName) {
       switch (modelName) {
@@ -897,6 +1047,12 @@
           educationModalAdd.style.display = "none";
           currentStudy.style.display = "none";
           previousStudy.style.display = "none";
+          otherEducation.style.display = "none";
+          nextEducation.style.display = 'none';
+          backEducation.style.display = 'none';
+          //unselect all the redio buttons
+          $("input:radio").attr("checked", false);
+
           break;
         case "closeExperienceAdd":
           experienceModalAdd.style.display = "none";
@@ -918,6 +1074,13 @@
       educationModalAdd.style.display = "none";
       currentStudy.style.display = "none";
       previousStudy.style.display = "none";
+      otherEducation.style.display = "none";
+      addOtherEducation.style.display = "none";
+      nextEducation.style.display = 'none';
+      backEducation.style.display = 'none';
+      //unselect all the redio buttons
+      $("input:radio").attr("checked", false);
+
     }
 
     // When the user clicks anywhere outside of the modal, close it
@@ -942,27 +1105,90 @@
         educationModalAdd.style.display = "none";
         currentStudy.style.display = "none";
         previousStudy.style.display = "none";
+        otherEducation.style.display = "none";
+        addOtherEducation.style.display = "none";
+        nextEducation.style.display = 'none';
+        backEducation.style.display = 'none';
+        //unselect all the redio buttons
+        $("input:radio").attr("checked", false);
+
       }
     }
 
     var status = document.getElementById("education_status");
     //Show or hide current or previos study input according to study-type
+
     document.getElementById('Undergraduate').onclick = () => {
+
+
       previousStudy.style.display = 'none';
       currentStudy.style.display = 'block';
+      nextEducation.style.display = "none";
+      backEducation.style.display = "none";
       education_status.value = "Undergraduate";
+      addOtherEducation.style.display = "block";
 
     }
     document.getElementById('Graduate').onclick = () => {
+
       previousStudy.style.display = 'block';
       currentStudy.style.display = 'none';
+      nextEducation.style.display = "none";
+      backEducation.style.display = "none";
       education_status.value = "Graduate";
+      addOtherEducation.style.display = "block";
 
     }
     document.getElementById('Post-graduate').onclick = () => {
-      previousStudy.style.display = 'block';
+
+      previousStudy.style.display = 'none';
       currentStudy.style.display = 'block';
+      nextEducation.style.display = "block";
+      backEducation.style.display = "block";
       education_status.value = "Post-graduate";
+      addOtherEducation.style.display = "block";
+      backEducation.style.display = "none"
+
+    }
+
+    nextEducation.onclick = () => {
+
+      previousStudy.style.display = 'block';
+      currentStudy.style.display = 'none';
+      backEducation.style.display = "block"
+      nextEducation.style.display = "none";
+      education_status.value = "Post-graduate";
+      addOtherEducation.style.display = "block";
+    }
+
+    backEducation.onclick = () => {
+      previousStudy.style.display = 'none';
+      currentStudy.style.display = 'block';
+      nextEducation.style.display = "block";
+      backEducation.style.display = 'none';
+      education_status.value = "Post-graduate";
+      addOtherEducation.style.display = "block";
+    }
+
+
+    function GetSelectedCurrentProvider() {
+      var e = document.getElementById("current_provider_list");
+      var result = e.options[e.selectedIndex].text;
+      document.getElementById("selected_current_provider").value = result;
+      return result;
+    }
+
+    function GetSelectedPreviousProvider() {
+      var e = document.getElementById("previous_provider_list");
+      var result = e.options[e.selectedIndex].text;
+      document.getElementById("selected_previous_provider").value = result;
+      return result;
+    }
+
+    document.getElementById("education-form-submit").onclick = () => {
+      GetSelectedCurrentProvider();
+      GetSelectedPreviousProvider();
+      $("#current-education-form").submit();
     }
   </script>
 
@@ -1004,8 +1230,8 @@
     }
 
     setTimeout(function () {
-       var popupShown = 0;
-      //var popupShown = Cookies.get('colorboxShown');
+      //var popupShown = 0;
+      var popupShown = Cookies.get('colorboxShown');
 
       if (popupShown) {
         console.log("Cookie found. No action necessary");

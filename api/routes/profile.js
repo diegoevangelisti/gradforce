@@ -115,7 +115,7 @@ router.put("/update-education/:id", isLoggedIn, (req, res) => {
     user.education[index].educational_provider = req.body.provider
     user.education[index].start_date = req.body.start_year_edu
     user.education[index].end_date = req.body.end_year_edu
-    
+
     user.save()
       .then(user => {
         console.log(user);
@@ -142,15 +142,15 @@ router.post("/add-education/:id", isLoggedIn, (req, res) => {
   let currentEducation = {
     education_type: current,
     course: req.body.current_course,
-    educational_provider: req.body.current_provider,
+    educational_provider: req.body.selected_current_provider,
     start_date: req.body.current_start_year,
     end_date: req.body.current_end_year
-  };
+  }
 
   let previousEducation = {
     education_type: previous,
     course: req.body.previous_course,
-    educational_provider: req.body.previous_provider,
+    educational_provider: req.body.selected_previous_provider,
     start_date: req.body.previous_start_year,
     end_date: req.body.previous_end_year
   }
@@ -174,9 +174,8 @@ router.post("/add-education/:id", isLoggedIn, (req, res) => {
         } else {
           user.save();
         }
+        res.redirect("/profile");
       });
-
-    res.redirect("/profile");
 
   } else if (req.body.education_status == "Undergraduate") {
 
@@ -197,10 +196,8 @@ router.post("/add-education/:id", isLoggedIn, (req, res) => {
         } else {
           user.save();
         }
+        res.redirect("/profile");
       });
-
-    res.redirect("/profile");
-
 
   } else {
 
