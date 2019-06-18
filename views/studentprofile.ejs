@@ -155,7 +155,7 @@
         <a id="std-about-edit">
           <img class="editbtn" src="assets/img/icons/edit.png" alt="edit icon">
         </a>
-        <h1 class="mb15">About you</h1>
+        <h1 class="mb20">About you</h1>
         <p><%= user.about%></p>
       </div>
     </div>
@@ -198,7 +198,7 @@
         <a id="add-education" class="addbtn">
           <img src="assets/img/icons/add.png" alt="add icon">
         </a>
-        <h1 class="mb15">Your Education</h1>
+        <h1 class="mb20">Your Education</h1>
 
       </div>
       <!-- Show all Education -->
@@ -224,7 +224,7 @@
 
         <% } %>
         <% if(i) { %>
-        <hr class="mt10 mb10">
+        <hr class="mt15 mb15">
         <p class="inline" style="font-weight: bold"><%= element.course%></p>
         <br>
         <h2><%= element.educational_provider%></h2>
@@ -247,7 +247,7 @@
         <div class="modal-body">
           <form id="delete-education-form" action="/profile/delete-education/<%= user._id %>?_method=PUT" method="POST">
             <div id="edit-form-content">
-              <p class="title mt10 mb10">Are you sure you want to delete this education record ?</p>
+              <p class="sub-title mt10 mb10">Are you sure you want to delete this education record ?</p>
             </div>
             <input type="hidden" id="deleteEducationNumber" name="deleteEducationNumber" type="text">
             <div class="modal-footer">
@@ -866,7 +866,7 @@
         <a class="addbtn" id="add-experience">
           <img src="assets/img/icons/add.png" alt="edit icon">
         </a>
-        <h1 class="mb15">Your Work Experience</h1>
+        <h1 class="mb20">Your Work Experience</h1>
       </div>
       <% count = 0 %>
       <!-- Show all work experience -->
@@ -890,7 +890,7 @@
           <p class="inline"><%= element.description%></p>
           <% } %>
           <% if(i) { %>
-          <hr class="mt10 mb10">
+            <hr class="mt15 mb15">
           <p class="inline" style="font-weight: bold"><%= element.role%></p>
           <br>
           <p class="inline"><%= element.company%></p>
@@ -1038,7 +1038,7 @@
         <form id="delete-experience-form" action="/profile/delete-work-experience/<%= user._id %>?_method=PUT"
           method="POST">
           <div id="edit-form-content">
-            <p class="title mt10 mb10">Are you sure you want to delete this work experience from your profile?</p>
+            <p class="sub-title mt10 mb10">Are you sure you want to delete this work experience from your profile?</p>
           </div>
           <input type="hidden" id="deleteExperienceNumber" name="deleteExperienceNumber" type="text">
           <div class="modal-footer">

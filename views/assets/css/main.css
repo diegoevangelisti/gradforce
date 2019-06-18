@@ -453,6 +453,11 @@ body #header .menu {
   max-width: 100%;
 }
 
+.sub-title {
+  font-size: 18px;
+  padding: 15px 16px;
+}
+
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -473,20 +478,32 @@ body {
   margin-bottom: 2px;
 }
 
-.mb15 {
-  margin-bottom: 15px !important;
-}
-
-.mt30 {
-  margin-top: 30px;
-}
-
 .mb10 {
   margin-bottom: 10px;
 }
 
+.mb15 {
+  margin-bottom: 15px !important;
+}
+
+.mb20 {
+  margin-bottom: 20px !important;
+}
+
 .mt5 {
   margin-top: 5px;
+}
+
+.mt15 {
+  margin-top: 15px;
+}
+
+.mt20 {
+  margin-top: 20px;
+}
+
+.mt30 {
+  margin-top: 30px;
 }
 
 .text-input {
