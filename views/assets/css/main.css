@@ -90,6 +90,7 @@ p {
 .editbtn,
 .delbtn {
   float: right;
+  padding-right: 3px;
 }
 
 #header {
@@ -629,7 +630,7 @@ hr {
 }
 
 .modal-body #edit-form-content {
-  padding: 16px;
+  padding: 8px;
 }
 
 .modal-body label {
