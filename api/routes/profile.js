@@ -108,6 +108,7 @@ router.put("/update-education/:id", isLoggedIn, (req, res) => {
 
   let id = req.params.id;
   let index = req.body.educationNumber;
+  console.log("EDUCATION NUMBER: " + req.body.educationNumber)
 
   User.findByIdAndUpdate(id).then((user) => {
 
@@ -126,9 +127,8 @@ router.put("/update-education/:id", isLoggedIn, (req, res) => {
           error: err
         });
       });
-  })
+  }); 
   res.redirect("/profile");
-
 });
 
 //Delete Education
@@ -136,15 +136,17 @@ router.put("/update-education/:id", isLoggedIn, (req, res) => {
 router.put("/delete-education/:id", isLoggedIn, (req, res) => {
 
   let id = req.params.id;
-  let index = req.body.educationNumber;
+  let index = req.body.deleteEducationNumber;
 
   User.findByIdAndUpdate(id).then((user) => {
-    
-    user.education.splice(index,1); 
- 
+
+    //delete from position index one education record
+    user.education.splice(index, 1);
+
     user.save()
       .then(user => {
         console.log(user);
+
       })
       .catch(err => {
         console.log(err);
@@ -152,9 +154,8 @@ router.put("/delete-education/:id", isLoggedIn, (req, res) => {
           error: err
         });
       });
+    res.redirect("/profile");
   })
-  res.redirect("/profile");
-
 });
 
 //Add Education 

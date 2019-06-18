@@ -433,6 +433,21 @@ body #header .menu {
   border-radius: 50%;
 }
 
+.year {
+  width: 80px;
+  max-width: 80%;
+}
+
+.course {
+  width: 400px;
+  max-width: 80%;
+}
+
+.provider {
+  width: 400px;
+  max-width: 80%;
+}
+
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -474,21 +489,6 @@ body {
   border: 1px solid #f1f1f1;
   height: 40px;
   padding: 3px 15px;
-}
-
-.year {
-  width: 80px;
-  max-width: 80%;
-}
-
-.course {
-  width: 300px;
-  max-width: 80%;
-}
-
-.provider {
-  width: 400px;
-  max-width: 80%;
 }
 
 input input::-webkit-input-placeholder {
