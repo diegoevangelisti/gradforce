@@ -127,7 +127,7 @@ router.put("/update-education/:id", isLoggedIn, (req, res) => {
           error: err
         });
       });
-  }); 
+  });
   res.redirect("/profile");
 });
 
@@ -154,8 +154,8 @@ router.put("/delete-education/:id", isLoggedIn, (req, res) => {
           error: err
         });
       });
-    res.redirect("/profile");
   })
+  res.redirect("/profile");
 });
 
 //Add Education 
@@ -182,7 +182,7 @@ router.post("/add-education/:id", isLoggedIn, (req, res) => {
     end_date: req.body.previous_end_year
   }
 
-  //Update education information for Graduate student
+  //Add education information for Graduate student
   if (req.body.education_status == "Graduate") {
 
     User.findOneAndUpdate({
@@ -206,7 +206,7 @@ router.post("/add-education/:id", isLoggedIn, (req, res) => {
 
   } else if (req.body.education_status == "Undergraduate") {
 
-    //Update education information for Undergraduate student
+    //Add education information for Undergraduate student
     User.findOneAndUpdate({
         _id: id
       }, {
@@ -226,9 +226,9 @@ router.post("/add-education/:id", isLoggedIn, (req, res) => {
         res.redirect("/profile");
       });
 
-  } else {
+  } else if (req.body.education_status == "Post-graduate") {
 
-    //Update education information for Post-graduate student
+    //Add education information for Post-graduate student
     User.findOneAndUpdate({
         _id: id
       }, {
@@ -266,7 +266,38 @@ router.post("/add-education/:id", isLoggedIn, (req, res) => {
   }
 });
 
+//Add other education 
 
+router.post("/add-other-education/:id", isLoggedIn, (req, res) => {
+
+  let id = req.params.id;
+  let previous = "Previous";
+
+  let previousEducation = {
+    education_type: previous,
+    course: req.body.other_previous_course,
+    educational_provider: req.body.selected_previous_provider_other,
+    start_date: req.body.other_previous_start_year,
+    end_date: req.body.other_previous_end_year
+  }
+  User.findOneAndUpdate({
+      _id: id
+    }, {
+      $push: {
+        education: previousEducation
+      }
+    },
+    function (error, user) {
+      if (error) {
+        console.log(error);
+      } else {
+        user.save();
+      }
+      res.redirect("/profile");
+    });
+});
+
+//Add work experience
 router.post("/add-work-experience/:id", isLoggedIn, (req, res) => {
 
   let id = req.params.id;
@@ -299,5 +330,33 @@ router.post("/add-work-experience/:id", isLoggedIn, (req, res) => {
 
 });
 
+
+
+//Delete Work Experience
+
+router.put("/delete-work-experience/:id", isLoggedIn, (req, res) => {
+
+  let id = req.params.id;
+  let index = req.body.deleteExperienceNumber;
+
+  User.findByIdAndUpdate(id).then((user) => {
+
+    //delete from position index one education record
+    user.work.splice(index, 1);
+
+    user.save()
+      .then(user => {
+        console.log(user);
+
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({
+          error: err
+        });
+      });
+    res.redirect("/profile");
+  })
+});
 
 module.exports = router;
