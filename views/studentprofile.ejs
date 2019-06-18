@@ -199,7 +199,7 @@
     <!-- education info -->
     <div id="std-education" class="box">
       <div>
-        <a class="addbtn" id="add-education" href="#">
+        <a id="add-education" class="addbtn">
           <img src="assets/img/icons/add.png" alt="add icon">
         </a>
         <h1 class="mb15">Education</h1>
@@ -246,13 +246,6 @@
         </div>
         <div class="modal-body">
           <form id="edit-about-form" action="/profile/update-education/<%= user._id %>?_method=PUT" method="POST">
-            <div id="edit-form-content">
-              <label for="course" class="mb2">
-                Course
-              </label>
-              <br>
-              <input id="course" class="text-input mb10" type="text" name="course" value="">
-            </div>
             <div id="edit-form-content">
               <label for="provider" class="mb2">
                 Educational Provider
@@ -321,19 +314,26 @@
 
               </select>
             </div>
-            <div id="edit-form-content">
-              <label for="start_year_edu" class="mb2">
+            <div id="previous-course-edit">
+              <label for="course_edit" class="mb2">
+                Course or Bachelor
+              </label>
+              <br>
+              <input id="course" class="text-input mb10" type="text" name="course" value="">
+            </div>
+            <div id="start-year-edit">
+              <label for="tart-year-edit" class="mb2">
                 Start Year
               </label>
               <br>
-              <input id="start_year_edu" class="text-input mb10" type="text" name="start_year_edu" value="">
+              <input id="start_year" class="text-input mb10" type="text" name="start_year_edu" value="">
             </div>
-            <div id="edit-form-content">
-              <label for="end_year_edu" class="mb2">
+            <div id="end-year-edit">
+              <label for="previous-start-year-edit" class="mb2">
                 End Year
               </label>
               <br>
-              <input id="end_year_edu" class="text-input mb10" type="text" name="end_year_edu" value="">
+              <input id="end_year" class="text-input mb10" type="text" name="end_year_edu" value="">
             </div>
             <input type="hidden" id="educationNumber" name="educationNumber" type="text">
             <div class="modal-footer">
@@ -351,7 +351,7 @@
       </div>
     </div>
 
-    <!-- Modal for adding  education section -->
+    <!-- Modal for adding education section -->
     <!-- Education status options:
       1. Undergraduate
       2. Graduate 
@@ -399,7 +399,7 @@
                     Where are you currently studying?
                   </label>
                   <br>
-                  <select name="current_provider" id="current_provider" class="text-input mb10" type="text">
+                  <select name="provider" id="provider" class="text-input mb10" type="text">
                     <option>Abacus Institute of Studies (Auckland)</option>
                     <option>AGI (Auckland)</option>
                     <option>AMES - The Institute of IT (Auckland)</option>
@@ -466,21 +466,21 @@
                     Course or Bachelor
                   </label>
                   <br>
-                  <input id="current_course" class="text-input mb10" type="text" name="current_course" value="">
+                  <input id="course" class="text-input mb10" type="text" name="course" value="">
                 </div>
                 <div id="current-start-year">
                   <label for="current-start-year" class="mb2">
                     Start Year
                   </label>
                   <br>
-                  <input id="current_start_year" class="text-input mb10" type="text" name="current_start_year" value="">
+                  <input id="start_year" class="text-input mb10" type="text" name="start_year" value="">
                 </div>
                 <div id="current-end-year">
-                  <label for="current_end_yer" class="mb2">
+                  <label for="end_yer" class="mb2">
                     End Year
                   </label>
                   <br>
-                  <input id="current_end_year" class="text-input mb10" type="text" name="current_end_year" value="">
+                  <input id="end_year" class="text-input mb10" type="text" name="end_year" value="">
                 </div>
               </div>
 
@@ -491,7 +491,7 @@
                     Where have you studied?
                   </label>
                   <br>
-                  <select name="previous_provider" id="provider_list" class="text-input mb10" type="text">
+                  <select name="provider" id="provider_list" class="text-input mb10" type="text">
                     <option>Abacus Institute of Studies (Auckland)</option>
                     <option>AGI (Auckland)</option>
                     <option>AMES - The Institute of IT (Auckland)</option>
@@ -558,22 +558,22 @@
                     Course or Bachelor
                   </label>
                   <br>
-                  <input id="previous_course" class="text-input mb10" type="text" name="previous_course" value="">
+                  <input id="course" class="text-input mb10" type="text" name="course" value="">
                 </div>
                 <div id="previous-start-year">
-                    <label for="previous-start-year" class="mb2">
-                      Start Year
-                    </label>
-                    <br>
-                    <input id="previous_start_year" class="text-input mb10" type="text" name="previous_start_year" value="">
-                  </div>
-                  <div id="previous-end-year">
-                    <label for="previous_end_yer" class="mb2">
-                      End Year
-                    </label>
-                    <br>
-                    <input id="previous_end_year" class="text-input mb10" type="text" name="previous_end_year" value="">
-                  </div>
+                  <label for="previous-start-year" class="mb2">
+                    Start Year
+                  </label>
+                  <br>
+                  <input id="start_year" class="text-input mb10" type="text" name="start_year" value="">
+                </div>
+                <div id="previous-end-year">
+                  <label for="previous_end_yer" class="mb2">
+                    End Year
+                  </label>
+                  <br>
+                  <input id="end_year" class="text-input mb10" type="text" name="end_year" value="">
+                </div>
               </div>
             </div>
             <input type="hidden" id="education_status" name="education_status" type="text">
@@ -595,8 +595,8 @@
     <!-- work experience -->
     <div id="std-experience" class="box">
       <div>
-        <a class="addbtn" href="#">
-          <img id="add-experience" src="assets/img/icons/add.png" alt="edit icon">
+        <a class="addbtn" id="add-experience">
+          <img src="assets/img/icons/add.png" alt="edit icon">
         </a>
         <h1 class="mb15">Work Experience</h1>
       </div>
@@ -797,7 +797,6 @@
     let experienceEditBtn = [];
     let i = 0;
   </script>
-
   <%  for(var i = 0; i < count; ++i) { %>
   <script>
     experienceEditBtn[i] = document.getElementById("std-experience-edit-" + i);
@@ -832,6 +831,7 @@
   <% for(var i=0 ; i< count ; ++i) { %>
   <script>
     experienceEditBtn[i].onclick = function () {
+
         document.getElementById("role").value = '<%= user.work[i].role %>';
         document.getElementById("company").value = '<%= user.work[i].company %>';
         document.getElementById("start_year").value = '<%= user.work[i].start_date %>';
@@ -850,11 +850,11 @@
   <% for(var i=0 ; i< counter ; ++i) { %>
   <script>
     educationEditBtn[j].onclick = function () {
+
         document.getElementById("course").value = '<%= user.education[i].course %>';
         document.getElementById("provider").value = '<%= user.education[i].educational_provider %>';
-        document.getElementById("start_year_edu").value = '<%= user.education[i].start_date %>';
-        document.getElementById("end_year_edu").value = '<%= user.education[i].end_date %>';
-        document.getElementById("description_edu").value = '<%= user.education[i].description %>';
+        document.getElementById("start_year").value = '<%= user.education[i].start_date %>';
+        document.getElementById("end_year").value = '<%= user.education[i].end_date %>';
         document.getElementById("educationNumber").value = '<%= i %>';
         educationModal.style.display = "block";
       }
@@ -866,7 +866,6 @@
     //Add education button
     addEducation.onclick = function () {
       educationModalAdd.style.display = "block";
-
     }
 
     //Add work experience button
@@ -924,6 +923,7 @@
     }
 
     // When the user clicks anywhere outside of the modal, close it
+
     window.onclick = function (event) {
       if (event.target == aboutModal) {
         aboutModal.style.display = "none";

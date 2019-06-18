@@ -115,7 +115,7 @@ router.put("/update-education/:id", isLoggedIn, (req, res) => {
     user.education[index].educational_provider = req.body.provider
     user.education[index].start_date = req.body.start_year_edu
     user.education[index].end_date = req.body.end_year_edu
-    user.education[index].description = req.body.description_edu
+    
     user.save()
       .then(user => {
         console.log(user);
@@ -155,7 +155,7 @@ router.post("/add-education/:id", isLoggedIn, (req, res) => {
     end_date: req.body.previous_end_year
   }
 
-  //Just add previous education for post-graduate students
+  //Update education information for Graduate student
   if (req.body.education_status == "Graduate") {
 
     User.findOneAndUpdate({
@@ -173,13 +173,38 @@ router.post("/add-education/:id", isLoggedIn, (req, res) => {
           console.log(error);
         } else {
           user.save();
-          //console.log(user);
         }
       });
 
     res.redirect("/profile");
+
+  } else if (req.body.education_status == "Undergraduate") {
+
+    //Update education information for Undergraduate student
+    User.findOneAndUpdate({
+        _id: id
+      }, {
+        $push: {
+          education: currentEducation
+        },
+        $set: {
+          education_status: req.body.education_status
+        }
+      },
+      function (error, user) {
+        if (error) {
+          console.log(error);
+        } else {
+          user.save();
+        }
+      });
+
+    res.redirect("/profile");
+
+
   } else {
 
+    //Update education information for Post-graduate student
     User.findOneAndUpdate({
         _id: id
       }, {
@@ -214,7 +239,6 @@ router.post("/add-education/:id", isLoggedIn, (req, res) => {
           console.log(user);
         }
       });
-
     res.redirect("/profile");
   }
 });
