@@ -172,10 +172,11 @@
           <form id="edit-about-form" action="/profile/update-about/<%= user._id%>?_method=PUT" method="POST">
             <div id="edit-form-content">
               <label for="about-summary" class="mb10 mt10">
-                Define yourself in a <span style="font-weight: bold">short sentence</span>  
+                Define yourself in a <span style="font-weight: bold">short sentence</span>
               </label>
               <br>
-              <input maxlength="90" name="summary" id="about-summary" class="about text-input mt10 mb10" value="<%= user.about %>">
+              <input maxlength="90" name="summary" id="about-summary" class="about text-input mt10 mb10"
+                value="<%= user.about %>">
             </div>
             <div class="modal-footer">
               <div id="modal-footer-buttons">
@@ -195,13 +196,8 @@
     <!-- education info -->
     <div id="std-education" class="box">
       <div>
-<<<<<<< HEAD
         <a class="addbtn" id="education-add" href="#">
           <img src="assets/img/icons/add.png" alt="edit icon">
-=======
-        <a id="add-education" class="addbtn">
-          <img src="assets/img/icons/add.png" alt="add icon">
->>>>>>> 13dff25b225cdfaec4bf6ddeeff27c602d6eefe2
         </a>
         <h1 class="mb20">Your Education</h1>
 
@@ -868,11 +864,7 @@
     <!-- work experience -->
     <div id="std-experience" class="box">
       <div>
-<<<<<<< HEAD
         <a class="addbtn" id="experience-add" href="#">
-=======
-        <a class="addbtn" id="add-experience">
->>>>>>> 13dff25b225cdfaec4bf6ddeeff27c602d6eefe2
           <img src="assets/img/icons/add.png" alt="edit icon">
         </a>
         <h1 class="mb20">Your Work Experience</h1>
@@ -899,7 +891,7 @@
           <p class="inline"><%= element.description%></p>
           <% } %>
           <% if(i) { %>
-            <hr class="mt15 mb15">
+          <hr class="mt15 mb15">
           <p class="inline" style="font-weight: bold"><%= element.role%></p>
           <br>
           <p class="inline"><%= element.company%></p>
@@ -1097,7 +1089,6 @@
 
 
     // Get the buttons that opens the modals
-<<<<<<< HEAD
     var educationAddBtn = document.getElementById("education-add");
     var experienceAddBtn = document.getElementById("experience-add");
     var detailsEditBtn = document.getElementById("std-details-edit");
@@ -1106,9 +1097,8 @@
     var experienceEditBtn = [];
     var i = 0;
   </script>
-=======
->>>>>>> 13dff25b225cdfaec4bf6ddeeff27c602d6eefe2
 
+  <script>
     //to add
     let addEducation = document.getElementById("add-education");
     let addExperience = document.getElementById("add-experience");
@@ -1158,18 +1148,15 @@
     aboutEditBtn.onclick = function () {
       aboutModal.style.display = "block";
     }
-<<<<<<< HEAD
     educationEditBtn.onclick = function () {
       educationModal.style.display = "block";
     }
-    educationAddBtn.onclick = function() {
+    educationAddBtn.onclick = function () {
       educationModal.style.display = "block";
     }
-    experienceAddBtn.onclick = function() {
+    experienceAddBtn.onclick = function () {
       experienceModal.style.display = "block";
     }
-=======
->>>>>>> ef6c7921fb4f148659c28a55c0d4ade7045689ef
     i = 0;
   </script>
 
