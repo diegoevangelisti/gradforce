@@ -4,13 +4,6 @@
   font-weight: 300;
 }
 
-h1 {
-  font-size: 1.6rem;
-  font-family: 'Lato';
-  font-weight: 300;
-  margin: 1em;
-}
-
 h2 {
   font-size: 0.94rem;
   font-family: 'Lato';
@@ -25,6 +18,13 @@ p {
   font-family: 'Lato';
   font-size: 1rem;
   font-weight: 100;
+}
+
+.big-title {
+  font-weight: 400;
+  font-size: 1.6rem;
+  font-family: 'Lato';
+  font-weight: 300;
 }
 
 .btn {
@@ -157,8 +157,8 @@ body {
 body #header {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 8% 140px auto 8%;
-      grid-template-columns: 8% 140px auto 8%;
+  -ms-grid-columns: 10% 140px auto 10%;
+      grid-template-columns: 10% 140px auto 10%;
   -ms-grid-rows: 1;
       grid-template-rows: 1;
 }
@@ -184,8 +184,8 @@ body #header .menu {
 #landing_page {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 8% 11fr 2fr 400px 8%;
-      grid-template-columns: 8% 11fr 2fr 400px 8%;
+  -ms-grid-columns: 10% 11fr 2fr 400px 10%;
+      grid-template-columns: 10% 11fr 2fr 400px 10%;
   -ms-grid-rows: (auto)[3];
       grid-template-rows: repeat(3, auto);
 }
@@ -202,6 +202,14 @@ body #header .menu {
   grid-column: 1 / span 6;
   -ms-grid-row: 2;
   grid-row: 2;
+}
+
+#landing_page #about {
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 3;
+  grid-column: 2 / 5;
+  -ms-grid-row: 3;
+  grid-row: 3;
 }
 
 #landing_page #register {
@@ -353,8 +361,8 @@ body #header .menu {
 #std-profile {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 8% 1.2fr 4fr 8%;
-      grid-template-columns: 8% 1.2fr 4fr 8%;
+  -ms-grid-columns: 10% 1.2fr 4fr 10%;
+      grid-template-columns: 10% 1.2fr 4fr 10%;
   -ms-grid-rows: (auto)[3];
       grid-template-rows: repeat(3, auto);
   grid-gap: 10px;
@@ -390,9 +398,11 @@ body #header .menu {
 
 #landing_page #register {
   background: rgba(241, 241, 241, 0.85);
+  -webkit-box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.23);
+          box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.23);
   border-top: 4px solid #e5e5e5;
   font-size: 12px;
-  margin-top: 3rem;
+  margin-top: 2.5rem;
   max-height: 580px;
 }
 
@@ -401,9 +411,40 @@ body #header .menu {
 }
 
 #landing_page #slogan h1 {
+  margin: 2.5rem 0 1rem 0;
+}
+
+#landing_page h1 {
   font-size: 40px;
   font-weight: 400;
-  margin: 3rem 0 1rem;
+}
+
+#landing_page #about {
+  background: #F5F5F5;
+  margin-bottom: 4rem;
+}
+
+#landing_page #about #about-content {
+  position: relative;
+}
+
+#landing_page #about #about-content #about-title {
+  margin: 2rem 0;
+}
+
+#landing_page #about #about-content .card {
+  float: left;
+  width: 33%;
+  padding: 0 .3rem;
+}
+
+#landing_page #about #about-content .card img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+#landing_page #about #about-content .card .card-title {
+  font-size: 22px;
 }
 
 #login-page #login-form {

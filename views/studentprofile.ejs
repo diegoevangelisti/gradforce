@@ -196,8 +196,8 @@
     <!-- education info -->
     <div id="std-education" class="box">
       <div>
-        <a class="addbtn" id="education-add" href="#">
-          <img src="assets/img/icons/add.png" alt="edit icon">
+        <a id="add-education" class="addbtn">
+          <img src="assets/img/icons/add.png" alt="add icon">
         </a>
         <h1 class="mb20">Your Education</h1>
 
@@ -864,7 +864,7 @@
     <!-- work experience -->
     <div id="std-experience" class="box">
       <div>
-        <a class="addbtn" id="experience-add" href="#">
+        <a class="addbtn" id="add-experience">
           <img src="assets/img/icons/add.png" alt="edit icon">
         </a>
         <h1 class="mb20">Your Work Experience</h1>
@@ -1089,16 +1089,7 @@
 
 
     // Get the buttons that opens the modals
-    var educationAddBtn = document.getElementById("education-add");
-    var experienceAddBtn = document.getElementById("experience-add");
-    var detailsEditBtn = document.getElementById("std-details-edit");
-    var aboutEditBtn = document.getElementById("std-about-edit");
-    var educationEditBtn = [];
-    var experienceEditBtn = [];
-    var i = 0;
-  </script>
 
-  <script>
     //to add
     let addEducation = document.getElementById("add-education");
     let addExperience = document.getElementById("add-experience");
@@ -1147,15 +1138,6 @@
     // When the user clicks the button, open the specific modal 
     aboutEditBtn.onclick = function () {
       aboutModal.style.display = "block";
-    }
-    educationEditBtn.onclick = function () {
-      educationModal.style.display = "block";
-    }
-    educationAddBtn.onclick = function () {
-      educationModal.style.display = "block";
-    }
-    experienceAddBtn.onclick = function () {
-      experienceModal.style.display = "block";
     }
     i = 0;
   </script>
