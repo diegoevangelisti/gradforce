@@ -422,8 +422,10 @@ router.post('/reset/:token', function (req, res) {
         to: user.email,
         from: 'learntocodeinfo@mail.com',
         subject: 'Your password has been changed',
-        text: 'Hello,\n\n' +
-          'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
+        text: 'Hi there,\n\n' +
+          'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n\n' +
+          'Thanks, \n' +
+          'GradForce Team'
       };
       smtpTransport.sendMail(mailOptions, function (err) {
         req.flash('success', 'Success! Your password has been changed.');
