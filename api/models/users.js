@@ -9,10 +9,12 @@ var userSchema = mongoose.Schema({
     userType: String,
     username: String,
     password: String,
+    resetPasswordToken: String,
+    resetPasswordExpires: Date,
     fname: String,
     lname: String,
     DOB: String,
-    email: String,
+    email: { type: String, unique: true, require: true },
     photo: String,
     phone_number: Number,
     title: String,
@@ -30,13 +32,13 @@ var userSchema = mongoose.Schema({
         city: String,
         suburb: String
     },
+    education_status: String,
     education: [{
+        education_type: String,
         course: String,
         educational_provider: String,
         start_date: String,
-        end_date: String,
-        description: String
-        
+        end_date: String
     }],
     work: [{
         company: String,

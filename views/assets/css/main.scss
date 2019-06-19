@@ -25,32 +25,49 @@ body {
   background: $c-bg;
 }
 
+.title {
+  font-size: 22px;
+}
+
 // GLOBAL --------------------
 .mb2 {
   margin-bottom: 2px;
-}
-
-.mb15 {
-  margin-bottom: 15px !important;
-}
-
-.mt30 {
-  margin-top: 30px;
 }
 
 .mb10 {
   margin-bottom: 10px;
 }
 
+.mb15 {
+  margin-bottom: 15px !important;
+}
+
+.mb20 {
+  margin-bottom: 20px !important;
+}
+
 .mt5 {
   margin-top: 5px;
 }
+
+.mt15 {
+  margin-top: 15px;
+}
+
+.mt20 {
+  margin-top: 20px;
+}
+
+.mt30 {
+  margin-top: 30px;
+}
+
 
 
 .text-input {
   background: $c-white;
   border: 1px solid $c-lightgray;
-  box-sizing: border-box;
+  //box-sizing: border-box;
   height: 40px;
   padding: 3px 15px;
 
@@ -126,7 +143,7 @@ hr {
   margin: auto;
   padding: 0;
   border: 1px solid #888;
-  width: 80%;
+  width: 50%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   -webkit-animation-name: animatetop;
   -webkit-animation-duration: 0.4s;
@@ -176,7 +193,7 @@ hr {
 }
 
 .modal-header {
-  height: 60px;
+  height: 70px;
   padding: 15px 16px;
   background-color: $c-bg;
   border-bottom: 1px solid rgba(0, 0, 0, .15);
@@ -184,7 +201,7 @@ hr {
 
 .modal-body {
   #edit-form-content {
-    padding: 16px;
+    padding: 8px;
   }
 
   label {

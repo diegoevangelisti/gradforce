@@ -41,7 +41,7 @@ router.get("/logout", (req, res, next) => {
 router.get("/tables", isAdminLoggedIn, (req, res) => {
 
   User.find().then((users) => {
-    res.render("../views/admin-panel/tables/tables", {
+    res.render("../views/admin-panel/tables/tables-students", {
       users: users
     });
   })

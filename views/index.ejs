@@ -4,6 +4,9 @@
 <head>
     <script>
         window.onload = function () {
+            
+            //UserType = Student as default
+            postForm('/auth/register/usertype?userType=Student')
             setTimeout(function () {
                 document.body.style.opacity = "100";
             }, 300);
@@ -72,7 +75,7 @@
                 <span id="student">
                     <input id="student-user" class="radioInput" type="radio"
                         onclick="postForm('/auth/register/usertype?userType='+this.value)" name="userType"
-                        value="Student">I'm looking for a
+                        value="Student" checked>I'm looking for a
                     job<br>
                 </span>
                 <span id="employer">
@@ -118,7 +121,7 @@
                     </a>
                 </button>
                 <span id="signin" class="mb10">
-                    <p>You already have an account? <a href="/auth/login">Sign in</a></p>
+                    <p>You already have an account? <a href="/auth/login" style="text-decoration: none">Sign in</a></p>
                 </span>
             </div>
         </div>

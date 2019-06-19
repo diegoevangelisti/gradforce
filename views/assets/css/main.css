@@ -57,12 +57,25 @@ p {
 
 .btnGreen span {
   float: left;
-  padding-left: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
   font-size: 15px;
 }
 
 .btnGray {
   background: #949494 !important;
+}
+
+.btnGray img {
+  float: right;
+  padding: 3px 15px 0 0px;
+}
+
+.btnGray span {
+  float: left;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 15px;
 }
 
 .btnFb {
@@ -73,8 +86,11 @@ p {
   background: #e56148;
 }
 
-.addbtn, .editbtn {
+.addbtn,
+.editbtn,
+.delbtn {
   float: right;
+  padding-right: 3px;
 }
 
 #header {
@@ -205,18 +221,7 @@ body #header .menu {
   -ms-grid-columns: 190px 190px;
       grid-template-columns: 190px 190px;
   margin: 10px;
-      grid-template-areas: "title title"
- "student employer"
- "email email"
- "fname lname"
- "phone phone"
- "password password"
- "terms terms"
- "next next"
- "facebook facebook"
- "google google"
- "signin signin"
- "other-logins other-logins";
+      grid-template-areas: "title title" "student employer" "email email" "fname lname" "phone phone" "password password" "terms terms" "next next" "facebook facebook" "google google" "signin signin" "other-logins other-logins";
 }
 
 #landing_page #other-logins {
@@ -225,9 +230,7 @@ body #header .menu {
   grid-gap: 0;
   -ms-grid-columns: 190px 190px;
       grid-template-columns: 190px 190px;
-      grid-template-areas: "facebook facebook"
- "google google"
- "signin signin";
+      grid-template-areas: "facebook facebook" "google google" "signin signin";
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -363,7 +366,7 @@ body #header .menu {
   -ms-grid-row: 1;
   -ms-grid-row-span: 3;
   grid-row: 1 / 4;
-  max-height: 500px;
+  max-height: 400px;
 }
 
 #std-profile #std-about {
@@ -430,6 +433,31 @@ body #header .menu {
   border-radius: 50%;
 }
 
+.year {
+  width: 80px;
+  max-width: 80%;
+}
+
+.course {
+  width: 400px;
+  max-width: 80%;
+}
+
+.provider {
+  width: 400px;
+  max-width: 80%;
+}
+
+.about {
+  width: 700px;
+  max-width: 100%;
+}
+
+.sub-title {
+  font-size: 18px;
+  padding: 15px 16px;
+}
+
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -442,31 +470,45 @@ body {
   background: #F5F5F5;
 }
 
+.title {
+  font-size: 22px;
+}
+
 .mb2 {
   margin-bottom: 2px;
-}
-
-.mb15 {
-  margin-bottom: 15px !important;
-}
-
-.mt30 {
-  margin-top: 30px;
 }
 
 .mb10 {
   margin-bottom: 10px;
 }
 
+.mb15 {
+  margin-bottom: 15px !important;
+}
+
+.mb20 {
+  margin-bottom: 20px !important;
+}
+
 .mt5 {
   margin-top: 5px;
+}
+
+.mt15 {
+  margin-top: 15px;
+}
+
+.mt20 {
+  margin-top: 20px;
+}
+
+.mt30 {
+  margin-top: 30px;
 }
 
 .text-input {
   background: #fff;
   border: 1px solid #f1f1f1;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
   height: 40px;
   padding: 3px 15px;
 }
@@ -554,7 +596,7 @@ hr {
   margin: auto;
   padding: 0;
   border: 1px solid #888;
-  width: 80%;
+  width: 50%;
   -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   -webkit-animation-name: animatetop;
@@ -603,14 +645,14 @@ hr {
 }
 
 .modal-header {
-  height: 60px;
+  height: 70px;
   padding: 15px 16px;
   background-color: #F5F5F5;
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 }
 
 .modal-body #edit-form-content {
-  padding: 16px;
+  padding: 8px;
 }
 
 .modal-body label {

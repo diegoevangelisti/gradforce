@@ -12,7 +12,9 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 var cookieParser = require('cookie-parser');
 var methodOverride = require('method-override');
+var flash = require("connect-flash");
 
+app.use(flash());
 app.use(cookieParser());
 
 const keys = require('./config/keys')
@@ -165,7 +167,7 @@ passport.use(new GoogleStrategy({
 passport.use(new FacebookStrategy({
     clientID: keys.facebook.APP_ID,
     clientSecret: keys.facebook.APP_SECRET,
-    callbackURL: "https://gradforce-backend.herokuapp.com/auth/facebook/callback",
+    callbackURL: "/auth/facebook/callback",
     profileFields: ['id', 'emails', 'picture.type(large)', 'name', 'displayName']
   },
   (accessToken, refreshToken, profile, done) => {
@@ -244,7 +246,7 @@ app.listen(process.env.PORT || 5000, async function () {
 /*mongoose.connect("mongodb://backend:" + process.env.MLAB_PASSWORD + "@ds259596.mlab.com:59596/heroku_xk93l586", {
   useNewUrlParser: true
 })*/
-
+-
 //LOCAL HOSTING
 mongoose.connect("mongodb://localhost/gradforce-local", {
   useNewUrlParser: true,

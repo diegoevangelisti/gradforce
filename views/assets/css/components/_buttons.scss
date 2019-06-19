@@ -28,13 +28,26 @@
 
     span {
         float: left;
-        padding-left: 15px;
+        padding-left: 10px;
+        padding-right: 10px;
         font-size: 15px;
     }
 }
 
 .btnGray {
     background: $c-midgray !important;
+
+    img {
+        float: right;
+        padding: 3px 15px 0 0px;
+    }
+
+    span {
+        float: left;
+        padding-left: 10px;
+        padding-right: 10px;
+        font-size: 15px;
+    }
 }
 
 .btnFb {
@@ -45,6 +58,9 @@
     background: $c_gred;
 }
 
-.addbtn, .editbtn {
+.addbtn,
+.editbtn,
+.delbtn {
     float: right;
+    padding-right: 3px;
 }
