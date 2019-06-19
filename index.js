@@ -12,7 +12,9 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 var cookieParser = require('cookie-parser');
 var methodOverride = require('method-override');
+var flash = require("connect-flash");
 
+app.use(flash());
 app.use(cookieParser());
 
 const keys = require('./config/keys')

@@ -5,7 +5,8 @@ const User = require("../models/users");
 const Mail = require("../models/mails");
 var passport = require("passport");
 const nodemailer = require("nodemailer");
-const keys = require('../../config/keys')
+const keys = require('../../config/keys');
+
 
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
