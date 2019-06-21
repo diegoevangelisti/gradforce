@@ -94,7 +94,7 @@
       <% if(user.phone_number){ %>
       <label for="phone">Phone number:</label>
       <p class="mb10"><%= user.phone_number%></p>
-      <% } %>
+
     </div>
 
     <!-- Modal for details section -->
@@ -155,8 +155,15 @@
         <a id="std-about-edit">
           <img class="editbtn" src="assets/img/icons/edit.png" alt="edit icon">
         </a>
-        <h1 class="mb20">About you</h1>
-        <p><%= user.about%></p>
+        <h1 class="mb20">About me</h1>
+        <p class="mb20"><%= user.about%></p>
+        <h1 class="mb20">My Skills</h1>
+        <div class="mt20">
+            <% } %>
+            <% user.Skills.softs.forEach(function(skill, i) { %>
+              <span style="background: rgb(180, 185, 189); margin-right: 10px; text-align: center; padding: 10px; border-radius: 3px" class="mb10 inline"><%= skill %></span>
+            <% }) %>
+        </div>
       </div>
     </div>
     <!-- About popup for editing -->
@@ -193,7 +200,7 @@
                   </datalist>
                 </div>
               </div>
-              <input value="Add" type="button" id="add" class="btn btnGreen btnGray mt10">
+              <input style="padding: 10px;" value="Add" type="button" id="add" class="btn btnGreen btnGray mt10">
             </div>
             <div class=" modal-footer">
               <div id="modal-footer-buttons">
@@ -216,7 +223,7 @@
         <a id="add-education" class="addbtn">
           <img src="assets/img/icons/add.png" alt="add icon">
         </a>
-        <h1 class="mb20">Your Education</h1>
+        <h1 class="mb20">My Education</h1>
 
       </div>
       <!-- Show all Education -->
@@ -885,7 +892,7 @@
         <a class="addbtn" id="add-experience">
           <img src="assets/img/icons/add.png" alt="edit icon">
         </a>
-        <h1 class="mb20">Your Work Experience</h1>
+        <h1 class="mb20">My Work Experience</h1>
       </div>
       <% count = 0 %>
       <!-- Show all work experience -->
