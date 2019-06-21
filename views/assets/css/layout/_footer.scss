@@ -1,0 +1,29 @@
+#footer {
+  color: $c-white;
+
+  #footer-container {
+    #footer-top {
+      border-bottom: solid 1px $c-white;
+
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      #contact-info {
+        width: 40%;
+        
+      }
+
+      #contact-form {
+        width: 60%;
+        padding-left: 80px;
+      }
+    }
+
+    #footer-bottom {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+}

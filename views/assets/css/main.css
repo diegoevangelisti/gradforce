@@ -1,30 +1,30 @@
-.title-font {
+h1 {
   font-family: 'Lato';
   font-size: 2rem;
   font-weight: 300;
-}
-
-h1 {
-  font-size: 1.6rem;
-  font-family: 'Lato';
-  font-weight: 300;
-  margin: 1em;
-}
-
-h2 {
-  font-size: 0.94rem;
-  font-family: 'Lato';
-  font-weight: 100;
 }
 
 label {
   font-size: 0.8rem;
 }
 
+h2 {
+  font-family: 'Lato';
+  font-size: 1.2rem;
+  font-weight: 300;
+}
+
 p {
   font-family: 'Lato';
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 100;
+}
+
+.big-title {
+  font-weight: 400;
+  font-size: 1.6rem;
+  font-family: 'Lato';
+  font-weight: 300;
 }
 
 .btn {
@@ -93,6 +93,46 @@ p {
   padding-right: 3px;
 }
 
+#footer {
+  color: #fff;
+}
+
+#footer #footer-container #footer-top {
+  border-bottom: solid 1px #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+#footer #footer-container #footer-top #contact-info {
+  width: 40%;
+}
+
+#footer #footer-container #footer-top #contact-form {
+  width: 60%;
+  padding-left: 80px;
+}
+
+#footer #footer-container #footer-bottom {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
 #header {
   border-top: 10px solid #e5e5e5;
 }
@@ -157,8 +197,8 @@ body {
 body #header {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 8% 140px auto 8%;
-      grid-template-columns: 8% 140px auto 8%;
+  -ms-grid-columns: 10% 140px auto 10%;
+      grid-template-columns: 10% 140px auto 10%;
   -ms-grid-rows: 1;
       grid-template-rows: 1;
 }
@@ -181,11 +221,24 @@ body #header .menu {
       justify-self: right;
 }
 
+body #footer {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 10% 1fr 10%;
+      grid-template-columns: 10% 1fr 10%;
+}
+
+body #footer #footer-container {
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-column: 2/3;
+}
+
 #landing_page {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 8% 11fr 2fr 400px 8%;
-      grid-template-columns: 8% 11fr 2fr 400px 8%;
+  -ms-grid-columns: 10% 11fr 2fr 400px 10%;
+      grid-template-columns: 10% 11fr 2fr 400px 10%;
   -ms-grid-rows: (auto)[3];
       grid-template-rows: repeat(3, auto);
 }
@@ -202,6 +255,14 @@ body #header .menu {
   grid-column: 1 / span 6;
   -ms-grid-row: 2;
   grid-row: 2;
+}
+
+#landing_page #about {
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 3;
+  grid-column: 2 / 5;
+  -ms-grid-row: 3;
+  grid-row: 3;
 }
 
 #landing_page #register {
@@ -338,7 +399,6 @@ body #header .menu {
           justify-content: center;
   -ms-flex-line-pack: center;
       align-content: center;
-  height: 80vh;
 }
 
 #login-page form {
@@ -353,8 +413,8 @@ body #header .menu {
 #std-profile {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 8% 1.2fr 4fr 8%;
-      grid-template-columns: 8% 1.2fr 4fr 8%;
+  -ms-grid-columns: 10% 1.2fr 4fr 10%;
+      grid-template-columns: 10% 1.2fr 4fr 10%;
   -ms-grid-rows: (auto)[3];
       grid-template-rows: repeat(3, auto);
   grid-gap: 10px;
@@ -390,6 +450,8 @@ body #header .menu {
 
 #landing_page #register {
   background: rgba(241, 241, 241, 0.85);
+  -webkit-box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.23);
+          box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.23);
   border-top: 4px solid #e5e5e5;
   font-size: 12px;
   margin-top: 3rem;
@@ -401,9 +463,44 @@ body #header .menu {
 }
 
 #landing_page #slogan h1 {
+  margin: 2.5rem 0 1rem 0;
+}
+
+#landing_page h1 {
   font-size: 40px;
   font-weight: 400;
-  margin: 3rem 0 1rem;
+}
+
+#landing_page #about {
+  background: #F5F5F5;
+  margin-bottom: 4rem;
+}
+
+#landing_page #about #about-content {
+  position: relative;
+}
+
+#landing_page #about #about-content #about-title {
+  margin: 2rem 0;
+}
+
+#landing_page #about #about-content .card {
+  float: left;
+  width: 33%;
+  padding: 0 .3rem;
+}
+
+#landing_page #about #about-content .card img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+#landing_page #about #about-content .card .card-title {
+  font-size: 22px;
+}
+
+#login-page {
+  height: 52vh;
 }
 
 #login-page #login-form {
@@ -484,8 +581,16 @@ body {
   font-size: 22px;
 }
 
+.mt10 {
+  margin-top: 10px;
+}
+
 .mb2 {
   margin-bottom: 2px;
+}
+
+.mb5 {
+  margin-bottom: 5px;
 }
 
 .mb10 {
@@ -514,6 +619,50 @@ body {
 
 .mt30 {
   margin-top: 30px;
+}
+
+.mb50 {
+  margin-bottom: 50px;
+}
+
+.mt50 {
+  margin-top: 50px;
+}
+
+.pb50 {
+  padding-bottom: 50px;
+}
+
+.pt50 {
+  padding-top: 50px;
+}
+
+.graybg {
+  background: #f1f1f1;
+}
+
+.darkbg {
+  background: #949494;
+}
+
+.c-bg {
+  background: #F5F5F5;
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.align-right {
+  text-align: right;
+}
+
+.align-left {
+  text-align: left;
 }
 
 .text-input {

@@ -1,29 +1,28 @@
-.title-font {
+h1 {
   font-family: 'Lato';
   font-size: 2rem;
   font-weight: 300;
-}
-
-h1 {
-  // 1.6rem = 25px
-  font-size: 1.6rem;
-  font-family: 'Lato';
-  font-weight: 300;
-  margin: 1em;
-}
-
-h2 {
-  font-size: 0.94rem;
-  font-family: 'Lato';
-  font-weight: 100;
 }
 
 label {
   font-size: 0.8rem;
 }
 
+h2 {
+  font-family: 'Lato';
+  font-size: 1.2rem;
+  font-weight: 300;
+}
+
 p {
   font-family: 'Lato';
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 100;
+}
+
+.big-title {
+  font-weight: 400;
+  font-size: 1.6rem;
+  font-family: 'Lato';
+  font-weight: 300;
 }

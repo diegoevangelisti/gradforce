@@ -4,7 +4,7 @@ body {
 
   #header {
     display: grid;
-    grid-template-columns: 8% 140px auto 8%;
+    grid-template-columns: 10% 140px auto 10%;
     grid-template-rows: 1;
 
     .logo {
@@ -18,13 +18,22 @@ body {
       justify-self: right;
     }
   }
+
+  #footer {
+    display: grid;
+    grid-template-columns: 10% 1fr 10%;
+
+    #footer-container {
+      grid-column: 2/3;
+    }
+  }
 }
 
 
 // LANDING PAGE GRID SYSTEM --------------
 #landing_page {
   display: grid;
-  grid-template-columns: 8% 11fr 2fr 400px 8%;
+  grid-template-columns: 10% 11fr 2fr 400px 10%;
   grid-template-rows: repeat(3, auto);
 
   #slogan {
@@ -34,6 +43,13 @@ body {
   #banner {
     grid-column: 1 / span 6;
     grid-row: 2;
+  }
+
+  #about {
+    grid-column: 2 / 5;
+    // grid-row: 2 / span 2;
+    grid-row: 3;
+    // z-index: 3;
   }
 
   #register {
@@ -143,6 +159,8 @@ body {
       grid-area: signin;
     }
   }
+
+
 }
 
 // login page 
@@ -150,7 +168,6 @@ body {
   display: grid;
   justify-content: center;
   align-content: center;
-  height: 80vh;
 
   form {
     display: grid;
@@ -162,7 +179,7 @@ body {
 // student profile
 #std-profile {
   display: grid;
-  grid-template-columns: 8% 1.2fr 4fr 8%;
+  grid-template-columns: 10% 1.2fr 4fr 10%;
   grid-template-rows: repeat(3, auto);
   grid-gap: 10px;
 
