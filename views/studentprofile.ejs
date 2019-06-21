@@ -177,8 +177,25 @@
               <br>
               <input maxlength="90" name="summary" id="about-summary" class="about text-input mt10 mb10"
                 value="<%= user.about %>">
+              <!-- Skills -->
+              <label for="about-summary" class="mb10 mt10">
+                Enter your <span style="font-weight: bold">Skills</span>
+              </label>
+              <br>
+
+              <div id="student-skills-parent">
+                <div id="student-skills">
+                  <input id="skill" name="skills[]" list="skills-list" class="skills text-input mt10 mb10">
+                  <datalist id="skills-list">
+                    <% skills.forEach(function(skills, i){ %>
+                    <option value="<%= skills.name %>"><%= skills.name %></option>
+                    <% }) %>
+                  </datalist>
+                </div>
+              </div>
+              <input value="Add" type="button" id="add" class="btn btnGreen btnGray mt10">
             </div>
-            <div class="modal-footer">
+            <div class=" modal-footer">
               <div id="modal-footer-buttons">
                 <button type="button" id="cancel" class="btn btnGreen btnGray mt10">
                   <span id="closeAbout" onclick="closeModal(id)">Cancel</span>
@@ -426,7 +443,8 @@
               <div id="current-study" style="display: none">
                 <div id="current-providers">
                   <p class="mt10 mb2">Where are you<span style="font-weight: bold"> currently </span>studying?</p>
-                  <select name="current_provider" id="current_provider_list" class="provider text-input mb10" type="text">
+                  <select name="current_provider" id="current_provider_list" class="provider text-input mb10"
+                    type="text">
                     <option>Abacus Institute of Studies (Auckland)</option>
                     <option>AGI (Auckland)</option>
                     <option>AMES - The Institute of IT (Auckland)</option>
@@ -952,7 +970,8 @@
                 Description
               </label>
               <br>
-              <input id="work_description" class="description text-input mb10" type="text" name="work_description" value="">
+              <input id="work_description" class="description text-input mb10" type="text" name="work_description"
+                value="">
             </div>
             <input type="hidden" id="experienceNumber" name="experienceNumber" type="text">
             <div class="modal-footer">
@@ -1011,8 +1030,8 @@
                 Description of your position in just a few words...
               </label>
               <br>
-              <input id="work_description" class="description text-input mb10" type="text" name="work_description" value=""
-                placeholder="Ex: Front end developer, Designer, Help-desk, ...">
+              <input id="work_description" class="description text-input mb10" type="text" name="work_description"
+                value="" placeholder="Ex: Front end developer, Designer, Help-desk, ...">
             </div>
             <input type="hidden" id="experienceNumber" name="experienceNumber" type="text">
             <div class="modal-footer">
@@ -1526,7 +1545,7 @@
     }
 
     setTimeout(function () {
-     // var popupShown = 0;
+      // var popupShown = 0;
       var popupShown = Cookies.get('colorboxShown');
 
       if (popupShown) {
@@ -1538,6 +1557,37 @@
     }, 2000);
   </script>
   <% } %>
+
+  <script>
+    var elementId = 0;
+    document.getElementById("add").onclick = () => {
+
+      var skills = document.getElementById("student-skills");
+      var newSkills = skills.cloneNode();
+
+      newSkills.id = "student-skills" + elementId;
+
+      var input = document.getElementById("skill");
+      var list = document.getElementById("skills-list");
+
+      //Clone the list and input
+
+      var clonedInput = input.cloneNode();
+      clonedInput.setAttribute("list", "skills-list" + elementId);
+
+      var clonedList = list.cloneNode(true);
+      clonedList.id = "skills-list" + elementId;
+
+      newSkills.appendChild(clonedInput);
+      newSkills.appendChild(clonedList);
+
+      var skillsParent = document.getElementById("student-skills-parent");
+      skillsParent.appendChild(newSkills);
+      elementId++;
+
+    }
+  </script>
+
 </body>
 
 </html>

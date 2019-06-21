@@ -468,6 +468,10 @@ body #header .menu {
   max-width: 80%;
 }
 
+.skills {
+  width: 300px;
+}
+
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;

@@ -79,7 +79,6 @@ passport.deserializeUser(function (sessionConstructor, done) {
 });
 
 
-
 //
 //Magic word for passport 
 //
@@ -112,13 +111,6 @@ app.use(function (req, res, next) {
   res.locals.message = req.flash("message");
   next();
 });
-
-/*
-app.get('/flash', function(req, res){
-  req.flash('message', 'Hi there!')
-  res.redirect('/');
-});*/
-
 
 //
 //GOOGLE AUTH
@@ -249,10 +241,13 @@ const profileRoutes = require('./api/routes/profile');
 const adminpanelRoutes = require('./api/routes/adminpanel');
 const mailRoutes = require('./api/routes/mail');
 
+
 app.use('/auth', authRoutes);
 app.use('/profile', profileRoutes);
 app.use('/adminpanel', adminpanelRoutes);
 app.use('/mail', mailRoutes);
+
+
 
 app.listen(process.env.PORT || 5000, async function () {
   console.log("listening on port " + (process.env.PORT || 5000));

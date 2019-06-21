@@ -1,25 +1,29 @@
 var express = require("express");
 const router = express.Router();
 const User = require("../models/users");
+const Skill = require("../models/skills");
 
 
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
-  } 
-  var message = "Wrong log in credentials";
-  res.redirect("./auth/login/?message=?" + message);
+  }
+  res.redirect("./auth/login/");
 }
 //Profile
 
 //Get Student's profile
 
 router.get("/", isLoggedIn, (req, res) => {
-  res.render("../views/studentprofile", {
-    user: req.user,
-    isLoggedIn: true
-  });
-  console.log("User: " + req.user)
+
+  Skill.find().then(skills => {
+    res.render("../views/studentprofile", {
+      skills: skills,
+      user: req.user,
+      isLoggedIn: true
+    });
+    console.log("User: " + req.user)
+  })
 });
 
 //Update Work Experience
@@ -56,9 +60,12 @@ router.put("/update-work-experience/:id", isLoggedIn, (req, res) => {
 router.put("/update-about/:id", isLoggedIn, (req, res) => {
 
   let id = req.params.id;
+  let sk = req.body.skills;
+  console.log(sk);
 
   User.findByIdAndUpdate(id).then((user) => {
 
+    user.Skills.softs = sk;
     user.about = req.body.summary
     user.save()
       .then(user => {
@@ -72,7 +79,6 @@ router.put("/update-about/:id", isLoggedIn, (req, res) => {
       });
   })
   res.redirect("/profile");
-
 });
 
 //Update Details information

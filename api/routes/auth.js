@@ -364,10 +364,10 @@ router.get('/reset/:token', function (req, res) {
     }
   }, function (err, user) {
     if (!user) {
-      req.flash('error', 'Password reset token is invalid or has expired.');
-      return res.redirect('/auth/forgetpassword');
+      //passwords do not match
     }
     res.render("../views/reset", {
+      failure: req.flash("failure"),
       token: req.params.token,
       isLoggedIn: null,
       SignUp: null
@@ -385,14 +385,13 @@ router.post('/reset/:token', function (req, res) {
         }
       }, function (err, user) {
         if (!user) {
-          req.flash('error', 'Password reset token is invalid or has expired.');
+          req.flash("failure", "Token expired. Come back to Forget Password");
           return res.redirect('back');
         }
         if (req.body.password === req.body.confirm) {
           user.setPassword(req.body.password, function (err) {
             user.resetPasswordToken = undefined;
             user.resetPasswordExpires = undefined;
-
             user.save(function (err) {
               req.logIn(user, function (err) {
                 done(err, user);
@@ -400,7 +399,8 @@ router.post('/reset/:token', function (req, res) {
             });
           })
         } else {
-          req.flash("error", "Passwords do not match.");
+          //passwords do not match
+          req.flash("failure", "The passwords do not match. Try again");
           return res.redirect('back');
         }
       });
@@ -458,13 +458,14 @@ router.post('/login', function (req, res, next) {
 
 router.get("/login", (req, res, next) => {
 
-  var passedVariable = req.query.message;
-  console.log("THIS: " + passedVariable)
-  res.render("../views/login", {
-    message: passedVariable,
-    isLoggedIn: null,
-    SignUp: null,
-  });
+  
+    var passedVariable = req.query.message;
+    console.log("THIS: " + passedVariable)
+    res.render("../views/login", {
+      message: passedVariable,
+      isLoggedIn: null,
+      SignUp: null,
+    });
 });
 
 
