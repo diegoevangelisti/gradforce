@@ -7,10 +7,23 @@
       setTimeout(function () {
         document.body.style.opacity = "100";
       }, 300);
-    };
+
+      var type = $(this).data('type');
+      var status = $(this).data('status');
+
+      $(this).addClass('is-active');
+
+      $('.notify')
+        .removeClass()
+        .attr('data-notification-status', 'active')
+        .addClass('bar' + ' notify')
+        .addClass('do-show');
+
+      event.preventDefault();
+    }
   </script>
   <div w3-include-html="/partials/head.html"></div>
-
+  <link rel="stylesheet" href="/assets/css/alerts.css">
   <script>
     function includeHTML() {
       var z, i, elmnt, file, xhttp;
@@ -52,37 +65,27 @@
       opacity: 0;
     }
   </style>
-  <!-- <div w3-include-html="/partials/header.ejs"></div> -->
   <% include ./partials/header %>
 
+  <% if(message && message.length > 0) { %>
   <main id="login-page">
-    <% if(message && message.length > 0) { %>
-    <div class="alert warning">
-      <img class="vertical" src="/assets/img/icons/warning.png" alt=""><span class="message vertical ml10">
+    <div class="alert success">
+      <img class="vertical" src="/assets/img/icons/success.png" alt=""><span class="message vertical ml10">
         <%= message %></span>
     </div>
-    <% } %>
-    <form action="/auth/login" method="POST">
-      <h3 class="title-font mb10">Sign in</h3>
-      <p class="mb2">Email:</p>
-      <input id="email" class="text-input mb10" type="text" name="email" placeholder="Email" value="">
-      <p class="mb2">Password:</p>
-      <input id="pass" class="text-input mb15" type="password" name="password" placeholder="Enter a password">
-      <button id="next" class="btn btnGreen mb15">
-        <span>NEXT</span>
-        <img src="/assets/img/right_arrow.png" alt="arrow_png">
-      </button>
-      <span id="signin" class="">
-        <p><a href="/auth/forgetpassword" style="text-decoration: none">Forgot password?</a></p><br>
-        <p>New to GradForce? <a href="/auth/register" style="text-decoration: none"> Join now</a></p>
-      </span>
-    </form>
+    <div class="back">
+      <a href="/auth/register">Come back to Register page</a>
+    </div>
   </main>
+  <% } %>
 
   <div w3-include-html="/partials/footer.html"></div>
 
   <script>
     includeHTML();
+  </script>
+  <script>
+
   </script>
 </body>
 

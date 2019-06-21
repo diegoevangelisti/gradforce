@@ -14,8 +14,10 @@ var cookieParser = require('cookie-parser');
 var methodOverride = require('method-override');
 var flash = require("connect-flash");
 
-app.use(flash());
+
 app.use(cookieParser());
+
+
 
 const keys = require('./config/keys')
 var User = require("./api/models/users");
@@ -89,6 +91,7 @@ app.use(require("express-session")({
 }));
 
 
+
 //Seting Passport for authentication
 
 app.use(passport.initialize());
@@ -102,6 +105,19 @@ passport.use("local", new LocalStrategy({
 passport.use("admin", new LocalStrategy({
   usernameField: 'email'
 }, Admin.authenticate()));
+
+
+app.use(flash());
+app.use(function (req, res, next) {
+  res.locals.message = req.flash("message");
+  next();
+});
+
+/*
+app.get('/flash', function(req, res){
+  req.flash('message', 'Hi there!')
+  res.redirect('/');
+});*/
 
 
 //
@@ -185,7 +201,7 @@ passport.use(new FacebookStrategy({
           console.log('User is: ', currentUser);
           done(null, currentUser);
         } else {
-          
+
           //Create a new User
           const user = new User({
             _id: Math.random()

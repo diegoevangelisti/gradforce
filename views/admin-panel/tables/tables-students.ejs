@@ -119,7 +119,6 @@
                                         <th>Name</th>
                                         <th>Last Name</th>
                                         <th>Email address</th>
-                                        <th>User type</th>
                                         <th>Status</th>
                                         <th>Description</th>
                                         <th>Actions</th>
@@ -135,8 +134,7 @@
                                         <td><%= users.fname %></td>
                                         <td><%= users.lname %></td>
                                         <td><%= users.email %></td>
-                                        <td><%= users.status %></td>
-                                        <td>
+                                        <td><%= users.status %></td>                                        <td>
                                             <!-- Decription for status equals complete -->
                                             <% if(users.status == "Profile Complete"){ %>
                                             <!-- Count the number of students waiting for an answer -->
@@ -151,9 +149,6 @@
                                             <% if(!(users.status == "Profile Complete")){ %>
                                             <div style="text-align: center"><%= users.description%></div>
                                             <% } %>
-                                        </td>
-                                        <td>
-                                            <div style="text-align: center"><%= users.description%></div>
                                         </td>
                                         <td id="actions" style="padding-left: 1px; padding-right: 1px;">
                                             <div class="center none">

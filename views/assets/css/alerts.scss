@@ -1,0 +1,45 @@
+.alert {
+
+  border-radius: 3px;
+  margin-bottom: 5px;
+  padding: 10px;
+
+}
+
+.warning {
+
+  border: 1px solid lightcoral;
+ 
+}
+
+.register {
+  width: 380px;
+  display: block;
+  margin: auto;
+  margin-top: 3px;
+
+}
+
+.success {
+
+  border: 1px solid lightgreen;
+  width: 400px;
+  max-width: 100%;
+  text-align: center;
+}
+
+.vertical {
+
+  vertical-align: middle;
+}
+
+.message {
+
+  font-weight: 450;
+  font-size: 14px;
+}
+
+.ml10{
+
+  margin-left: 10px;
+}

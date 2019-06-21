@@ -36,7 +36,9 @@ router.get("/register/usertype", (req, res, next) => {
 });
 
 router.get("/register", (req, res) => {
+  var passedVariable = req.query.message;
   res.render("../views/index", {
+    message: passedVariable,
     isLoggedIn: null,
     SignUp: "Yes"
   })
@@ -49,8 +51,8 @@ router.post("/register", (req, res, next) => {
 
     if (currentUser) {
       //The user exists
-      console.log('Already exists: User is: ', currentUser);
-      res.redirect("login");
+      var message = "Email already register. Please try another one";
+      res.redirect("register/?message=" + message);
     } else {
       let description = "";
       switch (req.body.userType) {
@@ -175,25 +177,6 @@ router.post("/new-admin", (req, res) => {
     });
 });
 
-//
-//Login routes
-//
-
-router.post("/login", passport.authenticate("local", {
-  successRedirect: "../profile",
-  failureRedirect: "login",
-}), function (req, res) {
-  res.send(user._id)
-  console.log("User: " + req.user);
-});
-
-router.get("/login", (req, res, next) => {
-  res.render("../views/login", {
-    isLoggedIn: null,
-    SignUp: null
-  });
-});
-
 
 //
 //Google register/login routes
@@ -293,7 +276,21 @@ router.get('/facebook/callback', passport.authenticate('facebook', {
 
 router.get("/forgetpassword", (req, res) => {
 
+
+  if (req.query.message) {
+
+    var message = req.query.message;
+    var failure = null;
+
+  } else if (req.query.failure) {
+
+    var failure = req.query.failure;
+    var message = null;
+  }
+
   res.render("../views/forgetpassword", {
+    message: message,
+    failure: failure,
     isLoggedIn: null,
     SignUp: null
   });
@@ -312,10 +309,9 @@ router.post('/forgetpassword', function (req, res, next) {
         email: req.body.email
       }, function (err, user) {
         if (!user) {
-          req.flash('error', 'No account with that email address exists.');
-          return res.redirect('/forgetpassword');
+          var failure = "The email doesn't exist. Play try again";
+          return res.redirect('/auth/forgetpassword/?failure=' + failure);
         }
-
         user.resetPasswordToken = token;
         user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
 
@@ -353,7 +349,8 @@ router.post('/forgetpassword', function (req, res, next) {
     }
   ], function (err) {
     if (err) return next(err);
-    res.redirect('/auth/forgetpassword');
+    var message = "We sent you an email with the instructions";
+    res.redirect('/auth/forgetpassword/?message=' + message);
   });
 });
 
@@ -420,7 +417,7 @@ router.post('/reset/:token', function (req, res) {
       });
       var mailOptions = {
         to: user.email,
-        from: 'learntocodeinfo@mail.com',
+        from: 'gradforce.co.nz@gmail.com',
         subject: 'Your password has been changed',
         text: 'Hi there,\n\n' +
           'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n\n' +
@@ -428,7 +425,6 @@ router.post('/reset/:token', function (req, res) {
           'GradForce Team'
       };
       smtpTransport.sendMail(mailOptions, function (err) {
-        req.flash('success', 'Success! Your password has been changed.');
         done(err);
       });
     }
@@ -437,6 +433,39 @@ router.post('/reset/:token', function (req, res) {
   });
 });
 
+//
+//Login routes
+//
+
+
+router.post('/login', function (req, res, next) {
+  passport.authenticate('local', function (err, user, info) {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      var message = encodeURIComponent('Wrong Email or Password. Please try again');
+      return res.redirect("login/?message=" + message);
+    }
+    req.logIn(user, function (err) {
+      if (err) {
+        return next(err);
+      }
+      return res.redirect('../profile');
+    });
+  })(req, res, next);
+});
+
+router.get("/login", (req, res, next) => {
+
+  var passedVariable = req.query.message;
+  console.log("THIS: " + passedVariable)
+  res.render("../views/login", {
+    message: passedVariable,
+    isLoggedIn: null,
+    SignUp: null,
+  });
+});
 
 
 //
@@ -444,8 +473,18 @@ router.post('/reset/:token', function (req, res) {
 //
 
 router.get("/logout", (req, res, next) => {
+  req.flash('message', 'You are successfully log out');
   req.logout();
-  res.redirect("/auth/register");
+  res.redirect("/auth/successfully-logout");
+  // res.redirect("/auth/register");
 });
+
+router.get("/successfully-logout", (req, res, next) => {
+  res.render("../views/logout", {
+    isLoggedIn: null,
+    SignUp: "Yes"
+  });
+});
+
 
 module.exports = router;

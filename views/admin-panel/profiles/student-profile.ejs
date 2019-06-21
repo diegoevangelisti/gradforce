@@ -130,7 +130,7 @@
                                     <p style="background-color:rgba(0, 0, 0, 0.008);">
                                         <span class="student-title"><%= element.role  %></span><br>
                                         <span><%= element.company %></span><br>
-                                        <span><%= element.country  %></span><br>
+                                        <!-- <span><%= element.country  %></span><br> -->
                                         <span><%= element.start_date %> - <%= element.end_date  %> </span><br>
                                         <span><%= element.description %></span>
                                     </p>
@@ -144,7 +144,6 @@
                             <% if((user.education.length)){ %>
                             <hr>
                             <p class="inline student-title big">Education</p>
-
                             <% user.education.forEach(function(element, i){ %>
                             <p style="background-color:rgba(0, 0, 0, 0.008);">
                                 <span class="student-title"><%= element.course%></span><br>

@@ -4,7 +4,7 @@
 <head>
     <script>
         window.onload = function () {
-            
+
             //UserType = Student as default
             postForm('/auth/register/usertype?userType=Student')
             setTimeout(function () {
@@ -69,7 +69,14 @@
         </div>
 
         <!-- home page registration form -->
+
         <div id="register">
+            <% if(message && message.length > 0) { %>
+            <div class="alert warning register">
+                <img class="vertical" src="/assets/img/icons/warning.png" alt=""><span class="message vertical ml10">
+                    <%= message %></span>
+            </div>
+            <% } %>
             <form id="formContainer" action="/auth/register" method="POST">
                 <h3 id="title" class="mb15">Sign up now</h3>
                 <span id="student">

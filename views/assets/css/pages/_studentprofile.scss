@@ -1,5 +1,6 @@
 #std-profile {
   margin-top: 3rem;
+
   h1 {
     margin: 0;
   }
@@ -16,17 +17,20 @@
 }
 
 .year {
-  width: 80px;
+  width: 90px;
   max-width: 80%;
 }
+
 .course {
   width: 400px;
   max-width: 80%;
 }
-.provider{
+
+.provider {
   width: 400px;
   max-width: 80%;
 }
+
 .about {
   width: 700px;
   max-width: 100%;
@@ -35,4 +39,14 @@
 .sub-title {
   font-size: 18px;
   padding: 15px 16px;
+}
+
+.description {
+  width: 600px;
+  max-width: 100%;
+}
+
+.role, .company {
+  width: 350px;
+  max-width: 80%;
 }

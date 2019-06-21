@@ -6,9 +6,11 @@ const User = require("../models/users");
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
-  }
-  res.redirect("./auth/login");
+  } 
+  var message = "Wrong log in credentials";
+  res.redirect("./auth/login/?message=?" + message);
 }
+//Profile
 
 //Get Student's profile
 
@@ -19,7 +21,6 @@ router.get("/", isLoggedIn, (req, res) => {
   });
   console.log("User: " + req.user)
 });
-
 
 //Update Work Experience
 

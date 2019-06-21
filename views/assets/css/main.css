@@ -393,7 +393,7 @@ body #header .menu {
   border-top: 4px solid #e5e5e5;
   font-size: 12px;
   margin-top: 3rem;
-  max-height: 580px;
+  max-height: 610px;
 }
 
 #landing_page #register p {
@@ -434,7 +434,7 @@ body #header .menu {
 }
 
 .year {
-  width: 80px;
+  width: 90px;
   max-width: 80%;
 }
 
@@ -456,6 +456,16 @@ body #header .menu {
 .sub-title {
   font-size: 18px;
   padding: 15px 16px;
+}
+
+.description {
+  width: 600px;
+  max-width: 100%;
+}
+
+.role, .company {
+  width: 350px;
+  max-width: 80%;
 }
 
 * {

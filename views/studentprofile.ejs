@@ -172,10 +172,11 @@
           <form id="edit-about-form" action="/profile/update-about/<%= user._id%>?_method=PUT" method="POST">
             <div id="edit-form-content">
               <label for="about-summary" class="mb10 mt10">
-                Define yourself in a <span style="font-weight: bold">short sentence</span>  
+                Define yourself in a <span style="font-weight: bold">short sentence</span>
               </label>
               <br>
-              <input maxlength="90" name="summary" id="about-summary" class="about text-input mt10 mb10" value="<%= user.about %>">
+              <input maxlength="90" name="summary" id="about-summary" class="about text-input mt10 mb10"
+                value="<%= user.about %>">
             </div>
             <div class="modal-footer">
               <div id="modal-footer-buttons">
@@ -358,7 +359,7 @@
               </div>
               <div id="end-year-edit">
                 <label for="previous-start-year-edit" class="mb2">
-                  End Year
+                  End Year (or Present)
                 </label>
                 <br>
                 <input id="end_year" class="year text-input mb10" type="text" name="end_year_edu" value="">
@@ -425,7 +426,7 @@
               <div id="current-study" style="display: none">
                 <div id="current-providers">
                   <p class="mt10 mb2">Where are you<span style="font-weight: bold"> currently </span>studying?</p>
-                  <select name="current_provider" id="current_provider_list" class="text-input mb10" type="text">
+                  <select name="current_provider" id="current_provider_list" class="provider text-input mb10" type="text">
                     <option>Abacus Institute of Studies (Auckland)</option>
                     <option>AGI (Auckland)</option>
                     <option>AMES - The Institute of IT (Auckland)</option>
@@ -506,7 +507,7 @@
                 </div>
                 <div id="current-end-year">
                   <label for="end_yer" class="mb2">
-                    End Year
+                    End Year (or Present)
                   </label>
                   <br>
                   <input id="current_end_year" class="year text-input mb10" type="text" name="current_end_year"
@@ -603,7 +604,7 @@
                 </div>
                 <div id="previous-end-year">
                   <label for="previous_end_yer" class="mb2">
-                    End Year
+                    End Year (or Present)
                   </label>
                   <br>
                   <input id="end_year" class="year text-input mb10" type="text" name="previous_end_year" value="">
@@ -705,10 +706,10 @@
                 </div>
                 <div id="previous-end-year">
                   <label for="previous_end_year" class="mb2">
-                    End Year
+                    End Year (or Present)
                   </label>
                   <br>
-                  <input id="end_year" class="text-input mb10" type="text" name="other_previous_end_year" value="">
+                  <input id="end_year" class="year text-input mb10" type="text" name="other_previous_end_year" value="">
                 </div>
               </div>
               <!-- Button to cancel adding other previous education -->
@@ -837,7 +838,7 @@
                 </div>
                 <div id="previous-end-year">
                   <label for="previous_end_year" class="mb2">
-                    End Year
+                    End Year (or Present)
                   </label>
                   <br>
                   <input id="end_year" class="year text-input mb10" type="text" name="other_previous_end_year" value="">
@@ -873,12 +874,12 @@
       <% user.work.forEach(function(element, i){ %>
       <% count = count + 1; %>
       <div class="experience-info">
+
+        <% if(i == 0) { %>
         <a class="delbtn" id="std-experience-delete-<%= i %>">
-          <img class="" src="assets/img/icons/del.png" alt="del icon"><a class="editbtn"
-            id="std-experience-edit-<%= i %>">
+          <img src="assets/img/icons/del.png" alt="del icon"><a class="editbtn" id="std-experience-edit-<%= i %>">
             <img src="assets/img/icons/edit.png" alt="edit icon">
           </a>
-          <% if(i == 0) { %>
           <p class="inline" style="font-weight: bold"><%= element.role%></p>
           <br>
           <p class="inline"><%= element.company%></p>
@@ -888,21 +889,24 @@
           <p class="inline"><%= element.end_date%></p>
           <br>
           <p class="inline"><%= element.description%></p>
-          <% } %>
-          <% if(i) { %>
-            <hr class="mt15 mb15">
-          <p class="inline" style="font-weight: bold"><%= element.role%></p>
-          <br>
-          <p class="inline"><%= element.company%></p>
-          <br>
-          <p class="inline"><%= element.start_date%></p>
-          <p class="inline"> - </p>
-          <p class="inline"><%= element.end_date%></p>
-          <br>
-          <p class="inline"><%= element.description%></p>
-          <% } %>
-          <% }) %>
+          <% } else { %>
+          <hr class="mb15 mt15">
+          <a class="delbtn" id="std-experience-delete-<%= i %>">
+            <img src="assets/img/icons/del.png" alt="del icon"><a class="editbtn" id="std-experience-edit-<%= i %>">
+              <img src="assets/img/icons/edit.png" alt="edit icon">
+            </a>
+            <p class="inline" style="font-weight: bold"><%= element.role%></p>
+            <br>
+            <p class="inline"><%= element.company%></p>
+            <br>
+            <p class="inline"><%= element.start_date%></p>
+            <p class="inline"> - </p>
+            <p class="inline"><%= element.end_date%></p>
+            <br>
+            <p class="inline"><%= element.description%></p>
+            <% } %>
       </div>
+      <% }) %>
     </div>
 
     <!-- Modal for experience section -->
@@ -941,14 +945,14 @@
                 End Year (or Present)
               </label>
               <br>
-              <input id="end_year" class="text-input mb10" type="text" name="end_year" value="">
+              <input id="end_year" class="year text-input mb10" type="text" name="end_year" value="">
             </div>
             <div id="edit-form-content">
               <label for="" class="mb2">
                 Description
               </label>
               <br>
-              <input id="work_description" class="text-input mb10" type="text" name="work_description" value="">
+              <input id="work_description" class="description text-input mb10" type="text" name="work_description" value="">
             </div>
             <input type="hidden" id="experienceNumber" name="experienceNumber" type="text">
             <div class="modal-footer">
@@ -979,14 +983,14 @@
                 What is/was your <span style="font-weight: bold"> Role</span>?
               </label>
               <br>
-              <input id="role" class="text-input mb10" type="text" name="role" value="">
+              <input id="role" class="role text-input mb10" type="text" name="role" value="">
             </div>
             <div id="edit-form-content" class="mt10">
               <label for="" class="mb2">
                 Company name
               </label>
               <br>
-              <input id="company" class="text-input mb10" type="text" name="company" value="">
+              <input id="company" class="company text-input mb10" type="text" name="company" value="">
             </div>
             <div id="edit-form-content" class="mt10">
               <label for="" class="mb2">
@@ -1000,14 +1004,14 @@
                 End Year (or Present)
               </label>
               <br>
-              <input id="end_year" class="text-input mb10" type="text" name="end_year" value="">
+              <input id="end_year" class="year text-input mb10" type="text" name="end_year" value="">
             </div>
             <div id="edit-form-content">
               <label for="" class="mb2">
                 Description of your position in just a few words...
               </label>
               <br>
-              <input id="work_description" class="text-input mb10" type="text" name="work_description" value=""
+              <input id="work_description" class="description text-input mb10" type="text" name="work_description" value=""
                 placeholder="Ex: Front end developer, Designer, Help-desk, ...">
             </div>
             <input type="hidden" id="experienceNumber" name="experienceNumber" type="text">
@@ -1487,14 +1491,13 @@
 
   <!-- Added for pop up message -->
   <% popupCounter = 0 %>
-  <% if(user.status == "Profile Incomplete" && popupCounter == 0){ %>
+  <% if(user.status == "Profile Complete" && popupCounter == 0){ %>
   <% popupCounter = 1 %>
   <script>
     var lastFocus;
 
     function onPopupOpen() {
       $("#std-profile").focus();
-
     }
 
     function onPopupClose() {
@@ -1523,7 +1526,7 @@
     }
 
     setTimeout(function () {
-      //var popupShown = 0;
+     // var popupShown = 0;
       var popupShown = Cookies.get('colorboxShown');
 
       if (popupShown) {
