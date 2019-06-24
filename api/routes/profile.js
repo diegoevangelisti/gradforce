@@ -6,7 +6,7 @@ const User = require("../models/users");
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
-  } 
+  }
   var message = "Wrong log in credentials";
   res.redirect("./auth/login/?message=?" + message);
 }
@@ -15,10 +15,17 @@ function isLoggedIn(req, res, next) {
 //Get Student's profile
 
 router.get("/", isLoggedIn, (req, res) => {
-  res.render("../views/studentprofile", {
-    user: req.user,
-    isLoggedIn: true
-  });
+  if (req.user.userType == "Student") {
+    res.render("../views/studentprofile", {
+      user: req.user,
+      isLoggedIn: true
+    });
+  } else {
+    res.render("../views/employerprofile", {
+      user: req.user,
+      isLoggedIn: true
+    });
+  }
   console.log("User: " + req.user)
 });
 
