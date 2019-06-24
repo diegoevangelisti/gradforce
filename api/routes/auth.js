@@ -474,10 +474,9 @@ router.get("/login", (req, res, next) => {
 //
 
 router.get("/logout", (req, res, next) => {
-  req.flash('message', 'You are successfully log out');
+  req.flash('message', 'You have successfully logged out of GradForce');
   req.logout();
   res.redirect("/auth/successfully-logout");
-  // res.redirect("/auth/register");
 });
 
 router.get("/successfully-logout", (req, res, next) => {
