@@ -80,7 +80,8 @@
         <img class="editbtn" src="/assets/img/icons/edit.png" alt="edit icon">
       </a>
       <% if(user.img.data){ %>
-      <img class="centerimg mb10" style="max-width: 300px; max-height: 300px;" src="<%= user.img.data %>" alt="No photo">
+      <img class="centerimg mb10" style="max-width: 300px; max-height: 300px;" src="<%= user.img.data %>"
+        alt="No photo">
       <% } %>
       <% if(!user.img.data){ %>
       <img class="centerimg mb10" src="/assets/img/profile-placeholder.jpg" alt="No photo">
@@ -173,9 +174,7 @@
         <div class="mt20">
           <% } %>
           <% user.Skills.softs.forEach(function(skill, i) { %>
-          <span
-            style="background: rgb(180, 185, 189); margin-right: 10px; text-align: center; padding: 10px; border-radius: 3px"
-            class="mb10 inline"><%= skill %></span>
+          <span class="mb10 inline skill-card"><%= skill %></span>
           <% }) %>
         </div>
       </div>
@@ -1632,22 +1631,23 @@
 
           y = document.createElement('a'); // is a node
           y.setAttribute("href", img.src);
-          y.setAttribute("download", "<%= user._id %>_photo");
-          y.setAttribute("target", "/assets/img/");
           y.id = "newPhotoLink"
           fileDisplayArea.appendChild(y);
         }
-
         reader.readAsDataURL(file);
+
       } else {
         fileDisplayArea.innerHTML = "File not supported!"
       }
     });
 
-
     document.getElementById("detailsSubmit").onclick = () => {
 
-      document.getElementById("newPhoto").value = document.getElementById("newPhotoLink").href;
+      var newPhotoLink = document.getElementById("newPhotoLink").href;
+
+      if (newPhotoLink)
+        document.getElementById("newPhoto").value = newPhotoLink;
+
       $("#edit-details-form").submit();
     }
   </script>

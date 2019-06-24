@@ -46,7 +46,8 @@
   max-width: 100%;
 }
 
-.role, .company {
+.role,
+.company {
   width: 350px;
   max-width: 80%;
 }
@@ -55,9 +56,28 @@
   width: 300px;
 }
 
+.skill-card {
+  background: rgb(235, 232, 232);
+  margin-right: 10px;
+  font-size: 12px;
+  text-align: center;
+  padding: 10px;
+  border-radius: 3px;
+  margin-top: 2px;
+}
+.skill-card:hover{
+  opacity: 0.7;
+  cursor: default;
+}
+
 .profile-img {
   margin-top: 2em;
   width: 200px;
   max-height: 200px;
   overflow-x: auto;
+}
+
+img:hover {
+
+  opacity: 0.6;
 }
