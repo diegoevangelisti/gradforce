@@ -79,14 +79,14 @@
       <a id="std-details-edit">
         <img class="editbtn" src="/assets/img/icons/edit.png" alt="edit icon">
       </a>
-      <% if(user.img.data){ %>
-      <img class="centerimg mb10" style="max-width: 300px; max-height: 300px;" src="<%= user.img.data %>" alt="No photo">
+      <% if(user.photo){ %>
+      <img class="centerimg mb10" style="max-width: 300px; max-height: 300px;" src="<%= user.photo%>" alt="No photo">
       <% } %>
-      <% if(!user.img.data){ %>
+      <% if(!user.photo){ %>
       <img class="centerimg mb10" src="/assets/img/profile-placeholder.jpg" alt="No photo">
       <% } %>
-      <h1 class="center" id="title"><%= user.fname %> <%= user.lname %></h1>
-      <h2 class="center mb15" id="title"><%= user.title %></h2>
+      <h1 class="center" id="companyName"><%= user.companyName %></h1>
+      <!-- <h2 class="center mb15" id="title"><%= user.title %></h2> -->
       <hr class="mb10">
       <h2 class="mb10">Contact Information</h2>
       <label for="email">Email address:</label>
@@ -94,8 +94,8 @@
       <% if(user.phone_number){ %>
       <label for="phone">Phone number:</label>
       <p class="mb10"><%= user.phone_number%></p>
+      <% } %>
     </div>
-
 
     <!-- Modal for details section -->
     <div id="details-modal" class="modal">
@@ -105,39 +105,22 @@
           <h1>Personal Details</h1>
         </div>
         <div class="modal-body">
-          <form id="edit-details-form" action="/profile/update-details/<%= user._id %>?_method=PUT" method="POST">
+          <form id="edit-about-form" action="/profile/update-details/<%= user._id %>?_method=PUT" method="POST">
             <div id="edit-form-content">
               <label for="fname" class="mb2">
-                Profile photo
+                Company name
               </label>
               <br>
-              <div>
-                Select an image file:
-                <input type="file" id="fileInput">
-                <input type="hidden" name="newPhoto" id="newPhoto">
-              </div>
-              <div id="fileDisplayArea"></div>
-            </div>
-            <div id="edit-form-content">
-              <label for="fname" class="mb2">
-                First Name
-              </label>
-              <br>
-              <input name="fname" id="fname" class="text-input mb10" value="<%= user.fname%>">
-            </div>
-            <div id="edit-form-content">
-              <label for="lname" class="mb2">
-                Last Name
-              </label>
-              <br>
-              <input name="lname" id="lname" class="text-input mb10" value="<%= user.lname%>">
+              <input placeholder="Company name" name="companyName" id="company" class="text-input mb10" value="<%= user.companyName%>">
             </div>
             <div id="edit-form-content">
               <label for="title" class="mb2">
-                Title
+                Contact person
               </label>
               <br>
-              <input name="title" id="title" class="text-input mb10" value="<%= user.title%>">
+              <input placeholder="First name" name="fname" id="fname" class="text-input mb10" value="<%= user.fname%>">
+              <input placeholder="Last name" name="lname" id="lname" class="text-input mb10" value="<%= user.lname%>">
+            </div>
             </div>
             <div id="edit-form-content">
               <label for="phone" class="mb2">
@@ -151,7 +134,7 @@
                 <button type="button" id="cancel" class="btn btnGreen btnGray mt10">
                   <span id="closeDetails" onclick="closeModal(id)">Cancel</span>
                 </button>
-                <button id="detailsSubmit" type="button" class="btn btnGreen mt10">
+                <button type="submit" class="btn btnGreen mt10">
                   <span>Save</span>
                 </button>
               </div>
@@ -167,17 +150,8 @@
         <a id="std-about-edit">
           <img class="editbtn" src="assets/img/icons/edit.png" alt="edit icon">
         </a>
-        <h1 class="mb20">About me</h1>
-        <p class="mb20"><%= user.about%></p>
-        <h1 class="mb20">My Skills</h1>
-        <div class="mt20">
-          <% } %>
-          <% user.Skills.softs.forEach(function(skill, i) { %>
-          <span
-            style="background: rgb(180, 185, 189); margin-right: 10px; text-align: center; padding: 10px; border-radius: 3px"
-            class="mb10 inline"><%= skill %></span>
-          <% }) %>
-        </div>
+        <h1 class="mb20">About the company</h1>
+        <p><%= user.about%></p>
       </div>
     </div>
     <!-- About popup for editing -->
@@ -187,36 +161,19 @@
       <div class="modal-content">
         <div class="modal-header">
           <span class="close" id="closeAbout" onclick="closeModal(id)">&times;</span>
-          <h1>About you</h1>
+          <h1>About the company</h1>
         </div>
         <div class="modal-body">
           <form id="edit-about-form" action="/profile/update-about/<%= user._id%>?_method=PUT" method="POST">
             <div id="edit-form-content">
               <label for="about-summary" class="mb10 mt10">
-                Define yourself in a <span style="font-weight: bold">short sentence</span>
+                Industry
               </label>
               <br>
               <input maxlength="90" name="summary" id="about-summary" class="about text-input mt10 mb10"
                 value="<%= user.about %>">
-              <!-- Skills -->
-              <label for="about-summary" class="mb10 mt10">
-                Enter your <span style="font-weight: bold">Skills</span>
-              </label>
-              <br>
-
-              <div id="student-skills-parent">
-                <div id="student-skills">
-                  <input id="skill" name="skills[]" list="skills-list" class="skills text-input mt10 mb10">
-                  <datalist id="skills-list">
-                    <% skills.forEach(function(skills, i){ %>
-                    <option value="<%= skills.name %>"><%= skills.name %></option>
-                    <% }) %>
-                  </datalist>
-                </div>
-              </div>
-              <input style="padding: 10px;" value="Add" type="button" id="add" class="btn btnGreen btnGray mt10">
             </div>
-            <div class=" modal-footer">
+            <div class="modal-footer">
               <div id="modal-footer-buttons">
                 <button type="button" id="cancel" class="btn btnGreen btnGray mt10">
                   <span id="closeAbout" onclick="closeModal(id)">Cancel</span>
@@ -237,7 +194,7 @@
         <a id="add-education" class="addbtn">
           <img src="assets/img/icons/add.png" alt="add icon">
         </a>
-        <h1 class="mb20">My Education</h1>
+        <h1 class="mb20">Skills needed</h1>
 
       </div>
       <!-- Show all Education -->
@@ -901,15 +858,16 @@
 
 
     <!-- work experience -->
-    <div id="std-experience" class="box">
+    
+    <!-- <div id="std-experience" class="box">
       <div>
         <a class="addbtn" id="add-experience">
           <img src="assets/img/icons/add.png" alt="edit icon">
         </a>
-        <h1 class="mb20">My Work Experience</h1>
+        <h1 class="mb20">Your Work Experience</h1>
       </div>
       <% count = 0 %>
-      <!-- Show all work experience -->
+
       <% user.work.forEach(function(element, i){ %>
       <% count = count + 1; %>
       <div class="experience-info">
@@ -945,8 +903,9 @@
             <p class="inline"><%= element.description%></p>
             <% } %>
       </div>
-      <% }) %>
-    </div>
+      <% }) %> 
+    </div> -->
+    
 
     <!-- Modal for experience section -->
     <div id="experience-modal" class="modal">
@@ -1578,79 +1537,6 @@
     }, 2000);
   </script>
   <% } %>
-
-  <script>
-    var elementId = 0;
-    document.getElementById("add").onclick = () => {
-
-      var skills = document.getElementById("student-skills");
-      var newSkills = skills.cloneNode();
-
-      newSkills.id = "student-skills" + elementId;
-
-      var input = document.getElementById("skill");
-      var list = document.getElementById("skills-list");
-
-      //Clone the list and input
-
-      var clonedInput = input.cloneNode();
-      clonedInput.setAttribute("list", "skills-list" + elementId);
-
-      var clonedList = list.cloneNode(true);
-      clonedList.id = "skills-list" + elementId;
-
-      newSkills.appendChild(clonedInput);
-      newSkills.appendChild(clonedList);
-
-      var skillsParent = document.getElementById("student-skills-parent");
-      skillsParent.appendChild(newSkills);
-      elementId++;
-
-    }
-  </script>
-  <script>
-    var fileInput = document.getElementById('fileInput');
-    var fileDisplayArea = document.getElementById('fileDisplayArea');
-    var y;
-
-    fileInput.addEventListener('change', function (e) {
-      var file = fileInput.files[0];
-      var imageType = /image.*/;
-
-      if (file.type.match(imageType)) {
-        var reader = new FileReader();
-
-        reader.onload = function (e) {
-          fileDisplayArea.innerHTML = "";
-
-          var img = new Image();
-          img.src = reader.result;
-          img.setAttribute("class", "profile-img");
-
-
-          fileDisplayArea.appendChild(img);
-
-          y = document.createElement('a'); // is a node
-          y.setAttribute("href", img.src);
-          y.setAttribute("download", "<%= user._id %>_photo");
-          y.setAttribute("target", "/assets/img/");
-          y.id = "newPhotoLink"
-          fileDisplayArea.appendChild(y);
-        }
-
-        reader.readAsDataURL(file);
-      } else {
-        fileDisplayArea.innerHTML = "File not supported!"
-      }
-    });
-
-
-    document.getElementById("detailsSubmit").onclick = () => {
-
-      document.getElementById("newPhoto").value = document.getElementById("newPhotoLink").href;
-      $("#edit-details-form").submit();
-    }
-  </script>
 </body>
 
 </html>
