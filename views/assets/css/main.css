@@ -46,7 +46,7 @@ p {
 }
 
 .btnGreen {
-  background: #78c697;
+  background: #78c697 !important;
   height: 40px;
 }
 
@@ -91,6 +91,11 @@ p {
 .delbtn {
   float: right;
   padding-right: 3px;
+}
+
+.other {
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 #header {

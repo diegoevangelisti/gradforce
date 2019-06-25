@@ -527,6 +527,13 @@
                   </select>
                   <input id="selected_current_provider" name="selected_current_provider" type="hidden"
                     style="display: none">
+                  <!-- Button to enter other provider, different than NZ options -->
+                  <div style="margin-bottom: 30px;">
+                    <input id="selected_current_provider_other" placeholder="Enter the provider name"
+                      class="provider text-input mb10" name="selected_current_provider_other" style="display: none">
+                    <button type="button" id="current-provider" class="btn btnGray other mt10">Enter other provider ...
+                    </button>
+                  </div>
                 </div>
                 <div id="current-course">
                   <label for="current_course" class="mb2">
@@ -552,12 +559,14 @@
                     value="">
                 </div>
               </div>
+
               <!-- Button to continue with Previous Study for Post-graduate -->
               <div>
                 <button id="next-education" style="display: none" type="button" class="btn btnGreen mt10 mb10">
                   <span id="nextEducation">Continue</span>
                 </button>
               </div>
+
               <!-- Previous Study for Post-graduate-->
               <div id="previous-study" style="display: none">
                 <div id="previous-provider">
@@ -625,6 +634,13 @@
                     <option>Yoobee School of Design (Wellington)</option>
                   </select>
                   <input id="selected_previous_provider" name="selected_previous_provider" type="hidden">
+                  <!-- Button to enter other provider, different than NZ options -->
+                  <div style="margin-bottom: 30px;">
+                    <input id="selected_previous_provider_other" placeholder="Enter the provider name"
+                      class="provider text-input mb10" name="selected_previous_provider_other" style="display: none">
+                    <button type="button" id="previous-provider-button" class="btn btnGray other mt10">Enter other provider ...
+                    </button>
+                  </div>
                 </div>
                 <div id="previous-course">
                   <label for="previous_course" class="mb2">
@@ -648,19 +664,19 @@
                   <input id="end_year" class="year text-input mb10" type="text" name="previous_end_year" value="">
                 </div>
               </div>
+
               <!-- Button to go back to Current Study -->
               <div>
                 <button id="back-education" style="display: none" type="button" class="btn btnGray mt10 mb10">
                   <span id="backEducation">Go back</span>
                 </button>
               </div>
+
               <!-- Add other previous education button -->
               <div id="add-other-previous-education-title" style="display: none">
                 <p class="title mt30 mb15">Add other previous education</p>
               </div>
-              <div>
-
-              </div>
+         
               <!-- Other Previous Study -->
               <div id="other-previous-study" style="display: none">
                 <div id="other_previous-provider">
@@ -856,8 +872,18 @@
                     <option>Yoobee School of Design (Christchurch)</option>
                     <option>Yoobee School of Design (Wellington)</option>
                   </select>
+                  <input class="course text-input mb10" type="text" placeholder="Enter the Education provider"
+                    id="selected_previous_provider_other_other" name="selected_previous_provider_other_other"
+                    style="display: none">
+
+                  <!-- Butto to enter other provider, different than NZ options -->
+                  <div style="margin-bottom: 30px;">
+                    <button type="button" id="other-provider" class="btn btnGray other mt10">Enter other provider ...
+                    </button>
+                  </div>
                   <input id="selected_previous_provider_other" name="selected_previous_provider_other" type="hidden"
                     style="display: none">
+
                 </div>
                 <div id="previous-course">
                   <label for="other_previous_course" class="mb2">
@@ -1436,7 +1462,6 @@
       nextEducation.style.display = "none";
       backEducation.style.display = "none";
       education_status.value = "Undergraduate";
-      //addOtherEducation.style.display = "block";
       otherEducation.style.display = "none";
       AddOtherEducationTitle.style.display = "none";
       cancelAddOtherEducation.style.display = "none";
@@ -1449,7 +1474,6 @@
       nextEducation.style.display = "none";
       backEducation.style.display = "none";
       education_status.value = "Graduate";
-      //addOtherEducation.style.display = "block";
       otherEducation.style.display = "none";
       AddOtherEducationTitle.style.display = "none";
       cancelAddOtherEducation.style.display = "none";
@@ -1463,7 +1487,6 @@
       nextEducation.style.display = "block";
       backEducation.style.display = "block";
       education_status.value = "Post-graduate";
-      //   addOtherEducation.style.display = "block";
       backEducation.style.display = "none"
       otherEducation.style.display = "none";
       AddOtherEducationTitle.style.display = "none";
@@ -1478,7 +1501,7 @@
       backEducation.style.display = "block"
       nextEducation.style.display = "none";
       education_status.value = "Post-graduate";
-      //   addOtherEducation.style.display = "block";
+
     }
 
     backEducation.onclick = () => {
@@ -1487,32 +1510,126 @@
       nextEducation.style.display = "block";
       backEducation.style.display = 'none';
       education_status.value = "Post-graduate";
-      //    addOtherEducation.style.display = "block";
+
     }
 
 
     function GetSelectedCurrentProvider() {
-      var e = document.getElementById("current_provider_list");
-      var result = e.options[e.selectedIndex].text;
-      document.getElementById("selected_current_provider").value = result;
+
+      //take value from "other provider" input
+      if (document.getElementById("selected_current_provider_other").value) {
+
+        var result = document.getElementById("selected_current_provider_other").value;
+        document.getElementById("selected_current_provider").value = result;
+        //or take value from options list
+      } else {
+        var e = document.getElementById("current_provider_list");
+        var result = e.options[e.selectedIndex].text;
+        document.getElementById("selected_current_provider").value = result;
+      }
+
       return result;
     }
 
 
     function GetSelectedPreviousProvider() {
-      var e = document.getElementById("previous_provider_list");
-      var result = e.options[e.selectedIndex].text;
-      document.getElementById("selected_previous_provider").value = result;
-      return result;
+
+      //take value from "other provider" input
+      if (document.getElementById("selected_previous_provider_other").value) {
+
+        var result = document.getElementById("selected_previous_provider_other").value;
+        document.getElementById("selected_previous_provider").value = result;
+
+      } else {
+        var e = document.getElementById("previous_provider_list");
+        var result = e.options[e.selectedIndex].text;
+        document.getElementById("selected_previous_provider").value = result;
+        return result;
+      }
     }
 
     function GetSelectedPreviousProviderOther() {
 
-      var e = document.getElementById("previous_provider_list_other");
-      var result_other = e.options[e.selectedIndex].text;
-      document.getElementById("selected_previous_provider_other").value = result_other;
+      //take value from "other provider" input
+      if (document.getElementById("selected_previous_provider_other_other").value) {
+
+        var result_other = document.getElementById("selected_previous_provider_other_other").value;
+        document.getElementById("selected_previous_provider_other").value = result_other;
+        //or take value from options list
+      } else {
+
+        var e = document.getElementById("previous_provider_list_other");
+        var result_other = e.options[e.selectedIndex].text;
+        document.getElementById("selected_previous_provider_other").value = result_other;
+
+      }
+
       return result_other;
     }
+
+    //Section: Add other provider
+    //Show input for other provider different than NZ options 
+    document.getElementById("other-provider").onclick = () => {
+
+      var x = document.getElementById("selected_previous_provider_other_other");
+      if (x.style.display === "none") {
+        document.getElementById("previous_provider_list_other").style.display = "none";
+        x.style.display = "block";
+        document.getElementById("other-provider").innerText = "Select a NZ provider";
+        document.getElementById("other-provider").className = "btn btnGray other mt10";
+
+      } else {
+        x.style.display = "none";
+        document.getElementById("previous_provider_list_other").style.display = "block";
+        x.value = "";
+        document.getElementById("other-provider").innerText = "Enter other provider ... ";
+        document.getElementById("other-provider").className = "btn btnGray other mt10";
+      }
+    }
+
+    //Section: Add current provider
+    //Show input for other provider different than NZ options 
+    document.getElementById("current-provider").onclick = () => {
+
+      var x = document.getElementById("selected_current_provider_other");
+      if (x.style.display === "none") {
+        document.getElementById("current_provider_list").style.display = "none";
+        x.style.display = "block";
+        document.getElementById("current-provider").innerText = "Select a NZ provider";
+        document.getElementById("current-provider").className = "btn btnGray other mt10";
+
+      } else {
+        x.style.display = "none";
+        document.getElementById("current_provider_list").style.display = "block";
+        x.value = "";
+        document.getElementById("current-provider").innerText = "Enter other provider ... ";
+        document.getElementById("current-provider").className = "btn btnGray other mt10";
+      }
+    }
+
+
+    //Section: Add previous provider 
+    //Show input for other provider different than NZ options 
+    document.getElementById("previous-provider-button").onclick = () => {
+
+      var x = document.getElementById("selected_previous_provider_other");
+      if (x.style.display === "none") {
+
+        x.style.display = "block";
+        document.getElementById("previous_provider_list").style.display = "none";
+        document.getElementById("previous-provider-button").innerText = "Select a NZ provider";
+        document.getElementById("previous-provider-button").className = "btn btnGray other mt10";
+
+      } else {
+
+        x.style.display = "none";
+        document.getElementById("previous_provider_list").style.display = "block";
+        x.value = "";
+        document.getElementById("previous-provider-button").innerText = "Enter other provider ... ";
+        document.getElementById("previous-provider-button").className = "btn btnGray other mt10";
+      }
+    }
+
 
     //Submit education form after saving the selected current and previous providers
     document.getElementById("education-form-submit").onclick = () => {
@@ -1533,6 +1650,8 @@
   <% if(user.status == "Profile Complete" && popupCounter == 0){ %>
   <% popupCounter = 1 %>
   <script>
+    //First log in pop up message
+
     var lastFocus;
 
     function onPopupOpen() {
@@ -1579,6 +1698,8 @@
   <% } %>
 
   <script>
+    //Student skills part
+
     var elementId = 0;
     document.getElementById("add").onclick = () => {
 

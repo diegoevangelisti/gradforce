@@ -18,7 +18,7 @@
 
 
 .btnGreen {
-    background: $c_green;
+    background: $c_green !important;
     height: 40px;
 
     img {
@@ -32,6 +32,8 @@
         padding-right: 10px;
         font-size: 15px;
     }
+
+
 }
 
 .btnGray {
@@ -63,4 +65,9 @@
 .delbtn {
     float: right;
     padding-right: 3px;
+}
+
+.other {
+    padding-left: 10px;
+    padding-right: 10px;
 }
