@@ -334,7 +334,7 @@ router.post('/forgetpassword', function (req, res, next) {
         to: user.email,
         from: '"GradForce" <gradforce.co.nz@gmail.com>',
         subject: 'GradForce Password Reset',
-        text: 'Hi ' + user.email + ', \n\n' + 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
+        text: 'Hi ' + user.email + ', \n\n' + 'You are receiving this because you have requested the reset of the password for your account.\n\n' +
           'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
           'http://' + req.headers.host + '/auth/reset/' + token + '\n\n' +
           'If you did not request this, please ignore this email and your password will remain unchanged.\n\n' +

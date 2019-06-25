@@ -379,6 +379,17 @@
                   <option>Yoobee School of Design (Christchurch)</option>
                   <option>Yoobee School of Design (Wellington)</option>
                 </select>
+                <input class="course text-input mb10" type="text" placeholder="Enter the Education provider"
+                  id="selected_edit_provider" name="selected_edit_provider" style="display: none">
+
+                <!-- Button to enter other provider, different than NZ options -->
+                <div style="margin-bottom: 30px;">
+                  <button type="button" id="edit-provider-button" class="btn btnGray other mt10">Enter other provider
+                    ...
+                  </button>
+                </div>
+                <input id="input_selected_edit_provider" name="input_selected_edit_provider" type="hidden"
+                  style="display: none">
               </div>
               <div id="course-edit">
                 <label for="course_edit" class="mb2">
@@ -407,7 +418,7 @@
                   <button type="button" id="cancel" class="btn btnGreen btnGray mt10">
                     <span id="closeEducation" onclick="closeModal(id)">Cancel</span>
                   </button>
-                  <button type="submit" class="btn btnGreen mt10">
+                  <button type="button" id="edit-provider-submit" class="btn btnGreen mt10">
                     <span>Save</span>
                   </button>
                 </div>
@@ -638,7 +649,8 @@
                   <div style="margin-bottom: 30px;">
                     <input id="selected_previous_provider_other" placeholder="Enter the provider name"
                       class="provider text-input mb10" name="selected_previous_provider_other" style="display: none">
-                    <button type="button" id="previous-provider-button" class="btn btnGray other mt10">Enter other provider ...
+                    <button type="button" id="previous-provider-button" class="btn btnGray other mt10">Enter other
+                      provider ...
                     </button>
                   </div>
                 </div>
@@ -676,7 +688,7 @@
               <div id="add-other-previous-education-title" style="display: none">
                 <p class="title mt30 mb15">Add other previous education</p>
               </div>
-         
+
               <!-- Other Previous Study -->
               <div id="other-previous-study" style="display: none">
                 <div id="other_previous-provider">
@@ -876,7 +888,7 @@
                     id="selected_previous_provider_other_other" name="selected_previous_provider_other_other"
                     style="display: none">
 
-                  <!-- Butto to enter other provider, different than NZ options -->
+                  <!-- Button to enter other provider, different than NZ options -->
                   <div style="margin-bottom: 30px;">
                     <button type="button" id="other-provider" class="btn btnGray other mt10">Enter other provider ...
                     </button>
@@ -1567,6 +1579,24 @@
       return result_other;
     }
 
+    function GetSelectedEditProvider() {
+
+      //take value from "other provider" input
+      if (document.getElementById("selected_edit_provider").value) {
+
+        var result_other = document.getElementById("selected_edit_provider").value;
+        document.getElementById("input_selected_edit_provider").value = result_other;
+        //or take value from options list
+      } else {
+
+        var e = document.getElementById("provider");
+        var result_other = e.options[e.selectedIndex].text;
+        document.getElementById("input_selected_edit_provider").value = result_other;
+
+      }
+      return result_other;
+    }
+
     //Section: Add other provider
     //Show input for other provider different than NZ options 
     document.getElementById("other-provider").onclick = () => {
@@ -1630,6 +1660,26 @@
       }
     }
 
+    //Edit education provider
+    document.getElementById("edit-provider-button").onclick = () => {
+
+      var x = document.getElementById("selected_edit_provider");
+      if (x.style.display === "none") {
+
+        x.style.display = "block";
+        document.getElementById("provider").style.display = "none";
+        document.getElementById("edit-provider-button").innerText = "Select a NZ provider";
+        document.getElementById("edit-provider-button").className = "btn btnGray other mt10";
+
+      } else {
+
+        x.style.display = "none";
+        document.getElementById("provider").style.display = "block";
+        x.value = "";
+        document.getElementById("edit-provider-button").innerText = "Enter other provider ... ";
+        document.getElementById("edit-provider-button").className = "btn btnGray other mt10";
+      }
+    }
 
     //Submit education form after saving the selected current and previous providers
     document.getElementById("education-form-submit").onclick = () => {
@@ -1642,6 +1692,12 @@
     document.getElementById("other-education-form-submit").onclick = () => {
       GetSelectedPreviousProviderOther();
       $("#add-other-education-form").submit();
+    }
+
+    //Submit edit education form after saving the changes
+    document.getElementById("edit-provider-submit").onclick = () => {
+      GetSelectedEditProvider();
+      $("#edit-education-form").submit();
     }
   </script>
 
