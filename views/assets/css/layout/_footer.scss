@@ -4,26 +4,12 @@
   #footer-container {
     #footer-top {
       border-bottom: solid 1px $c-white;
-
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-
-      #contact-info {
-        width: 40%;
-        
-      }
-
-      #contact-form {
-        width: 60%;
-        padding-left: 80px;
-      }
     }
+  }
 
-    #footer-bottom {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-    }
+  #footer-bottom {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    justify-content: space-between;
   }
 }

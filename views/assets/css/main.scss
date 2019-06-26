@@ -99,24 +99,10 @@ body {
   background: $c-bg;
 }
 
-// floats
-.float-left {
-  float: left;
+.block {
+  display: block;
+  width: 100%;
 }
-
-.float-right {
-  float: right;
-}
-
-.align-right {
-  text-align: right;
-}
-
-.align-left {
-  text-align: left;
-}
-
-
 
 .text-input {
   background: $c-white;
@@ -124,7 +110,6 @@ body {
   //box-sizing: border-box;
   height: 40px;
   padding: 3px 15px;
-
 }
 
 input {
@@ -247,13 +232,17 @@ hr {
 }
 
 .modal-header {
-  height: 70px;
+  height: 60px;
   padding: 15px 16px;
   background-color: $c-bg;
   border-bottom: 1px solid rgba(0, 0, 0, .15);
 }
 
 .modal-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 0.2rem;
+
   #edit-form-content {
     padding: 8px;
   }
@@ -273,13 +262,13 @@ hr {
 .modal-footer {
   background: $c-bg;
   height: 60px;
-  position: relative;
+  // position: relative;
   border-top: 1px solid rgba(0, 0, 0, .15);
 
   #modal-footer-buttons {
     position: absolute;
     right: 16px;
-    margin: 10px 0px;
+    // margin: 0px 0px;
 
     button {
       span {

@@ -1,4 +1,4 @@
-<div id="footer" class="darkbg">
+<div id="footer" class="darkbg mt50">
   <div id="footer-container" class="mb50 mt50">
 
     <div id="footer-top" class="pb50">
@@ -10,19 +10,26 @@
         <p>Email: gradforce.co.nz@gmail.com</p>
       </div>
       <div id="contact-form">
-        <h2 class="left-float align-left mt10">Send Us A Message:</h2>
+        <h2 class="mb15 mt30">Send Us A Message:</h2>
 
         <!-- footer contact form  -->
-        <form id="formContainer" action="/auth/register" method="POST" class="mt15">
-          <input id="name" class="text-input" type="text" name="name" placeholder="Name" value="" required>
-          <input id="email" class="text-input" type="email" name="email" placeholder="Email" value="" required>
-          <textarea rows="4" cols="50">Please write your message...</textarea>
-
-          <!-- Form registration button -->
-          <button id="next" class="btn btnGreen mb10">
-            <span>NEXT</span>
-            <img src="/assets/img/right_arrow.png" alt="arrow_png">
-          </button>
+        <form action="" class="full-row">
+          <div>
+            <label class="block" for="fullname">Your Full Name:</label>
+            <input type="text" name="fullname" id="fullname" placeholder="Your full name" required="required"
+              class="text-input block">
+          </div>
+          <div>
+            <label class="block" for="email">Your Email:</label>
+            <input type="email" name="email" id="inputEmail" placeholder="Email" required="required"
+              autofocus="autofocus" class="text-input block">
+          </div>
+          <div class="fullrow">
+            <label class="block" for="message">Your message:</label>
+            <textarea name="message" id="message" class="block"></textarea>
+          </div>
+          <div></div>
+          <button class="btn btnGreen" type="submit">Send message
         </form>
       </div>
     </div>
