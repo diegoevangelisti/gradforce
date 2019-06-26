@@ -11,5 +11,25 @@
     display: grid;
     grid-template-columns: repeat(3, auto);
     justify-content: space-between;
+
+    ul {
+      list-style: none;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      // line-height: 50px;
+    }
+
+    ul li {
+      float: left;
+    }
+
+    ul li a {
+      display: inline-block;
+      text-align: center;
+      text-decoration: none;
+      color: $c_white;
+      padding: 0 0.6rem;
+    }
   }
 }
