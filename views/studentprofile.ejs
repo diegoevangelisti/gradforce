@@ -259,13 +259,12 @@
       <% user.education.forEach(function(element, i){ %>
       <% counter = counter + 1; %>
       <div class="education-info">
-
+        <% if(i == 0) { %>
         <a class="delbtn" id="std-education-delete-<%= i %>">
           <img class="" src="assets/img/icons/del.png" alt="del icon">
         </a><a class="editbtn" id="std-education-edit-<%= i %>">
           <img class="" src="assets/img/icons/edit.png" alt="edit icon">
         </a>
-        <% if(i == 0) { %>
         <p class="inline" style="font-weight: bold"><%= element.course%></p>
         <br>
         <h2><%= element.educational_provider%></h2>
@@ -273,10 +272,13 @@
         <p class="inline"> - </p>
         <p class="inline"><%= element.end_date%></p>
         <br>
-
-        <% } %>
-        <% if(i) { %>
+        <% } else { %>
         <hr class="mt15 mb15">
+        <a class="delbtn" id="std-education-delete-<%= i %>">
+          <img class="" src="assets/img/icons/del.png" alt="del icon">
+        </a><a class="editbtn" id="std-education-edit-<%= i %>">
+          <img class="" src="assets/img/icons/edit.png" alt="edit icon">
+        </a>
         <p class="inline" style="font-weight: bold"><%= element.course%></p>
         <br>
         <h2><%= element.educational_provider%></h2>
