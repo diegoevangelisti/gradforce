@@ -1,6 +1,12 @@
-h1 {
+.title {
   font-family: 'Lato';
   font-size: 2rem;
+  font-weight: 300;
+}
+
+h1 {
+  font-family: 'Lato';
+  font-size: 1.5rem;
   font-weight: 300;
 }
 
@@ -94,40 +100,60 @@ p {
 }
 
 #footer {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1;
+      grid-template-columns: 1;
+  -ms-grid-rows: 2;
+      grid-template-rows: 2;
   color: #fff;
 }
 
 #footer #footer-container #footer-top {
   border-bottom: solid 1px #fff;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 0.5fr 3fr;
+      grid-template-columns: 1fr 0.5fr 3fr;
+  -ms-grid-rows: 1;
+      grid-template-rows: 1;
 }
 
 #footer #footer-container #footer-top #contact-info {
-  width: 40%;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-column: 1 / 2;
 }
 
 #footer #footer-container #footer-top #contact-form {
+  width: 100%;
+  -ms-grid-column: 3;
+  -ms-grid-column-span: 1;
+  grid-column: 3 / 4;
+  -ms-grid-row: 1;
+  grid-row: 1;
+}
+
+#footer #footer-container #footer-top #contact-form form input[type=text],
+#footer #footer-container #footer-top #contact-form form select {
+  width: 50%;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+#footer #footer-container #footer-top #contact-form form textarea {
+  float: right;
   width: 60%;
-  padding-left: 80px;
 }
 
 #footer #footer-container #footer-bottom {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (auto)[3];
+      grid-template-columns: repeat(3, auto);
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -226,12 +252,24 @@ body #footer {
   display: grid;
   -ms-grid-columns: 10% 1fr 10%;
       grid-template-columns: 10% 1fr 10%;
+  -ms-grid-rows: 2;
+      grid-template-rows: 2;
 }
 
 body #footer #footer-container {
   -ms-grid-column: 2;
   -ms-grid-column-span: 1;
   grid-column: 2/3;
+}
+
+body #footer #footer-container #footer-top {
+  -ms-grid-row: 1;
+  grid-row: 1;
+}
+
+body #footer #footer-container #contact-form {
+  -ms-grid-row: 2;
+  grid-row: 2;
 }
 
 #landing_page {
@@ -473,7 +511,6 @@ body #footer #footer-container {
 
 #landing_page #about {
   background: #F5F5F5;
-  margin-bottom: 4rem;
 }
 
 #landing_page #about #about-content {
@@ -794,7 +831,7 @@ hr {
 }
 
 .modal-header {
-  height: 70px;
+  height: 60px;
   padding: 15px 16px;
   background-color: #F5F5F5;
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
@@ -818,14 +855,12 @@ hr {
 .modal-footer {
   background: #F5F5F5;
   height: 60px;
-  position: relative;
   border-top: 1px solid rgba(0, 0, 0, 0.15);
 }
 
 .modal-footer #modal-footer-buttons {
   position: absolute;
   right: 16px;
-  margin: 10px 0px;
 }
 
 .modal-footer #modal-footer-buttons button span {

@@ -22,9 +22,18 @@ body {
   #footer {
     display: grid;
     grid-template-columns: 10% 1fr 10%;
+    grid-template-rows: 2;
 
     #footer-container {
       grid-column: 2/3;
+
+      #footer-top {
+        grid-row: 1;
+      }
+
+      #contact-form { 
+        grid-row: 2;
+      }
     }
   }
 }
