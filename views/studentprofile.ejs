@@ -60,6 +60,9 @@
         }
       }
     }
+
+    var increment = 0;
+    var elementId = 0;
   </script>
 </head>
 
@@ -214,6 +217,12 @@
                   </datalist>
                   <button id="delete-skill" type="button" class="btn btnGray inline">Delete
                   </button>
+                  <!-- <script id="script-to-del">
+                    document.getElementById('delete-skill' + (elementId)).onclick = function () {
+
+                      $('#student-skills' + (elementId)).remove();
+                    }
+                  </script> -->
                 </div>
               </div>
               <button id="add" type="button" class="btn btnGray mt20 mb20">
@@ -1765,10 +1774,6 @@
   </script>
   <% } %>
 
-  <script>
-    var elementId = 0;
-  </script>
-
   <% SkillCount = 0 %>
   <% user.Skills.softs.forEach(function(skill, i) { %>
   <% if(i) { %>
@@ -1810,10 +1815,10 @@
   <script>
     //Student skills part
 
-    var increment = "<%= SkillCount %>";
+    increment = "<%= SkillCount %>";
 
     document.getElementById("add").onclick = () => {
-      
+
       elementId++;
       var skills = document.getElementById("student-skills");
       var newSkills = skills.cloneNode();
@@ -1825,18 +1830,31 @@
       input.setAttribute("value", "");
       var list = document.getElementById("skills-list");
       var delSkill = document.getElementById("delete-skill");
+      var delScript = "$('#delete-skill" + (elementId) + "').on('click', function(){ " +
+        " $('#student-skills" + (elementId) + "').remove(); " +
+        "})";
+
+
 
       //Clone the list and input
 
       var clonedInput = input.cloneNode();
       clonedInput.setAttribute("list", "skills-list" + elementId);
 
-      var clonedList = list.cloneNode(true);
+      var clonedList = list.cloneNode();
       clonedList.id = "skills-list" + elementId;
 
       var clonedDel = delSkill.cloneNode();
       clonedDel.id = "delete-skill" + elementId;
       clonedDel.innerText = "Delete";
+
+      //to create the scripts to delete new skills
+
+      var parentSkills = document.getElementById("here");
+      var oldSkills = parentSkills.cloneNode();
+
+
+      parentSkills.append(delScript);
 
       newSkills.appendChild(clonedInput);
       newSkills.appendChild(clonedList);
@@ -1846,21 +1864,27 @@
       skillsParent.appendChild(newSkills);
       document.getElementById("student-skills" + elementId).style.display = "block";
 
+
+      var newScript = document.createElement("script");
+      var inlineScript = document.createTextNode(
+        "$('#delete-skill" + (elementId) + "').on('click', function(){ " +
+        " $('#student-skills" + (elementId) + "').remove(); " +
+        "})");
+
+      newScript.appendChild(inlineScript);
+      $("#del-skills-parent").append(newScript);
+
+
       increment++;
-
     }
-
   </script>
-
-
- 
 
   <script>
     var skillDeleteBtn = [];
     j = 0;
   </script>
 
-  <% for(i=0 ; i< SkillCount ; ++i) { %>
+  <% for(i=0 ; i< SkillCount; ++i) { %>
   <script>
     skillDeleteBtn[j] = "delete-skill" + (j + 1);
     ++j;
@@ -1872,11 +1896,10 @@
   </script>
 
   <% for(i=0 ; i< SkillCount; ++i) { %>
-  <script>
-    
+  <script id="here">
     document.getElementById(skillDeleteBtn[j]).onclick = function () {
-      console.log("clicked " + "<%= i +1 %>");
-      console.log("#student-skills<%= i +1  %>");
+        console.log("clicked " + "<%= i +1 %>");
+        console.log("#student-skills<%= i +1  %>");
         $("#student-skills<%= i +1  %>").remove();
       }
       ++j;
@@ -1938,6 +1961,10 @@
       $("#edit-details-form").submit();
     }
   </script>
+
+  <div id="del-skills-parent">
+  </div>
+
 </body>
 
 </html>
