@@ -56,6 +56,12 @@
   <% include ./partials/header %>
 
   <main id="login-page">
+    <% if(failure && failure.length > 0) { %>
+    <div class="alert warning">
+      <img class="vertical" src="/assets/img/icons/warning.png" alt=""><span class="message vertical ml10">
+        <%= failure %></span>
+    </div>
+    <% }%>
     <form action="/auth/reset/<%= token %>" method="POST">
       <h3 class="title-font mb10">Reset Password</h3>
       <p class="mb2">New Password</p>

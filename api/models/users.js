@@ -13,9 +13,17 @@ var userSchema = mongoose.Schema({
     resetPasswordExpires: Date,
     fname: String,
     lname: String,
+    companyName: String,
     DOB: String,
-    email: { type: String, unique: true, require: true },
-    photo: String,
+    email: {
+        type: String,
+        unique: true,
+        require: true
+    },
+    img: {
+        data: Buffer,
+        contentType: String
+    },
     phone_number: Number,
     title: String,
     status: String,

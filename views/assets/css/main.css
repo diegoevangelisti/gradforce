@@ -52,7 +52,7 @@ p {
 }
 
 .btnGreen {
-  background: #78c697;
+  background: #78c697 !important;
   height: 40px;
 }
 
@@ -386,7 +386,18 @@ body #footer #footer-container #footer-bottom #footer-links {
   -ms-grid-columns: 190px 190px;
       grid-template-columns: 190px 190px;
   margin: 10px;
-      grid-template-areas: "title title" "student employer" "email email" "fname lname" "phone phone" "password password" "terms terms" "next next" "facebook facebook" "google google" "signin signin" "other-logins other-logins";
+      grid-template-areas: "title title"
+ "student employer"
+ "email email"
+ "fname lname"
+ "phone phone"
+ "password password"
+ "terms terms"
+ "next next"
+ "facebook facebook"
+ "google google"
+ "signin signin"
+ "other-logins other-logins";
 }
 
 #landing_page #other-logins {
@@ -395,7 +406,9 @@ body #footer #footer-container #footer-bottom #footer-links {
   grid-gap: 0;
   -ms-grid-columns: 190px 190px;
       grid-template-columns: 190px 190px;
-      grid-template-areas: "facebook facebook" "google google" "signin signin";
+      grid-template-areas: "facebook facebook"
+ "google google"
+ "signin signin";
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -663,9 +676,40 @@ body #footer #footer-container #footer-bottom #footer-links {
   max-width: 100%;
 }
 
-.role, .company {
+.role,
+.company {
   width: 350px;
   max-width: 80%;
+}
+
+.skills {
+  width: 300px;
+}
+
+.skill-card {
+  background: #ebe8e8;
+  margin-right: 10px;
+  font-size: 12px;
+  text-align: center;
+  padding: 10px;
+  border-radius: 3px;
+  margin-top: 2px;
+}
+
+.skill-card:hover {
+  opacity: 0.7;
+  cursor: default;
+}
+
+.profile-img {
+  margin-top: 2em;
+  width: 200px;
+  max-height: 200px;
+  overflow-x: auto;
+}
+
+img:hover {
+  opacity: 0.6;
 }
 
 * {

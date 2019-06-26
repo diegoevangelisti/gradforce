@@ -79,7 +79,6 @@ passport.deserializeUser(function (sessionConstructor, done) {
 });
 
 
-
 //
 //Magic word for passport 
 //
@@ -112,13 +111,6 @@ app.use(function (req, res, next) {
   res.locals.message = req.flash("message");
   next();
 });
-
-/*
-app.get('/flash', function(req, res){
-  req.flash('message', 'Hi there!')
-  res.redirect('/');
-});*/
-
 
 //
 //GOOGLE AUTH
@@ -231,10 +223,14 @@ passport.use(new FacebookStrategy({
 //initialize body parser and morgan
 
 app.use(morgan('dev'));
-app.use(bodyParser.urlencoded({
-  extended: true
+app.use(bodyParser.json({
+  limit: "50mb"
 }));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  limit: "50mb",
+  extended: true,
+  parameterLimit: 50000
+}));
 
 app.use(function (req, res, next) {
   res.locals.login = req.isAuthenticated();
@@ -249,10 +245,13 @@ const profileRoutes = require('./api/routes/profile');
 const adminpanelRoutes = require('./api/routes/adminpanel');
 const mailRoutes = require('./api/routes/mail');
 
+
 app.use('/auth', authRoutes);
 app.use('/profile', profileRoutes);
 app.use('/adminpanel', adminpanelRoutes);
 app.use('/mail', mailRoutes);
+
+
 
 app.listen(process.env.PORT || 5000, async function () {
   console.log("listening on port " + (process.env.PORT || 5000));
@@ -261,8 +260,8 @@ app.listen(process.env.PORT || 5000, async function () {
 //MLAB HEROKU
 /*mongoose.connect("mongodb://backend:" + process.env.MLAB_PASSWORD + "@ds259596.mlab.com:59596/heroku_xk93l586", {
   useNewUrlParser: true
-})*/
--
+});*/
+
 //LOCAL HOSTING
 mongoose.connect("mongodb://localhost/gradforce-local", {
   useNewUrlParser: true,
