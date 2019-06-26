@@ -1,50 +1,15 @@
 #footer {
-  display: grid;
-  grid-template-columns: 1;
-  grid-template-rows: 2;
-
   color: $c-white;
 
   #footer-container {
     #footer-top {
       border-bottom: solid 1px $c-white;
-
-      display: grid;
-      grid-template-columns: 1fr 0.5fr 3fr;
-      grid-template-rows: 1;
-
-      #contact-info {
-        grid-column: 1 / 2;
-      }
-
-      #contact-form {
-        width: 100%;
-        grid-column: 3 / 4;
-        grid-row: 1;
-
-        form {
-
-          input[type=text],
-          select {
-            width: 50%;
-            display: inline-block;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-          }
-
-          textarea {
-            float: right;
-            width: 60%;
-          }
-        }
-      }
     }
+  }
 
-    #footer-bottom {
-      display: grid;
-      grid-template-columns: repeat(3, auto);
-      justify-content: space-between;
-    }
+  #footer-bottom {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    justify-content: space-between;
   }
 }

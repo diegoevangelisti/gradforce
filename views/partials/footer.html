@@ -10,14 +10,26 @@
         <p>Email: gradforce.co.nz@gmail.com</p>
       </div>
       <div id="contact-form">
-        <h2 class="left-float align-left mt10">Send Us A Message:</h2>
+        <h2 class="mb15 mt30">Send Us A Message:</h2>
 
         <!-- footer contact form  -->
-        <form action="">
-            <label class="float-left" for="name">Your Full Name:</label>
-            <input class="float-left" type="text" id="name" name="fullname" placeholder="Your name..">
-            <label class="float-left" for="email">Your Email:</label>
-            <input class="float-left" type="text" id="email" name="email" placeholder="Your name..">
+        <form action="" class="full-row">
+          <div>
+            <label class="block" for="fullname">Your Full Name:</label>
+            <input type="text" name="fullname" id="fullname" placeholder="Your full name" required="required"
+              class="text-input block">
+          </div>
+          <div>
+            <label class="block" for="email">Your Email:</label>
+            <input type="email" name="email" id="inputEmail" placeholder="Email" required="required"
+              autofocus="autofocus" class="text-input block">
+          </div>
+          <div class="fullrow">
+            <label class="block" for="message">Your message:</label>
+            <textarea name="message" id="message" class="block"></textarea>
+          </div>
+          <div></div>
+          <button class="btn btnGreen" type="submit">Send message
         </form>
       </div>
     </div>

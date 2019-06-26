@@ -99,24 +99,10 @@ body {
   background: $c-bg;
 }
 
-// floats
-.float-left {
-  float: left;
+.block {
+  display: block;
+  width: 100%;
 }
-
-.float-right {
-  float: right;
-}
-
-.align-right {
-  text-align: right;
-}
-
-.align-left {
-  text-align: left;
-}
-
-
 
 .text-input {
   background: $c-white;
@@ -256,6 +242,7 @@ hr {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 0.2rem;
+
   #edit-form-content {
     padding: 8px;
   }
