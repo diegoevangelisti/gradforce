@@ -73,6 +73,7 @@ router.put("/update-about/:id", isLoggedIn, (req, res) => {
 
   let id = req.params.id;
   let sk = req.body.skills;
+  
   console.log(sk);
 
   User.findByIdAndUpdate(id).then((user) => {
@@ -105,9 +106,9 @@ router.put("/update-details/:id", isLoggedIn, (req, res) => {
       user.lname = req.body.lname,
       user.companyName = req.body.companyName,
       user.phone_number = req.body.phone,
-      
+
       user.img.data = req.body.newPhoto;
-      user.img.contentType = 'image/png';
+    user.img.contentType = 'image/png';
 
     user.save()
       .then(user => {

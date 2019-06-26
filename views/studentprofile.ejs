@@ -72,7 +72,6 @@
       opacity: 0;
     }
   </style>
-  <!-- <div w3-include-html="/partials/header.ejs"></div> -->
   <% include ./partials/header %>
   <main id="std-profile">
     <div id="std-details" class="box">
@@ -174,7 +173,9 @@
         <div class="mt20">
           <% } %>
           <% user.Skills.softs.forEach(function(skill, i) { %>
+          <% if(i){ %>
           <span class="mb10 inline skill-card"><%= skill %></span>
+          <% } %>
           <% }) %>
         </div>
       </div>
@@ -202,25 +203,29 @@
                 Enter your <span style="font-weight: bold">Skills</span>
               </label>
               <br>
-
+              <!-- Add skills section -->
               <div id="student-skills-parent">
-                <div id="student-skills">
+                <div id="student-skills" style="display: none">
                   <input id="skill" name="skills[]" list="skills-list" class="skills text-input mt10 mb10">
                   <datalist id="skills-list">
                     <% skills.forEach(function(skills, i){ %>
                     <option value="<%= skills.name %>"><%= skills.name %></option>
                     <% }) %>
                   </datalist>
+                  <button id="delete-skill" type="button" class="btn btnGray inline">Delete
+                  </button>
                 </div>
               </div>
-              <input style="padding: 10px;" value="Add" type="button" id="add" class="btn btnGreen btnGray mt10">
+              <button id="add" type="button" class="btn btnGray mt20 mb20">
+                <span>Add new skill</span>
+              </button>
             </div>
             <div class=" modal-footer">
               <div id="modal-footer-buttons">
                 <button type="button" id="cancel" class="btn btnGreen btnGray mt10">
                   <span id="closeAbout" onclick="closeModal(id)">Cancel</span>
                 </button>
-                <button type="submit" class="btn btnGreen mt10">
+                <button type="button" id="submit-about-form" class="btn btnGreen mt10">
                   <span>Save</span>
                 </button>
               </div>
@@ -1190,6 +1195,7 @@
     //to delete
     let educationDeleteBtn = [];
     let experienceDeleteBtn = [];
+    let deleteSkillBtn = [];
 
     let i = 0;
   </script>
@@ -1209,6 +1215,11 @@
     ++j;
   </script>
   <% } %>
+
+  <script>
+    j = 0;
+  </script>
+
 
   <script>
     // Get the <span> elements that close the modals
@@ -1257,6 +1268,7 @@
       ++j;
   </script>
   <% } %>
+
 
   <!-- if education is empty open normal education modal -->
   <% if(!user.education.length) { %>
@@ -1754,18 +1766,65 @@
   <% } %>
 
   <script>
+    var elementId = 0;
+  </script>
+
+  <% SkillCount = 0 %>
+  <% user.Skills.softs.forEach(function(skill, i) { %>
+  <% if(i) { %>
+  <% SkillCount = SkillCount + 1; %>
+  <script>
+    elementId++;
+    var skills = document.getElementById("student-skills");
+    var newSkills = skills.cloneNode();
+    newSkills.id = "student-skills" + elementId;
+
+    var input = document.getElementById("skill");
+    input.setAttribute("placeholder", "Type your skill here");
+    input.setAttribute("value", "<%= skill %>")
+    var list = document.getElementById("skills-list");
+    var delSkill = document.getElementById("delete-skill");
+    //Clone the list and input
+
+    var clonedInput = input.cloneNode();
+    clonedInput.setAttribute("list", "skills-list" + elementId);
+
+    var clonedList = list.cloneNode(true);
+    clonedList.id = "skills-list" + elementId;
+
+    var clonedDel = delSkill.cloneNode();
+    clonedDel.id = "delete-skill" + elementId;
+    clonedDel.innerText = "Delete";
+
+    newSkills.appendChild(clonedInput);
+    newSkills.appendChild(clonedList);
+    newSkills.appendChild(clonedDel);
+
+    var skillsParent = document.getElementById("student-skills-parent");
+    skillsParent.appendChild(newSkills);
+
+    document.getElementById("student-skills" + elementId).style.display = "block";
+  </script>
+  <% } %>
+  <% }) %>
+  <script>
     //Student skills part
 
-    var elementId = 0;
-    document.getElementById("add").onclick = () => {
+    var increment = "<%= SkillCount %>";
 
+    document.getElementById("add").onclick = () => {
+      
+      elementId++;
       var skills = document.getElementById("student-skills");
       var newSkills = skills.cloneNode();
 
       newSkills.id = "student-skills" + elementId;
 
       var input = document.getElementById("skill");
+      input.setAttribute("placeholder", "Type your skill here");
+      input.setAttribute("value", "");
       var list = document.getElementById("skills-list");
+      var delSkill = document.getElementById("delete-skill");
 
       //Clone the list and input
 
@@ -1775,15 +1834,66 @@
       var clonedList = list.cloneNode(true);
       clonedList.id = "skills-list" + elementId;
 
+      var clonedDel = delSkill.cloneNode();
+      clonedDel.id = "delete-skill" + elementId;
+      clonedDel.innerText = "Delete";
+
       newSkills.appendChild(clonedInput);
       newSkills.appendChild(clonedList);
+      newSkills.appendChild(clonedDel);
 
       var skillsParent = document.getElementById("student-skills-parent");
       skillsParent.appendChild(newSkills);
-      elementId++;
+      document.getElementById("student-skills" + elementId).style.display = "block";
+
+      increment++;
 
     }
+
   </script>
+
+
+ 
+
+  <script>
+    var skillDeleteBtn = [];
+    j = 0;
+  </script>
+
+  <% for(i=0 ; i< SkillCount ; ++i) { %>
+  <script>
+    skillDeleteBtn[j] = "delete-skill" + (j + 1);
+    ++j;
+  </script>
+  <% } %>
+
+  <script>
+    j = 0;
+  </script>
+
+  <% for(i=0 ; i< SkillCount; ++i) { %>
+  <script>
+    
+    document.getElementById(skillDeleteBtn[j]).onclick = function () {
+      console.log("clicked " + "<%= i +1 %>");
+      console.log("#student-skills<%= i +1  %>");
+        $("#student-skills<%= i +1  %>").remove();
+      }
+      ++j;
+  </script>
+  <% } %>
+
+
+  <script>
+    document.getElementById("submit-about-form").onclick = () => {
+      $("#edit-about-form").submit();
+    }
+  </script>
+
+  </script>
+
+
+
   <script>
     var fileInput = document.getElementById('fileInput');
     var fileDisplayArea = document.getElementById('fileDisplayArea');
