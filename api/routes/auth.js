@@ -89,7 +89,7 @@ router.post("/register", (req, res, next) => {
             return res.render("../views/auth/register");
 
           }
-          res.redirect("login");
+          res.redirect("/profile");
         });
     }
   })

@@ -84,8 +84,9 @@
       <% if(user.img.data){ %>
       <img class="centerimg mb10" style="max-width: 300px; max-height: 300px;" src="<%= user.img.data %>"
         alt="No photo">
-      <% } %>
-      <% if(!user.img.data){ %>
+      <% } else if(user.photo) { %>
+        <img class="centerimg mb10" src="<%= user.photo %>" alt="No photo">
+      <% } else { %>
       <img class="centerimg mb10" src="/assets/img/profile-placeholder.jpg" alt="No photo">
       <% } %>
       <h1 class="center" id="title"><%= user.fname %> <%= user.lname %></h1>
@@ -168,7 +169,7 @@
       <!-- Trigger/Open The Modal -->
       <div class="about-info">
         <a id="std-about-edit">
-          <img class="editbtn" src="assets/img/icons/edit.png" alt="edit icon">
+          <img class="editbtn" src="/assets/img/icons/edit.png" alt="edit icon">
         </a>
         <h1 class="mb20">About me</h1>
         <p class="mb20"><%= user.about%></p>
@@ -217,12 +218,6 @@
                   </datalist>
                   <button id="delete-skill" type="button" class="btn btnGray inline">Delete
                   </button>
-                  <!-- <script id="script-to-del">
-                    document.getElementById('delete-skill' + (elementId)).onclick = function () {
-
-                      $('#student-skills' + (elementId)).remove();
-                    }
-                  </script> -->
                 </div>
               </div>
               <button id="add" type="button" class="btn btnGray mt20 mb20">
@@ -248,7 +243,7 @@
     <div id="std-education" class="box">
       <div>
         <a id="add-education" class="addbtn">
-          <img src="assets/img/icons/add.png" alt="add icon">
+          <img src="/assets/img/icons/add.png" alt="add icon">
         </a>
         <h1 class="mb20">My Education</h1>
 
@@ -261,9 +256,9 @@
       <div class="education-info">
         <% if(i == 0) { %>
         <a class="delbtn" id="std-education-delete-<%= i %>">
-          <img class="" src="assets/img/icons/del.png" alt="del icon">
+          <img class="" src="/assets/img/icons/del.png" alt="del icon">
         </a><a class="editbtn" id="std-education-edit-<%= i %>">
-          <img class="" src="assets/img/icons/edit.png" alt="edit icon">
+          <img class="" src="/assets/img/icons/edit.png" alt="edit icon">
         </a>
         <p class="inline" style="font-weight: bold"><%= element.course%></p>
         <br>
@@ -275,9 +270,9 @@
         <% } else { %>
         <hr class="mt15 mb15">
         <a class="delbtn" id="std-education-delete-<%= i %>">
-          <img class="" src="assets/img/icons/del.png" alt="del icon">
+          <img class="" src="/assets/img/icons/del.png" alt="del icon">
         </a><a class="editbtn" id="std-education-edit-<%= i %>">
-          <img class="" src="assets/img/icons/edit.png" alt="edit icon">
+          <img class="" src="/assets/img/icons/edit.png" alt="edit icon">
         </a>
         <p class="inline" style="font-weight: bold"><%= element.course%></p>
         <br>
@@ -969,8 +964,8 @@
 
         <% if(i == 0) { %>
         <a class="delbtn" id="std-experience-delete-<%= i %>">
-          <img src="assets/img/icons/del.png" alt="del icon"><a class="editbtn" id="std-experience-edit-<%= i %>">
-            <img src="assets/img/icons/edit.png" alt="edit icon">
+          <img src="/assets/img/icons/del.png" alt="del icon"><a class="editbtn" id="std-experience-edit-<%= i %>">
+            <img src="/assets/img/icons/edit.png" alt="edit icon">
           </a>
           <p class="inline" style="font-weight: bold"><%= element.role%></p>
           <br>
@@ -984,8 +979,8 @@
           <% } else { %>
           <hr class="mb15 mt15">
           <a class="delbtn" id="std-experience-delete-<%= i %>">
-            <img src="assets/img/icons/del.png" alt="del icon"><a class="editbtn" id="std-experience-edit-<%= i %>">
-              <img src="assets/img/icons/edit.png" alt="edit icon">
+            <img src="/assets/img/icons/del.png" alt="del icon"><a class="editbtn" id="std-experience-edit-<%= i %>">
+              <img src="/assets/img/icons/edit.png" alt="edit icon">
             </a>
             <p class="inline" style="font-weight: bold"><%= element.role%></p>
             <br>

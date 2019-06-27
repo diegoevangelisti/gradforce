@@ -24,6 +24,7 @@ var userSchema = mongoose.Schema({
         data: Buffer,
         contentType: String
     },
+    photo: String,
     phone_number: Number,
     title: String,
     status: String,
