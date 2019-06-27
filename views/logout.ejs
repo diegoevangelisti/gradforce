@@ -7,19 +7,6 @@
       setTimeout(function () {
         document.body.style.opacity = "100";
       }, 300);
-
-      var type = $(this).data('type');
-      var status = $(this).data('status');
-
-      $(this).addClass('is-active');
-
-      $('.notify')
-        .removeClass()
-        .attr('data-notification-status', 'active')
-        .addClass('bar' + ' notify')
-        .addClass('do-show');
-
-      event.preventDefault();
     }
   </script>
   <div w3-include-html="/partials/head.html"></div>
@@ -74,7 +61,7 @@
         <%= message %></span>
     </div>
     <div class="back">
-      <a href="/auth/register">Come back to Register page</a>
+      <a href="/auth/login">Click here to log back in</a>
     </div>
   </main>
   <% } %>

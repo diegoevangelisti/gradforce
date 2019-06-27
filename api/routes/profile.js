@@ -1,32 +1,42 @@
 var express = require("express");
 const router = express.Router();
 const User = require("../models/users");
+const Skill = require("../models/skills");
+var fs = require('fs');
 
 
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   }
-  var message = "Wrong log in credentials";
-  res.redirect("./auth/login/?message=?" + message);
+  res.redirect("./auth/login/");
 }
 //Profile
 
 //Get Student's profile
 
 router.get("/", isLoggedIn, (req, res) => {
-  if (req.user.userType == "Student") {
-    res.render("../views/studentprofile", {
-      user: req.user,
-      isLoggedIn: true
-    });
-  } else {
-    res.render("../views/employerprofile", {
-      user: req.user,
-      isLoggedIn: true
-    });
-  }
-  console.log("User: " + req.user)
+
+  Skill.find().then(skills => {
+
+    //Open Student's profile
+    if (req.user.userType == "Student") {
+      res.render("../views/studentprofile", {
+        skills: skills,
+        user: req.user,
+        isLoggedIn: true
+      });
+    } else {
+
+      //Open Employer's profile
+      res.render("../views/employerprofile", {
+        skills: skills,
+        user: req.user,
+        isLoggedIn: true
+      });
+    }
+    console.log("User: " + req.user)
+  })
 });
 
 //Update Work Experience
@@ -63,9 +73,13 @@ router.put("/update-work-experience/:id", isLoggedIn, (req, res) => {
 router.put("/update-about/:id", isLoggedIn, (req, res) => {
 
   let id = req.params.id;
+  let sk = req.body.skills;
+  
+  console.log(sk);
 
   User.findByIdAndUpdate(id).then((user) => {
 
+    user.Skills.softs = sk;
     user.about = req.body.summary
     user.save()
       .then(user => {
@@ -79,7 +93,6 @@ router.put("/update-about/:id", isLoggedIn, (req, res) => {
       });
   })
   res.redirect("/profile");
-
 });
 
 //Update Details information
@@ -92,8 +105,11 @@ router.put("/update-details/:id", isLoggedIn, (req, res) => {
 
     user.fname = req.body.fname,
       user.lname = req.body.lname,
-      user.title = req.body.title,
-      user.phone_number = req.body.phone
+      user.companyName = req.body.companyName,
+      user.phone_number = req.body.phone,
+
+      user.img.data = req.body.newPhoto;
+    user.img.contentType = 'image/png';
 
     user.save()
       .then(user => {
@@ -121,7 +137,7 @@ router.put("/update-education/:id", isLoggedIn, (req, res) => {
   User.findByIdAndUpdate(id).then((user) => {
 
     user.education[index].course = req.body.course
-    user.education[index].educational_provider = req.body.provider
+    user.education[index].educational_provider = req.body.input_selected_edit_provider
     user.education[index].start_date = req.body.start_year_edu
     user.education[index].end_date = req.body.end_year_edu
 

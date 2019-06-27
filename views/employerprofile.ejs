@@ -85,8 +85,8 @@
       <% if(!user.photo){ %>
       <img class="centerimg mb10" src="/assets/img/profile-placeholder.jpg" alt="No photo">
       <% } %>
-      <h1 class="center" id="title"><%= user.fname %> <%= user.lname %></h1>
-      <h2 class="center mb15" id="title"><%= user.title %></h2>
+      <h1 class="center" id="companyName"><%= user.companyName %></h1>
+      <!-- <h2 class="center mb15" id="title"><%= user.title %></h2> -->
       <hr class="mb10">
       <h2 class="mb10">Contact Information</h2>
       <label for="email">Email address:</label>
@@ -108,24 +108,19 @@
           <form id="edit-about-form" action="/profile/update-details/<%= user._id %>?_method=PUT" method="POST">
             <div id="edit-form-content">
               <label for="fname" class="mb2">
-                First Name
+                Company name
               </label>
               <br>
-              <input name="fname" id="fname" class="text-input mb10" value="<%= user.fname%>">
-            </div>
-            <div id="edit-form-content">
-              <label for="lname" class="mb2">
-                Last Name
-              </label>
-              <br>
-              <input name="lname" id="lname" class="text-input mb10" value="<%= user.lname%>">
+              <input placeholder="Company name" name="companyName" id="company" class="text-input mb10" value="<%= user.companyName%>">
             </div>
             <div id="edit-form-content">
               <label for="title" class="mb2">
-                Title
+                Contact person
               </label>
               <br>
-              <input name="title" id="title" class="text-input mb10" value="<%= user.title%>">
+              <input placeholder="First name" name="fname" id="fname" class="text-input mb10" value="<%= user.fname%>">
+              <input placeholder="Last name" name="lname" id="lname" class="text-input mb10" value="<%= user.lname%>">
+            </div>
             </div>
             <div id="edit-form-content">
               <label for="phone" class="mb2">
@@ -155,7 +150,7 @@
         <a id="std-about-edit">
           <img class="editbtn" src="assets/img/icons/edit.png" alt="edit icon">
         </a>
-        <h1 class="mb20">About you</h1>
+        <h1 class="mb20">About the company</h1>
         <p><%= user.about%></p>
       </div>
     </div>
@@ -166,13 +161,13 @@
       <div class="modal-content">
         <div class="modal-header">
           <span class="close" id="closeAbout" onclick="closeModal(id)">&times;</span>
-          <h1>About you</h1>
+          <h1>About the company</h1>
         </div>
         <div class="modal-body">
           <form id="edit-about-form" action="/profile/update-about/<%= user._id%>?_method=PUT" method="POST">
             <div id="edit-form-content">
               <label for="about-summary" class="mb10 mt10">
-                Define yourself in a <span style="font-weight: bold">short sentence</span>
+                Industry
               </label>
               <br>
               <input maxlength="90" name="summary" id="about-summary" class="about text-input mt10 mb10"
@@ -199,7 +194,7 @@
         <a id="add-education" class="addbtn">
           <img src="assets/img/icons/add.png" alt="add icon">
         </a>
-        <h1 class="mb20">Your Education</h1>
+        <h1 class="mb20">Skills needed</h1>
 
       </div>
       <!-- Show all Education -->
@@ -426,7 +421,8 @@
               <div id="current-study" style="display: none">
                 <div id="current-providers">
                   <p class="mt10 mb2">Where are you<span style="font-weight: bold"> currently </span>studying?</p>
-                  <select name="current_provider" id="current_provider_list" class="provider text-input mb10" type="text">
+                  <select name="current_provider" id="current_provider_list" class="provider text-input mb10"
+                    type="text">
                     <option>Abacus Institute of Studies (Auckland)</option>
                     <option>AGI (Auckland)</option>
                     <option>AMES - The Institute of IT (Auckland)</option>
@@ -862,7 +858,8 @@
 
 
     <!-- work experience -->
-    <div id="std-experience" class="box">
+    
+    <!-- <div id="std-experience" class="box">
       <div>
         <a class="addbtn" id="add-experience">
           <img src="assets/img/icons/add.png" alt="edit icon">
@@ -870,7 +867,6 @@
         <h1 class="mb20">Your Work Experience</h1>
       </div>
       <% count = 0 %>
-      <!-- Show all work experience -->
       <% user.work.forEach(function(element, i){ %>
       <% count = count + 1; %>
       <div class="experience-info">
@@ -906,8 +902,9 @@
             <p class="inline"><%= element.description%></p>
             <% } %>
       </div>
-      <% }) %>
-    </div>
+      <% }) %> 
+    </div> -->
+    
 
     <!-- Modal for experience section -->
     <div id="experience-modal" class="modal">
@@ -952,7 +949,8 @@
                 Description
               </label>
               <br>
-              <input id="work_description" class="description text-input mb10" type="text" name="work_description" value="">
+              <input id="work_description" class="description text-input mb10" type="text" name="work_description"
+                value="">
             </div>
             <input type="hidden" id="experienceNumber" name="experienceNumber" type="text">
             <div class="modal-footer">
@@ -1011,8 +1009,8 @@
                 Description of your position in just a few words...
               </label>
               <br>
-              <input id="work_description" class="description text-input mb10" type="text" name="work_description" value=""
-                placeholder="Ex: Front end developer, Designer, Help-desk, ...">
+              <input id="work_description" class="description text-input mb10" type="text" name="work_description"
+                value="" placeholder="Ex: Front end developer, Designer, Help-desk, ...">
             </div>
             <input type="hidden" id="experienceNumber" name="experienceNumber" type="text">
             <div class="modal-footer">
@@ -1526,7 +1524,7 @@
     }
 
     setTimeout(function () {
-     // var popupShown = 0;
+      // var popupShown = 0;
       var popupShown = Cookies.get('colorboxShown');
 
       if (popupShown) {

@@ -30,7 +30,6 @@ router.get("/register/usertype", (req, res, next) => {
   console.log("QUERY: " + req.query.userType);
   console.log("Session user type: " + req.session.userType);
   console.log("Session id: " + req.session.id);
-
   res.end('done');
 
 });
@@ -82,14 +81,15 @@ router.post("/register", (req, res, next) => {
           }
         }),
         req.body.password,
+
         function (err, user) {
           if (err) {
-            console.log(err);
-            console.log("User not added, please check the form");
-            return res.render("../views/auth/register");
-
+            res.redirect('/login');
+          } else {
+            passport.authenticate('local')(req, res, function () {
+              res.redirect('/profile');
+            })
           }
-          res.redirect("login");
         });
     }
   })
@@ -334,7 +334,7 @@ router.post('/forgetpassword', function (req, res, next) {
         to: user.email,
         from: '"GradForce" <gradforce.co.nz@gmail.com>',
         subject: 'GradForce Password Reset',
-        text: 'Hi ' + user.email + ', \n\n' + 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
+        text: 'Hi ' + user.email + ', \n\n' + 'You are receiving this because you have requested the reset of the password for your account.\n\n' +
           'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
           'http://' + req.headers.host + '/auth/reset/' + token + '\n\n' +
           'If you did not request this, please ignore this email and your password will remain unchanged.\n\n' +
@@ -364,10 +364,10 @@ router.get('/reset/:token', function (req, res) {
     }
   }, function (err, user) {
     if (!user) {
-      req.flash('error', 'Password reset token is invalid or has expired.');
-      return res.redirect('/auth/forgetpassword');
+      //passwords do not match
     }
     res.render("../views/reset", {
+      failure: req.flash("failure"),
       token: req.params.token,
       isLoggedIn: null,
       SignUp: null
@@ -385,14 +385,13 @@ router.post('/reset/:token', function (req, res) {
         }
       }, function (err, user) {
         if (!user) {
-          req.flash('error', 'Password reset token is invalid or has expired.');
+          req.flash("failure", "Token expired. Come back to Forget Password");
           return res.redirect('back');
         }
         if (req.body.password === req.body.confirm) {
           user.setPassword(req.body.password, function (err) {
             user.resetPasswordToken = undefined;
             user.resetPasswordExpires = undefined;
-
             user.save(function (err) {
               req.logIn(user, function (err) {
                 done(err, user);
@@ -400,7 +399,8 @@ router.post('/reset/:token', function (req, res) {
             });
           })
         } else {
-          req.flash("error", "Passwords do not match.");
+          //passwords do not match
+          req.flash("failure", "The passwords do not match. Try again");
           return res.redirect('back');
         }
       });
@@ -458,6 +458,7 @@ router.post('/login', function (req, res, next) {
 
 router.get("/login", (req, res, next) => {
 
+
   var passedVariable = req.query.message;
   console.log("THIS: " + passedVariable)
   res.render("../views/login", {
@@ -473,10 +474,9 @@ router.get("/login", (req, res, next) => {
 //
 
 router.get("/logout", (req, res, next) => {
-  req.flash('message', 'You are successfully log out');
+  req.flash('message', 'You have successfully logged out of GradForce');
   req.logout();
   res.redirect("/auth/successfully-logout");
-  // res.redirect("/auth/register");
 });
 
 router.get("/successfully-logout", (req, res, next) => {

@@ -52,7 +52,7 @@ p {
 }
 
 .btnGreen {
-  background: #78c697;
+  background: #78c697 !important;
   height: 40px;
 }
 
@@ -115,6 +115,32 @@ p {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+}
+
+#footer #footer-bottom ul {
+  list-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+#footer #footer-bottom ul li {
+  float: left;
+}
+
+#footer #footer-bottom ul li a {
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  padding: 0 0.6rem;
 }
 
 #header {
@@ -252,14 +278,60 @@ body #footer #footer-container #footer-top #contact-form {
 body #footer #footer-container #footer-top #contact-form form {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 1fr;
-      grid-template-columns: 1fr 1fr;
+  -ms-grid-columns: 1fr 1.7fr;
+      grid-template-columns: 1fr 1.7fr;
   grid-gap: 5px;
 }
 
+body #footer #footer-container #footer-top #contact-form form #fullname {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-column: 1/2;
+}
+
+body #footer #footer-container #footer-top #contact-form form #email {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-column: 1/2;
+  -ms-grid-row: 2;
+  grid-row: 2;
+}
+
 body #footer #footer-container #footer-top #contact-form form #message {
-  max-height: 120px;
-  min-height: 90px;
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-column: 2 / 3;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 2;
+  grid-row: 1/3;
+}
+
+body #footer #footer-container #footer-top #contact-form form button {
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-column: 2 /3;
+  -ms-grid-row: 3;
+  grid-row: 3;
+  -ms-grid-column-align: end;
+      justify-self: end;
+  width: 130px;
+}
+
+body #footer #footer-container #footer-bottom {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+}
+
+body #footer #footer-container #footer-bottom #social-network-icons {
+  -ms-grid-column-align: center;
+      justify-self: center;
+}
+
+body #footer #footer-container #footer-bottom #footer-links {
+  -ms-grid-column-align: end;
+      justify-self: end;
 }
 
 .fullrow {
@@ -314,7 +386,18 @@ body #footer #footer-container #footer-top #contact-form form #message {
   -ms-grid-columns: 190px 190px;
       grid-template-columns: 190px 190px;
   margin: 10px;
-      grid-template-areas: "title title" "student employer" "email email" "fname lname" "phone phone" "password password" "terms terms" "next next" "facebook facebook" "google google" "signin signin" "other-logins other-logins";
+      grid-template-areas: "title title"
+ "student employer"
+ "email email"
+ "fname lname"
+ "phone phone"
+ "password password"
+ "terms terms"
+ "next next"
+ "facebook facebook"
+ "google google"
+ "signin signin"
+ "other-logins other-logins";
 }
 
 #landing_page #other-logins {
@@ -323,7 +406,9 @@ body #footer #footer-container #footer-top #contact-form form #message {
   grid-gap: 0;
   -ms-grid-columns: 190px 190px;
       grid-template-columns: 190px 190px;
-      grid-template-areas: "facebook facebook" "google google" "signin signin";
+      grid-template-areas: "facebook facebook"
+ "google google"
+ "signin signin";
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -591,9 +676,40 @@ body #footer #footer-container #footer-top #contact-form form #message {
   max-width: 100%;
 }
 
-.role, .company {
+.role,
+.company {
   width: 350px;
   max-width: 80%;
+}
+
+.skills {
+  width: 300px;
+}
+
+.skill-card {
+  background: #ebe8e8;
+  margin-right: 10px;
+  font-size: 12px;
+  text-align: center;
+  padding: 10px;
+  border-radius: 3px;
+  margin-top: 2px;
+}
+
+.skill-card:hover {
+  opacity: 0.7;
+  cursor: default;
+}
+
+.profile-img {
+  margin-top: 2em;
+  width: 200px;
+  max-height: 200px;
+  overflow-x: auto;
+}
+
+img:hover {
+  opacity: 0.6;
 }
 
 * {
