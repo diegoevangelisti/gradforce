@@ -239,14 +239,6 @@ hr {
 }
 
 .modal-body {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 0.2rem;
-
-  // #edit-form-content {
-  //   padding: 8px;
-  // }
-
   label {
     font-family: 'Lato';
     font-size: 1rem;

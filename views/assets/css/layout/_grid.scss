@@ -272,15 +272,11 @@ body {
 
 
 // modals grids
-.modal form {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 5px;
-  padding: 10px;
+.modal-body {
 }
 
 
 // general classes for grids 
 .fullrow {
-  grid-column: 1 / -1;
+  grid-column: 1/-1;
 }
