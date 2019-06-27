@@ -78,4 +78,42 @@ router.post("/send-email/:id", (req, res) => {
 
 });
 
+
+router.post("/contact-us", (req, res) => {
+
+
+    let content = req.body.message;
+    let email = req.body.email;
+    let fullname = req.body.fullname;
+
+    //send mail to gradforce
+
+    async function main() {
+
+        var transporter = nodemailer.createTransport({
+            host: 'smtp.gmail.com',
+            port: 465,
+            secure: true, // use SSL
+            auth: {
+                user: 'gradforce.co.nz@gmail.com',
+                pass: process.env.GMAIL
+            }
+        });
+
+        let info = await transporter.sendMail({
+            to: '"GradForce" <gradforce.co.nz@gmail.com>',
+            from: '"GradForce" <gradforce.co.nz@gmail.com>',
+            subject: 'New message from Contact Us form',
+            text: "\nMessage from: " + fullname + " ("+email+")\n\n" +
+                "Message: \n\n" + content,
+        });
+        console.log("Message sent: %s", info.messageId);
+        console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+    }
+
+    main().catch(console.error);
+    res.redirect("back");
+});
+
+
 module.exports = router;

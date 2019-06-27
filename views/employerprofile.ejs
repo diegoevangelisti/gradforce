@@ -22,6 +22,7 @@
       setTimeout(function () {
         document.body.style.opacity = "100";
       }, 300);
+      window.scrollTo(0, 0);
     };
   </script>
 
@@ -72,7 +73,6 @@
       opacity: 0;
     }
   </style>
-  <!-- <div w3-include-html="/partials/header.ejs"></div> -->
   <% include ./partials/header %>
   <main id="std-profile">
     <div id="std-details" class="box">
@@ -105,13 +105,14 @@
           <h1>Personal Details</h1>
         </div>
         <div class="modal-body">
-          <form id="edit-about-form" action="/profile/update-details/<%= user._id %>?_method=PUT" method="POST">
+          <form id="edit-role-form" action="/profile/update-details/<%= user._id %>?_method=PUT" method="POST">
             <div id="edit-form-content">
               <label for="fname" class="mb2">
                 Company name
               </label>
               <br>
-              <input placeholder="Company name" name="companyName" id="company" class="text-input mb10" value="<%= user.companyName%>">
+              <input placeholder="Company name" name="companyName" id="company" class="text-input mb10"
+                value="<%= user.companyName%>">
             </div>
             <div id="edit-form-content">
               <label for="title" class="mb2">
@@ -121,56 +122,60 @@
               <input placeholder="First name" name="fname" id="fname" class="text-input mb10" value="<%= user.fname%>">
               <input placeholder="Last name" name="lname" id="lname" class="text-input mb10" value="<%= user.lname%>">
             </div>
-            </div>
-            <div id="edit-form-content">
-              <label for="phone" class="mb2">
-                Phone
-              </label>
-              <br>
-              <input name="phone" id="phone" class="text-input mb10" value="<%= user.phone_number%>">
-            </div>
-            <div class="modal-footer">
-              <div id="modal-footer-buttons">
-                <button type="button" id="cancel" class="btn btnGreen btnGray mt10">
-                  <span id="closeDetails" onclick="closeModal(id)">Cancel</span>
-                </button>
-                <button type="submit" class="btn btnGreen mt10">
-                  <span>Save</span>
-                </button>
-              </div>
-            </div>
-          </form>
         </div>
+        <div id="edit-form-content">
+          <label for="phone" class="mb2">
+            Phone
+          </label>
+          <br>
+          <input name="phone" id="phone" class="text-input mb10" value="<%= user.phone_number%>">
+        </div>
+        <div class="modal-footer">
+          <div id="modal-footer-buttons">
+            <button type="button" id="cancel" class="btn btnGreen btnGray mt10">
+              <span id="closeDetails" onclick="closeModal(id)">Cancel</span>
+            </button>
+            <button type="submit" class="btn btnGreen mt10">
+              <span>Save</span>
+            </button>
+          </div>
+        </div>
+        </form>
       </div>
     </div>
-    <!-- about me paragraph -->
+    </div>
+
+
+    <!-- About me paragraph -->
     <div id="std-about" class="box">
       <!-- Trigger/Open The Modal -->
-      <div class="about-info">
-        <a id="std-about-edit">
+      <div class="role-info">
+        <a id="std-role-edit">
           <img class="editbtn" src="assets/img/icons/edit.png" alt="edit icon">
         </a>
-        <h1 class="mb20">About the company</h1>
-        <p><%= user.about%></p>
+        <h1 class="mb20">Description</h1>
+        <p><%= user.about %></p>
       </div>
     </div>
+
+
     <!-- About popup for editing -->
-    <!-- The Modal -->
+    <!-- About modal -->
     <div id="about-modal" class="modal">
-      <!-- Modal content -->
+      <!-- About modal -->
       <div class="modal-content">
         <div class="modal-header">
           <span class="close" id="closeAbout" onclick="closeModal(id)">&times;</span>
-          <h1>About the company</h1>
+          <h1>Description</h1>
         </div>
         <div class="modal-body">
-          <form id="edit-about-form" action="/profile/update-about/<%= user._id%>?_method=PUT" method="POST">
+          <form id="edit-role-form" action="/profile/update-about/<%= user._id%>?_method=PUT" method="POST">
             <div id="edit-form-content">
               <label for="about-summary" class="mb10 mt10">
-                Industry
+                Describe the company
               </label>
               <br>
-              <input maxlength="90" name="summary" id="about-summary" class="about text-input mt10 mb10"
+              <input maxlength="90" name="summary" id="role-summary" class="role text-input mt10 mb10"
                 value="<%= user.about %>">
             </div>
             <div class="modal-footer">
@@ -188,775 +193,52 @@
       </div>
     </div>
 
-    <!-- education info -->
+    <!-- Role section -->
     <div id="std-education" class="box">
-      <div>
-        <a id="add-education" class="addbtn">
-          <img src="assets/img/icons/add.png" alt="add icon">
+      <!-- Trigger/Open The Modal -->
+      <div class="role-info">
+        <a id="std-role-edit">
+          <img class="editbtn" src="assets/img/icons/edit.png" alt="edit icon">
         </a>
-        <h1 class="mb20">Skills needed</h1>
-
-      </div>
-      <!-- Show all Education -->
-      <!-- <p class="inline mt10 mb15">Status: <%= user.education_status%></p> -->
-      <% counter = 0 %>
-      <% user.education.forEach(function(element, i){ %>
-      <% counter = counter + 1; %>
-      <div class="education-info">
-
-        <a class="delbtn" id="std-education-delete-<%= i %>">
-          <img class="" src="assets/img/icons/del.png" alt="del icon">
-        </a><a class="editbtn" id="std-education-edit-<%= i %>">
-          <img class="" src="assets/img/icons/edit.png" alt="edit icon">
-        </a>
-        <% if(i == 0) { %>
-        <p class="inline" style="font-weight: bold"><%= element.course%></p>
-        <br>
-        <h2><%= element.educational_provider%></h2>
-        <p class="inline"><%= element.start_date%></p>
-        <p class="inline"> - </p>
-        <p class="inline"><%= element.end_date%></p>
-        <br>
-
-        <% } %>
+        <h1 class="mb20">Roles</h1>
+        <% user.role.forEach(function(role, i) { %>
         <% if(i) { %>
-        <hr class="mt15 mb15">
-        <p class="inline" style="font-weight: bold"><%= element.course%></p>
-        <br>
-        <h2><%= element.educational_provider%></h2>
-        <p class="inline"><%= element.start_date%></p>
-        <p class="inline"> - </p>
-        <p class="inline"><%= element.end_date%></p>
-        <br>
+        <hr class="mt20 mb20">
         <% } %>
-      </div>
-      <% }) %>
-    </div>
-
-    <!-- Model for delete education -->
-    <div id="delete-education-modal" class="modal">
-      <div class="modal-content">
-        <div class="modal-header">
-          <span class="close" id="closeDeleteEducation" onclick="closeModal(id)">&times;</span>
-          <h1 id="education_title">Delete Education</h1>
-        </div>
-        <div class="modal-body">
-          <form id="delete-education-form" action="/profile/delete-education/<%= user._id %>?_method=PUT" method="POST">
-            <div id="edit-form-content">
-              <p class="sub-title mt10 mb10">Are you sure you want to delete this education record ?</p>
-            </div>
-            <input type="hidden" id="deleteEducationNumber" name="deleteEducationNumber" type="text">
-            <div class="modal-footer">
-              <div id="modal-footer-buttons">
-                <button type="button" id="cancel" class="btn btnGreen btnGray mt10">
-                  <span id="closeDeleteEducation" onclick="closeModal(id)">No</span>
-                </button>
-                <button type="submit" class="btn btnGreen mt10">
-                  <span>Yes</span>
-                </button>
-              </div>
-            </div>
-          </form>
+        <p class="mb10" style="font-weight: bold"><%= role.title %></p>
+        <p class="mb10"><%= role.description %></p>
+        <div class="mt20">
+          <% for(j=0; j < role.skills.length; ++j) { %>
+          <span class="mb10 inline skill-card"><%= role.skills[j] %></span>
+          <% } %>
+          <% }) %>
         </div>
       </div>
     </div>
 
-    <!-- Modal for edit education section -->
+    <!-- Role popup for editing -->
+    <!-- Role Modal -->
     <div id="education-modal" class="modal">
+      <!-- Role Modal content -->
       <div class="modal-content">
         <div class="modal-header">
-          <span class="close" id="closeEducation" onclick="closeModal(id)">&times;</span>
-          <h1 id="edit_education_title"></h1>
+          <span class="close" id="closeAbout" onclick="closeModal(id)">&times;</span>
+          <h1>Roles</h1>
         </div>
         <div class="modal-body">
-          <form id="edit-education-form" action="/profile/update-education/<%= user._id %>?_method=PUT" method="POST">
+          <form id="edit-role-form" action="/profile/update-role/<%= user._id%>?_method=PUT" method="POST">
             <div id="edit-form-content">
-              <div>
-                <label for="provider" class="mb2">
-                  Educational Provider
-                </label>
-                <br>
-                <select name="provider" id="provider" class="provider text-input mb10" type="text">
-                  <option>Abacus Institute of Studies (Auckland)</option>
-                  <option>AGI (Auckland)</option>
-                  <option>AMES - The Institute of IT (Auckland)</option>
-                  <option>Animation College</option>
-                  <option>Ara Institute of Canterbury</option>
-                  <option>Aspire2 International</option>
-                  <option>Auckland Institute of Studies</option>
-                  <option>Auckland University of Technology (AUT)</option>
-                  <option>Avonmore Tertiary Institute</option>
-                  <option>AWI International Education Group (Auckland)</option>
-                  <option>Computer Power Plus</option>
-                  <option>Cornell Institute of Business and Technology (Auckland)</option>
-                  <option>Eastern Institute of Technology</option>
-                  <option>EDENZ Colleges (Auckland)</option>
-                  <option>Enspiral Dev Academy (Auckland)</option>
-                  <option>Enspiral Dev Academy (Wellington)</option>
-                  <option>ICL Graduate Business School (Auckland)</option>
-                  <option>Kiwi Institute of Training and Education</option>
-                  <option>Launchspace Academy</option>
-                  <option>Lincoln University</option>
-                  <option>Massey University (Albany)</option>
-                  <option>Massey University (Palmerston North)</option>
-                  <option>Massey University (Wellington)</option>
-                  <option>Media Design School (Auckland)</option>
-                  <option>MIT - Manukau Institute of Technology (Auckland)</option>
-                  <option>National Technology Institute (NTEC)</option>
-                  <option>Nelson Marlborough Institute of Technology (NMIT)</option>
-                  <option>Newton College of Business and Technology (Auckland)</option>
-                  <option>North Tec</option>
-                  <option>NZEI -New Zealand Education Institute (Wellington)</option>
-                  <option>NZIST (Auckland)</option>
-                  <option>NZSE (Auckland)</option>
-                  <option>Open Polytechnic</option>
-                  <option>Otago Polytechnic</option>
-                  <option>Regent International Education Group (Auckland)</option>
-                  <option>Royal Business College</option>
-                  <option>Southern Institute of Technology (SIT)</option>
-                  <option>Tasman International Academies (Auckland)</option>
-                  <option>Techtorium (Auckland)</option>
-                  <option>Toi Ohomai Institute of Technology</option>
-                  <option>UCOL (Palmerston North)</option>
-                  <option>Udacity</option>
-                  <option>Unitec Institute of Technology (Auckland)</option>
-                  <option>University of Auckland</option>
-                  <option>University of Canterbury</option>
-                  <option>University of Otago</option>
-                  <option>University of Waikato</option>
-                  <option>UUNZ Institute of Business (Auckland)</option>
-                  <option>Victoria University of Wellington</option>
-                  <option>Vision College</option>
-                  <option>Wellington ICT Graduate School (WICTGS)</option>
-                  <option>Wellington Institute of Technology (Weltec)</option>
-                  <option>Whitireia (Auckland)</option>
-                  <option>Whitireia (Christchurch)</option>
-                  <option>Whitireia (Wellington)</option>
-                  <option>Wintec (Hamilton)</option>
-                  <option>Yoobee School of Design (Auckland)</option>
-                  <option>Yoobee School of Design (Christchurch)</option>
-                  <option>Yoobee School of Design (Wellington)</option>
-                </select>
-              </div>
-              <div id="course-edit">
-                <label for="course_edit" class="mb2">
-                  Course or Bachelor
-                </label>
-                <br>
-                <input id="course" class="course text-input mb10" type="text" name="course" value="">
-              </div>
-              <div id="start-year-edit">
-                <label for="tart-year-edit" class="mb2">
-                  Start Year
-                </label>
-                <br>
-                <input id="start_year" class="year text-input mb10" type="text" name="start_year_edu" value="">
-              </div>
-              <div id="end-year-edit">
-                <label for="previous-start-year-edit" class="mb2">
-                  End Year (or Present)
-                </label>
-                <br>
-                <input id="end_year" class="year text-input mb10" type="text" name="end_year_edu" value="">
-              </div>
-              <input type="hidden" id="educationNumber" name="educationNumber" type="text">
-              <div class="modal-footer">
-                <div id="modal-footer-buttons">
-                  <button type="button" id="cancel" class="btn btnGreen btnGray mt10">
-                    <span id="closeEducation" onclick="closeModal(id)">Cancel</span>
-                  </button>
-                  <button type="submit" class="btn btnGreen mt10">
-                    <span>Save</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal for adding education section -->
-    <!-- Education status options:
-      1. Undergraduate
-      2. Graduate 
-      3. Post-graduate
-    -->
-    <div id="education-modal-add" class="modal">
-      <div class="modal-content">
-        <div class="modal-header">
-          <span class="close" id="closeEducationAdd" onclick="closeModal(id)">&times;</span>
-          <h1 id="education_title">Add Education</h1>
-          <p>Help us connect you with the right companies</p>
-        </div>
-        <div class="modal-body">
-          <form id="current-education-form" action="/profile/add-education/<%= user._id %>" method="POST">
-            <div id="edit-form-content">
-              <label for="course" class="mb2">
-                What is your current education status?
+              <label for="role-summary" class="mb10 mt10">
+                Industry
               </label>
               <br>
-              <div>
-                <p>
-                  <label>
-                    <input id="Undergraduate" name="study-type" type="radio" value="Undergraduate" />
-                    <span>Undergraduate</span>
-                  </label>
-                </p>
-                <p>
-                  <label>
-                    <input id="Graduate" name="study-type" type="radio" value="Graduate" />
-                    <span>Graduate</span>
-                  </label>
-                </p>
-                <p>
-                  <label>
-                    <input id="Post-graduate" name="study-type" type="radio" value="Post-graduate" />
-                    <span>Post-graduate</span>
-                  </label>
-                </p>
-                <br>
-              </div>
-              <!-- Current Study -->
-              <div id="current-study" style="display: none">
-                <div id="current-providers">
-                  <p class="mt10 mb2">Where are you<span style="font-weight: bold"> currently </span>studying?</p>
-                  <select name="current_provider" id="current_provider_list" class="provider text-input mb10"
-                    type="text">
-                    <option>Abacus Institute of Studies (Auckland)</option>
-                    <option>AGI (Auckland)</option>
-                    <option>AMES - The Institute of IT (Auckland)</option>
-                    <option>Animation College</option>
-                    <option>Ara Institute of Canterbury</option>
-                    <option>Aspire2 International</option>
-                    <option>Auckland Institute of Studies</option>
-                    <option>Auckland University of Technology (AUT)</option>
-                    <option>Avonmore Tertiary Institute</option>
-                    <option>AWI International Education Group (Auckland)</option>
-                    <option>Computer Power Plus</option>
-                    <option>Cornell Institute of Business and Technology (Auckland)</option>
-                    <option>Eastern Institute of Technology</option>
-                    <option>EDENZ Colleges (Auckland)</option>
-                    <option>Enspiral Dev Academy (Auckland)</option>
-                    <option>Enspiral Dev Academy (Wellington)</option>
-                    <option>ICL Graduate Business School (Auckland)</option>
-                    <option>Kiwi Institute of Training and Education</option>
-                    <option>Launchspace Academy</option>
-                    <option>Lincoln University</option>
-                    <option>Massey University (Albany)</option>
-                    <option>Massey University (Palmerston North)</option>
-                    <option>Massey University (Wellington)</option>
-                    <option>Media Design School (Auckland)</option>
-                    <option>MIT - Manukau Institute of Technology (Auckland)</option>
-                    <option>National Technology Institute (NTEC)</option>
-                    <option>Nelson Marlborough Institute of Technology (NMIT)</option>
-                    <option>Newton College of Business and Technology (Auckland)</option>
-                    <option>North Tec</option>
-                    <option>NZEI -New Zealand Education Institute (Wellington)</option>
-                    <option>NZIST (Auckland)</option>
-                    <option>NZSE (Auckland)</option>
-                    <option>Open Polytechnic</option>
-                    <option>Otago Polytechnic</option>
-                    <option>Regent International Education Group (Auckland)</option>
-                    <option>Royal Business College</option>
-                    <option>Southern Institute of Technology (SIT)</option>
-                    <option>Tasman International Academies (Auckland)</option>
-                    <option>Techtorium (Auckland)</option>
-                    <option>Toi Ohomai Institute of Technology</option>
-                    <option>UCOL (Palmerston North)</option>
-                    <option>Udacity</option>
-                    <option>Unitec Institute of Technology (Auckland)</option>
-                    <option>University of Auckland</option>
-                    <option>University of Canterbury</option>
-                    <option>University of Otago</option>
-                    <option>University of Waikato</option>
-                    <option>UUNZ Institute of Business (Auckland)</option>
-                    <option>Victoria University of Wellington</option>
-                    <option>Vision College</option>
-                    <option>Wellington ICT Graduate School (WICTGS)</option>
-                    <option>Wellington Institute of Technology (Weltec)</option>
-                    <option>Whitireia (Auckland)</option>
-                    <option>Whitireia (Christchurch)</option>
-                    <option>Whitireia (Wellington)</option>
-                    <option>Wintec (Hamilton)</option>
-                    <option>Yoobee School of Design (Auckland)</option>
-                    <option>Yoobee School of Design (Christchurch)</option>
-                    <option>Yoobee School of Design (Wellington)</option>
-                  </select>
-                  <input id="selected_current_provider" name="selected_current_provider" type="hidden"
-                    style="display: none">
-                </div>
-                <div id="current-course">
-                  <label for="current_course" class="mb2">
-                    Course or Bachelor
-                  </label>
-                  <br>
-                  <input id="current_course" class="course text-input mb10" type="text" name="current_course" value="">
-                </div>
-                <div id="current-start-year">
-                  <label for="current-start-year" class="mb2">
-                    Start Year
-                  </label>
-                  <br>
-                  <input id="current_start_year" class="year text-input mb10" type="text" name="current_start_year"
-                    value="">
-                </div>
-                <div id="current-end-year">
-                  <label for="end_yer" class="mb2">
-                    End Year (or Present)
-                  </label>
-                  <br>
-                  <input id="current_end_year" class="year text-input mb10" type="text" name="current_end_year"
-                    value="">
-                </div>
-              </div>
-              <!-- Button to continue with Previous Study for Post-graduate -->
-              <div>
-                <button id="next-education" style="display: none" type="button" class="btn btnGreen mt10 mb10">
-                  <span id="nextEducation">Continue</span>
-                </button>
-              </div>
-              <!-- Previous Study for Post-graduate-->
-              <div id="previous-study" style="display: none">
-                <div id="previous-provider">
-                  <p class="mt10 mb2">Where<span style="font-weight: bold"> have </span>you studied?</p>
-                  <select name="previous_provider_list" id="previous_provider_list" class="provider text-input mb10"
-                    type="text">
-                    <option>Abacus Institute of Studies (Auckland)</option>
-                    <option>AGI (Auckland)</option>
-                    <option>AMES - The Institute of IT (Auckland)</option>
-                    <option>Animation College</option>
-                    <option>Ara Institute of Canterbury</option>
-                    <option>Aspire2 International</option>
-                    <option>Auckland Institute of Studies</option>
-                    <option>Auckland University of Technology (AUT)</option>
-                    <option>Avonmore Tertiary Institute</option>
-                    <option>AWI International Education Group (Auckland)</option>
-                    <option>Computer Power Plus</option>
-                    <option>Cornell Institute of Business and Technology (Auckland)</option>
-                    <option>Eastern Institute of Technology</option>
-                    <option>EDENZ Colleges (Auckland)</option>
-                    <option>Enspiral Dev Academy (Auckland)</option>
-                    <option>Enspiral Dev Academy (Wellington)</option>
-                    <option>ICL Graduate Business School (Auckland)</option>
-                    <option>Kiwi Institute of Training and Education</option>
-                    <option>Launchspace Academy</option>
-                    <option>Lincoln University</option>
-                    <option>Massey University (Albany)</option>
-                    <option>Massey University (Palmerston North)</option>
-                    <option>Massey University (Wellington)</option>
-                    <option>Media Design School (Auckland)</option>
-                    <option>MIT - Manukau Institute of Technology (Auckland)</option>
-                    <option>National Technology Institute (NTEC)</option>
-                    <option>Nelson Marlborough Institute of Technology (NMIT)</option>
-                    <option>Newton College of Business and Technology (Auckland)</option>
-                    <option>North Tec</option>
-                    <option>NZEI -New Zealand Education Institute (Wellington)</option>
-                    <option>NZIST (Auckland)</option>
-                    <option>NZSE (Auckland)</option>
-                    <option>Open Polytechnic</option>
-                    <option>Otago Polytechnic</option>
-                    <option>Regent International Education Group (Auckland)</option>
-                    <option>Royal Business College</option>
-                    <option>Southern Institute of Technology (SIT)</option>
-                    <option>Tasman International Academies (Auckland)</option>
-                    <option>Techtorium (Auckland)</option>
-                    <option>Toi Ohomai Institute of Technology</option>
-                    <option>UCOL (Palmerston North)</option>
-                    <option>Udacity</option>
-                    <option>Unitec Institute of Technology (Auckland)</option>
-                    <option>University of Auckland</option>
-                    <option>University of Canterbury</option>
-                    <option>University of Otago</option>
-                    <option>University of Waikato</option>
-                    <option>UUNZ Institute of Business (Auckland)</option>
-                    <option>Victoria University of Wellington</option>
-                    <option>Vision College</option>
-                    <option>Wellington ICT Graduate School (WICTGS)</option>
-                    <option>Wellington Institute of Technology (Weltec)</option>
-                    <option>Whitireia (Auckland)</option>
-                    <option>Whitireia (Christchurch)</option>
-                    <option>Whitireia (Wellington)</option>
-                    <option>Wintec (Hamilton)</option>
-                    <option>Yoobee School of Design (Auckland)</option>
-                    <option>Yoobee School of Design (Christchurch)</option>
-                    <option>Yoobee School of Design (Wellington)</option>
-                  </select>
-                  <input id="selected_previous_provider" name="selected_previous_provider" type="hidden">
-                </div>
-                <div id="previous-course">
-                  <label for="previous_course" class="mb2">
-                    Course or Bachelor
-                  </label>
-                  <br>
-                  <input id="course" class="course text-input mb10" type="text" name="previous_course" value="">
-                </div>
-                <div id="previous-start-year">
-                  <label for="previous-start-year" class="mb2">
-                    Start Year
-                  </label>
-                  <br>
-                  <input id="start_year" class="year text-input mb10" type="text" name="previous_start_year" value="">
-                </div>
-                <div id="previous-end-year">
-                  <label for="previous_end_yer" class="mb2">
-                    End Year (or Present)
-                  </label>
-                  <br>
-                  <input id="end_year" class="year text-input mb10" type="text" name="previous_end_year" value="">
-                </div>
-              </div>
-              <!-- Button to go back to Current Study -->
-              <div>
-                <button id="back-education" style="display: none" type="button" class="btn btnGray mt10 mb10">
-                  <span id="backEducation">Go back</span>
-                </button>
-              </div>
-              <!-- Add other previous education button -->
-              <div id="add-other-previous-education-title" style="display: none">
-                <p class="title mt30 mb15">Add other previous education</p>
-              </div>
-              <div>
-
-              </div>
-              <!-- Other Previous Study -->
-              <div id="other-previous-study" style="display: none">
-                <div id="other_previous-provider">
-                  <p class="mt10 mb2">Where<span style="font-weight: bold"> have </span>you studied?</p>
-                  <select name="previous_provider" id="provider_list" class="provider text-input mb10" type="text">
-                    <option>Abacus Institute of Studies (Auckland)</option>
-                    <option>AGI (Auckland)</option>
-                    <option>AMES - The Institute of IT (Auckland)</option>
-                    <option>Animation College</option>
-                    <option>Ara Institute of Canterbury</option>
-                    <option>Aspire2 International</option>
-                    <option>Auckland Institute of Studies</option>
-                    <option>Auckland University of Technology (AUT)</option>
-                    <option>Avonmore Tertiary Institute</option>
-                    <option>AWI International Education Group (Auckland)</option>
-                    <option>Computer Power Plus</option>
-                    <option>Cornell Institute of Business and Technology (Auckland)</option>
-                    <option>Eastern Institute of Technology</option>
-                    <option>EDENZ Colleges (Auckland)</option>
-                    <option>Enspiral Dev Academy (Auckland)</option>
-                    <option>Enspiral Dev Academy (Wellington)</option>
-                    <option>ICL Graduate Business School (Auckland)</option>
-                    <option>Kiwi Institute of Training and Education</option>
-                    <option>Launchspace Academy</option>
-                    <option>Lincoln University</option>
-                    <option>Massey University (Albany)</option>
-                    <option>Massey University (Palmerston North)</option>
-                    <option>Massey University (Wellington)</option>
-                    <option>Media Design School (Auckland)</option>
-                    <option>MIT - Manukau Institute of Technology (Auckland)</option>
-                    <option>National Technology Institute (NTEC)</option>
-                    <option>Nelson Marlborough Institute of Technology (NMIT)</option>
-                    <option>Newton College of Business and Technology (Auckland)</option>
-                    <option>North Tec</option>
-                    <option>NZEI -New Zealand Education Institute (Wellington)</option>
-                    <option>NZIST (Auckland)</option>
-                    <option>NZSE (Auckland)</option>
-                    <option>Open Polytechnic</option>
-                    <option>Otago Polytechnic</option>
-                    <option>Regent International Education Group (Auckland)</option>
-                    <option>Royal Business College</option>
-                    <option>Southern Institute of Technology (SIT)</option>
-                    <option>Tasman International Academies (Auckland)</option>
-                    <option>Techtorium (Auckland)</option>
-                    <option>Toi Ohomai Institute of Technology</option>
-                    <option>UCOL (Palmerston North)</option>
-                    <option>Udacity</option>
-                    <option>Unitec Institute of Technology (Auckland)</option>
-                    <option>University of Auckland</option>
-                    <option>University of Canterbury</option>
-                    <option>University of Otago</option>
-                    <option>University of Waikato</option>
-                    <option>UUNZ Institute of Business (Auckland)</option>
-                    <option>Victoria University of Wellington</option>
-                    <option>Vision College</option>
-                    <option>Wellington ICT Graduate School (WICTGS)</option>
-                    <option>Wellington Institute of Technology (Weltec)</option>
-                    <option>Whitireia (Auckland)</option>
-                    <option>Whitireia (Christchurch)</option>
-                    <option>Whitireia (Wellington)</option>
-                    <option>Wintec (Hamilton)</option>
-                    <option>Yoobee School of Design (Auckland)</option>
-                    <option>Yoobee School of Design (Christchurch)</option>
-                    <option>Yoobee School of Design (Wellington)</option>
-                  </select>
-                </div>
-                <div id="previous-course">
-                  <label for="other_previous_course" class="mb2">
-                    Course or Bachelor
-                  </label>
-                  <br>
-                  <input id="course" class="course text-input mb10" type="text" name="other_previous_course" value="">
-                </div>
-                <div id="previous-start-year">
-                  <label for="previous-start-year" class="mb2">
-                    Start Year
-                  </label>
-                  <br>
-                  <input id="start_year" class="year text-input mb10" type="text" name="other_previous_start_year"
-                    value="">
-                </div>
-                <div id="previous-end-year">
-                  <label for="previous_end_year" class="mb2">
-                    End Year (or Present)
-                  </label>
-                  <br>
-                  <input id="end_year" class="year text-input mb10" type="text" name="other_previous_end_year" value="">
-                </div>
-              </div>
-              <!-- Button to cancel adding other previous education -->
-              <button type="button" style="display: none" id="cancel-add-other-previous-education"
-                class="btn btnGray mt10 mb10">
-                <span>Cancel</span>
-              </button>
-              <!-- Button to add other previous education -->
-              <button type="button" id="add-other-previous-education" class="btn btnGreen mt10"
-                style="background: #74bdc5">
-                <span id="addOtherEducation"><i class="fas fa-plus"></i> Add
-                  other previous education</span>
-              </button>
+              <input maxlength="90" name="summary" id="role-summary" class="role text-input mt10 mb10"
+                value="<%= user.role %>">
             </div>
-            <input type="hidden" id="education_status" name="education_status" type="text">
-            <div class="modal-footer">
-              <div id="modal-footer-buttons">
-                <button type="button" id="cancel" class="btn btnGray mt10">
-                  <span id="closeEducationAdd" onclick="closeModal(id)">Cancel</span>
-                </button>
-                <button type="button" class="btn btnGreen mt10" id="education-form-submit">
-                  <span>Save</span>
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal for adding other previous education record -->
-
-    <div id="other-education-modal-add" class="modal">
-      <div class="modal-content">
-        <div class="modal-header">
-          <span class="close" id="closeOtherEducationAdd" onclick="closeModal(id)">&times;</span>
-          <h1 id="education_title">Add Education</h1>
-          <p>Let us know what you have learned</p>
-        </div>
-        <div class="modal-body">
-          <form id="add-other-education-form" action="/profile/add-other-education/<%= user._id %>" method="POST">
-            <div id="edit-form-content">
-              <!-- Other Previous Study -->
-              <div id="other-previous-study">
-                <div id="other_previous-provider">
-                  <p class="mt30 mb2">Where<span style="font-weight: bold"> have </span>you studied?</p>
-                  <select name="previous_provider_list_other" id="previous_provider_list_other"
-                    class="provider text-input mb10" type="text">
-                    <option>Abacus Institute of Studies (Auckland)</option>
-                    <option>AGI (Auckland)</option>
-                    <option>AMES - The Institute of IT (Auckland)</option>
-                    <option>Animation College</option>
-                    <option>Ara Institute of Canterbury</option>
-                    <option>Aspire2 International</option>
-                    <option>Auckland Institute of Studies</option>
-                    <option>Auckland University of Technology (AUT)</option>
-                    <option>Avonmore Tertiary Institute</option>
-                    <option>AWI International Education Group (Auckland)</option>
-                    <option>Computer Power Plus</option>
-                    <option>Cornell Institute of Business and Technology (Auckland)</option>
-                    <option>Eastern Institute of Technology</option>
-                    <option>EDENZ Colleges (Auckland)</option>
-                    <option>Enspiral Dev Academy (Auckland)</option>
-                    <option>Enspiral Dev Academy (Wellington)</option>
-                    <option>ICL Graduate Business School (Auckland)</option>
-                    <option>Kiwi Institute of Training and Education</option>
-                    <option>Launchspace Academy</option>
-                    <option>Lincoln University</option>
-                    <option>Massey University (Albany)</option>
-                    <option>Massey University (Palmerston North)</option>
-                    <option>Massey University (Wellington)</option>
-                    <option>Media Design School (Auckland)</option>
-                    <option>MIT - Manukau Institute of Technology (Auckland)</option>
-                    <option>National Technology Institute (NTEC)</option>
-                    <option>Nelson Marlborough Institute of Technology (NMIT)</option>
-                    <option>Newton College of Business and Technology (Auckland)</option>
-                    <option>North Tec</option>
-                    <option>NZEI -New Zealand Education Institute (Wellington)</option>
-                    <option>NZIST (Auckland)</option>
-                    <option>NZSE (Auckland)</option>
-                    <option>Open Polytechnic</option>
-                    <option>Otago Polytechnic</option>
-                    <option>Regent International Education Group (Auckland)</option>
-                    <option>Royal Business College</option>
-                    <option>Southern Institute of Technology (SIT)</option>
-                    <option>Tasman International Academies (Auckland)</option>
-                    <option>Techtorium (Auckland)</option>
-                    <option>Toi Ohomai Institute of Technology</option>
-                    <option>UCOL (Palmerston North)</option>
-                    <option>Udacity</option>
-                    <option>Unitec Institute of Technology (Auckland)</option>
-                    <option>University of Auckland</option>
-                    <option>University of Canterbury</option>
-                    <option>University of Otago</option>
-                    <option>University of Waikato</option>
-                    <option>UUNZ Institute of Business (Auckland)</option>
-                    <option>Victoria University of Wellington</option>
-                    <option>Vision College</option>
-                    <option>Wellington ICT Graduate School (WICTGS)</option>
-                    <option>Wellington Institute of Technology (Weltec)</option>
-                    <option>Whitireia (Auckland)</option>
-                    <option>Whitireia (Christchurch)</option>
-                    <option>Whitireia (Wellington)</option>
-                    <option>Wintec (Hamilton)</option>
-                    <option>Yoobee School of Design (Auckland)</option>
-                    <option>Yoobee School of Design (Christchurch)</option>
-                    <option>Yoobee School of Design (Wellington)</option>
-                  </select>
-                  <input id="selected_previous_provider_other" name="selected_previous_provider_other" type="hidden"
-                    style="display: none">
-                </div>
-                <div id="previous-course">
-                  <label for="other_previous_course" class="mb2">
-                    Course or Bachelor
-                  </label>
-                  <br>
-                  <input id="course" class="course text-input mb10" type="text" name="other_previous_course" value="">
-                </div>
-                <div id="previous-start-year">
-                  <label for="previous-start-year" class="mb2">
-                    Start Year
-                  </label>
-                  <br>
-                  <input id="start_year" class="year text-input mb10" type="text" name="other_previous_start_year"
-                    value="">
-                </div>
-                <div id="previous-end-year">
-                  <label for="previous_end_year" class="mb2">
-                    End Year (or Present)
-                  </label>
-                  <br>
-                  <input id="end_year" class="year text-input mb10" type="text" name="other_previous_end_year" value="">
-                </div>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <div id="modal-footer-buttons">
-                <button type="button" id="cancel" class="btn btnGray mt10">
-                  <span id="closeOtherEducationAdd" onclick="closeModal(id)">Cancel</span>
-                </button>
-                <button type="button" class="btn btnGreen mt10" id="other-education-form-submit">
-                  <span>Save</span>
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-
-
-    <!-- work experience -->
-    
-    <!-- <div id="std-experience" class="box">
-      <div>
-        <a class="addbtn" id="add-experience">
-          <img src="assets/img/icons/add.png" alt="edit icon">
-        </a>
-        <h1 class="mb20">Your Work Experience</h1>
-      </div>
-      <% count = 0 %>
-      <% user.work.forEach(function(element, i){ %>
-      <% count = count + 1; %>
-      <div class="experience-info">
-
-        <% if(i == 0) { %>
-        <a class="delbtn" id="std-experience-delete-<%= i %>">
-          <img src="assets/img/icons/del.png" alt="del icon"><a class="editbtn" id="std-experience-edit-<%= i %>">
-            <img src="assets/img/icons/edit.png" alt="edit icon">
-          </a>
-          <p class="inline" style="font-weight: bold"><%= element.role%></p>
-          <br>
-          <p class="inline"><%= element.company%></p>
-          <br>
-          <p class="inline"><%= element.start_date%></p>
-          <p class="inline"> - </p>
-          <p class="inline"><%= element.end_date%></p>
-          <br>
-          <p class="inline"><%= element.description%></p>
-          <% } else { %>
-          <hr class="mb15 mt15">
-          <a class="delbtn" id="std-experience-delete-<%= i %>">
-            <img src="assets/img/icons/del.png" alt="del icon"><a class="editbtn" id="std-experience-edit-<%= i %>">
-              <img src="assets/img/icons/edit.png" alt="edit icon">
-            </a>
-            <p class="inline" style="font-weight: bold"><%= element.role%></p>
-            <br>
-            <p class="inline"><%= element.company%></p>
-            <br>
-            <p class="inline"><%= element.start_date%></p>
-            <p class="inline"> - </p>
-            <p class="inline"><%= element.end_date%></p>
-            <br>
-            <p class="inline"><%= element.description%></p>
-            <% } %>
-      </div>
-      <% }) %> 
-    </div> -->
-    
-
-    <!-- Modal for experience section -->
-    <div id="experience-modal" class="modal">
-      <div class="modal-content">
-        <div class="modal-header">
-          <span class="close" id="closeExperience" onclick="closeModal(id)">&times;</span>
-          <h1>Update Work Experience</h1>
-        </div>
-        <div class="modal-body">
-          <form id="edit-experience-form" action="/profile/update-work-experience/<%= user._id %>?_method=PUT"
-            method="POST">
-            <div id="edit-form-content">
-              <label for="company" class="mb2">
-                Role
-              </label>
-              <br>
-              <input id="role" class="text-input mb10" type="text" name="role" value="">
-            </div>
-            <div id="edit-form-content">
-              <label for="" class="mb2">
-                Company
-              </label>
-              <br>
-              <input id="company" class="text-input mb10" type="text" name="company" value="">
-            </div>
-            <div id="edit-form-content">
-              <label for="" class="mb2">
-                Start Year
-              </label>
-              <br>
-              <input id="start_year" class="year text-input mb10" type="text" name="start_year" value="">
-            </div>
-            <div id="edit-form-content">
-              <label for="" class="mb2">
-                End Year (or Present)
-              </label>
-              <br>
-              <input id="end_year" class="year text-input mb10" type="text" name="end_year" value="">
-            </div>
-            <div id="edit-form-content">
-              <label for="" class="mb2">
-                Description
-              </label>
-              <br>
-              <input id="work_description" class="description text-input mb10" type="text" name="work_description"
-                value="">
-            </div>
-            <input type="hidden" id="experienceNumber" name="experienceNumber" type="text">
             <div class="modal-footer">
               <div id="modal-footer-buttons">
                 <button type="button" id="cancel" class="btn btnGreen btnGray mt10">
-                  <span id="closeExperience" onclick="closeModal(id)">Cancel</span>
+                  <span id="closeAbout" onclick="closeModal(id)">Cancel</span>
                 </button>
                 <button type="submit" class="btn btnGreen mt10">
                   <span>Save</span>
@@ -967,96 +249,8 @@
         </div>
       </div>
     </div>
-    <!-- Modal for adding experience section -->
-    <div id="experience-modal-add" class="modal">
-      <div class="modal-content">
-        <div class="modal-header">
-          <span class="close" id="closeExperienceAdd" onclick="closeModal(id)">&times;</span>
-          <h1 id="experience_title">Add Working experience</h1>
-        </div>
-        <div class="modal-body">
-          <form id="edit-experience-form" action="/profile/add-work-experience/<%= user._id %>" method="POST">
-            <div id="edit-form-content">
-              <label for="company" class="mb2">
-                What is/was your <span style="font-weight: bold"> Role</span>?
-              </label>
-              <br>
-              <input id="role" class="role text-input mb10" type="text" name="role" value="">
-            </div>
-            <div id="edit-form-content" class="mt10">
-              <label for="" class="mb2">
-                Company name
-              </label>
-              <br>
-              <input id="company" class="company text-input mb10" type="text" name="company" value="">
-            </div>
-            <div id="edit-form-content" class="mt10">
-              <label for="" class="mb2">
-                Start Year
-              </label>
-              <br>
-              <input id="start_year" class="year text-input mb10" type="text" name="start_year" value="">
-            </div>
-            <div id="edit-form-content">
-              <label for="" class="mb2">
-                End Year (or Present)
-              </label>
-              <br>
-              <input id="end_year" class="year text-input mb10" type="text" name="end_year" value="">
-            </div>
-            <div id="edit-form-content">
-              <label for="" class="mb2">
-                Description of your position in just a few words...
-              </label>
-              <br>
-              <input id="work_description" class="description text-input mb10" type="text" name="work_description"
-                value="" placeholder="Ex: Front end developer, Designer, Help-desk, ...">
-            </div>
-            <input type="hidden" id="experienceNumber" name="experienceNumber" type="text">
-            <div class="modal-footer">
-              <div id="modal-footer-buttons">
-                <button type="button" id="cancel" class="btn btnGreen btnGray mt10">
-                  <span id="closeExperienceAdd" onclick="closeModal(id)">Cancel</span>
-                </button>
-                <button type="submit" class="btn btnGreen mt10">
-                  <span>Save</span>
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
+
   </main>
-
-  <!-- Model for delete education -->
-  <div id="delete-experience-modal" class="modal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <span class="close" id="closeDeleteExperience" onclick="closeModal(id)">&times;</span>
-        <h1 id="experience-title">Delete Work Experience</h1>
-      </div>
-      <div class="modal-body">
-        <form id="delete-experience-form" action="/profile/delete-work-experience/<%= user._id %>?_method=PUT"
-          method="POST">
-          <div id="edit-form-content">
-            <p class="sub-title mt10 mb10">Are you sure you want to delete this work experience from your profile?</p>
-          </div>
-          <input type="hidden" id="deleteExperienceNumber" name="deleteExperienceNumber" type="text">
-          <div class="modal-footer">
-            <div id="modal-footer-buttons">
-              <button type="button" id="cancel" class="btn btnGreen btnGray mt10">
-                <span id="closeDeleteExperience" onclick="closeModal(id)">No</span>
-              </button>
-              <button type="submit" class="btn btnGreen mt10">
-                <span>Yes</span>
-              </button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
 
   <!-- Model for Log in pop up message -->
 
@@ -1079,59 +273,15 @@
 
     // Get the modals
     let detailsModal = document.getElementById("details-modal");
-    let aboutModal = document.getElementById("about-modal");
-    let educationModal = document.getElementById("education-modal");
-    let educationModalAdd = document.getElementById("education-modal-add");
-    let OtherEducationModalAdd = document.getElementById("other-education-modal-add");
-    let experienceModal = document.getElementById("experience-modal");
-    let experienceModalAdd = document.getElementById("experience-modal-add");
-    let deleteEducationModal = document.getElementById("delete-education-modal");
-    let deleteExperienceModal = document.getElementById("delete-experience-modal");
+    let aboutModal = document.getElementById("role-modal");
 
 
     // Get the buttons that opens the modals
 
-    //to add
-    let addEducation = document.getElementById("add-education");
-    let addExperience = document.getElementById("add-experience");
-    let nextEducation = document.getElementById("next-education");
-    let backEducation = document.getElementById("back-education");
-    let addOtherEducation = document.getElementById("add-other-previous-education");
-    let AddOtherEducationTitle = document.getElementById("add-other-previous-education-title");
-    let cancelAddOtherEducation = document.getElementById("cancel-add-other-previous-education");
-    let otherEducation = document.getElementById("other-previous-study");
-
-
     //to edit
     let detailsEditBtn = document.getElementById("std-details-edit");
-    let aboutEditBtn = document.getElementById("std-about-edit");
-    let educationEditBtn = [];
-    let experienceEditBtn = [];
+    let aboutEditBtn = document.getElementById("std-role-edit");
 
-    //to delete
-    let educationDeleteBtn = [];
-    let experienceDeleteBtn = [];
-
-    let i = 0;
-  </script>
-  <%  for(var i = 0; i < count; ++i) { %>
-  <script>
-    experienceEditBtn[i] = document.getElementById("std-experience-edit-" + i);
-    ++i;
-  </script>
-  <% } %>
-
-  <script>
-    j = 0;
-  </script>
-  <%  for(var i = 0; i < counter; ++i) { %>
-  <script>
-    educationEditBtn[j] = document.getElementById("std-education-edit-" + j);
-    ++j;
-  </script>
-  <% } %>
-
-  <script>
     // Get the <span> elements that close the modals
     var span = document.getElementsByClassName("close")[0];
     var cancelBtn = document.getElementById("cancel");
@@ -1140,142 +290,9 @@
     aboutEditBtn.onclick = function () {
       aboutModal.style.display = "block";
     }
-    i = 0;
   </script>
 
-  <!-- Keep all work experience's ID in an array -->
-  <% for(var i=0 ; i< count ; ++i) { %>
   <script>
-    experienceEditBtn[i].onclick = function () {
-
-        document.getElementById("role").value = '<%= user.work[i].role %>';
-        document.getElementById("company").value = '<%= user.work[i].company %>';
-        document.getElementById("start_year").value = '<%= user.work[i].start_date %>';
-        document.getElementById("end_year").value = '<%= user.work[i].end_date %>';
-        document.getElementById("work_description").value = '<%= user.work[i].description %>';
-        document.getElementById("experienceNumber").value = '<%= i %>';
-        experienceModal.style.display = "block";
-      }
-      ++i;
-  </script>
-  <% } %>
-  <script>
-    j = 0;
-  </script>
-  <!-- Keep all education's ID in an array -->
-  <% for(var i=0 ; i< counter ; ++i) { %>
-  <script>
-    educationEditBtn[j].onclick = function () {
-
-        document.getElementById("course").value = '<%= user.education[i].course %>';
-        document.getElementById("provider").value = '<%= user.education[i].educational_provider %>';
-        document.getElementById("start_year").value = '<%= user.education[i].start_date %>';
-        document.getElementById("end_year").value = '<%= user.education[i].end_date %>';
-        document.getElementById("educationNumber").value = '<%= i %>';
-        document.getElementById("edit_education_title").innerHTML = 'Edit "<%= user.education[i].course %>"';
-        educationModal.style.display = "block";
-      }
-      ++j;
-  </script>
-  <% } %>
-
-  <!-- if education is empty open normal education modal -->
-  <% if(!user.education.length) { %>
-  <script>
-    addEducation.onclick = function () {
-      educationModalAdd.style.display = "block";
-      addOtherEducation.style.display = "none";
-    }
-  </script>
-  <%  } %>
-  <!-- if education is not empty open add another education modal -->
-  <% if(user.education.length) { %>
-  <script>
-    addEducation.onclick = function () {
-
-      OtherEducationModalAdd.style.display = "block";
-      addOtherEducation.style.display = "none";
-    }
-  </script>
-  <% } %>
-
-  <!-- Section for DELETING education records -->
-  <script>
-    j = 0;
-  </script>
-  <%  for(var i = 0; i < counter; ++i) { %>
-  <script>
-    educationDeleteBtn[j] = document.getElementById("std-education-delete-" + j);
-    ++j;
-  </script>
-  <% } %>
-  <script>
-    j = 0;
-  </script>
-
-  <!-- Go through all delete buttons for education record-->
-  <% for(var i=0 ; i< counter ; ++i) { %>
-  <script>
-    educationDeleteBtn[j].onclick = function () {
-
-        deleteEducationModal.style.display = "block";
-        document.getElementById("deleteEducationNumber").value = '<%= i %>';
-      }
-      ++j;
-  </script>
-  <% } %>
-
-
-  <!-- Section for DELETING working experience records -->
-  <script>
-    j = 0;
-  </script>
-  <%  for(var i = 0; i < count; ++i) { %>
-  <script>
-    experienceDeleteBtn[j] = document.getElementById("std-experience-delete-" + j);
-    ++j;
-  </script>
-  <% } %>
-  <script>
-    j = 0;
-  </script>
-
-  <!-- Go through all delete buttons for working experience -->
-  <% for(var i=0 ; i< count ; ++i) { %>
-  <script>
-    experienceDeleteBtn[j].onclick = function () {
-
-        deleteExperienceModal.style.display = "block";
-        document.getElementById("deleteExperienceNumber").value = '<%= i %>';
-      }
-      ++j;
-  </script>
-  <% } %>
-
-  <script>
-    //Add other previous education button
-    addOtherEducation.onclick = function () {
-
-      addOtherEducation.style.display = "none";
-      otherEducation.style.display = "block";
-      cancelAddOtherEducation.style.display = "block";
-      AddOtherEducationTitle.style.display = "block";
-
-    }
-
-    cancelAddOtherEducation.onclick = function () {
-      //   addOtherEducation.style.display = "block";
-      otherEducation.style.display = "none";
-      cancelAddOtherEducation.style.display = "none";
-      AddOtherEducationTitle.style.display = "none";
-
-    }
-
-    //Add work experience button
-    addExperience.onclick = function () {
-      experienceModalAdd.style.display = "block";
-    }
-
     detailsEditBtn.onclick = function () {
       detailsModal.style.display = "block";
     }
@@ -1293,57 +310,22 @@
         case "closeDetails":
           detailsModal.style.display = "none";
           break;
-        case "closeExperience":
-          experienceModal.style.display = "none";
-          break;
-        case "closeEducation":
-          educationModal.style.display = "none";
-          break;
-        case "closeEducationAdd":
-          educationModalAdd.style.display = "none";
-          currentStudy.style.display = "none";
-          previousStudy.style.display = "none";
-          otherEducation.style.display = "none";
-          nextEducation.style.display = 'none';
-          backEducation.style.display = 'none';
-          //unselect all the redio buttons
-          $("input:radio").attr("checked", false);
-          break;
         case "closeExperienceAdd":
           experienceModalAdd.style.display = "none";
           break;
-        case "closeOtherEducationAdd":
-          OtherEducationModalAdd.style.display = "none";
         case "closeDeleteEducation":
           deleteEducationModal.style.display = "none";
-        case "closeDeleteExperience":
-          deleteExperienceModal.style.display = "none";
+          break;
       }
     }
 
-    var currentStudy = document.getElementById('current-study');
-    var previousStudy = document.getElementById('previous-study');
 
     // When the user clicks on <span> (x), close the modal
     span.onclick = function () {
 
       aboutModal.style.display = "none";
       detailsModal.style.display = "none";
-      experienceModal.style.display = "none";
-      educationModal.style.display = "none";
-      experienceModalAdd.style.display = "none";
-      educationModalAdd.style.display = "none";
-      currentStudy.style.display = "none";
-      previousStudy.style.display = "none";
-      otherEducation.style.display = "none";
-      addOtherEducation.style.display = "none";
-      nextEducation.style.display = 'none';
-      backEducation.style.display = 'none';
-      OtherEducationModalAdd.style.display = "none";
-      deleteEducationModal.style.display = "none";
       deleteExperienceModal.style.display = "none";
-      //unselect all the redio buttons
-      $("input:radio").attr("checked", false);
 
     }
 
@@ -1355,135 +337,7 @@
       } else
       if (event.target == detailsModal) {
         detailsModal.style.display = "none";
-      } else
-      if (event.target == experienceModal) {
-        experienceModal.style.display = "none";
-      } else
-      if (event.target == educationModal) {
-        educationModal.style.display = "none";
-      } else
-      if (event.target == experienceModalAdd) {
-        experienceModalAdd.style.display = "none";
-      } else
-      if (event.target == educationModalAdd) {
-        educationModalAdd.style.display = "none";
-        currentStudy.style.display = "none";
-        previousStudy.style.display = "none";
-        otherEducation.style.display = "none";
-        addOtherEducation.style.display = "none";
-        nextEducation.style.display = 'none';
-        backEducation.style.display = 'none';
-        //unselect all the redio buttons
-        $("input:radio").attr("checked", false);
-      } else if (event.target == OtherEducationModalAdd) {
-        OtherEducationModalAdd.style.display = "none";
-      } else if (event.target == deleteEducationModal) {
-        deleteEducationModal.style.display = "none";
-      } else if (event.target == deleteExperienceModal) {
-        deleteExperienceModal.style.display = "none";
       }
-    }
-
-    var status = document.getElementById("education_status");
-
-
-    //Show or hide current or previous study input according to study-type
-    document.getElementById('Undergraduate').onclick = () => {
-
-      previousStudy.style.display = 'none';
-      currentStudy.style.display = 'block';
-      nextEducation.style.display = "none";
-      backEducation.style.display = "none";
-      education_status.value = "Undergraduate";
-      //addOtherEducation.style.display = "block";
-      otherEducation.style.display = "none";
-      AddOtherEducationTitle.style.display = "none";
-      cancelAddOtherEducation.style.display = "none";
-    }
-
-    document.getElementById('Graduate').onclick = () => {
-
-      previousStudy.style.display = 'block';
-      currentStudy.style.display = 'none';
-      nextEducation.style.display = "none";
-      backEducation.style.display = "none";
-      education_status.value = "Graduate";
-      //addOtherEducation.style.display = "block";
-      otherEducation.style.display = "none";
-      AddOtherEducationTitle.style.display = "none";
-      cancelAddOtherEducation.style.display = "none";
-
-    }
-
-    document.getElementById('Post-graduate').onclick = () => {
-
-      previousStudy.style.display = 'none';
-      currentStudy.style.display = 'block';
-      nextEducation.style.display = "block";
-      backEducation.style.display = "block";
-      education_status.value = "Post-graduate";
-      //   addOtherEducation.style.display = "block";
-      backEducation.style.display = "none"
-      otherEducation.style.display = "none";
-      AddOtherEducationTitle.style.display = "none";
-      cancelAddOtherEducation.style.display = "none";
-
-    }
-
-    nextEducation.onclick = () => {
-
-      previousStudy.style.display = 'block';
-      currentStudy.style.display = 'none';
-      backEducation.style.display = "block"
-      nextEducation.style.display = "none";
-      education_status.value = "Post-graduate";
-      //   addOtherEducation.style.display = "block";
-    }
-
-    backEducation.onclick = () => {
-      previousStudy.style.display = 'none';
-      currentStudy.style.display = 'block';
-      nextEducation.style.display = "block";
-      backEducation.style.display = 'none';
-      education_status.value = "Post-graduate";
-      //    addOtherEducation.style.display = "block";
-    }
-
-
-    function GetSelectedCurrentProvider() {
-      var e = document.getElementById("current_provider_list");
-      var result = e.options[e.selectedIndex].text;
-      document.getElementById("selected_current_provider").value = result;
-      return result;
-    }
-
-
-    function GetSelectedPreviousProvider() {
-      var e = document.getElementById("previous_provider_list");
-      var result = e.options[e.selectedIndex].text;
-      document.getElementById("selected_previous_provider").value = result;
-      return result;
-    }
-
-    function GetSelectedPreviousProviderOther() {
-
-      var e = document.getElementById("previous_provider_list_other");
-      var result_other = e.options[e.selectedIndex].text;
-      document.getElementById("selected_previous_provider_other").value = result_other;
-      return result_other;
-    }
-
-    //Submit education form after saving the selected current and previous providers
-    document.getElementById("education-form-submit").onclick = () => {
-      GetSelectedCurrentProvider();
-      GetSelectedPreviousProvider();
-      $("#current-education-form").submit();
-    }
-
-    //Submit add other education form after saving the previous providers
-    document.getElementById("other-education-form-submit").onclick = () => {
-      GetSelectedPreviousProviderOther();
-      $("#add-other-education-form").submit();
     }
   </script>
 
@@ -1536,6 +390,50 @@
     }, 2000);
   </script>
   <% } %>
+  <script>
+    var fileInput = document.getElementById('fileInput');
+    var fileDisplayArea = document.getElementById('fileDisplayArea');
+    var y;
+
+    fileInput.addEventListener('change', function (e) {
+      var file = fileInput.files[0];
+      var imageType = /image.*/;
+
+      if (file.type.match(imageType)) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+          fileDisplayArea.innerHTML = "";
+
+          var img = new Image();
+          img.src = reader.result;
+          img.setAttribute("class", "profile-img");
+
+
+          fileDisplayArea.appendChild(img);
+
+          y = document.createElement('a'); // is a node
+          y.setAttribute("href", img.src);
+          y.id = "newPhotoLink"
+          fileDisplayArea.appendChild(y);
+        }
+        reader.readAsDataURL(file);
+
+      } else {
+        fileDisplayArea.innerHTML = "File not supported!"
+      }
+    });
+
+    document.getElementById("detailsSubmit").onclick = () => {
+
+      var newPhotoLink = document.getElementById("newPhotoLink").href;
+
+      if (newPhotoLink)
+        document.getElementById("newPhoto").value = newPhotoLink;
+
+      $("#edit-details-form").submit();
+    }
+  </script>
 </body>
 
 </html>

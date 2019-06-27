@@ -63,6 +63,12 @@
             color: black;
             text-decoration: none;
         }
+
+        .btnGreen {
+            background: #78c697 !important;
+            height: 40px;
+            color: white;
+        }
     </style>
 </head>
 
@@ -134,29 +140,22 @@
                                         <td><%= users.status %></td>
                                         <td>
                                             <div style="text-align: center">
-                                                <a href="/adminpanel/send-email/interview/<%=users._id%>">Interview
-                                                </a>or<a href="/adminpanel/send-email/upskilling/<%=users._id%>">
-                                                    Upskilling</a>
+
+                                                <button class="btn btnGreen"><a
+                                                        style="text-decoration: none; color:white"
+                                                        href="/adminpanel/send-email/interview/<%=users._id%>">Interview
+                                                    </a></button>
+
                                             </div>
                                         </td>
                                         <td id="actions" style="padding-left: 1px; padding-right: 1px;">
                                             <div class="center none">
-                                                <% if(users.userType == "Student") { %>
-                                                <a class="center none"
+                                                <a class="none" style="margin-left: 20px;"
                                                     href="/adminpanel/userprofile/student/<%= users._id %>"><i
                                                         class="far fa-eye med"></i></a>
                                                 <a class="center none"
                                                     href="/adminpanel/userprofile/student/edit/<%=users._id%>/"><i
                                                         class="fas fa-edit med"></i></a>
-                                                <% } %>
-                                                <% if(users.userType == "Employer") { %>
-                                                <a class="center none"
-                                                    href="/adminpanel/userprofile/employer/<%= users._id %>"><i
-                                                        class="far fa-eye med"></i></a>
-                                                <a class="center none"
-                                                    href="/adminpanel/userprofile/employer/edit/<%=users._id%>/"><i
-                                                        class="fas fa-edit med"></i></a>
-                                                <% } %>
                                                 <a class="center none"
                                                     href="/adminpanel/send-email/default/<%=users._id%>"><i
                                                         class="far fa-envelope med"></i></a>

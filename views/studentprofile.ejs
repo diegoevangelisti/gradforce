@@ -22,6 +22,7 @@
       setTimeout(function () {
         document.body.style.opacity = "100";
       }, 300);
+      window.scrollTo(0, 0);
     };
   </script>
 
@@ -81,11 +82,11 @@
       <a id="std-details-edit">
         <img class="editbtn" src="/assets/img/icons/edit.png" alt="edit icon">
       </a>
-      <% if(user.img.data){ %>
+      <% if(user.img.data && user.img.data.length > 0){ %>
       <img class="centerimg mb10" style="max-width: 300px; max-height: 300px;" src="<%= user.img.data %>"
         alt="No photo">
       <% } else if(user.photo) { %>
-        <img class="centerimg mb10" src="<%= user.photo %>" alt="No photo">
+      <img class="centerimg mb10" src="<%= user.photo %>" alt="No photo">
       <% } else { %>
       <img class="centerimg mb10" src="/assets/img/profile-placeholder.jpg" alt="No photo">
       <% } %>
@@ -100,7 +101,6 @@
       <p class="mb10"><%= user.phone_number%></p>
       <% } %>
     </div>
-
 
     <!-- Modal for details section -->
     <div id="details-modal" class="modal">
@@ -246,7 +246,6 @@
           <img src="/assets/img/icons/add.png" alt="add icon">
         </a>
         <h1 class="mb20">My Education</h1>
-
       </div>
       <!-- Show all Education -->
       <!-- <p class="inline mt10 mb15">Status: <%= user.education_status%></p> -->
@@ -1897,16 +1896,11 @@
   </script>
   <% } %>
 
-
   <script>
     document.getElementById("submit-about-form").onclick = () => {
       $("#edit-about-form").submit();
     }
   </script>
-
-  </script>
-
-
 
   <script>
     var fileInput = document.getElementById('fileInput');
@@ -1942,20 +1936,23 @@
       }
     });
 
+
     document.getElementById("detailsSubmit").onclick = () => {
 
-      var newPhotoLink = document.getElementById("newPhotoLink").href;
+      if (document.getElementById("newPhotoLink")) {
+        var newPhotoLink = document.getElementById("newPhotoLink").href;
 
-      if (newPhotoLink)
-        document.getElementById("newPhoto").value = newPhotoLink;
-
+        if (newPhotoLink)
+          document.getElementById("newPhoto").value = newPhotoLink;
+      }
       $("#edit-details-form").submit();
     }
   </script>
 
   <div id="del-skills-parent">
   </div>
-  
+
 </body>
 <!-- <div w3-include-html="/partials/footer.html"></div> -->
+
 </html>
