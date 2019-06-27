@@ -106,35 +106,35 @@
         </div>
         <div class="modal-body">
           <form id="edit-about-form" action="/profile/update-details/<%= user._id %>?_method=PUT" method="POST">
-            <div id="edit-form-content">
+            <div>
               <label for="fname" class="mb2">
                 First Name
               </label>
               <br>
               <input name="fname" id="fname" class="text-input mb10" value="<%= user.fname%>">
             </div>
-            <div id="edit-form-content">
+            <div>
               <label for="lname" class="mb2">
                 Last Name
               </label>
               <br>
               <input name="lname" id="lname" class="text-input mb10" value="<%= user.lname%>">
             </div>
-            <div id="edit-form-content">
+            <div>
               <label for="title" class="mb2">
                 Title
               </label>
               <br>
               <input name="title" id="title" class="text-input mb10" value="<%= user.title%>">
             </div>
-            <div id="edit-form-content">
+            <div>
               <label for="phone" class="mb2">
                 Phone
               </label>
               <br>
               <input name="phone" id="phone" class="text-input mb10" value="<%= user.phone_number%>">
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer fullrow">
               <div id="modal-footer-buttons">
                 <button type="button" id="cancel" class="btn btnGreen btnGray mt10">
                   <span id="closeDetails" onclick="closeModal(id)">Cancel</span>
