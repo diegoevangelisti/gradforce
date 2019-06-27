@@ -30,8 +30,16 @@ body {
 }
 
 // GLOBAL --------------------
+.mt10 {
+  margin-top: 10px;
+}
+
 .mb2 {
   margin-bottom: 2px;
+}
+
+.mb5 {
+  margin-bottom: 5px;
 }
 
 .mb10 {
@@ -62,7 +70,39 @@ body {
   margin-top: 30px;
 }
 
+.mb50 {
+  margin-bottom: 50px;
+}
 
+.mt50 {
+  margin-top: 50px;
+}
+
+.pb50 {
+  padding-bottom: 50px;
+}
+
+.pt50 {
+  padding-top: 50px;
+}
+
+// color classes 
+.graybg {
+  background: $c-lightgray;
+}
+
+.darkbg {
+  background: $c-midgray;
+}
+
+.c-bg {
+  background: $c-bg;
+}
+
+.block {
+  display: block;
+  width: 100%;
+}
 
 .text-input {
   background: $c-white;
@@ -70,7 +110,6 @@ body {
   //box-sizing: border-box;
   height: 40px;
   padding: 3px 15px;
-
 }
 
 input {
@@ -193,16 +232,20 @@ hr {
 }
 
 .modal-header {
-  height: 70px;
+  height: 60px;
   padding: 15px 16px;
   background-color: $c-bg;
   border-bottom: 1px solid rgba(0, 0, 0, .15);
 }
 
 .modal-body {
-  #edit-form-content {
-    padding: 8px;
-  }
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 0.2rem;
+
+  // #edit-form-content {
+  //   padding: 8px;
+  // }
 
   label {
     font-family: 'Lato';
@@ -211,21 +254,22 @@ hr {
   }
 
   textarea {
+    resize: none;
     width: 100%;
     min-height: 100px;
   }
 }
 
 .modal-footer {
-  background: $c-bg;
-  height: 60px;
-  position: relative;
+  // background: $c-bg;
+  // height: 60px;
+  // position: relative;
   border-top: 1px solid rgba(0, 0, 0, .15);
 
   #modal-footer-buttons {
-    position: absolute;
-    right: 16px;
-    margin: 10px 0px;
+    // position: absolute;
+    // right: 16px;
+    // margin: 0px 0px;
 
     button {
       span {

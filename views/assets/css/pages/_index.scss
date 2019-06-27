@@ -1,10 +1,12 @@
 #landing_page {
   #register {
     background: rgba($color: $c_lightgray, $alpha:0.85);
+    box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.23);
     border-top: 4px solid #e5e5e5;
     font-size: 12px;
-    margin-top: 3rem;
-    max-height: 610px;
+    margin-top: 2.5rem;
+    max-height: 580px;
+
     p {
       font-size: 1.25em;
     }
@@ -12,9 +14,40 @@
 
   #slogan {
     h1 {
-      font-size: 40px;
-      font-weight: 400;
-      margin: 3rem 0 1rem;
+      margin: 2.5rem 0 1rem 0;
+    }
+  }
+
+  h1 {
+    font-size: 40px;
+    font-weight: 400;
+  }
+
+  #about {
+    background: $c-bg;
+    // margin-bottom: 4rem;
+
+    #about-content {
+      position: relative;
+
+      #about-title {
+        margin: 2rem 0;
+      }
+
+      .card {
+        float: left;
+        width: 33%;
+        padding: 0 .3rem;
+
+        img {
+          max-width: 100%;
+          max-height: 100%;
+        }
+
+        .card-title {
+          font-size: 22px;
+        }
+      }
     }
   }
 }
