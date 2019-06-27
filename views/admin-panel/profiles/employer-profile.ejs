@@ -80,12 +80,6 @@
                             <%= user.email %>
                             <a class="very-small" href="/adminpanel/send-email/default/<%= user._id %>">Send email</a>
                         </p>
-                        <% if (user.address.street) { %>
-                        <p class="inline student-title med normal"><i class="fas fa-map-marker-alt"></i>
-                            <%= user.address.unit %>, <%= user.address.street %>.
-                            <%= user.address.city %>, <%= user.address.suburb %></p>
-                        <% } %>
-
                         <% if (user.phone_number) { %>
                         <p class="inline student-title med normal"><i class="fas fa-phone-volume"></i>
                             <%= user.phone_number %>

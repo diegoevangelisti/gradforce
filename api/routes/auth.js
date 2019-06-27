@@ -30,7 +30,6 @@ router.get("/register/usertype", (req, res, next) => {
   console.log("QUERY: " + req.query.userType);
   console.log("Session user type: " + req.session.userType);
   console.log("Session id: " + req.session.id);
-
   res.end('done');
 
 });
