@@ -153,7 +153,6 @@ passport.use(new GoogleStrategy({
             photo: profile.photos[0].value,
             googleId: profile.id,
             status: "Profile Incomplete",
-            phone_number: null,
             dates: {
               created: new Date().toLocaleString()
             }

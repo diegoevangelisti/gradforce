@@ -98,6 +98,7 @@
       <% if(user.phone_number){ %>
       <label for="phone">Phone number:</label>
       <p class="mb10"><%= user.phone_number%></p>
+      <% } %>
     </div>
 
 
@@ -175,7 +176,6 @@
         <p class="mb20"><%= user.about%></p>
         <h1 class="mb20">My Skills</h1>
         <div class="mt20">
-          <% } %>
           <% user.Skills.softs.forEach(function(skill, i) { %>
           <% if(i){ %>
           <span class="mb10 inline skill-card"><%= skill %></span>
@@ -1846,12 +1846,6 @@
       clonedDel.innerText = "Delete";
 
       //to create the scripts to delete new skills
-
-      var parentSkills = document.getElementById("here");
-      var oldSkills = parentSkills.cloneNode();
-
-
-      parentSkills.append(delScript);
 
       newSkills.appendChild(clonedInput);
       newSkills.appendChild(clonedList);
