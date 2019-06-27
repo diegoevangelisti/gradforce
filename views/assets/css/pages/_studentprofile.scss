@@ -76,8 +76,7 @@
   max-height: 200px;
   overflow-x: auto;
 }
+.img:hover {
 
-img:hover {
-
-  opacity: 0.6;
+  opacity: 0.6 !important;
 }

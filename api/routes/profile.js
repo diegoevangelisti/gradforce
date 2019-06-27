@@ -96,21 +96,20 @@ router.put("/update-about/:id", isLoggedIn, (req, res) => {
 //Update Details information
 
 router.put("/update-details/:id", isLoggedIn, (req, res) => {
-  console.log("NEW PHOTO: "+req.body.newPhoto)
+  console.log("NEW PHOTO: " + req.body.newPhoto)
   let id = req.params.id;
-  if(req.body.newPhoto !=0 && req.body.newPhoto.length > 0)
-  var newPhoto = req.body.newPhoto;
+  if (req.body.newPhoto != 0 && req.body.newPhoto.length > 0)
+    var newPhoto = req.body.newPhoto;
   else
-  var newPhoto = false;
-  
+    var newPhoto = false;
+
 
   User.findByIdAndUpdate(id).then((user) => {
 
-      if(newPhoto !=false)
-      {
-        user.img.data = newPhoto,
+    if (newPhoto != false) {
+      user.img.data = newPhoto,
         user.img.contentType = 'image/png'
-      }     
+    }
       user.fname = req.body.fname,
       user.lname = req.body.lname,
       user.title = req.body.title,
