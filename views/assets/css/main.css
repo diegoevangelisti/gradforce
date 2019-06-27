@@ -699,9 +699,6 @@ body #footer #footer-container #footer-bottom #footer-links {
   overflow-x: auto;
 }
 
-img:hover {
-  opacity: 0.6;
-}
 
 * {
   -webkit-box-sizing: border-box;

@@ -22,6 +22,7 @@
       setTimeout(function () {
         document.body.style.opacity = "100";
       }, 300);
+      window.scrollTo(0, 0);
     };
   </script>
 
@@ -1942,10 +1943,11 @@
 
     document.getElementById("detailsSubmit").onclick = () => {
 
-      var newPhotoLink = document.getElementById("newPhotoLink").href;
-
-      if (newPhotoLink)
-        document.getElementById("newPhoto").value = newPhotoLink;
+      if (document.getElementById("newPhotoLink")) {
+        var newPhotoLink = document.getElementById("newPhotoLink").href;
+        if (newPhotoLink)
+          document.getElementById("newPhoto").value = newPhotoLink;
+      }
 
       $("#edit-details-form").submit();
     }

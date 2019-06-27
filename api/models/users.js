@@ -58,6 +58,11 @@ var userSchema = mongoose.Schema({
         end_date: String,
         description: String
     }],
+    role: [{
+        title: String,
+        description: String,
+        skills: [String]
+    }],
     booking_date: Date,
     ranking: Number,
     Skills: {

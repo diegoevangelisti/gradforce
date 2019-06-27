@@ -71,8 +71,14 @@
   max-height: 200px;
   overflow-x: auto;
 }
+.img:hover {
 
+<<<<<<< HEAD
 img:hover {
 
   opacity: 0.6;
 }
+=======
+  opacity: 0.6 !important;
+}
+>>>>>>> aff4031c64ac2698516e8d8814f365935f81c442
