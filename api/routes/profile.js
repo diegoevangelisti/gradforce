@@ -73,7 +73,6 @@ router.put("/update-about/:id", isLoggedIn, (req, res) => {
 
   let id = req.params.id;
   let sk = req.body.skills;
-
   console.log(sk);
 
   User.findByIdAndUpdate(id).then((user) => {
