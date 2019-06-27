@@ -150,7 +150,7 @@ passport.use(new GoogleStrategy({
             fname: profile.name.givenName,
             lname: profile.name.familyName,
             email: profile.emails[0].value,
-            photo: profile.picture,
+            photo: profile.photos[0].value,
             googleId: profile.id,
             status: "Profile Incomplete",
             dates: {

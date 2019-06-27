@@ -82,14 +82,15 @@ router.post("/register", (req, res, next) => {
           }
         }),
         req.body.password,
+
         function (err, user) {
           if (err) {
-            console.log(err);
-            console.log("User not added, please check the form");
-            return res.render("../views/auth/register");
-
+            res.redirect('/login');
+          } else {
+            passport.authenticate('local')(req, res, function () {
+              res.redirect('/profile');
+            })
           }
-          res.redirect("login");
         });
     }
   })
@@ -458,14 +459,14 @@ router.post('/login', function (req, res, next) {
 
 router.get("/login", (req, res, next) => {
 
-  
-    var passedVariable = req.query.message;
-    console.log("THIS: " + passedVariable)
-    res.render("../views/login", {
-      message: passedVariable,
-      isLoggedIn: null,
-      SignUp: null,
-    });
+
+  var passedVariable = req.query.message;
+  console.log("THIS: " + passedVariable)
+  res.render("../views/login", {
+    message: passedVariable,
+    isLoggedIn: null,
+    SignUp: null,
+  });
 });
 
 

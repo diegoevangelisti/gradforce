@@ -576,8 +576,8 @@ body #footer #footer-container #footer-bottom #footer-links {
           box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.23);
   border-top: 4px solid #e5e5e5;
   font-size: 12px;
-  margin-top: 2.5rem;
-  max-height: 580px;
+  margin-top: 3rem;
+  max-height: 610px;
 }
 
 #landing_page #register p {
