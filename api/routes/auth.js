@@ -88,6 +88,50 @@ router.post("/register", (req, res, next) => {
           } else {
             passport.authenticate('local')(req, res, function () {
               res.redirect('/profile');
+
+              //send welcome email
+
+              //DISABLE
+              
+              var exit = 0;
+
+              if (exit) {
+
+                var subject = "Welcome to GradForce";
+                var content = "Hi " + user.fname + ",\n\n" + "Welcome to GradForce! You've taken the first step, now is time to start filling in your profile.\n\n" +
+                  "This are the suggested steps to follow:\n\n" + "1. Complete your personal details. Don't forget to give us your cell phone number!\n" +
+                  "2. Write a sort sentence about your and select your main Skills. That's great to start knowing you a little bit more\n" +
+                  "3. Education section: All terciary level. Give as a brief resume of your educational records here\n" +
+                  "4. Work Experience: Very important! Start from the most recient one and just focus on the most significant ones\n\n" +
+                  "And then wait for our answer. We'll try to contact you as soon as possible, the idea is to have a meeting to get you know better\n" +
+                  "\nDon't hesitate in drop as a comment in case you need some help\n\n" +
+                  "All the Best!\n\n" +
+                  "GradForce Team";
+
+                async function main() {
+
+                  var transporter = nodemailer.createTransport({
+                    host: 'smtp.gmail.com',
+                    port: 465,
+                    secure: true, // use SSL
+                    auth: {
+                      user: 'gradforce.co.nz@gmail.com',
+                      pass: process.env.GMAIL
+                    }
+                  });
+
+                  let info = await transporter.sendMail({
+                    from: '"GradForce" <gradforce.co.nz@gmail.com>',
+                    to: user.email,
+                    subject: subject,
+                    text: content,
+                  });
+                  console.log("Message sent: %s", info.messageId);
+                  console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+                }
+
+                main().catch(console.error);
+              }
             })
           }
         });
