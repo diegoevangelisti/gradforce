@@ -31,6 +31,7 @@ router.get("/", isLoggedIn, (req, res) => {
       //Open Employer's profile
       res.render("../views/employerprofile", {
         user: req.user,
+        skills: skills,
         isLoggedIn: true
       });
     }
@@ -96,30 +97,31 @@ router.put("/update-about/:id", isLoggedIn, (req, res) => {
 //Update Details information
 
 router.put("/update-details/:id", isLoggedIn, (req, res) => {
-  console.log("NEW PHOTO: " + req.body.newPhoto)
-  let id = req.params.id;
-  if (req.body.newPhoto != 0 && req.body.newPhoto.length > 0)
-    var newPhoto = req.body.newPhoto;
-  else
-    var newPhoto = false;
 
+  let id = req.params.id;
+
+  console.log("HERE: \n\n\n" + req.body.newPhoto + "\n\n\n")
 
   User.findByIdAndUpdate(id).then((user) => {
 
-    if (newPhoto != false) {
-      user.img.data = newPhoto,
+
+    if (req.body.newPhoto != 0) {
+      user.img.data = req.body.newPhoto,
         user.img.contentType = 'image/png'
+
     }
-      user.fname = req.body.fname,
+
+    console.log("web site: " + req.body.webSite);
+    user.webSite = req.body.webSite;
+    user.fname = req.body.fname,
       user.lname = req.body.lname,
       user.title = req.body.title,
       user.companyName = req.body.companyName,
       user.phone_number = req.body.phone,
 
+
       user.save()
-      .then(user => {
-        console.log(user);
-      })
+      .then(user => {})
       .catch(err => {
         console.log(err);
         res.status(500).json({
@@ -387,5 +389,65 @@ router.put("/delete-work-experience/:id", isLoggedIn, (req, res) => {
     res.redirect("/profile");
   })
 });
+
+
+//Add new Role (Employer Profile)
+
+router.post("/add-role/:id", isLoggedIn, (req, res) => {
+
+  let id = req.params.id;
+
+  let objRole = {
+    title: req.body.roleTitle,
+    description: req.body.roleDescription,
+    skills: req.body.roleSkillsAdd
+
+
+  }
+
+  User.findOneAndUpdate({
+      _id: id
+    }, {
+      $push: {
+        role: objRole
+      }
+    },
+    function (error, user) {
+      if (error) {
+        console.log(error);
+      } else {
+        user.save();
+        console.log(user);
+      }
+      res.redirect("/profile");
+    });
+});
+
+//Delete Role
+router.put("/delete-role/:id", isLoggedIn, (req, res) => {
+
+  let id = req.params.id;
+  let index = req.body.deleteRoleNumber;
+
+  User.findByIdAndUpdate(id).then((user) => {
+
+    //delete from position index one education record
+    user.splice(index, 1);
+
+    user.save()
+      .then(user => {
+        console.log(user);
+
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({
+          error: err
+        });
+      });
+  })
+  res.redirect("/profile");
+});
+
 
 module.exports = router;
