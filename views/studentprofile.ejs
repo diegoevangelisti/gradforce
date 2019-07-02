@@ -261,7 +261,7 @@
         </a>
         <p class="inline" style="font-weight: bold"><%= element.course%></p>
         <br>
-        <h2><%= element.educational_provider%></h2>
+        <p class="inline"><%= element.educational_provider%></p> - <p class="inline"><%= element.country%></p><br>
         <p class="inline"><%= element.start_date%></p>
         <p class="inline"> - </p>
         <p class="inline"><%= element.end_date%></p>
@@ -275,7 +275,7 @@
         </a>
         <p class="inline" style="font-weight: bold"><%= element.course%></p>
         <br>
-        <h2><%= element.educational_provider%></h2>
+        <p class="inline"><%= element.educational_provider%></p> - <p class="inline"><%= element.country%></p><br>
         <p class="inline"><%= element.start_date%></p>
         <p class="inline"> - </p>
         <p class="inline"><%= element.end_date%></p>
@@ -389,17 +389,18 @@
                   <option>Yoobee School of Design (Christchurch)</option>
                   <option>Yoobee School of Design (Wellington)</option>
                 </select>
+                <input id="input_selected_edit_provider" name="input_selected_edit_provider" type="hidden"
+                  style="display: none">
+                <!-- Button to enter other provider, different than NZ options -->
                 <input class="course text-input mb10" type="text" placeholder="Enter the Education provider"
                   id="selected_edit_provider" name="selected_edit_provider" style="display: none">
-
-                <!-- Button to enter other provider, different than NZ options -->
+                <input class="course text-input mb10" placeholder="Country" id="selected_edit_provider_country"
+                  name="selected_edit_provider_country" style="display: none">
                 <div style="margin-bottom: 30px;">
                   <button type="button" id="edit-provider-button" class="btn btnGray other mt10">Enter other provider
                     ...
                   </button>
                 </div>
-                <input id="input_selected_edit_provider" name="input_selected_edit_provider" type="hidden"
-                  style="display: none">
               </div>
               <div id="course-edit">
                 <label for="course_edit" class="mb2">
@@ -551,6 +552,8 @@
                   <div style="margin-bottom: 30px;">
                     <input id="selected_current_provider_other" placeholder="Enter the provider name"
                       class="provider text-input mb10" name="selected_current_provider_other" style="display: none">
+                    <input id="selected_current_provider_other_country" name="selected_current_provider_other_country"
+                      placeholder="Country" class="provider text-input mb10" style="display: none">
                     <button type="button" id="current-provider" class="btn btnGray other mt10">Enter other provider ...
                     </button>
                   </div>
@@ -572,7 +575,7 @@
                 </div>
                 <div id="current-end-year">
                   <label for="end_yer" class="mb2">
-                    End Year (or Present)
+                    End Year
                   </label>
                   <br>
                   <input id="current_end_year" class="year text-input mb10" type="text" name="current_end_year"
@@ -658,6 +661,8 @@
                   <div style="margin-bottom: 30px;">
                     <input id="selected_previous_provider_other" placeholder="Enter the provider name"
                       class="provider text-input mb10" name="selected_previous_provider_other" style="display: none">
+                    <input id="selected_previous_provider_other_country" class="provider text-input mb10"
+                      placeholder="Country" name="selected_previous_provider_other_country" style="display: none">
                     <button type="button" id="previous-provider-button" class="btn btnGray other mt10">Enter other
                       provider ...
                     </button>
@@ -892,17 +897,21 @@
                     <option>Yoobee School of Design (Christchurch)</option>
                     <option>Yoobee School of Design (Wellington)</option>
                   </select>
+                  <input id="selected_previous_provider_other" name="selected_previous_provider_other" type="hidden"
+                    style="display: none">
+
+
+                  <!-- Button to enter other provider, different than NZ options -->
+
                   <input class="course text-input mb10" type="text" placeholder="Enter the Education provider"
                     id="selected_previous_provider_other_other" name="selected_previous_provider_other_other"
                     style="display: none">
-
-                  <!-- Button to enter other provider, different than NZ options -->
+                  <input id="selected_previous_provider_other_other_country" class="provider text-input mb10"
+                    placeholder="Country" name="selected_previous_provider_other_other_country" style="display: none">
                   <div style="margin-bottom: 30px;">
                     <button type="button" id="other-provider" class="btn btnGray other mt10">Enter other provider ...
                     </button>
                   </div>
-                  <input id="selected_previous_provider_other" name="selected_previous_provider_other" type="hidden"
-                    style="display: none">
                 </div>
                 <div id="previous-course">
                   <label for="other_previous_course" class="mb2">
@@ -964,7 +973,7 @@
           </a>
           <p class="inline" style="font-weight: bold"><%= element.role%></p>
           <br>
-          <p class="inline"><%= element.company%></p>
+          <p class="inline"><%= element.company%></p> - <p class="inline"><%= element.country%></p>
           <br>
           <p class="inline"><%= element.start_date%></p>
           <p class="inline"> - </p>
@@ -979,7 +988,7 @@
             </a>
             <p class="inline" style="font-weight: bold"><%= element.role%></p>
             <br>
-            <p class="inline"><%= element.company%></p>
+            <p class="inline"><%= element.company%></p> - <p class="inline"><%= element.country%></p>
             <br>
             <p class="inline"><%= element.start_date%></p>
             <p class="inline"> - </p>
@@ -991,7 +1000,7 @@
       <% }) %>
     </div>
 
-    <!-- Modal for experience section -->
+    <!-- Modal for edit work experience section -->
     <div id="experience-modal" class="modal">
       <div class="modal-content">
         <div class="modal-header">
@@ -1017,17 +1026,24 @@
             </div>
             <div id="edit-form-content">
               <label for="" class="mb2">
-                Start Year
+                Country
               </label>
               <br>
-              <input id="start_year" class="year text-input mb10" type="text" name="start_year" value="">
+              <input id="workCountry" class="text-input mb10" type="text" name="workCountry" value="">
             </div>
             <div id="edit-form-content">
               <label for="" class="mb2">
-                End Year (or Present)
+                Start year
               </label>
               <br>
-              <input id="end_year" class="year text-input mb10" type="text" name="end_year" value="">
+              <input id="start_year_edit" class="year text-input mb10" type="text" name="start_year_edit" value="">
+            </div>
+            <div id="edit-form-content">
+              <label for="" class="mb2">
+                End year (or Present)
+              </label>
+              <br>
+              <input id="end_year_edit" class="year text-input mb10" type="text" name="end_year_edit" value="">
             </div>
             <div id="edit-form-content">
               <label for="" class="mb2">
@@ -1052,6 +1068,7 @@
         </div>
       </div>
     </div>
+
     <!-- Modal for adding experience section -->
     <div id="experience-modal-add" class="modal">
       <div class="modal-content">
@@ -1074,6 +1091,13 @@
               </label>
               <br>
               <input id="company" class="company text-input mb10" type="text" name="company" value="">
+            </div>
+            <div id="edit-form-content" class="mt10">
+              <label for="" class="mb2">
+                Country
+              </label>
+              <br>
+              <input id="workCountryAdd" class="company text-input mb10" type="text" name="workCountryAdd" value="">
             </div>
             <div id="edit-form-content" class="mt10">
               <label for="" class="mb2">
@@ -1241,8 +1265,9 @@
 
         document.getElementById("role").value = '<%= user.work[i].role %>';
         document.getElementById("company").value = '<%= user.work[i].company %>';
-        document.getElementById("start_year").value = '<%= user.work[i].start_date %>';
-        document.getElementById("end_year").value = '<%= user.work[i].end_date %>';
+        document.getElementById("start_year_edit").value = '<%= user.work[i].start_date %>';
+        document.getElementById("end_year_edit").value = '<%= user.work[i].end_date %>';
+        document.getElementById("workCountry").value = '<%= user.work[i].country %>';
         document.getElementById("work_description").value = '<%= user.work[i].description %>';
         document.getElementById("experienceNumber").value = '<%= i %>';
         experienceModal.style.display = "block";
@@ -1259,7 +1284,25 @@
     educationEditBtn[j].onclick = function () {
 
         document.getElementById("course").value = '<%= user.education[i].course %>';
-        document.getElementById("provider").value = '<%= user.education[i].educational_provider %>';
+
+        if ('<%= user.education[i].country %>' != "New Zealand") {
+
+          document.getElementById("edit-provider-button").innerText = "Select a NZ provider";
+          document.getElementById("selected_edit_provider").value = '<%= user.education[i].educational_provider %>';
+          document.getElementById("selected_edit_provider").style.display = "block";
+          document.getElementById("provider").style.display = "none";
+          document.getElementById("selected_edit_provider_country").style.display = "block";
+          document.getElementById("selected_edit_provider_country").value = '<%= user.education[i].country %>';
+
+        } else {
+          document.getElementById("provider").style.display = "block";
+          document.getElementById("selected_edit_provider").style.display = "none";
+          document.getElementById("selected_edit_provider_country").style.display = "none";
+          document.getElementById("selected_edit_provider_country").value = "";
+          document.getElementById("provider").value = '<%= user.education[i].educational_provider %>';
+
+        }
+
         document.getElementById("start_year").value = '<%= user.education[i].start_date %>';
         document.getElementById("end_year").value = '<%= user.education[i].end_date %>';
         document.getElementById("educationNumber").value = '<%= i %>';
@@ -1552,8 +1595,6 @@
         var result = e.options[e.selectedIndex].text;
         document.getElementById("selected_current_provider").value = result;
       }
-
-      return result;
     }
 
 
@@ -1569,7 +1610,6 @@
         var e = document.getElementById("previous_provider_list");
         var result = e.options[e.selectedIndex].text;
         document.getElementById("selected_previous_provider").value = result;
-        return result;
       }
     }
 
@@ -1585,29 +1625,29 @@
 
         var e = document.getElementById("previous_provider_list_other");
         var result_other = e.options[e.selectedIndex].text;
-        document.getElementById("selected_previous_provider_other").value = result_other;
+        document.getElementById("selected_previous_provider_other_other").value = result_other;
 
       }
-
-      return result_other;
     }
 
     function GetSelectedEditProvider() {
 
       //take value from "other provider" input
-      if (document.getElementById("selected_edit_provider").value) {
+      if (document.getElementById("selected_edit_provider").value && document.getElementById("selected_edit_provider")
+        .style.display == "block") {
 
         var result_other = document.getElementById("selected_edit_provider").value;
         document.getElementById("input_selected_edit_provider").value = result_other;
+
+
         //or take value from options list
       } else {
-
+        document.getElementById("selected_edit_provider_country").value = "New Zealand";
         var e = document.getElementById("provider");
         var result_other = e.options[e.selectedIndex].text;
         document.getElementById("input_selected_edit_provider").value = result_other;
 
       }
-      return result_other;
     }
 
     //Section: Add other provider
@@ -1620,6 +1660,9 @@
         x.style.display = "block";
         document.getElementById("other-provider").innerText = "Select a NZ provider";
         document.getElementById("other-provider").className = "btn btnGray other mt10";
+        document.getElementById("selected_previous_provider_other_other_country").style.display = "block";
+
+
 
       } else {
         x.style.display = "none";
@@ -1627,6 +1670,8 @@
         x.value = "";
         document.getElementById("other-provider").innerText = "Enter other provider ... ";
         document.getElementById("other-provider").className = "btn btnGray other mt10";
+        document.getElementById("selected_previous_provider_other_other_country").style.display = "none";
+
       }
     }
 
@@ -1640,6 +1685,7 @@
         x.style.display = "block";
         document.getElementById("current-provider").innerText = "Select a NZ provider";
         document.getElementById("current-provider").className = "btn btnGray other mt10";
+        document.getElementById("selected_current_provider_other_country").style.display = "block";
 
       } else {
         x.style.display = "none";
@@ -1647,6 +1693,8 @@
         x.value = "";
         document.getElementById("current-provider").innerText = "Enter other provider ... ";
         document.getElementById("current-provider").className = "btn btnGray other mt10";
+        document.getElementById("selected_current_provider_other_country").style.display = "none";
+
       }
     }
 
@@ -1662,6 +1710,7 @@
         document.getElementById("previous_provider_list").style.display = "none";
         document.getElementById("previous-provider-button").innerText = "Select a NZ provider";
         document.getElementById("previous-provider-button").className = "btn btnGray other mt10";
+        document.getElementById("selected_previous_provider_other_country").style.display = "block";
 
       } else {
 
@@ -1670,6 +1719,9 @@
         x.value = "";
         document.getElementById("previous-provider-button").innerText = "Enter other provider ... ";
         document.getElementById("previous-provider-button").className = "btn btnGray other mt10";
+        document.getElementById("selected_previous_provider_other_country").style.display = "none";
+
+
       }
     }
 
@@ -1683,14 +1735,17 @@
         document.getElementById("provider").style.display = "none";
         document.getElementById("edit-provider-button").innerText = "Select a NZ provider";
         document.getElementById("edit-provider-button").className = "btn btnGray other mt10";
+        document.getElementById("selected_edit_provider_country").style.display = "block";
+
 
       } else {
 
         x.style.display = "none";
         document.getElementById("provider").style.display = "block";
-        x.value = "";
         document.getElementById("edit-provider-button").innerText = "Enter other provider ... ";
         document.getElementById("edit-provider-button").className = "btn btnGray other mt10";
+        document.getElementById("selected_edit_provider_country").style.display = "none";
+
       }
     }
 
