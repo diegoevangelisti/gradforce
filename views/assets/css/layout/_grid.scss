@@ -90,9 +90,6 @@ body {
   }
 }
 
-.fullrow {
-  grid-column: 1 / -1;
-}
 
 
 // LANDING PAGE GRID SYSTEM --------------
@@ -225,6 +222,8 @@ body {
     }
   }
 
+  
+
 
 }
 
@@ -269,4 +268,19 @@ body {
     grid-column-start: 3;
     grid-row-start: 3;
   }
+}
+
+
+// modals grids
+.modal form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 5px;
+  padding: 10px;
+}
+
+
+// general classes for grids 
+.fullrow {
+  grid-column: 1 / -1;
 }
