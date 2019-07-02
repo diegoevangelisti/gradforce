@@ -62,6 +62,21 @@
     #editprofile-button:hover {
         opacity: 0.9;
     }
+
+    .skill-card {
+        background: rgb(235, 232, 232);
+        margin-right: 10px;
+        font-size: 12px;
+        text-align: center;
+        padding: 10px;
+        border-radius: 3px;
+        margin-top: 2px;
+    }
+
+    .skill-card:hover {
+        opacity: 0.7;
+        cursor: default;
+    }
 </style>
 
 <body class="bg-dark font-custom">
@@ -70,8 +85,16 @@
             <div class="card-header">
                 <div class="row">
                     <div class="col-3">
-                        <p><img style="width: 110%; height: 110%; padding: 15px;" src="<%= user.photo %>"
-                                alt="Profile photo"></p>
+                        <p> <% if(user.img.data){ %>
+                            <img style="width: 110%; height: 110%; padding: 15px; padding-left: 0px;"
+                                src="<%= user.img.data %>" alt="Profile photo">
+                            <% } else if(user.photo){ %>
+                            <img style="width: 110%; height: 110%; padding: 15px; padding-left: 0px;"
+                                src="<%= user.photo %>" alt="Profile photo">
+                            <% } else { %>
+                            <img style="width: 110%; height: 110%; padding: 15px; padding-left: 0px;"
+                                src="/assets/img/profile-placeholder.jpg" alt="Profile photo">
+                            <% } %></p>
                     </div>
                     <div class="col-9">
                         <p class="inline student-title big"><%= user.fname %> <%= user.lname %><span class="sub-title">
@@ -88,13 +111,57 @@
                         <p><%= user.status %> | <%= user.description %></p>
                     </div>
                 </div>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <div class="form-row">
+                        <% if((user.role && user.role.length>0)){ %>
+                        <div class="col-md-12 education">
+                            <p class="inline student-title big">Roles</p>
+                        </div>
+                        <div class="col-12 education">
+                            <div class="form-group">
+                                <% user.role.forEach(function(role, i){ %>
+                                <div class="form-label-group">
+                                    <p style="background-color:rgba(0, 0, 0, 0.008);">
+                                        <% if(!i) { %>
+                                        <span>Title: <%= role.title  %></span><br>
+                                        <span>Description: <%= role.description  %></span>
+                                        <br>
+                                        <% role.skills.forEach(function(skill, j){ %>
+                                        <% if(j){ %>
+                                        <span class="mb20 inline skill-card"><%= skill %></span>
+                                        <% } %>
+                                        <% }) %>
+                                        <% } %>
+                                        <% if(i) { %>
+                                        <hr>
+                                        <span>Title: <%= role.title  %></span><br>
+                                        <span>Description: <%= role.description  %></span>
+                                        <br>
+                                        <% role.skills.forEach(function(skill, j){ %>
+                                        <% if(j){ %>
+                                        <span class="mb20 inline skill-card"><%= skill %></span>
+                                        <% } %>
+                                        <% }) %>
+                                        <% } %>
+                                    </p>
+                                </div>
+                                <% }) %>
+                            </div>
+                        </div>
+                        <% } %>
+                    </div>
+                </div>
                 <div class="text-center" style="text-align: center">
                     <a style="text-decoration: none" href="/adminpanel/tables"><button type="button"
                             id="editprofile-button" class="btn btn-light font-custom"
                             style="background: lightblue">Return</button></a>
                 </div>
             </div>
+
         </div>
+
     </div>
     <!-- Bootstrap core JavaScript-->
     <script src="/vendor/jquery/jquery.min.js"></script>

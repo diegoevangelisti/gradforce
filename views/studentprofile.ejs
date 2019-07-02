@@ -82,7 +82,7 @@
       <a id="std-details-edit">
         <img class="editbtn" src="/assets/img/icons/edit.png" alt="edit icon">
       </a>
-      <% if(user.img.data && user.img.data.length > 0){ %>
+      <% if(user.img.data){ %>
       <img class="centerimg mb10" style="max-width: 300px; max-height: 300px;" src="<%= user.img.data %>"
         alt="No photo">
       <% } else if(user.photo) { %>
@@ -117,10 +117,7 @@
                 Profile photo
               </label>
               <br>
-              <div>
-                Select an image file:
-                <input type="file" id="fileInput">
-                <input type="hidden" name="newPhoto" id="newPhoto">
+              <div> <input type="file" id="fileInput">
               </div>
               <div id="fileDisplayArea"></div>
             </div>
@@ -162,6 +159,7 @@
                 </button>
               </div>
             </div>
+            <input type="hidden" name="newPhoto" id="newPhoto">
           </form>
         </div>
       </div>
@@ -247,6 +245,7 @@
           <img src="/assets/img/icons/add.png" alt="add icon">
         </a>
         <h1 class="mb20">My Education</h1>
+
       </div>
       <!-- Show all Education -->
       <!-- <p class="inline mt10 mb15">Status: <%= user.education_status%></p> -->
@@ -451,7 +450,6 @@
         <div class="modal-header">
           <span class="close" id="closeEducationAdd" onclick="closeModal(id)">&times;</span>
           <h1 id="education_title">Add Education</h1>
-          <p>Help us connect you with the right companies</p>
         </div>
         <div class="modal-body">
           <form id="current-education-form" action="/profile/add-education/<%= user._id %>" method="POST">
@@ -824,7 +822,6 @@
         <div class="modal-header">
           <span class="close" id="closeOtherEducationAdd" onclick="closeModal(id)">&times;</span>
           <h1 id="education_title">Add Education</h1>
-          <p>Let us know what you have learned</p>
         </div>
         <div class="modal-body">
           <form id="add-other-education-form" action="/profile/add-other-education/<%= user._id %>" method="POST">
@@ -906,7 +903,6 @@
                   </div>
                   <input id="selected_previous_provider_other" name="selected_previous_provider_other" type="hidden"
                     style="display: none">
-
                 </div>
                 <div id="previous-course">
                   <label for="other_previous_course" class="mb2">
@@ -961,7 +957,6 @@
       <% user.work.forEach(function(element, i){ %>
       <% count = count + 1; %>
       <div class="experience-info">
-
         <% if(i == 0) { %>
         <a class="delbtn" id="std-experience-delete-<%= i %>">
           <img src="/assets/img/icons/del.png" alt="del icon"><a class="editbtn" id="std-experience-edit-<%= i %>">
@@ -1721,7 +1716,7 @@
 
   <!-- Added for pop up message -->
   <% popupCounter = 0 %>
-  <% if(user.status == "Profile Complete" && popupCounter == 0){ %>
+  <% if(user.status == "Profile Incomplete" && popupCounter == 0){ %>
   <% popupCounter = 1 %>
   <script>
     //First log in pop up message
@@ -1897,191 +1892,6 @@
   </script>
   <% } %>
 
-  <script>
-    document.getElementById("submit-about-form").onclick = () => {
-      $("#edit-about-form").submit();
-    }
-  </script>
-
-  <script>
-    var fileInput = document.getElementById('fileInput');
-    var fileDisplayArea = document.getElementById('fileDisplayArea');
-    var y;
-
-    fileInput.addEventListener('change', function (e) {
-      var file = fileInput.files[0];
-      var imageType = /image.*/;
-
-      if (file.type.match(imageType)) {
-        var reader = new FileReader();
-
-        reader.onload = function (e) {
-          fileDisplayArea.innerHTML = "";
-
-          var img = new Image();
-          img.src = reader.result;
-          img.setAttribute("class", "profile-img");
-
-
-          fileDisplayArea.appendChild(img);
-
-          y = document.createElement('a'); // is a node
-          y.setAttribute("href", img.src);
-          y.id = "newPhotoLink"
-          fileDisplayArea.appendChild(y);
-        }
-        reader.readAsDataURL(file);
-
-      } else {
-        fileDisplayArea.innerHTML = "File not supported!"
-      }
-    });
-
-
-    document.getElementById("detailsSubmit").onclick = () => {
-
-      if (document.getElementById("newPhotoLink")) {
-        var newPhotoLink = document.getElementById("newPhotoLink").href;
-
-        if (newPhotoLink)
-          document.getElementById("newPhoto").value = newPhotoLink;
-      }
-      $("#edit-details-form").submit();
-    }
-  </script>
-
-  <div id="del-skills-parent">
-  </div>
-
-</body>
-<!-- <div w3-include-html="/partials/footer.html"></div> -->
-
-  <% SkillCount = 0 %>
-  <% user.Skills.softs.forEach(function(skill, i) { %>
-  <% if(i) { %>
-  <% SkillCount = SkillCount + 1; %>
-  <script>
-    elementId++;
-    var skills = document.getElementById("student-skills");
-    var newSkills = skills.cloneNode();
-    newSkills.id = "student-skills" + elementId;
-
-    var input = document.getElementById("skill");
-    input.setAttribute("placeholder", "Type your skill here");
-    input.setAttribute("value", "<%= skill %>")
-    var list = document.getElementById("skills-list");
-    var delSkill = document.getElementById("delete-skill");
-    //Clone the list and input
-
-    var clonedInput = input.cloneNode();
-    clonedInput.setAttribute("list", "skills-list" + elementId);
-
-    var clonedList = list.cloneNode(true);
-    clonedList.id = "skills-list" + elementId;
-
-    var clonedDel = delSkill.cloneNode();
-    clonedDel.id = "delete-skill" + elementId;
-    clonedDel.innerText = "Delete";
-
-    newSkills.appendChild(clonedInput);
-    newSkills.appendChild(clonedList);
-    newSkills.appendChild(clonedDel);
-
-    var skillsParent = document.getElementById("student-skills-parent");
-    skillsParent.appendChild(newSkills);
-
-    document.getElementById("student-skills" + elementId).style.display = "block";
-  </script>
-  <% } %>
-  <% }) %>
-  <script>
-    //Student skills part
-
-    increment = "<%= SkillCount %>";
-
-    document.getElementById("add").onclick = () => {
-
-      elementId++;
-      var skills = document.getElementById("student-skills");
-      var newSkills = skills.cloneNode();
-
-      newSkills.id = "student-skills" + elementId;
-
-      var input = document.getElementById("skill");
-      input.setAttribute("placeholder", "Type your skill here");
-      input.setAttribute("value", "");
-      var list = document.getElementById("skills-list");
-      var delSkill = document.getElementById("delete-skill");
-      var delScript = "$('#delete-skill" + (elementId) + "').on('click', function(){ " +
-        " $('#student-skills" + (elementId) + "').remove(); " +
-        "})";
-
-
-
-      //Clone the list and input
-
-      var clonedInput = input.cloneNode();
-      clonedInput.setAttribute("list", "skills-list" + elementId);
-
-      var clonedList = list.cloneNode();
-      clonedList.id = "skills-list" + elementId;
-
-      var clonedDel = delSkill.cloneNode();
-      clonedDel.id = "delete-skill" + elementId;
-      clonedDel.innerText = "Delete";
-
-      //to create the scripts to delete new skills
-
-      newSkills.appendChild(clonedInput);
-      newSkills.appendChild(clonedList);
-      newSkills.appendChild(clonedDel);
-
-      var skillsParent = document.getElementById("student-skills-parent");
-      skillsParent.appendChild(newSkills);
-      document.getElementById("student-skills" + elementId).style.display = "block";
-
-
-      var newScript = document.createElement("script");
-      var inlineScript = document.createTextNode(
-        "$('#delete-skill" + (elementId) + "').on('click', function(){ " +
-        " $('#student-skills" + (elementId) + "').remove(); " +
-        "})");
-
-      newScript.appendChild(inlineScript);
-      $("#del-skills-parent").append(newScript);
-
-
-      increment++;
-    }
-  </script>
-
-  <script>
-    var skillDeleteBtn = [];
-    j = 0;
-  </script>
-
-  <% for(i=0 ; i< SkillCount; ++i) { %>
-  <script>
-    skillDeleteBtn[j] = "delete-skill" + (j + 1);
-    ++j;
-  </script>
-  <% } %>
-
-  <script>
-    j = 0;
-  </script>
-
-  <% for(i=0 ; i< SkillCount; ++i) { %>
-  <script id="here">
-    document.getElementById(skillDeleteBtn[j]).onclick = function () {
-        console.log("clicked " + "<%= i +1 %>");
-        console.log("#student-skills<%= i +1  %>");
-        $("#student-skills<%= i +1  %>").remove();
-      }
-      ++j;
-  </script>
-  <% } %>
-
 
   <script>
     document.getElementById("submit-about-form").onclick = () => {
@@ -2117,8 +1927,10 @@
 
           y = document.createElement('a'); // is a node
           y.setAttribute("href", img.src);
+          y.setAttribute("name", "newPhotoLink");
           y.id = "newPhotoLink"
           fileDisplayArea.appendChild(y);
+          document.getElementById("newPhoto").value = y.href;
         }
         reader.readAsDataURL(file);
 
@@ -2129,18 +1941,15 @@
 
     document.getElementById("detailsSubmit").onclick = () => {
 
-      var newPhotoLink = document.getElementById("newPhotoLink").href;
-
-      if (newPhotoLink)
-        document.getElementById("newPhoto").value = newPhotoLink;
-
       $("#edit-details-form").submit();
     }
   </script>
 
   <div id="del-skills-parent">
   </div>
-  
+
+
 </body>
 <!-- <div w3-include-html="/partials/footer.html"></div> -->
+
 </html>
