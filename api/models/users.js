@@ -14,6 +14,7 @@ var userSchema = mongoose.Schema({
     fname: String,
     lname: String,
     companyName: String,
+    webSite: String,
     DOB: String,
     email: {
         type: String,
