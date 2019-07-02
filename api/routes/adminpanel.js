@@ -2,6 +2,7 @@ var express = require("express");
 const router = express.Router();
 const User = require("../models/users");
 const Admin = require("../models/admin");
+const Skill = require("../models/skills");
 var passport = require("passport");
 
 
@@ -18,7 +19,7 @@ function isAdminLoggedIn(req, res, next) {
 //
 
 router.post("/login", passport.authenticate("admin", {
-  successRedirect: "tables",
+  successRedirect: "tables-students",
   failureRedirect: "login",
 }), function (req, res) {
   res.send(admin._id)
@@ -41,8 +42,8 @@ router.get("/logout", (req, res, next) => {
 router.get("/tables", isAdminLoggedIn, (req, res) => {
 
   User.find().then((users) => {
-    res.render("../views/admin-panel/tables/tables-students", {
-      users: users
+    res.render("../views/admin-panel/tables/tables", {
+      users: users,
     });
   })
 });

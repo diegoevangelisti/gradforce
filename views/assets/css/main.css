@@ -1,12 +1,6 @@
-.title {
-  font-family: 'Lato';
-  font-size: 2rem;
-  font-weight: 300;
-}
-
 h1 {
   font-family: 'Lato';
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 300;
 }
 
@@ -713,8 +707,8 @@ body #footer #footer-container #footer-bottom #footer-links {
   overflow-x: auto;
 }
 
-img:hover {
-  opacity: 0.6;
+.img:hover {
+  opacity: 0.6 !important;
 }
 
 * {
@@ -794,7 +788,7 @@ body {
 }
 
 .darkbg {
-  background: #949494;
+  background: #6e6b6b;
 }
 
 .c-bg {

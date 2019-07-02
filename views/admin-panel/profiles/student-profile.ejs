@@ -64,6 +64,21 @@
     #editprofile-button:hover {
         opacity: 0.9;
     }
+
+    .skill-card {
+        background: rgb(235, 232, 232);
+        margin-right: 10px;
+        font-size: 12px;
+        text-align: center;
+        padding: 10px;
+        border-radius: 3px;
+        margin-top: 2px;
+    }
+
+    .skill-card:hover {
+        opacity: 0.7;
+        cursor: default;
+    }
 </style>
 
 <body class="bg-dark font-custom">
@@ -72,8 +87,16 @@
             <div class="card-header">
                 <div class="row">
                     <div class="col-3">
-                        <p><img style="width: 110%; height: 110%; padding: 15px;" src="<%= user.photo %>"
-                                alt="Profile photo"></p>
+                        <p> <% if(user.img.data){ %>
+                            <img style="width: 110%; height: 110%; padding: 15px; padding-left: 0px;"
+                                src="<%= user.img.data %>" alt="Profile photo">
+                            <% } else if(user.photo){ %>
+                            <img style="width: 110%; height: 110%; padding: 15px; padding-left: 0px;"
+                                src="<%= user.photo %>" alt="Profile photo">
+                            <% } else { %>
+                            <img style="width: 110%; height: 110%; padding: 15px; padding-left: 0px;"
+                                src="/assets/img/profile-placeholder.jpg" alt="Profile photo">
+                            <% } %></p>
                     </div>
                     <div class="col-9">
                         <p class="inline student-title big"><%= user.fname %> <%= user.lname %>
@@ -92,21 +115,26 @@
                         </p>
                         <% } %>
                         <p><%= user.status %> | <%= user.description %></p>
+                        <span style="font-size: 14px; font-weight: 600;"><%= user.about%></span>
                     </div>
                 </div>
             </div>
             <div class="card-body">
                 <div class="form-group">
                     <div class="form-row">
-                        <% if((user.about)){ %>
+                        <% if((user.Skills.softs && user.Skills.softs.length>0)){ %>
                         <div class="col-md-12 education">
-                            <p class="inline student-title big">About the student</p>
+                            <p class="inline student-title big">Skills</p>
                         </div>
                         <div class="col-12 education">
                             <div class="form-group">
                                 <div class="form-label-group">
                                     <p style="background-color:rgba(0, 0, 0, 0.008);">
-                                        <span><%= user.about%></span>
+                                        <% user.Skills.softs.forEach(function(skill, i){ %>
+                                        <% if(i){ %>
+                                        <span class="mb10 inline skill-card"><%= skill%></span>
+                                        <% } %>
+                                        <% }) %>
                                     </p>
                                 </div>
                             </div>
