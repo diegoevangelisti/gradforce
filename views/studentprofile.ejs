@@ -238,7 +238,8 @@
       </div>
     </div>
 
-    <!-- education info -->
+    <!-- Education info -->
+
     <div id="std-education" class="box">
       <div>
         <a id="add-education" class="addbtn">
@@ -247,8 +248,9 @@
         <h1 class="mb20">My Education</h1>
 
       </div>
+
       <!-- Show all Education -->
-      <!-- <p class="inline mt10 mb15">Status: <%= user.education_status%></p> -->
+
       <% counter = 0 %>
       <% user.education.forEach(function(element, i){ %>
       <% counter = counter + 1; %>
@@ -286,6 +288,7 @@
     </div>
 
     <!-- Model for delete education -->
+
     <div id="delete-education-modal" class="modal">
       <div class="modal-content">
         <div class="modal-header">
@@ -314,6 +317,7 @@
     </div>
 
     <!-- Modal for edit education section -->
+
     <div id="education-modal" class="modal">
       <div class="modal-content">
         <div class="modal-header">
@@ -441,10 +445,13 @@
     </div>
 
     <!-- Modal for adding education section -->
+
     <!-- Education status options:
+
       1. Undergraduate
       2. Graduate 
       3. Post-graduate
+
     -->
     <div id="education-modal-add" class="modal">
       <div class="modal-content">
@@ -591,6 +598,7 @@
               </div>
 
               <!-- Previous Study for Post-graduate-->
+
               <div id="previous-study" style="display: none">
                 <div id="previous-provider">
                   <p class="mt10 mb2">Where<span style="font-weight: bold"> have </span>you studied?</p>
@@ -657,7 +665,9 @@
                     <option>Yoobee School of Design (Wellington)</option>
                   </select>
                   <input id="selected_previous_provider" name="selected_previous_provider" type="hidden">
+
                   <!-- Button to enter other provider, different than NZ options -->
+
                   <div style="margin-bottom: 30px;">
                     <input id="selected_previous_provider_other" placeholder="Enter the provider name"
                       class="provider text-input mb10" name="selected_previous_provider_other" style="display: none">
@@ -699,11 +709,13 @@
               </div>
 
               <!-- Add other previous education button -->
+
               <div id="add-other-previous-education-title" style="display: none">
                 <p class="title mt30 mb15">Add other previous education</p>
               </div>
 
               <!-- Other Previous Study -->
+
               <div id="other-previous-study" style="display: none">
                 <div id="other_previous-provider">
                   <p class="mt10 mb2">Where<span style="font-weight: bold"> have </span>you studied?</p>
@@ -792,12 +804,16 @@
                   <input id="end_year" class="year text-input mb10" type="text" name="other_previous_end_year" value="">
                 </div>
               </div>
+
               <!-- Button to cancel adding other previous education -->
+
               <button type="button" style="display: none" id="cancel-add-other-previous-education"
                 class="btn btnGray mt10 mb10">
                 <span>Cancel</span>
               </button>
+
               <!-- Button to add other previous education -->
+
               <button type="button" id="add-other-previous-education" class="btn btnGreen mt10"
                 style="background: #74bdc5">
                 <span id="addOtherEducation"><i class="fas fa-plus"></i> Add
@@ -831,7 +847,9 @@
         <div class="modal-body">
           <form id="add-other-education-form" action="/profile/add-other-education/<%= user._id %>" method="POST">
             <div id="edit-form-content">
+
               <!-- Other Previous Study -->
+
               <div id="other-previous-study">
                 <div id="other_previous-provider">
                   <p class="mt30 mb2">Where<span style="font-weight: bold"> have </span>you studied?</p>
@@ -953,7 +971,8 @@
     </div>
 
 
-    <!-- work experience -->
+    <!-- Work experience -->
+
     <div id="std-experience" class="box">
       <div>
         <a class="addbtn" id="add-experience">
@@ -962,7 +981,9 @@
         <h1 class="mb20">My Work Experience</h1>
       </div>
       <% count = 0 %>
+
       <!-- Show all work experience -->
+
       <% user.work.forEach(function(element, i){ %>
       <% count = count + 1; %>
       <div class="experience-info">
@@ -1001,6 +1022,7 @@
     </div>
 
     <!-- Modal for edit work experience section -->
+
     <div id="experience-modal" class="modal">
       <div class="modal-content">
         <div class="modal-header">
@@ -1070,6 +1092,7 @@
     </div>
 
     <!-- Modal for adding experience section -->
+
     <div id="experience-modal-add" class="modal">
       <div class="modal-content">
         <div class="modal-header">
@@ -1139,6 +1162,7 @@
   </main>
 
   <!-- Model for delete education -->
+
   <div id="delete-experience-modal" class="modal">
     <div class="modal-content">
       <div class="modal-header">
@@ -1201,6 +1225,7 @@
     // Get the buttons that opens the modals
 
     //to add
+
     let addEducation = document.getElementById("add-education");
     let addExperience = document.getElementById("add-experience");
     let nextEducation = document.getElementById("next-education");
@@ -1212,12 +1237,14 @@
 
 
     //to edit
+
     let detailsEditBtn = document.getElementById("std-details-edit");
     let aboutEditBtn = document.getElementById("std-about-edit");
     let educationEditBtn = [];
     let experienceEditBtn = [];
 
     //to delete
+
     let educationDeleteBtn = [];
     let experienceDeleteBtn = [];
     let deleteSkillBtn = [];
@@ -1251,6 +1278,7 @@
     var span = document.getElementsByClassName("close")[0];
     var cancelBtn = document.getElementById("cancel");
 
+
     // When the user clicks the button, open the specific modal 
     aboutEditBtn.onclick = function () {
       aboutModal.style.display = "block";
@@ -1278,7 +1306,9 @@
   <script>
     j = 0;
   </script>
+
   <!-- Keep all education's ID in an array -->
+
   <% for(var i=0 ; i< counter ; ++i) { %>
   <script>
     educationEditBtn[j].onclick = function () {
@@ -1315,6 +1345,7 @@
 
 
   <!-- if education is empty open normal education modal -->
+
   <% if(!user.education.length) { %>
   <script>
     addEducation.onclick = function () {
@@ -1323,7 +1354,9 @@
     }
   </script>
   <%  } %>
+
   <!-- if education is not empty open add another education modal -->
+
   <% if(user.education.length) { %>
   <script>
     addEducation.onclick = function () {
@@ -1335,6 +1368,7 @@
   <% } %>
 
   <!-- Section for DELETING education records -->
+
   <script>
     j = 0;
   </script>
@@ -1349,6 +1383,7 @@
   </script>
 
   <!-- Go through all delete buttons for education record-->
+
   <% for(var i=0 ; i< counter ; ++i) { %>
   <script>
     educationDeleteBtn[j].onclick = function () {
@@ -1362,6 +1397,7 @@
 
 
   <!-- Section for DELETING working experience records -->
+
   <script>
     j = 0;
   </script>
@@ -1376,6 +1412,7 @@
   </script>
 
   <!-- Go through all delete buttons for working experience -->
+
   <% for(var i=0 ; i< count ; ++i) { %>
   <script>
     experienceDeleteBtn[j].onclick = function () {
@@ -1390,7 +1427,6 @@
   <script>
     //Add other previous education button
     addOtherEducation.onclick = function () {
-
       addOtherEducation.style.display = "none";
       otherEducation.style.display = "block";
       cancelAddOtherEducation.style.display = "block";
@@ -1399,7 +1435,6 @@
     }
 
     cancelAddOtherEducation.onclick = function () {
-      //   addOtherEducation.style.display = "block";
       otherEducation.style.display = "none";
       cancelAddOtherEducation.style.display = "none";
       AddOtherEducationTitle.style.display = "none";
@@ -1701,6 +1736,7 @@
 
     //Section: Add previous provider 
     //Show input for other provider different than NZ options 
+    
     document.getElementById("previous-provider-button").onclick = () => {
 
       var x = document.getElementById("selected_previous_provider_other");
@@ -1774,6 +1810,7 @@
   <% if(user.status == "Profile Incomplete" && popupCounter == 0){ %>
   <% popupCounter = 1 %>
   <script>
+
     //First log in pop up message
 
     var lastFocus;
@@ -1860,6 +1897,7 @@
   <% } %>
   <% }) %>
   <script>
+
     //Student skills part
 
     increment = "<%= SkillCount %>";
@@ -1880,8 +1918,6 @@
       var delScript = "$('#delete-skill" + (elementId) + "').on('click', function(){ " +
         " $('#student-skills" + (elementId) + "').remove(); " +
         "})";
-
-
 
       //Clone the list and input
 
@@ -1914,7 +1950,6 @@
 
       newScript.appendChild(inlineScript);
       $("#del-skills-parent").append(newScript);
-
 
       increment++;
     }
@@ -1952,13 +1987,9 @@
     document.getElementById("submit-about-form").onclick = () => {
       $("#edit-about-form").submit();
     }
-  </script>
 
-  </script>
+    //upload new profile image section
 
-
-
-  <script>
     var fileInput = document.getElementById('fileInput');
     var fileDisplayArea = document.getElementById('fileDisplayArea');
     var y;
@@ -1980,7 +2011,7 @@
 
           fileDisplayArea.appendChild(img);
 
-          y = document.createElement('a'); // is a node
+          y = document.createElement('a'); 
           y.setAttribute("href", img.src);
           y.setAttribute("name", "newPhotoLink");
           y.id = "newPhotoLink"
@@ -2000,11 +2031,9 @@
     }
   </script>
 
+  <!-- div to sllocate all on click methods when a skills is added -->
   <div id="del-skills-parent">
   </div>
 
-
 </body>
-<!-- <div w3-include-html="/partials/footer.html"></div> -->
-
 </html>
