@@ -162,7 +162,12 @@
                                             <% } %>
                                             <!-- Decription for status different than complete -->
                                             <% if(!(users.status == "Profile Complete")){ %>
-                                            <div style="text-align: center"><%= users.description%></div>
+                                                <div style="text-align: center">
+                                                    <button class="btn btnGreen"><a
+                                                            style="text-decoration: none; color:white"
+                                                            href="/adminpanel/send-email/interview/<%=users._id%>">Interview
+                                                        </a></button>
+                                                </div>
                                             <% } %>
                                             <% } %>
 
@@ -198,8 +203,7 @@
                                     <% }) %>
                                 </tbody>
                                 <% if(j>0){ %>
-                                <p> <span style="color: red">Important!</span> <%= j %> student/s are waiting for an
-                                    answer
+                                <p> <span style="color: red">Important!</span> <%= j %> student/s completed their profile
                                     <a href="/adminpanel/tables-students-status2">View</a></p>
                                 <% } %>
                             </table>
