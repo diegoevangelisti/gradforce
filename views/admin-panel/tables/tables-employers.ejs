@@ -128,8 +128,16 @@
                                     <% users.map((users, i) => { %>
                                     <tr id="table-rows">
                                         <td>
+                                            <% if(users.img.data){ %>
+                                            <img style="width: 70px; height: 70px; " src="<%= users.img.data %>"
+                                                alt="Profile photo">
+                                            <% } else if(users.photo){ %>
                                             <img style="width: 70px; height: 70px; " src="<%= users.photo %>"
                                                 alt="Profile photo">
+                                            <% } else { %>
+                                            <img style="width: 70px; height: 70px; "
+                                                src="/assets/img/profile-placeholder.jpg" alt="Profile photo">
+                                            <% } %>
                                         </td>
                                         <td><%= users.fname %></td>
                                         <td><%= users.lname %></td>
