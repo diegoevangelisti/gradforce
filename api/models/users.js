@@ -47,6 +47,7 @@ var userSchema = mongoose.Schema({
         education_type: String,
         course: String,
         educational_provider: String,
+        country: String,
         start_date: String,
         end_date: String
     }],
