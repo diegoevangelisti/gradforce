@@ -26,7 +26,7 @@ router.get("/", isLoggedIn, (req, res) => {
         user: req.user,
         isLoggedIn: true
       });
-      
+
     } else {
 
       //Open Employer's profile
@@ -51,8 +51,9 @@ router.put("/update-work-experience/:id", isLoggedIn, (req, res) => {
 
     user.work[index].role = req.body.role
     user.work[index].company = req.body.company;
-    user.work[index].start_date = req.body.start_year;
-    user.work[index].end_date = req.body.end_year;
+    user.work[index].country = req.body.workCountry;
+    user.work[index].start_date = req.body.start_year_edit;
+    user.work[index].end_date = req.body.end_year_edit;
     user.work[index].description = req.body.work_description;
     user.save()
       .then(user => {
@@ -140,12 +141,12 @@ router.put("/update-education/:id", isLoggedIn, (req, res) => {
 
   let id = req.params.id;
   let index = req.body.educationNumber;
-  console.log("EDUCATION NUMBER: " + req.body.educationNumber)
 
   User.findByIdAndUpdate(id).then((user) => {
 
     user.education[index].course = req.body.course
     user.education[index].educational_provider = req.body.input_selected_edit_provider
+    user.education[index].country = req.body.selected_edit_provider_country
     user.education[index].start_date = req.body.start_year_edu
     user.education[index].end_date = req.body.end_year_edu
 
@@ -198,10 +199,22 @@ router.post("/add-education/:id", isLoggedIn, (req, res) => {
   let current = "Current";
   let previous = "Previous";
 
+  if (!req.body.selected_previous_provider_other_country)
+    var previousCountry = "New Zealand";
+  else
+    var previousCountry = req.body.selected_previous_provider_other_country;
+
+  if (!req.body.selected_current_provide_country)
+    var currentCountry = "New Zealand";
+  else
+    var currentCountry = req.body.selected_current_provider_other_country;
+
+
   let currentEducation = {
     education_type: current,
     course: req.body.current_course,
     educational_provider: req.body.selected_current_provider,
+    country: currentCountry,
     start_date: req.body.current_start_year,
     end_date: req.body.current_end_year
   }
@@ -210,6 +223,7 @@ router.post("/add-education/:id", isLoggedIn, (req, res) => {
     education_type: previous,
     course: req.body.previous_course,
     educational_provider: req.body.selected_previous_provider,
+    country: previousCountry,
     start_date: req.body.previous_start_year,
     end_date: req.body.previous_end_year
   }
@@ -305,10 +319,18 @@ router.post("/add-other-education/:id", isLoggedIn, (req, res) => {
   let id = req.params.id;
   let previous = "Previous";
 
+  if (!req.body.selected_previous_provider_other_other_country)
+    var previousCountry = "New Zealand";
+  else
+    var previousCountry = req.body.selected_previous_provider_other_other_country;
+
+
+
   let previousEducation = {
     education_type: previous,
     course: req.body.other_previous_course,
-    educational_provider: req.body.selected_previous_provider_other,
+    educational_provider: req.body.selected_previous_provider_other_other,
+    country: previousCountry,
     start_date: req.body.other_previous_start_year,
     end_date: req.body.other_previous_end_year
   }
@@ -337,6 +359,7 @@ router.post("/add-work-experience/:id", isLoggedIn, (req, res) => {
   let objExperience = {
     role: req.body.role,
     company: req.body.company,
+    country: req.body.workCountryAdd,
     start_date: req.body.start_year,
     end_date: req.body.end_year,
     description: req.body.work_description
