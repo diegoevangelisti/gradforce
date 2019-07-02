@@ -142,6 +142,10 @@ p {
   padding: 0 0.6rem;
 }
 
+#footer textarea {
+  resize: none;
+}
+
 #header {
   border-top: 10px solid #e5e5e5;
 }
@@ -331,10 +335,6 @@ body #footer #footer-container #footer-bottom #social-network-icons {
 body #footer #footer-container #footer-bottom #footer-links {
   -ms-grid-column-align: end;
       justify-self: end;
-}
-
-.fullrow {
-  grid-column: 1 / -1;
 }
 
 #landing_page {
@@ -551,6 +551,19 @@ body #footer #footer-container #footer-bottom #footer-links {
       grid-row-start: 3;
 }
 
+.modal form {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  grid-gap: 5px;
+  padding: 10px;
+}
+
+.fullrow {
+  grid-column: 1 / -1;
+}
+
 #landing_page #register {
   background: rgba(241, 241, 241, 0.85);
   -webkit-box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.23);
@@ -602,7 +615,7 @@ body #footer #footer-container #footer-bottom #footer-links {
 }
 
 #login-page {
-  height: 52vh;
+  height: 80vh;
 }
 
 #login-page #login-form {
@@ -940,10 +953,6 @@ hr {
   grid-gap: 0.2rem;
 }
 
-.modal-body #edit-form-content {
-  padding: 8px;
-}
-
 .modal-body label {
   font-family: 'Lato';
   font-size: 1rem;
@@ -951,19 +960,13 @@ hr {
 }
 
 .modal-body textarea {
+  resize: none;
   width: 100%;
   min-height: 100px;
 }
 
 .modal-footer {
-  background: #F5F5F5;
-  height: 60px;
   border-top: 1px solid rgba(0, 0, 0, 0.15);
-}
-
-.modal-footer #modal-footer-buttons {
-  position: absolute;
-  right: 16px;
 }
 
 .modal-footer #modal-footer-buttons button span {
