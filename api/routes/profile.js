@@ -26,6 +26,7 @@ router.get("/", isLoggedIn, (req, res) => {
         user: req.user,
         isLoggedIn: true
       });
+      
     } else {
 
       //Open Employer's profile
