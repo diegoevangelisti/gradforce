@@ -172,6 +172,8 @@ passport.use(new GoogleStrategy({
 
 //Register / Login with Facebook
 
+//callback set up to work with gradforce domain
+
 passport.use(new FacebookStrategy({
     clientID: keys.facebook.APP_ID,
     clientSecret: keys.facebook.APP_SECRET,
@@ -258,15 +260,15 @@ app.listen(process.env.PORT || 5000, async function () {
 });
 
 //MLAB HEROKU
-mongoose.connect("mongodb://backend:" + process.env.MLAB_PASSWORD + "@ds259596.mlab.com:59596/heroku_xk93l586", {
+/*mongoose.connect("mongodb://backend:" + process.env.MLAB_PASSWORD + "@ds259596.mlab.com:59596/heroku_xk93l586", {
   useNewUrlParser: true
-});
+});*/
 
 //LOCAL HOSTING
-/*mongoose.connect("mongodb://localhost/gradforce-local", {
+mongoose.connect("mongodb://localhost/gradforce-local", {
   useNewUrlParser: true,
   useFindAndModify: false
-});*/
+});
 
 app.use((req, res, next) => {
   const error = new Error('Not found');
