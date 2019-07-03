@@ -14,6 +14,7 @@ var userSchema = mongoose.Schema({
     fname: String,
     lname: String,
     companyName: String,
+    webSite: String,
     DOB: String,
     email: {
         type: String,
@@ -46,6 +47,7 @@ var userSchema = mongoose.Schema({
         education_type: String,
         course: String,
         educational_provider: String,
+        country: String,
         start_date: String,
         end_date: String
     }],

@@ -1,12 +1,6 @@
-.title {
-  font-family: 'Lato';
-  font-size: 2rem;
-  font-weight: 300;
-}
-
 h1 {
   font-family: 'Lato';
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 300;
 }
 
@@ -115,11 +109,11 @@ p {
 #footer #footer-bottom {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (auto)[3];
-      grid-template-columns: repeat(3, auto);
+  -ms-grid-columns: auto [3];
+  grid-template-columns: repeat(3, auto);
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
 }
 
 #footer #footer-bottom ul {
@@ -129,11 +123,11 @@ p {
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
 }
 
 #footer #footer-bottom ul li {
@@ -146,10 +140,6 @@ p {
   text-decoration: none;
   color: #fff;
   padding: 0 0.6rem;
-}
-
-#footer textarea {
-  resize: none;
 }
 
 #header {
@@ -176,7 +166,7 @@ p {
 .menu {
   grid-area: menu;
   -ms-grid-column-align: right;
-      justify-self: right;
+  justify-self: right;
 }
 
 .menu ul {
@@ -186,11 +176,11 @@ p {
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   line-height: 50px;
 }
 
@@ -209,17 +199,17 @@ p {
 body {
   display: -ms-grid;
   display: grid;
-  -ms-grid-rows: (auto)[3];
-      grid-template-rows: repeat(3, auto);
+  -ms-grid-rows: auto [3];
+  grid-template-rows: repeat(3, auto);
 }
 
 body #header {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 10% 140px auto 10%;
-      grid-template-columns: 10% 140px auto 10%;
+  grid-template-columns: 10% 140px auto 10%;
   -ms-grid-rows: 1;
-      grid-template-rows: 1;
+  grid-template-rows: 1;
 }
 
 body #header .logo {
@@ -237,16 +227,16 @@ body #header .menu {
   -ms-grid-row: 1;
   grid-row: 1;
   -ms-grid-column-align: right;
-      justify-self: right;
+  justify-self: right;
 }
 
 body #footer {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 10% 1fr 10%;
-      grid-template-columns: 10% 1fr 10%;
+  grid-template-columns: 10% 1fr 10%;
   -ms-grid-rows: 2;
-      grid-template-rows: 2;
+  grid-template-rows: 2;
 }
 
 body #footer #footer-container {
@@ -261,7 +251,7 @@ body #footer #footer-container #footer-top {
   -ms-grid-row: 1;
   grid-row: 1;
   -ms-grid-columns: 1fr 1fr 3fr;
-      grid-template-columns: 1fr 1fr 3fr;
+  grid-template-columns: 1fr 1fr 3fr;
 }
 
 body #footer #footer-container #footer-top #contact-info {
@@ -281,14 +271,14 @@ body #footer #footer-container #footer-top #contact-form {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr;
-      grid-template-columns: 1fr;
+  grid-template-columns: 1fr;
 }
 
 body #footer #footer-container #footer-top #contact-form form {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 1.7fr;
-      grid-template-columns: 1fr 1.7fr;
+  grid-template-columns: 1fr 1.7fr;
   grid-gap: 5px;
 }
 
@@ -322,7 +312,7 @@ body #footer #footer-container #footer-top #contact-form form button {
   -ms-grid-row: 3;
   grid-row: 3;
   -ms-grid-column-align: end;
-      justify-self: end;
+  justify-self: end;
   width: 130px;
 }
 
@@ -330,26 +320,30 @@ body #footer #footer-container #footer-bottom {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 1fr 1fr;
-      grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 body #footer #footer-container #footer-bottom #social-network-icons {
   -ms-grid-column-align: center;
-      justify-self: center;
+  justify-self: center;
 }
 
 body #footer #footer-container #footer-bottom #footer-links {
   -ms-grid-column-align: end;
-      justify-self: end;
+  justify-self: end;
+}
+
+.fullrow {
+  grid-column: 1 / -1;
 }
 
 #landing_page {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 10% 11fr 2fr 400px 10%;
-      grid-template-columns: 10% 11fr 2fr 400px 10%;
-  -ms-grid-rows: (auto)[3];
-      grid-template-rows: repeat(3, auto);
+  grid-template-columns: 10% 11fr 2fr 400px 10%;
+  -ms-grid-rows: auto [3];
+  grid-template-rows: repeat(3, auto);
 }
 
 #landing_page #slogan {
@@ -389,7 +383,7 @@ body #footer #footer-container #footer-bottom #footer-links {
   display: grid;
   grid-gap: 0;
   -ms-grid-columns: 190px 190px;
-      grid-template-columns: 190px 190px;
+  grid-template-columns: 190px 190px;
   margin: 10px;
       grid-template-areas: "title title" "student employer" "email email" "fname lname" "phone phone" "password password" "terms terms" "next next" "facebook facebook" "google google" "signin signin" "other-logins other-logins";
 }
@@ -399,11 +393,11 @@ body #footer #footer-container #footer-bottom #footer-links {
   display: grid;
   grid-gap: 0;
   -ms-grid-columns: 190px 190px;
-      grid-template-columns: 190px 190px;
+  grid-template-columns: 190px 190px;
       grid-template-areas: "facebook facebook" "google google" "signin signin";
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
 
 #landing_page #register #title {
@@ -504,34 +498,34 @@ body #footer #footer-container #footer-bottom #footer-links {
   display: -ms-grid;
   display: grid;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -ms-flex-line-pack: center;
-      align-content: center;
+  align-content: center;
 }
 
 #login-page form {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 400px;
-      grid-template-columns: 400px;
-  -ms-grid-rows: (auto)[7];
-      grid-template-rows: repeat(7, auto);
+  grid-template-columns: 400px;
+  -ms-grid-rows: auto [7];
+  grid-template-rows: repeat(7, auto);
 }
 
 #std-profile {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 10% 1.2fr 4fr 10%;
-      grid-template-columns: 10% 1.2fr 4fr 10%;
-  -ms-grid-rows: (auto)[3];
-      grid-template-rows: repeat(3, auto);
+  grid-template-columns: 10% 1.2fr 4fr 10%;
+  -ms-grid-rows: auto [3];
+  grid-template-rows: repeat(3, auto);
   grid-gap: 10px;
 }
 
 #std-profile #std-details {
   -ms-grid-column: 2;
-      grid-column-start: 2;
+  grid-column-start: 2;
   -ms-grid-row: 1;
   -ms-grid-row-span: 3;
   grid-row: 1 / 4;
@@ -540,31 +534,27 @@ body #footer #footer-container #footer-bottom #footer-links {
 
 #std-profile #std-about {
   -ms-grid-column: 3;
-      grid-column-start: 3;
+  grid-column-start: 3;
 }
 
 #std-profile #std-education {
   -ms-grid-column: 3;
-      grid-column-start: 3;
+  grid-column-start: 3;
   -ms-grid-row: 2;
-      grid-row-start: 2;
+  grid-row-start: 2;
 }
 
 #std-profile #std-experience {
   -ms-grid-column: 3;
-      grid-column-start: 3;
+  grid-column-start: 3;
   -ms-grid-row: 3;
-      grid-row-start: 3;
-}
-
-.fullrow {
-  grid-column: 1/-1;
+  grid-row-start: 3;
 }
 
 #landing_page #register {
   background: rgba(241, 241, 241, 0.85);
   -webkit-box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.23);
-          box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.23);
   border-top: 4px solid #e5e5e5;
   font-size: 12px;
   margin-top: 3rem;
@@ -612,7 +602,7 @@ body #footer #footer-container #footer-bottom #footer-links {
 }
 
 #login-page {
-  height: 80vh;
+  height: 52vh;
 }
 
 #login-page #login-form {
@@ -633,7 +623,7 @@ body #footer #footer-container #footer-bottom #footer-links {
 
 #std-profile #std-details {
   -ms-flex-line-pack: center;
-      align-content: center;
+  align-content: center;
   background: #fff;
 }
 
@@ -660,6 +650,11 @@ body #footer #footer-container #footer-bottom #footer-links {
 .about {
   width: 700px;
   max-width: 100%;
+}
+
+.sub-title {
+  font-size: 18px;
+  padding: 15px 16px;
 }
 
 .description {
@@ -699,10 +694,13 @@ body #footer #footer-container #footer-bottom #footer-links {
   overflow-x: auto;
 }
 
+.img:hover {
+  opacity: 0.6 !important;
+}
 
 * {
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   font-family: 'Montserrat', 'Lato', sans-serif;
   margin: 0;
   padding: 0;
@@ -777,7 +775,7 @@ body {
 }
 
 .darkbg {
-  background: #949494;
+  background: #6e6b6b;
 }
 
 .c-bg {
@@ -838,7 +836,7 @@ hr {
 .box {
   background: #FFFFFF;
   -webkit-box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.23);
-          box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.23);
   border-radius: 2px;
   position: relative;
   padding: 25px 20px 25px;
@@ -881,7 +879,7 @@ hr {
   border: 1px solid #888;
   width: 50%;
   -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   -webkit-animation-name: animatetop;
   -webkit-animation-duration: 0.4s;
   animation-name: animatetop;
@@ -934,6 +932,18 @@ hr {
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 }
 
+.modal-body {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 0.2rem;
+}
+
+.modal-body #edit-form-content {
+  padding: 8px;
+}
+
 .modal-body label {
   font-family: 'Lato';
   font-size: 1rem;
@@ -941,13 +951,19 @@ hr {
 }
 
 .modal-body textarea {
-  resize: none;
   width: 100%;
   min-height: 100px;
 }
 
 .modal-footer {
+  background: #F5F5F5;
+  height: 60px;
   border-top: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.modal-footer #modal-footer-buttons {
+  position: absolute;
+  right: 16px;
 }
 
 .modal-footer #modal-footer-buttons button span {

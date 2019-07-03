@@ -26,11 +26,13 @@ router.get("/", isLoggedIn, (req, res) => {
         user: req.user,
         isLoggedIn: true
       });
+
     } else {
 
       //Open Employer's profile
       res.render("../views/employerprofile", {
         user: req.user,
+        skills: skills,
         isLoggedIn: true
       });
     }
@@ -49,8 +51,9 @@ router.put("/update-work-experience/:id", isLoggedIn, (req, res) => {
 
     user.work[index].role = req.body.role
     user.work[index].company = req.body.company;
-    user.work[index].start_date = req.body.start_year;
-    user.work[index].end_date = req.body.end_year;
+    user.work[index].country = req.body.workCountry;
+    user.work[index].start_date = req.body.start_year_edit;
+    user.work[index].end_date = req.body.end_year_edit;
     user.work[index].description = req.body.work_description;
     user.save()
       .then(user => {
@@ -96,30 +99,31 @@ router.put("/update-about/:id", isLoggedIn, (req, res) => {
 //Update Details information
 
 router.put("/update-details/:id", isLoggedIn, (req, res) => {
-  console.log("NEW PHOTO: " + req.body.newPhoto)
-  let id = req.params.id;
-  if (req.body.newPhoto != 0 && req.body.newPhoto.length > 0)
-    var newPhoto = req.body.newPhoto;
-  else
-    var newPhoto = false;
 
+  let id = req.params.id;
+
+  console.log("HERE: \n\n\n" + req.body.newPhoto + "\n\n\n")
 
   User.findByIdAndUpdate(id).then((user) => {
 
-    if (newPhoto != false) {
-      user.img.data = newPhoto,
+
+    if (req.body.newPhoto != 0) {
+      user.img.data = req.body.newPhoto,
         user.img.contentType = 'image/png'
+
     }
-      user.fname = req.body.fname,
+
+    console.log("web site: " + req.body.webSite);
+    user.webSite = req.body.webSite;
+    user.fname = req.body.fname,
       user.lname = req.body.lname,
       user.title = req.body.title,
       user.companyName = req.body.companyName,
       user.phone_number = req.body.phone,
 
+
       user.save()
-      .then(user => {
-        console.log(user);
-      })
+      .then(user => {})
       .catch(err => {
         console.log(err);
         res.status(500).json({
@@ -137,12 +141,12 @@ router.put("/update-education/:id", isLoggedIn, (req, res) => {
 
   let id = req.params.id;
   let index = req.body.educationNumber;
-  console.log("EDUCATION NUMBER: " + req.body.educationNumber)
 
   User.findByIdAndUpdate(id).then((user) => {
 
     user.education[index].course = req.body.course
     user.education[index].educational_provider = req.body.input_selected_edit_provider
+    user.education[index].country = req.body.selected_edit_provider_country
     user.education[index].start_date = req.body.start_year_edu
     user.education[index].end_date = req.body.end_year_edu
 
@@ -195,10 +199,22 @@ router.post("/add-education/:id", isLoggedIn, (req, res) => {
   let current = "Current";
   let previous = "Previous";
 
+  if (!req.body.selected_previous_provider_other_country)
+    var previousCountry = "New Zealand";
+  else
+    var previousCountry = req.body.selected_previous_provider_other_country;
+
+  if (!req.body.selected_current_provide_country)
+    var currentCountry = "New Zealand";
+  else
+    var currentCountry = req.body.selected_current_provider_other_country;
+
+
   let currentEducation = {
     education_type: current,
     course: req.body.current_course,
     educational_provider: req.body.selected_current_provider,
+    country: currentCountry,
     start_date: req.body.current_start_year,
     end_date: req.body.current_end_year
   }
@@ -207,6 +223,7 @@ router.post("/add-education/:id", isLoggedIn, (req, res) => {
     education_type: previous,
     course: req.body.previous_course,
     educational_provider: req.body.selected_previous_provider,
+    country: previousCountry,
     start_date: req.body.previous_start_year,
     end_date: req.body.previous_end_year
   }
@@ -302,10 +319,18 @@ router.post("/add-other-education/:id", isLoggedIn, (req, res) => {
   let id = req.params.id;
   let previous = "Previous";
 
+  if (!req.body.selected_previous_provider_other_other_country)
+    var previousCountry = "New Zealand";
+  else
+    var previousCountry = req.body.selected_previous_provider_other_other_country;
+
+
+
   let previousEducation = {
     education_type: previous,
     course: req.body.other_previous_course,
-    educational_provider: req.body.selected_previous_provider_other,
+    educational_provider: req.body.selected_previous_provider_other_other,
+    country: previousCountry,
     start_date: req.body.other_previous_start_year,
     end_date: req.body.other_previous_end_year
   }
@@ -334,6 +359,7 @@ router.post("/add-work-experience/:id", isLoggedIn, (req, res) => {
   let objExperience = {
     role: req.body.role,
     company: req.body.company,
+    country: req.body.workCountryAdd,
     start_date: req.body.start_year,
     end_date: req.body.end_year,
     description: req.body.work_description
@@ -387,5 +413,65 @@ router.put("/delete-work-experience/:id", isLoggedIn, (req, res) => {
     res.redirect("/profile");
   })
 });
+
+
+//Add new Role (Employer Profile)
+
+router.post("/add-role/:id", isLoggedIn, (req, res) => {
+
+  let id = req.params.id;
+
+  let objRole = {
+    title: req.body.roleTitle,
+    description: req.body.roleDescription,
+    skills: req.body.roleSkillsAdd
+
+
+  }
+
+  User.findOneAndUpdate({
+      _id: id
+    }, {
+      $push: {
+        role: objRole
+      }
+    },
+    function (error, user) {
+      if (error) {
+        console.log(error);
+      } else {
+        user.save();
+        console.log(user);
+      }
+      res.redirect("/profile");
+    });
+});
+
+//Delete Role
+router.put("/delete-role/:id", isLoggedIn, (req, res) => {
+
+  let id = req.params.id;
+  let index = req.body.deleteRoleNumber;
+
+  User.findByIdAndUpdate(id).then((user) => {
+
+    //delete from position index one education record
+    user.splice(index, 1);
+
+    user.save()
+      .then(user => {
+        console.log(user);
+
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({
+          error: err
+        });
+      });
+  })
+  res.redirect("/profile");
+});
+
 
 module.exports = router;

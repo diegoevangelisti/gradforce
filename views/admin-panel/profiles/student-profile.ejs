@@ -87,8 +87,16 @@
             <div class="card-header">
                 <div class="row">
                     <div class="col-3">
-                        <p><img style="width: 110%; height: 110%; padding: 15px; padding-left: 0px;" src="<%= user.photo %>"
-                                alt="Profile photo"></p>
+                        <p> <% if(user.img.data){ %>
+                            <img style="width: 110%; height: 110%; padding: 15px; padding-left: 0px;"
+                                src="<%= user.img.data %>" alt="Profile photo">
+                            <% } else if(user.photo){ %>
+                            <img style="width: 110%; height: 110%; padding: 15px; padding-left: 0px;"
+                                src="<%= user.photo %>" alt="Profile photo">
+                            <% } else { %>
+                            <img style="width: 110%; height: 110%; padding: 15px; padding-left: 0px;"
+                                src="/assets/img/profile-placeholder.jpg" alt="Profile photo">
+                            <% } %></p>
                     </div>
                     <div class="col-9">
                         <p class="inline student-title big"><%= user.fname %> <%= user.lname %>
@@ -109,10 +117,6 @@
                         <p><%= user.status %> | <%= user.description %></p>
                         <span style="font-size: 14px; font-weight: 600;"><%= user.about%></span>
                     </div>
-                </div>
-                <div class="row">
-                    
-
                 </div>
             </div>
             <div class="card-body">
