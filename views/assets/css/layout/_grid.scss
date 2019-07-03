@@ -270,13 +270,12 @@ body {
   }
 }
 
-
-// modals grids
 .modal-body {
+  display: none;
 }
-
 
 // general classes for grids 
 .fullrow {
   grid-column: 1/-1;
 }
+
