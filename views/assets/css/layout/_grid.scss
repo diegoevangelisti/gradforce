@@ -6,10 +6,12 @@ body {
     display: grid;
     grid-template-columns: 10% 140px auto 10%;
     grid-template-rows: 1;
+    align-items: center;
 
     .logo {
       grid-column: 2 / 3;
       grid-row: 1;
+      justify-self: start;
     }
 
     .menu {
