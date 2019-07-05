@@ -257,16 +257,17 @@ app.listen(process.env.PORT || 5000, async function () {
   console.log("listening on port " + (process.env.PORT || 5000));
 });
 
-//MLAB HEROKU
-mongoose.connect("mongodb://backend:" + process.env.MLAB_PASSWORD + "@ds259596.mlab.com:59596/heroku_xk93l586", {
+//mLAB Heroku
+
+/*mongoose.connect("mongodb://backend:" + process.env.MLAB_PASSWORD + "@ds259596.mlab.com:59596/heroku_xk93l586", {
   useNewUrlParser: true
-});
+});*/
 
 //LOCAL HOSTING
-// mongoose.connect("mongodb://localhost/gradforce-local", {
-//   useNewUrlParser: true,
-//   useFindAndModify: false
-// });
+ mongoose.connect("mongodb://localhost/gradforce-local", {
+   useNewUrlParser: true,
+   useFindAndModify: false
+ });
 
 app.use((req, res, next) => {
   const error = new Error('Not found');
