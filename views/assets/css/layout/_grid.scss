@@ -6,10 +6,12 @@ body {
     display: grid;
     grid-template-columns: 10% 140px auto 10%;
     grid-template-rows: 1;
+    align-items: center;
 
     .logo {
       grid-column: 2 / 3;
       grid-row: 1;
+      justify-self: start;
     }
 
     .menu {
@@ -270,17 +272,12 @@ body {
   }
 }
 
-
-// modals grids
-.modal form {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 5px;
-  padding: 10px;
+.modal-body {
+  display: none;
 }
-
 
 // general classes for grids 
 .fullrow {
-  grid-column: 1 / -1;
+  grid-column: 1/-1;
 }
+

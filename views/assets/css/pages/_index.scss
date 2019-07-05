@@ -1,19 +1,40 @@
 #landing_page {
+  margin-top: 1.7rem;
+
   #register {
     background: rgba($color: $c_lightgray, $alpha:0.85);
     box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.23);
     border-top: 4px solid #e5e5e5;
     font-size: 12px;
-    margin-top: 3rem;
-    max-height: 610px;
+    // margin-top: 1.7rem;
+    max-height: 535px;
+
     p {
-      font-size: 1.25em;
+      font-size: 1em;
     }
+
+    a {
+      text-decoration: none;
+      // color: inherit;
+      font: inherit;
+      text-decoration: underline;
+    }
+
+  }
+  
+  #banner img {
+    max-width: 100%;
+  }
+
+  .arrow {
+    // position: absolute;
+    float: right;
   }
 
   #slogan {
     h1 {
-      margin: 2.5rem 0 1rem 0;
+      // margin: 2rem 0 1rem 0;
+      margin-bottom: 1rem;
     }
   }
 

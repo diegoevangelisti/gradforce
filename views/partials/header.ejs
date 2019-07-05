@@ -1,20 +1,50 @@
-<div id="header" class="c-bg">
+<div id="header">
     <div class="logo">
+        <!-- <img src="../assets/img/" alt="logo"> -->
         <p>GradForce</p>
     </div>
     <div class="menu">
         <ul>
-            <li><a href="#">How it Works</a></li>
-            <li><a href="#">For Employers</a></li>
-            <li><a href="#">For Students</a></li>
+            <span>
+                <a href="/auth/register"><i class="fas fa-home"></i></a>
+                <li><a href="/auth/register">Home</a></li>
+            </span>
+            <span>
+                <a href="#"><i class="fas fa-search"></i></a>
+                <li><a href="#">Talents</a></li>
+            </span>
+            <span>
+                <a href="#"><i class="fas fa-briefcase"></i></a>
+                <li><a href="#">Jobs</a></li>
+            </span>
             <!-- <li><a href="/auth/forgot-password">Forgot Password</a></li> -->
             <% if((!isLoggedIn) && (!SignUp)) { %>
             <li><a href="/auth/register">Sign Up</a></li>
             <% } else { if(!isLoggedIn)  { %>
-            <li><a href="/auth/login">Sign In</a></li>
+            <span>
+                <a href="/auth/login"><i class="fas fa-sign-in-alt"></i></a>
+                <li><a href="/auth/login">Sign In</a></li>
+            </span>
             <% } } %>
             <% if(isLoggedIn) { %>
-            <li><a href="/auth/logout">Log out</a></li>
+            <span class="dropdown" style="float: right;">
+                <span class="dropbtn">
+                    <!-- img and name for dropBtn -->
+                    <% if(user.img.data){ %>
+                    <img src="<%= user.img.data %>" alt="No photo">
+                    <% } else if(user.photo) { %>
+                    <img src="<%= user.photo %>" alt="No photo">
+                    <% } else { %>
+                    <img src="/assets/img/profile-placeholder.jpg" alt="No photo">
+                    <% } %>
+                    <!-- <i class="fas fa-sign-out-alt"></i> -->
+                    <!-- <li><a href="#"><%= user.fname %> <%= user.lname %></a></li> -->
+                </span>
+                <div class="dropdown-content">
+                    <a href="#">Profile</a>
+                    <a href="#">Sign out</a>
+                </div>
+            </span>
             <% } %>
         </ul>
     </div>
