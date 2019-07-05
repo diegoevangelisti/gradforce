@@ -17,7 +17,7 @@
                 <a href="#"><i class="fas fa-briefcase"></i></a>
                 <li><a href="#">Jobs</a></li>
             </span>
-
+            <!-- If there's no logged in User show Sign Up or Sign In option -->
             <% if((!isLoggedIn) && (!SignUp)) { %>
             <span>
                 <a href="/auth/register"><i class="fas fa-sign-out-alt"></i></a>
@@ -30,6 +30,7 @@
                 <li><a href="/auth/login">Sign In</a></li>
             </span>
             <% } } %>
+             <!-- If there's a logged in User show Profile image and options -->
             <% if(isLoggedIn) { %>
             <span class="dropdown" style="float: right;">
                 <span class="dropbtn">
