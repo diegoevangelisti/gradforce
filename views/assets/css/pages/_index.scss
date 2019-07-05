@@ -1,5 +1,5 @@
 #landing_page {
-margin-top: 1.7rem;
+  margin-top: 1.7rem;
 
   #register {
     background: rgba($color: $c_lightgray, $alpha:0.85);
@@ -8,6 +8,7 @@ margin-top: 1.7rem;
     font-size: 12px;
     // margin-top: 1.7rem;
     max-height: 535px;
+
     p {
       font-size: 1em;
     }
@@ -18,12 +19,17 @@ margin-top: 1.7rem;
       font: inherit;
       text-decoration: underline;
     }
-  }
 
+  }
+  
   #banner img {
     max-width: 100%;
-}
+  }
 
+  .arrow {
+    // position: absolute;
+    float: right;
+  }
 
   #slogan {
     h1 {

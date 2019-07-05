@@ -6,15 +6,15 @@
     <div class="menu">
         <ul>
             <span>
-                <i class="fas fa-home"></i>
+                <a href="/auth/register"><i class="fas fa-home"></i></a>
                 <li><a href="/auth/register">Home</a></li>
             </span>
             <span>
-                <i class="fas fa-search"></i>
+                <a href="#"><i class="fas fa-search"></i></a>
                 <li><a href="#">Talents</a></li>
             </span>
             <span>
-                <i class="fas fa-briefcase"></i>
+                <a href="#"><i class="fas fa-briefcase"></i></a>
                 <li><a href="#">Jobs</a></li>
             </span>
             <!-- <li><a href="/auth/forgot-password">Forgot Password</a></li> -->
@@ -22,15 +22,23 @@
             <li><a href="/auth/register">Sign Up</a></li>
             <% } else { if(!isLoggedIn)  { %>
             <span>
-                <i class="fas fa-sign-in-alt"></i>
+                <a href="/auth/login"><i class="fas fa-sign-in-alt"></i></a>
                 <li><a href="/auth/login">Sign In</a></li>
             </span>
             <% } } %>
             <% if(isLoggedIn) { %>
             <span class="dropdown" style="float: right;">
-                <span>
-                    <i class="fas fa-sign-out-alt"></i>
-                    <li><a href="#">John Doe</a></li>
+                <span class="dropbtn">
+                    <!-- img and name for dropBtn -->
+                    <% if(user.img.data){ %>
+                    <img src="<%= user.img.data %>" alt="No photo">
+                    <% } else if(user.photo) { %>
+                    <img src="<%= user.photo %>" alt="No photo">
+                    <% } else { %>
+                    <img src="/assets/img/profile-placeholder.jpg" alt="No photo">
+                    <% } %>
+                    <!-- <i class="fas fa-sign-out-alt"></i> -->
+                    <!-- <li><a href="#"><%= user.fname %> <%= user.lname %></a></li> -->
                 </span>
                 <div class="dropdown-content">
                     <a href="#">Profile</a>

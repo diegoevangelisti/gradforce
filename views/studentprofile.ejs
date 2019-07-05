@@ -90,10 +90,10 @@
       <% } else { %>
       <img class="centerimg mb10" src="/assets/img/profile-placeholder.jpg" alt="No photo">
       <% } %>
-      <h1 class="center" id="title"><%= user.fname %> <%= user.lname %></h1>
-      <h2 class="center mb15" id="title"><%= user.title %></h2>
+      <h2 class="center" id="title"><%= user.fname %> <%= user.lname %></h2>
+      <h3 class="center mb15" id="title"><%= user.title %></h3>
       <hr class="mb10">
-      <h2 class="mb10">Contact Information</h2>
+      <h3 class="mb10">Contact Information</h3>
       <label for="email">Email address:</label>
       <p class="mb10"><%= user.email%></p>
       <% if(user.phone_number){ %>
@@ -108,7 +108,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <span class="close" id="closeDetails" onclick="closeModal(id)">&times;</span>
-          <h1>Personal Details</h1>
+          <h2>Personal Details</h2>
         </div>
         <div class="modal-body">
           <form id="edit-details-form" action="/profile/update-details/<%= user._id %>?_method=PUT" method="POST">
@@ -171,9 +171,9 @@
         <a id="std-about-edit">
           <img class="editbtn" src="/assets/img/icons/edit.png" alt="edit icon">
         </a>
-        <h1 class="mb20">About me</h1>
+        <h2 class="mb20">About me</h2>
         <p class="mb20"><%= user.about%></p>
-        <h1 class="mb20">My Skills</h1>
+        <h2 class="mb20">My Skills</h2>
         <div class="mt20">
           <% user.Skills.softs.forEach(function(skill, i) { %>
           <% if(i){ %>
@@ -190,7 +190,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <span class="close" id="closeAbout" onclick="closeModal(id)">&times;</span>
-          <h1>About you</h1>
+          <h2>About you</h2>
         </div>
         <div class="modal-body">
           <form id="edit-about-form" action="/profile/update-about/<%= user._id%>?_method=PUT" method="POST">
@@ -244,7 +244,7 @@
         <a id="add-education" class="addbtn">
           <img src="/assets/img/icons/add.png" alt="add icon">
         </a>
-        <h1 class="mb20">My Education</h1>
+        <h2 class="mb20">My Education</h2>
 
       </div>
       <!-- Show all Education -->
@@ -290,7 +290,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <span class="close" id="closeDeleteEducation" onclick="closeModal(id)">&times;</span>
-          <h1 id="education_title">Delete Education</h1>
+          <h2 id="education_title">Delete Education</h2>
         </div>
         <div class="modal-body">
           <form id="delete-education-form" action="/profile/delete-education/<%= user._id %>?_method=PUT" method="POST">
@@ -316,7 +316,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <span class="close" id="closeEducation" onclick="closeModal(id)">&times;</span>
-          <h1 id="edit_education_title"></h1>
+          <h2 id="edit_education_title"></h2>
         </div>
         <div class="modal-body">
           <form id="edit-education-form" action="/profile/update-education/<%= user._id %>?_method=PUT" method="POST">
@@ -448,7 +448,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <span class="close" id="closeEducationAdd" onclick="closeModal(id)">&times;</span>
-          <h1 id="education_title">Add Education</h1>
+          <h2 id="education_title">Add Education</h2>
         </div>
         <div class="modal-body">
           <form id="current-education-form" action="/profile/add-education/<%= user._id %>" method="POST">
@@ -824,7 +824,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <span class="close" id="closeOtherEducationAdd" onclick="closeModal(id)">&times;</span>
-          <h1 id="education_title">Add Education</h1>
+          <h2 id="education_title">Add Education</h2>
         </div>
         <div class="modal-body">
           <form id="add-other-education-form" action="/profile/add-other-education/<%= user._id %>" method="POST">
@@ -957,7 +957,7 @@
         <a class="addbtn" id="add-experience">
           <img src="assets/img/icons/add.png" alt="edit icon">
         </a>
-        <h1 class="mb20">My Work Experience</h1>
+        <h2 class="mb20">My Work Experience</h2>
       </div>
       <% count = 0 %>
       <!-- Show all work experience -->
@@ -1003,7 +1003,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <span class="close" id="closeExperience" onclick="closeModal(id)">&times;</span>
-          <h1>Update Work Experience</h1>
+          <h2>Update Work Experience</h2>
         </div>
         <div class="modal-body">
           <form id="edit-experience-form" action="/profile/update-work-experience/<%= user._id %>?_method=PUT"
@@ -1072,7 +1072,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <span class="close" id="closeExperienceAdd" onclick="closeModal(id)">&times;</span>
-          <h1 id="experience_title">Add Working experience</h1>
+          <h2 id="experience_title">Add Working experience</h2>
         </div>
         <div class="modal-body">
           <form id="edit-experience-form" action="/profile/add-work-experience/<%= user._id %>" method="POST">
@@ -1141,7 +1141,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <span class="close" id="closeDeleteExperience" onclick="closeModal(id)">&times;</span>
-        <h1 id="experience-title">Delete Work Experience</h1>
+        <h2 id="experience-title">Delete Work Experience</h2>
       </div>
       <div class="modal-body">
         <form id="delete-experience-form" action="/profile/delete-work-experience/<%= user._id %>?_method=PUT"
