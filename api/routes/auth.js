@@ -36,11 +36,20 @@ router.get("/register/usertype", (req, res, next) => {
 
 router.get("/register", (req, res) => {
   var passedVariable = req.query.message;
-  res.render("../views/index", {
-    message: passedVariable,
-    isLoggedIn: null,
-    SignUp: "Yes"
-  })
+  if (req.user) {
+    res.render("../views/index", {
+      user: req.user,
+      message: passedVariable,
+      isLoggedIn: true,
+      SignUp: "No"
+    })
+  } else {
+    res.render("../views/index", {
+      message: passedVariable,
+      isLoggedIn: null,
+      SignUp: "Yes"
+    })
+  }
 });
 
 router.post("/register", (req, res, next) => {
@@ -92,7 +101,7 @@ router.post("/register", (req, res, next) => {
               //send welcome email
 
               //DISABLE
-              
+
               var exit = 0;
 
               if (exit) {
@@ -518,17 +527,10 @@ router.get("/login", (req, res, next) => {
 //
 
 router.get("/logout", (req, res, next) => {
-  req.flash('message', 'You have successfully logged out of GradForce');
   req.logout();
-  res.redirect("/auth/successfully-logout");
+  res.redirect("/auth/register");
 });
 
-router.get("/successfully-logout", (req, res, next) => {
-  res.render("../views/logout", {
-    isLoggedIn: null,
-    SignUp: "Yes"
-  });
-});
 
 
 module.exports = router;
