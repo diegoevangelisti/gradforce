@@ -18,17 +18,17 @@
 
 .year {
   width: 90px;
-  max-width: 80%;
+  // max-width: 80%;
 }
 
 .course {
   width: 400px;
-  max-width: 80%;
+  // max-width: 80%;
 }
 
 .provider {
   width: 400px;
-  max-width: 80%;
+  // max-width: 80%;
 }
 
 .about {
@@ -44,7 +44,7 @@
 .role,
 .company {
   width: 350px;
-  max-width: 80%;
+  // max-width: 80%;
 }
 
 .skills {
@@ -66,10 +66,11 @@
 }
 
 .profile-img {
-  margin-top: 2em;
+  margin-top: .5em;
   width: 200px;
   max-height: 200px;
   overflow-x: auto;
+  justify-self: center;
 }
 .img:hover {
   opacity: 0.6;

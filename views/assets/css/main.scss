@@ -247,18 +247,14 @@ hr {
 }
 
 .modal-body {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 0.2rem;
-
-  // #edit-form-content {
-  //   padding: 8px;
-  // }
-
   label {
     font-family: 'Lato';
     font-size: 1rem;
     font-weight: 100;
+  }
+
+  input {
+    width: 100%;
   }
 
   textarea {
@@ -269,21 +265,34 @@ hr {
 }
 
 .modal-footer {
-  // background: $c-bg;
-  // height: 60px;
-  // position: relative;
-  border-top: 1px solid rgba(0, 0, 0, .15);
+  // border-top: 1px solid rgba(0, 0, 0, .15);
 
   #modal-footer-buttons {
-    // position: absolute;
-    // right: 16px;
-    // margin: 0px 0px;
+    float: right;
 
     button {
       span {
-        padding: 10px;
         font-size: 15px;
       }
     }
   }
 }
+
+// .hr {
+//   position: absolute;
+//   border-top: 1px solid rgba(0, 0, 0, .15);
+//   left: 0;
+//   top: 20px;
+//   background-color: red;
+// }
+
+// student profile classes and styles
+// .position-relative {
+//   position: relative;
+// }
+
+// .set-to-right {
+//   position: absolute;
+//   float: right;
+//   right: 40px;
+// }

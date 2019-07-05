@@ -639,12 +639,24 @@ body #footer #footer-container #footer-bottom #footer-links {
       grid-row-start: 3;
 }
 
-.modal-body {
-  display: none;
+.modal-body #edit-details-form, .modal-body #edit-about-form,
+.modal-body #edit-experience-form, .modal-body #delete-experience-form,
+.modal-body #delete-education-form {
+  padding: .8rem;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  grid-gap: 0.4rem;
 }
 
 .fullrow {
   grid-column: 1/-1;
+}
+
+.cellcenter {
+  -ms-grid-column-align: center;
+      justify-self: center;
 }
 
 #landing_page {
@@ -747,17 +759,14 @@ body #footer #footer-container #footer-bottom #footer-links {
 
 .year {
   width: 90px;
-  max-width: 80%;
 }
 
 .course {
   width: 400px;
-  max-width: 80%;
 }
 
 .provider {
   width: 400px;
-  max-width: 80%;
 }
 
 .about {
@@ -773,7 +782,6 @@ body #footer #footer-container #footer-bottom #footer-links {
 .role,
 .company {
   width: 350px;
-  max-width: 80%;
 }
 
 .skills {
@@ -796,10 +804,12 @@ body #footer #footer-container #footer-bottom #footer-links {
 }
 
 .profile-img {
-  margin-top: 2em;
+  margin-top: .5em;
   width: 200px;
   max-height: 200px;
   overflow-x: auto;
+  -ms-grid-column-align: center;
+      justify-self: center;
 }
 
 .img:hover {
@@ -1048,18 +1058,14 @@ hr {
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 }
 
-.modal-body {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 1fr 1fr;
-      grid-template-columns: 1fr 1fr;
-  grid-gap: 0.2rem;
-}
-
 .modal-body label {
   font-family: 'Lato';
   font-size: 1rem;
   font-weight: 100;
+}
+
+.modal-body input {
+  width: 100%;
 }
 
 .modal-body textarea {
@@ -1068,12 +1074,11 @@ hr {
   min-height: 100px;
 }
 
-.modal-footer {
-  border-top: 1px solid rgba(0, 0, 0, 0.15);
+.modal-footer #modal-footer-buttons {
+  float: right;
 }
 
 .modal-footer #modal-footer-buttons button span {
-  padding: 10px;
   font-size: 15px;
 }
 /*# sourceMappingURL=main.css.map */

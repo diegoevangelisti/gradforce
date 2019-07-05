@@ -272,12 +272,23 @@ body {
   }
 }
 
-.modal-body {
-  display: none;
+.modal-body #edit-details-form, .modal-body #edit-about-form,
+.modal-body #edit-experience-form, .modal-body #delete-experience-form,
+.modal-body #delete-education-form
+{
+  padding: .8rem;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 0.4rem;
 }
 
 // general classes for grids 
 .fullrow {
   grid-column: 1/-1;
+}
+
+.cellcenter {
+  justify-self: center;
 }
 
