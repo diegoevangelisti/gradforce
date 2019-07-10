@@ -112,6 +112,10 @@ body {
   width: 100%;
 }
 
+.inlineblock {
+  display: inline-block;
+}
+
 .text-input {
   background: $c-white;
   border: 1px solid $c-lightgray;

@@ -274,7 +274,8 @@ body {
 
 .modal-body #edit-details-form, .modal-body #edit-about-form,
 .modal-body #edit-experience-form, .modal-body #delete-experience-form,
-.modal-body #delete-education-form
+.modal-body #delete-education-form, .modal-body #current-education-form,
+.modal-body #add-other-education-form
 {
   padding: .8rem;
 
@@ -291,4 +292,6 @@ body {
 .cellcenter {
   justify-self: center;
 }
+
+
 

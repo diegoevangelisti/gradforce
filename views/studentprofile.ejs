@@ -197,27 +197,25 @@
           <form id="edit-about-form" action="/profile/update-about/<%= user._id%>?_method=PUT" method="POST">
 
             <div class="fullrow">
-              <label for="about-summary" class="mb10 mt10">
-                Define yourself in a <span style="font-weight: bold">short sentence</span>
-              </label>
-              <br>
+              <label for="about-summary" class="mb10 mt10">Define yourself in a short sentence</label>
               <input maxlength="90" name="summary" id="about-summary" class="about text-input mt10 mb10"
                 value="<%= user.about %>">
             </div>
 
-
             <!-- Skills -->
             <div class="">
-              <label for="about-summary" class="mb10 mt10">
-                Enter your <span style="font-weight: bold">Skills</span>
-              </label>
+              <label for="about-summary" class="mb10 mt10">Enter your Skills</label>
               <br>
               <!-- Add skills section -->
               <div id="student-skills-parent">
                 <div id="student-skills" style="display: none">
-                  <div>
-                    <input id="skill" name="skills[]" list="skills-list" class="skills text-input mt10 mb10">
-                    <button id="delete-skill" type="button" class="btn btnGray inline">Delete</button>
+                  <div class="fullrow">
+                    <input id="skill" name="skills[]" list="skills-list" class="skills text-input mt10 mb10"
+                      style="float: left;">
+                    <!-- <a class="delbtn" id="delete-skill"><img class="" src="/assets/img/icons/del.png"
+                        alt="del icon"></a> -->
+                    <button id="delete-skill" type="button" class="btn btnGray"
+                      style="">Delete</button>
                   </div>
                   <datalist id="skills-list">
                     <% skills.forEach(function(skills, i){ %>
@@ -227,9 +225,7 @@
                 </div>
               </div>
             </div>
-            <button id="add" type="button" class="btn btnGray">
-              <span>Add new skill</span>
-            </button>
+            <button id="add" type="button" class="btn btnGray fullrow">Add new skill</button>
 
             <div class="modal-footer fullrow">
               <div id="modal-footer-buttons">
@@ -840,11 +836,11 @@
         </div>
         <div class="modal-body">
           <form id="add-other-education-form" action="/profile/add-other-education/<%= user._id %>" method="POST">
-            <div id="edit-form-content">
+            <div>
               <!-- Other Previous Study -->
               <div id="other-previous-study">
                 <div id="other_previous-provider">
-                  <p class="mt30 mb2">Where<span style="font-weight: bold"> have </span>you studied?</p>
+                  <p class="mb2">Where have you studied?</p>
                   <select name="previous_provider_list_other" id="previous_provider_list_other"
                     class="provider text-input mb10" type="text">
                     <option>Abacus Institute of Studies (Auckland)</option>
@@ -934,7 +930,6 @@
                   <label for="previous-start-year" class="mb2">
                     Start Year
                   </label>
-                  <br>
                   <input id="start_year" class="year text-input mb10" type="text" name="other_previous_start_year"
                     value="">
                 </div>
@@ -942,17 +937,16 @@
                   <label for="previous_end_year" class="mb2">
                     End Year (or Present)
                   </label>
-                  <br>
                   <input id="end_year" class="year text-input mb10" type="text" name="other_previous_end_year" value="">
                 </div>
               </div>
             </div>
             <div class="modal-footer fullrow">
               <div id="modal-footer-buttons">
-                <button type="button" id="cancel" class="btn btnGray mt10">
+                <button type="button" id="cancel" class="btn btnGray">
                   <span id="closeOtherEducationAdd" onclick="closeModal(id)">Cancel</span>
                 </button>
-                <button type="button" class="btn btnGreen mt10" id="other-education-form-submit">
+                <button type="button" class="btn btnGreen" id="other-education-form-submit">
                   <span>Save</span>
                 </button>
               </div>
@@ -1034,7 +1028,7 @@
               <br>
               <input id="company" class="text-input mb10" type="text" name="company" value="">
             </div>
-            
+
             <div>
               <label for="" class="mb2">
                 Start year
@@ -1051,12 +1045,12 @@
             </div>
 
             <div>
-                <label for="" class="mb2">
-                  Country
-                </label>
-                <br>
-                <input id="workCountry" class="text-input mb10" type="text" name="workCountry" value="">
-              </div>
+              <label for="" class="mb2">
+                Country
+              </label>
+              <br>
+              <input id="workCountry" class="text-input mb10" type="text" name="workCountry" value="">
+            </div>
 
             <div class="fullrow">
               <label for="" class="mb2">

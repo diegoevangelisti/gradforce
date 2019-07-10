@@ -199,7 +199,7 @@ p {
   margin: 0 10px 0 17px;
 }
 
-#header span:hover {
+#header .hover:hover {
   opacity: .6;
 }
 
@@ -641,7 +641,8 @@ body #footer #footer-container #footer-bottom #footer-links {
 
 .modal-body #edit-details-form, .modal-body #edit-about-form,
 .modal-body #edit-experience-form, .modal-body #delete-experience-form,
-.modal-body #delete-education-form {
+.modal-body #delete-education-form, .modal-body #current-education-form,
+.modal-body #add-other-education-form {
   padding: .8rem;
   display: -ms-grid;
   display: grid;
@@ -714,7 +715,7 @@ body #footer #footer-container #footer-bottom #footer-links {
 #landing_page #about #about-content .card {
   float: left;
   width: 33%;
-  padding: 0 .3rem;
+  padding: 0 1rem;
 }
 
 #landing_page #about #about-content .card img {
@@ -723,7 +724,20 @@ body #footer #footer-container #footer-bottom #footer-links {
 }
 
 #landing_page #about #about-content .card .card-title {
-  font-size: 22px;
+  font-weight: 300;
+  margin: 15px 5px 10px 5px;
+}
+
+#landing_page #about #about-content .card .card-desc {
+  text-align: justify;
+  margin: 0 5px;
+  line-height: 1.5;
+  font-size: 18px;
+  line-height: 26px;
+}
+
+#landing_page #about #about-content .card .card-desc li {
+  text-align: left;
 }
 
 #login-page {
@@ -782,10 +796,6 @@ body #footer #footer-container #footer-bottom #footer-links {
 .role,
 .company {
   width: 350px;
-}
-
-.skills {
-  width: 300px;
 }
 
 .skill-card {
@@ -911,6 +921,10 @@ body {
 .block {
   display: block;
   width: 100%;
+}
+
+.inlineblock {
+  display: inline-block;
 }
 
 .text-input {
