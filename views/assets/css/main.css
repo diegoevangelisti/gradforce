@@ -639,16 +639,39 @@ body #footer #footer-container #footer-bottom #footer-links {
       grid-row-start: 3;
 }
 
-.modal-body #edit-details-form, .modal-body #edit-about-form,
-.modal-body #edit-experience-form, .modal-body #delete-experience-form,
-.modal-body #delete-education-form, .modal-body #current-education-form,
-.modal-body #add-other-education-form {
+.modal-body #edit-details-form,
+.modal-body #edit-about-form,
+.modal-body #edit-experience-form,
+.modal-body #delete-experience-form,
+.modal-body #delete-education-form,
+.modal-body #add-other-education-form,
+.modal-body #edit-role-form,
+.modal-body #edit-details-form {
   padding: .8rem;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 1fr;
       grid-template-columns: 1fr 1fr;
   grid-gap: 0.4rem;
+}
+
+.modal-body #add-other-education-form,
+.modal-body #edit-education-form,
+.modal-body #current-education-form,
+.modal-body #edit-desc-form, .modal-body #delete-role-form {
+  padding: .8rem;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  grid-gap: 0.4rem;
+}
+
+.modal-body #add-other-education-form input,
+.modal-body #edit-education-form input,
+.modal-body #current-education-form input,
+.modal-body #edit-desc-form input, .modal-body #delete-role-form input {
+  display: inline-block;
 }
 
 .fullrow {
@@ -771,33 +794,6 @@ body #footer #footer-container #footer-bottom #footer-links {
   border-radius: 50%;
 }
 
-.year {
-  width: 90px;
-}
-
-.course {
-  width: 400px;
-}
-
-.provider {
-  width: 400px;
-}
-
-.about {
-  width: 700px;
-  max-width: 100%;
-}
-
-.description {
-  width: 600px;
-  max-width: 100%;
-}
-
-.role,
-.company {
-  width: 350px;
-}
-
 .skill-card {
   background: #ebe8e8;
   margin-right: 10px;
@@ -824,6 +820,16 @@ body #footer #footer-container #footer-bottom #footer-links {
 
 .img:hover {
   opacity: 0.6;
+}
+
+.edu-radios {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 * {
@@ -1094,5 +1100,9 @@ hr {
 
 .modal-footer #modal-footer-buttons button span {
   font-size: 15px;
+}
+
+.float-left {
+  float: left;
 }
 /*# sourceMappingURL=main.css.map */

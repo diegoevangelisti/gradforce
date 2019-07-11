@@ -214,8 +214,7 @@
                       style="float: left;">
                     <!-- <a class="delbtn" id="delete-skill"><img class="" src="/assets/img/icons/del.png"
                         alt="del icon"></a> -->
-                    <button id="delete-skill" type="button" class="btn btnGray"
-                      style="">Delete</button>
+                    <button id="delete-skill" type="button" class="btn btnGray" style="">Delete</button>
                   </div>
                   <datalist id="skills-list">
                     <% skills.forEach(function(skills, i){ %>
@@ -464,32 +463,28 @@
                   What is your current education status?
                 </label>
                 <br>
-                <div>
-                  <p>
-                    <label>
-                      <input id="Undergraduate" name="study-type" type="radio" value="Undergraduate" />
-                      <span>Undergraduate</span>
-                    </label>
-                  </p>
-                  <p>
-                    <label>
-                      <input id="Graduate" name="study-type" type="radio" value="Graduate" />
-                      <span>Graduate</span>
-                    </label>
-                  </p>
-                  <p>
-                    <label>
-                      <input id="Post-graduate" name="study-type" type="radio" value="Post-graduate" />
-                      <span>Post-graduate</span>
-                    </label>
-                  </p>
+                <div class="edu-radios">
+
+                  <span>
+                    <input id="Undergraduate" name="study-type" type="radio" value="Undergraduate"/>Undergraduate
+                  </span>
+
+                  <span>
+                    <input id="Graduate" name="study-type" type="radio" value="Graduate"/>Graduate
+                  </span>
+
+                  <span>
+                    <input id="Post-graduate" name="study-type" type="radio" value="Post-graduate"/>Post-graduate
+                  </span>
+
                   <br>
                 </div>
               </div>
               <!-- Current Study -->
               <div id="current-study" style="display: none">
-                <div id="current-providers">
-                  <p class="mt10 mb2">Where are you<span style="font-weight: bold"> currently </span>studying?</p>
+                <div id="current-providers" style="display: block;">
+                  <br>
+                  <p class="mb2">Where are you currently studying?</p>
                   <select name="current_provider" id="current_provider_list" class="provider text-input mb10"
                     type="text">
                     <option>Abacus Institute of Studies (Auckland)</option>
@@ -813,10 +808,10 @@
             <input type="hidden" id="education_status" name="education_status" type="text">
             <div class="modal-footer fullrow">
               <div id="modal-footer-buttons">
-                <button type="button" id="cancel" class="btn btnGray mt10">
+                <button type="button" id="cancel" class="btn btnGray">
                   <span id="closeEducationAdd" onclick="closeModal(id)">Cancel</span>
                 </button>
-                <button type="button" class="btn btnGreen mt10" id="education-form-submit">
+                <button type="button" class="btn btnGreen" id="education-form-submit">
                   <span>Save</span>
                 </button>
               </div>
