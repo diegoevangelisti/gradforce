@@ -16,40 +16,40 @@
   }
 }
 
-.year {
-  width: 90px;
-  max-width: 80%;
-}
+// .year {
+//   width: 90px;
+//   // max-width: 80%;
+// }
 
-.course {
-  width: 400px;
-  max-width: 80%;
-}
+// .course {
+//   width: 400px;
+//   // max-width: 80%;
+// }
 
-.provider {
-  width: 400px;
-  max-width: 80%;
-}
+// .provider {
+//   width: 400px;
+//   // max-width: 80%;
+// }
 
-.about {
-  width: 700px;
-  max-width: 100%;
-}
+// .about {
+//   width: 700px;
+//   max-width: 100%;
+// }
 
-.description {
-  width: 600px;
-  max-width: 100%;
-}
+// .description {
+//   width: 600px;
+//   max-width: 100%;
+// }
 
-.role,
-.company {
-  width: 350px;
-  max-width: 80%;
-}
+// .role,
+// .company {
+//   width: 350px;
+  // max-width: 80%;
+// }
 
-.skills {
-  width: 300px;
-}
+// .skills {
+//   width: 300px;
+// }
 
 .skill-card {
   background: rgb(235, 232, 232);
@@ -66,11 +66,18 @@
 }
 
 .profile-img {
-  margin-top: 2em;
+  margin-top: .5em;
   width: 200px;
   max-height: 200px;
   overflow-x: auto;
+  justify-self: center;
 }
 .img:hover {
   opacity: 0.6;
 }
+
+.edu-radios {
+  display: flex;
+  flex-direction: column;
+}
+

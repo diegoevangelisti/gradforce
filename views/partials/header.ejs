@@ -5,27 +5,27 @@
     </div>
     <div class="menu">
         <ul>
-            <span>
+            <span class="hover">
                 <a href="/auth/register"><i class="fas fa-home"></i></a>
                 <li><a href="/auth/register">Home</a></li>
             </span>
-            <span>
+            <span class="hover">
                 <a href="#"><i class="fas fa-search"></i></a>
                 <li><a href="#">Talents</a></li>
             </span>
-            <span>
+            <span class="hover">
                 <a href="#"><i class="fas fa-briefcase"></i></a>
                 <li><a href="#">Jobs</a></li>
             </span>
             <!-- If there's no logged in User show Sign Up or Sign In option -->
             <% if((!isLoggedIn) && (!SignUp)) { %>
-            <span>
+            <span class="hover">
                 <a href="/auth/register"><i class="fas fa-sign-out-alt"></i></a>
                 <li><a href="/auth/register">Sign Up</a></li>
             </span>
 
             <% } else { if(!isLoggedIn)  { %>
-            <span>
+            <span class="hover">
                 <a href="/auth/login"><i class="fas fa-sign-in-alt"></i></a>
                 <li><a href="/auth/login">Sign In</a></li>
             </span>

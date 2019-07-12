@@ -122,17 +122,15 @@
           <h1>Personal Details</h1>
         </div>
         <div class="modal-body">
-          <form id="edit-role-form" action="/profile/update-details/<%= user._id %>?_method=PUT" method="POST">
-            <div id="edit-form-content">
+          <form id="edit-details-form" action="/profile/update-details/<%= user._id %>?_method=PUT" method="POST">
+            <div class="fullrow">
               <label for="fname" class="mb2">
                 Profile photo
               </label>
-              <br>
-              <div> <input type="file" id="fileInput">
-              </div>
+              <input type="file" id="fileInput">
               <div id="fileDisplayArea"></div>
             </div>
-            <div id="edit-form-content">
+            <div>
               <label for="fname" class="mb2">
                 Company name
               </label>
@@ -140,14 +138,14 @@
               <input placeholder="Company name" name="companyName" id="company" class="text-input mb10"
                 value="<%= user.companyName%>">
             </div>
-            <div id="edit-form-content">
+            <div>
               <label for="title" class="mb2">
                 Web site
                 <br>
                 <input placeholder="Ex: www.mysite.com" name="webSite" id="webSite" class="text-input mb10"
                   value="<%= user.webSite%>">
             </div>
-            <div id="edit-form-content">
+            <div>
               <label for="title" class="mb2">
                 Contact person
               </label>
@@ -155,7 +153,7 @@
               <input placeholder="First name" name="fname" id="fname" class="text-input mb10" value="<%= user.fname%>">
               <input placeholder="Last name" name="lname" id="lname" class="text-input mb10" value="<%= user.lname%>">
             </div>
-            <div id="edit-form-content">
+            <div>
               <label for="title" class="mb2">
                 Phone
               </label>
@@ -163,19 +161,19 @@
               <input placeholder="Phone number" name="phone" id="phone" class="text-input mb10"
                 value="<%= user.phone_number%>">
             </div>
+            <div class="modal-footer fullrow">
+              <div id="modal-footer-buttons">
+                <button type="button" id="cancel" class="btn btnGreen btnGray mt10">
+                  <span id="closeDetails" onclick="closeModal(id)">Cancel</span>
+                </button>
+                <button id="detailsSubmit" type="button" class="btn btnGreen mt10">
+                  <span>Save</span>
+                </button>
+              </div>
+            </div>
+            <input type="hidden" name="newPhoto" id="newPhoto">
+          </form>
         </div>
-        <div class="modal-footer">
-          <div id="modal-footer-buttons">
-            <button type="button" id="cancel" class="btn btnGreen btnGray mt10">
-              <span id="closeDetails" onclick="closeModal(id)">Cancel</span>
-            </button>
-            <button id="detailsSubmit" type="button" class="btn btnGreen mt10">
-              <span>Save</span>
-            </button>
-          </div>
-        </div>
-        <input type="hidden" name="newPhoto" id="newPhoto">
-        </form>
       </div>
     </div>
 
@@ -210,8 +208,8 @@
           <h1>Description</h1>
         </div>
         <div class="modal-body">
-          <form id="edit-role-form" action="/profile/update-about/<%= user._id%>?_method=PUT" method="POST">
-            <div id="edit-form-content">
+          <form id="edit-desc-form" action="/profile/update-about/<%= user._id%>?_method=PUT" method="POST">
+            <div>
               <label for="about-summary" class="mb10 mt10">
                 Describe the company
               </label>
@@ -282,7 +280,7 @@
         </div>
         <div class="modal-body">
           <form id="edit-role-form" action="/profile/add-role/<%= user._id%>" method="POST">
-            <div id="edit-form-content">
+            <div>
               <label for="role-title" class="mb10 mt10">
                 What position are you looking for?
               </label>
@@ -290,7 +288,7 @@
               <input maxlength="90" name="roleTitle" id="roleTitle" class="role text-input mt10 mb10"
                 placeholder="Position" value="">
             </div>
-            <div id="edit-form-content">
+            <div>
               <label for="role-title" class="mb10 mt10">
                 Description of the Role
               </label>
@@ -299,7 +297,7 @@
                 placeholder="Description" value="">
             </div>
             <!-- Role skills -->
-            <div id="edit-form-content">
+            <div class="fullrow">
               <label for="about-summary" class="mb10 mt10">
                 Enter the position <span style="font-weight: bold">Skills</span>
               </label>
@@ -319,10 +317,10 @@
                 </button>
               </div>
             </div>
-            <button id="add-skill-add" type="button" style="margin-left: 10px;" class="btn btnGray mt20 mb20">
+            <button id="add-skill-add" type="button" class="btn btnGray fullrow">
               <span>Add new skill</span>
             </button>
-            <div class="modal-footer">
+            <div class="modal-footer fullrow">
               <div id="modal-footer-buttons">
                 <button type="button" id="cancel" class="btn btnGreen btnGray mt10">
                   <span id="closeAddRole" onclick="closeModal(id)">Cancel</span>
@@ -346,11 +344,11 @@
         </div>
         <div class="modal-body">
           <form id="delete-role-form" action="/profile/delete-role/<%= user._id %>?_method=PUT" method="POST">
-            <div id="edit-form-content">
-              <p class="sub-title mt10 mb10">Are you sure you want to delete this Role record ?</p>
+            <div>
+              <p class="sub-title">Are you sure you want to delete this Role record ?</p>
             </div>
             <input type="hidden" id="deleteRoleNumber" name="deleteEduRoleNumber" type="text">
-            <div class="modal-footer">
+            <div class="modal-footer fullrow">
               <div id="modal-footer-buttons">
                 <button type="button" id="cancel" class="btn btnGreen btnGray mt10">
                   <span id="closeDeleteRole" onclick="closeModal(id)">No</span>
@@ -769,6 +767,8 @@
     document.getElementById("detailsSubmit").onclick = () => {
 
       $("#edit-role-form").submit();
+      $("#edit-desc-form").submit();
+      $("#edit-details-form").submit();
     }
   </script>
   <div id="del-role-skills-parent">

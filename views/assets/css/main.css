@@ -199,7 +199,7 @@ p {
   margin: 0 10px 0 17px;
 }
 
-#header span:hover {
+#header .hover:hover {
   opacity: .6;
 }
 
@@ -639,12 +639,48 @@ body #footer #footer-container #footer-bottom #footer-links {
       grid-row-start: 3;
 }
 
-.modal-body {
-  display: none;
+.modal-body #edit-details-form,
+.modal-body #edit-about-form,
+.modal-body #edit-experience-form,
+.modal-body #delete-experience-form,
+.modal-body #delete-education-form,
+.modal-body #add-other-education-form,
+.modal-body #edit-role-form,
+.modal-body #edit-details-form {
+  padding: .8rem;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  grid-gap: 0.4rem;
+}
+
+.modal-body #add-other-education-form,
+.modal-body #edit-education-form,
+.modal-body #current-education-form,
+.modal-body #edit-desc-form, .modal-body #delete-role-form {
+  padding: .8rem;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  grid-gap: 0.4rem;
+}
+
+.modal-body #add-other-education-form input,
+.modal-body #edit-education-form input,
+.modal-body #current-education-form input,
+.modal-body #edit-desc-form input, .modal-body #delete-role-form input {
+  display: inline-block;
 }
 
 .fullrow {
   grid-column: 1/-1;
+}
+
+.cellcenter {
+  -ms-grid-column-align: center;
+      justify-self: center;
 }
 
 #landing_page {
@@ -702,7 +738,7 @@ body #footer #footer-container #footer-bottom #footer-links {
 #landing_page #about #about-content .card {
   float: left;
   width: 33%;
-  padding: 0 .3rem;
+  padding: 0 1rem;
 }
 
 #landing_page #about #about-content .card img {
@@ -711,7 +747,20 @@ body #footer #footer-container #footer-bottom #footer-links {
 }
 
 #landing_page #about #about-content .card .card-title {
-  font-size: 22px;
+  font-weight: 300;
+  margin: 15px 5px 10px 5px;
+}
+
+#landing_page #about #about-content .card .card-desc {
+  text-align: justify;
+  margin: 0 5px;
+  line-height: 1.5;
+  font-size: 18px;
+  line-height: 26px;
+}
+
+#landing_page #about #about-content .card .card-desc li {
+  text-align: left;
 }
 
 #login-page {
@@ -745,41 +794,6 @@ body #footer #footer-container #footer-bottom #footer-links {
   border-radius: 50%;
 }
 
-.year {
-  width: 90px;
-  max-width: 80%;
-}
-
-.course {
-  width: 400px;
-  max-width: 80%;
-}
-
-.provider {
-  width: 400px;
-  max-width: 80%;
-}
-
-.about {
-  width: 700px;
-  max-width: 100%;
-}
-
-.description {
-  width: 600px;
-  max-width: 100%;
-}
-
-.role,
-.company {
-  width: 350px;
-  max-width: 80%;
-}
-
-.skills {
-  width: 300px;
-}
-
 .skill-card {
   background: #ebe8e8;
   margin-right: 10px;
@@ -796,14 +810,26 @@ body #footer #footer-container #footer-bottom #footer-links {
 }
 
 .profile-img {
-  margin-top: 2em;
+  margin-top: .5em;
   width: 200px;
   max-height: 200px;
   overflow-x: auto;
+  -ms-grid-column-align: center;
+      justify-self: center;
 }
 
 .img:hover {
   opacity: 0.6;
+}
+
+.edu-radios {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 * {
@@ -901,6 +927,10 @@ body {
 .block {
   display: block;
   width: 100%;
+}
+
+.inlineblock {
+  display: inline-block;
 }
 
 .text-input {
@@ -1048,18 +1078,14 @@ hr {
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 }
 
-.modal-body {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 1fr 1fr;
-      grid-template-columns: 1fr 1fr;
-  grid-gap: 0.2rem;
-}
-
 .modal-body label {
   font-family: 'Lato';
   font-size: 1rem;
   font-weight: 100;
+}
+
+.modal-body input {
+  width: 100%;
 }
 
 .modal-body textarea {
@@ -1068,12 +1094,15 @@ hr {
   min-height: 100px;
 }
 
-.modal-footer {
-  border-top: 1px solid rgba(0, 0, 0, 0.15);
+.modal-footer #modal-footer-buttons {
+  float: right;
 }
 
 .modal-footer #modal-footer-buttons button span {
-  padding: 10px;
   font-size: 15px;
+}
+
+.float-left {
+  float: left;
 }
 /*# sourceMappingURL=main.css.map */

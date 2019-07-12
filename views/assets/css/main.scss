@@ -112,6 +112,10 @@ body {
   width: 100%;
 }
 
+.inlineblock {
+  display: inline-block;
+}
+
 .text-input {
   background: $c-white;
   border: 1px solid $c-lightgray;
@@ -247,18 +251,14 @@ hr {
 }
 
 .modal-body {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 0.2rem;
-
-  // #edit-form-content {
-  //   padding: 8px;
-  // }
-
   label {
     font-family: 'Lato';
     font-size: 1rem;
     font-weight: 100;
+  }
+
+  input {
+    width: 100%;
   }
 
   textarea {
@@ -269,21 +269,19 @@ hr {
 }
 
 .modal-footer {
-  // background: $c-bg;
-  // height: 60px;
-  // position: relative;
-  border-top: 1px solid rgba(0, 0, 0, .15);
+  // border-top: 1px solid rgba(0, 0, 0, .15);
 
   #modal-footer-buttons {
-    // position: absolute;
-    // right: 16px;
-    // margin: 0px 0px;
+    float: right;
 
     button {
       span {
-        padding: 10px;
         font-size: 15px;
       }
     }
   }
+}
+
+.float-left {
+  float: left;
 }
