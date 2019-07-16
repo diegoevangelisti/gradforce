@@ -241,7 +241,7 @@
       </div>
     </div>
 
-    <!-- education info -->
+    <!-- Education info -->
     <div id="std-education" class="box">
       <div>
         <a id="add-education" class="addbtn">
@@ -251,7 +251,6 @@
 
       </div>
       <!-- Show all Education -->
-      <!-- <p class="inline mt10 mb15">Status: <%= user.education_status%></p> -->
       <% counter = 0 %>
       <% user.education.forEach(function(element, i){ %>
       <% counter = counter + 1; %>
@@ -463,16 +462,10 @@
                   What is your current education status?
                 </label>
                 <br>
-                <div class="edu-radios">
-                  <span>
-                    <input id="Undergraduate" name="study-type" type="radio" value="Undergraduate"/>Undergraduate
-                  </span>
-                  <span>
-                    <input id="Graduate" name="study-type" type="radio" value="Graduate"/>Graduate
-                  </span>
-                  <span>
-                    <input id="Post-graduate" name="study-type" type="radio" value="Post-graduate"/>Post-graduate
-                  </span>
+                <div>
+                  <input  class="educ-radios" id="Undergraduate" name="study-type" type="radio" value="Undergraduate" />Undergraduate<br>
+                  <input  class="educ-radios" id="Graduate" name="study-type" type="radio" value="Graduate" />Graduate<br>
+                  <input  class="educ-radios" id="Post-graduate" name="study-type" type="radio" value="Post-graduate" />Post-graduate<br>
                   <br>
                 </div>
               </div>

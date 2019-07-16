@@ -97,8 +97,16 @@
                             <% } %></p>
                     </div>
                     <div class="col-9">
-                        <p class="inline student-title big"><%= user.fname %> <%= user.lname %><span class="sub-title">
-                                | <%=user.title%></span></p>
+                        <% if(user.companyName){ %>
+                        <p class="inline student-title big"><%= user.companyName %></p>
+                        <% } else { %>
+                        <p class="inline student-title big"><%= user.fname %> <%= user.lname %>
+                            <% if(user.title) { %>
+                            <span class="sub-title">
+                                | <%=user.title%></span>
+                            <% } %>
+                        </p>
+                        <% } %>
                         <p class="inline student-title med normal"><i class="far fa-envelope-open"></i>
                             <%= user.email %>
                             <a class="very-small" href="/adminpanel/send-email/default/<%= user._id %>">Send email</a>

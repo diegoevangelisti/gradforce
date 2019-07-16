@@ -473,7 +473,7 @@ body #footer #footer-container #footer-bottom #footer-links {
   -ms-grid-columns: 190px 190px;
       grid-template-columns: 190px 190px;
   margin: 10px;
-      grid-template-areas: "title title" "student employer" "email email" "fname lname" "phone phone" "password password" "terms terms" "next next" "facebook facebook" "google google" "signin signin" "other-logins other-logins";
+      grid-template-areas: "title title" "student employer" "email email" "fname lname" "phone phone" "password password" "terms terms" "next next" "facebook facebook" "google google" "signin signin" "other-logins other-logins";
 }
 
 #landing_page #other-logins {
@@ -482,7 +482,7 @@ body #footer #footer-container #footer-bottom #footer-links {
   grid-gap: 0;
   -ms-grid-columns: 190px 190px;
       grid-template-columns: 190px 190px;
-      grid-template-areas: "facebook facebook" "google google" "signin signin";
+      grid-template-areas: "facebook facebook" "google google" "signin signin";
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -830,6 +830,11 @@ body #footer #footer-container #footer-bottom #footer-links {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+}
+
+.educ-radios {
+  text-align: left !important;
+  width: auto !important;
 }
 
 * {
