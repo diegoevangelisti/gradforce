@@ -15,9 +15,7 @@ var methodOverride = require('method-override');
 var flash = require("connect-flash");
 
 
-
 app.use(cookieParser());
-
 
 
 const keys = require('./config/keys')
@@ -257,8 +255,6 @@ app.use('/mail', mailRoutes);
 app.listen(process.env.PORT || 5000, async function () {
   console.log("listening on port " + (process.env.PORT || 5000));
 });
-
-
 
 //mLAB Heroku
 
