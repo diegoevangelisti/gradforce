@@ -456,7 +456,7 @@ router.put("/delete-role/:id", isLoggedIn, (req, res) => {
   User.findByIdAndUpdate(id).then((user) => {
 
     //delete from position index one education record
-    user.splice(index, 1);
+    user.role.splice(index, 1);
 
     user.save()
       .then(user => {
