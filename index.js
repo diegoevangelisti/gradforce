@@ -18,7 +18,6 @@ var flash = require("connect-flash");
 app.use(cookieParser());
 
 
-
 const keys = require('./config/keys')
 var User = require("./api/models/users");
 var Admin = require("./api/models/admin");
@@ -175,7 +174,7 @@ passport.use(new GoogleStrategy({
 passport.use(new FacebookStrategy({
     clientID: keys.facebook.APP_ID,
     clientSecret: keys.facebook.APP_SECRET,
-    callbackURL: "https://gradforce-backend.herokuapp.com/auth/facebook/callback",
+    callbackURL: "https://gradforcenz.herokuapp.com/auth/facebook/callback",
     profileFields: ['id', 'emails', 'picture.type(large)', 'name', 'displayName']
   },
   (accessToken, refreshToken, profile, done) => {
@@ -256,8 +255,6 @@ app.use('/mail', mailRoutes);
 app.listen(process.env.PORT || 5000, async function () {
   console.log("listening on port " + (process.env.PORT || 5000));
 });
-
-
 
 //mLAB Heroku
 /*
