@@ -6,6 +6,8 @@ const Skill = require("../models/skills");
 var passport = require("passport");
 
 
+const AdminPanelController = require('../controllers/adminpanel');
+
 
 function isAdminLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
@@ -18,17 +20,15 @@ function isAdminLoggedIn(req, res, next) {
 //Log in and Log out routes for admin
 //
 
+
 router.post("/login", passport.authenticate("admin", {
   successRedirect: "tables-students",
   failureRedirect: "login",
-}), function (req, res) {
-  res.send(admin._id)
-  console.log("User: " + req.admin);
-});
+}), AdminPanelController.post_login);
 
-router.get("/login", (req, res, next) => {
-  res.render("../views/admin-panel/login");
-});
+
+router.get("/login", AdminPanelController.get_login);
+
 
 router.get("/logout", (req, res, next) => {
   req.logout();
