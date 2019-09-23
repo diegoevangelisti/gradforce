@@ -31,7 +31,6 @@ router.get("/register/usertype", (req, res, next) => {
   console.log("Session user type: " + req.session.userType);
   console.log("Session id: " + req.session.id);
   res.end('done');
-
 });
 
 router.get("/register", (req, res) => {
@@ -99,12 +98,10 @@ router.post("/register", (req, res, next) => {
               res.redirect('/profile');
 
               //send welcome email
+              //DISABLE - 
+              var enableWelcomeEmail = false;
 
-              //DISABLE
-
-              var exit = 0;
-
-              if (exit) {
+              if (enableWelcomeEmail) {
 
                 var subject = "Welcome to GradForce";
                 var content = "Hi " + user.fname + ",\n\n" + "Welcome to GradForce! You've taken the first step, now is time to start filling in your profile.\n\n" +
@@ -202,7 +199,6 @@ router.post("/register-by-admin", (req, res, next) => {
         });
     }
   })
-
 });
 
 //Register an Admin
@@ -269,13 +265,11 @@ router.get('/google/redirect',
           case "Employer":
             description = "Waiting for Employer";
             break;
-
         }
         doc.description = description;
         doc.save();
       }
     });
-
     // Successful authentication
     res.redirect("/profile");
   });
@@ -291,13 +285,11 @@ router.get('/facebook/callback', passport.authenticate('facebook', {
     failureRedirect: '/login'
   }),
   function (req, res) {
-
     console.log("USER TYPE: " + req.session.userType);
     console.log("Session id checking: " + req.session.id);
     console.log("Username:" + req.user.username);
 
     //Find the user and update it with the usertype 
-
     User.findOne({
       username: req.user.username
     }, function (err, doc) {
@@ -321,26 +313,20 @@ router.get('/facebook/callback', passport.authenticate('facebook', {
     // Successful authentication
   });
 
-
 //
 // Forget password
 //
 
-
 router.get("/forgetpassword", (req, res) => {
 
-
   if (req.query.message) {
-
     var message = req.query.message;
     var failure = null;
 
   } else if (req.query.failure) {
-
     var failure = req.query.failure;
     var message = null;
   }
-
   res.render("../views/forgetpassword", {
     message: message,
     failure: failure,
@@ -367,7 +353,6 @@ router.post('/forgetpassword', function (req, res, next) {
         }
         user.resetPasswordToken = token;
         user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
-
         user.save(function (err) {
           done(err, token, user);
         });
@@ -490,7 +475,6 @@ router.post('/reset/:token', function (req, res) {
 //Login routes
 //
 
-
 router.post('/login', function (req, res, next) {
   passport.authenticate('local', function (err, user, info) {
     if (err) {
@@ -511,7 +495,6 @@ router.post('/login', function (req, res, next) {
 
 router.get("/login", (req, res, next) => {
 
-
   var passedVariable = req.query.message;
   console.log("THIS: " + passedVariable)
   res.render("../views/login", {
@@ -521,7 +504,6 @@ router.get("/login", (req, res, next) => {
   });
 });
 
-
 //
 //Logout routes
 //
@@ -530,7 +512,5 @@ router.get("/logout", (req, res, next) => {
   req.logout();
   res.redirect("/auth/register");
 });
-
-
 
 module.exports = router;

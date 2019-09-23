@@ -54,7 +54,6 @@ router.post("/send-email/:id", (req, res) => {
                         pass: process.env.GMAIL
                     }
                 });
-
                 let info = await transporter.sendMail({
                     from: '"GradForce" <gradforce.co.nz@gmail.com>',
                     to: email,
@@ -64,7 +63,6 @@ router.post("/send-email/:id", (req, res) => {
                 console.log("Message sent: %s", info.messageId);
                 console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
             }
-
             main().catch(console.error);
             res.redirect("/adminpanel/tables");
         })
@@ -74,20 +72,16 @@ router.post("/send-email/:id", (req, res) => {
                 error: err
             });
         });
-
-
 });
 
 
 router.post("/contact-us", (req, res) => {
-
 
     let content = req.body.message;
     let email = req.body.email;
     let fullname = req.body.fullname;
 
     //send mail to gradforce
-
     async function main() {
 
         var transporter = nodemailer.createTransport({
@@ -110,10 +104,8 @@ router.post("/contact-us", (req, res) => {
         console.log("Message sent: %s", info.messageId);
         console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
     }
-
     main().catch(console.error);
     res.redirect("back");
 });
-
 
 module.exports = router;
