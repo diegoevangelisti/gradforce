@@ -1,5 +1,4 @@
 //External dependencies
-
 var express = require("express");
 var app = express();
 require('dotenv').config()
@@ -13,11 +12,6 @@ const morgan = require('morgan');
 var cookieParser = require('cookie-parser');
 var methodOverride = require('method-override');
 var flash = require("connect-flash");
-
-
-app.use(cookieParser());
-
-
 const keys = require('./config/keys')
 var User = require("./api/models/users");
 var Admin = require("./api/models/admin");
@@ -25,21 +19,16 @@ var Admin = require("./api/models/admin");
 app.set('view engine', 'ejs');
 app.use(express.static("views"));
 app.use(methodOverride("_method"));
+app.use(cookieParser());
 
-//
 // Redirect to Register page
-//
 
 app.get('/', (req, res) => {
-
   res.redirect("/auth/register");
-
 })
 
-//
 //Serialize - deserialize two different models
 //User and Admin
-//
 
 function SessionConstructor(userId, userGroup, details) {
   this.userId = userId;
@@ -56,7 +45,6 @@ passport.serializeUser(function (userObject, done) {
   } else if (userPrototype === Admin.prototype) {
     userGroup = "model2";
   }
-
   let sessionConstructor = new SessionConstructor(userObject._id, userGroup, '');
   done(null, sessionConstructor);
 });
@@ -77,18 +65,13 @@ passport.deserializeUser(function (sessionConstructor, done) {
   }
 });
 
-
-//
 //Magic word for passport 
-//
 
 app.use(require("express-session")({
   secret: "que te cuento?",
   resave: false,
   saveUninitialized: false
 }));
-
-
 
 //Seting Passport for authentication
 
@@ -99,11 +82,9 @@ passport.use("local", new LocalStrategy({
   usernameField: 'email'
 }, User.authenticate()));
 
-
 passport.use("admin", new LocalStrategy({
   usernameField: 'email'
 }, Admin.authenticate()));
-
 
 app.use(flash());
 app.use(function (req, res, next) {
@@ -111,12 +92,9 @@ app.use(function (req, res, next) {
   next();
 });
 
-//
 //GOOGLE AUTH
-//
 
 //Register / Login with Google
-
 passport.use(new GoogleStrategy({
     callbackURL: "/auth/google/redirect",
     clientID: keys.google.clientID,
@@ -124,7 +102,6 @@ passport.use(new GoogleStrategy({
 
   },
   (accessToken, refreshToken, profile, done) => {
-
     var query = {
       email: profile.emails[0].value
     };
@@ -133,12 +110,10 @@ passport.use(new GoogleStrategy({
         googleId: profile.id
       })
       .then((currentUser) => {
-
         if (currentUser) {
           //already have the User
           console.log('User is: ', currentUser);
           done(null, currentUser);
-
         } else {
           //Create a new User
           const user = new User({
@@ -165,12 +140,9 @@ passport.use(new GoogleStrategy({
       })
   }));
 
-//
 //FACEBOOK AUTH
-//
 
 //Register / Login with Google
-
 passport.use(new FacebookStrategy({
     clientID: keys.facebook.APP_ID,
     clientSecret: keys.facebook.APP_SECRET,
@@ -218,9 +190,7 @@ passport.use(new FacebookStrategy({
       })
   }));
 
-
 //initialize body parser and morgan
-
 app.use(morgan('dev'));
 app.use(bodyParser.json({
   limit: "50mb"
@@ -236,27 +206,22 @@ app.use(function (req, res, next) {
   next();
 });
 
-//
+
 // Routes
-//
 const authRoutes = require('./api/routes/auth');
 const profileRoutes = require('./api/routes/profile');
 const adminpanelRoutes = require('./api/routes/adminpanel');
 const mailRoutes = require('./api/routes/mail');
-
-
 app.use('/auth', authRoutes);
 app.use('/profile', profileRoutes);
 app.use('/adminpanel', adminpanelRoutes);
 app.use('/mail', mailRoutes);
-
 
 app.listen(process.env.PORT || 5000, async function () {
   console.log("listening on port " + (process.env.PORT || 5000));
 });
 
 //mLAB Heroku
-
 mongoose.connect("mongodb://backend:" + process.env.MLAB_PASSWORD + "@ds259596.mlab.com:59596/heroku_xk93l586", {
   useNewUrlParser: true
 });
@@ -271,7 +236,6 @@ app.use((req, res, next) => {
   const error = new Error('Not found');
   error.status = 404;
   next(error);
-
 });
 app.use((error, req, res, next) => {
   res.status(error.status || 500);

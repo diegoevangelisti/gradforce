@@ -61,11 +61,19 @@
       line-height: 2;
       color: #212529;
     }
+    body{
+      background-image: url("/assets/img/adminpanelBackground.jpg");
+      background-size: cover;
+    }
+    .form {
+      color: black;
+      opacity: 0.95;
+    }
   </style>
 </head>
 
-<body class="bg-dark  font-custom">
-  <div class="container">
+<body class="font-custom">
+  <div class="container form">
     <div class="card card-login mx-auto mt-5">
       <div class="mt10" style="text-align: center">GradForce Admin Panel</div>
       <div class="card-body">
@@ -73,7 +81,6 @@
           <div class="form-group">
             <p style="text-align: center">Sign in</p>
             <div class="form-label-group">
-
               <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address"
                 required="required" autofocus="autofocus">
               <label for="inputEmail">Email</label>
