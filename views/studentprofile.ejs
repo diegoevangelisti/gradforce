@@ -68,7 +68,7 @@
 </head>
 
 <body>
-  <!-- for pop up message -->
+  <!-- for up message -->
   <link rel="stylesheet" href="/assets/css/colorbox.css" />
 
   <style>
@@ -1163,21 +1163,7 @@
       </div>
     </div>
   </div>
-
-  <!-- Model for Log in pop up message -->
-
-  <div id="popup-modal" class="box" style="display: none; background: rgb(251, 251, 251);">
-    <!-- <h2 class="center" id="title">Hi <%= user.fname %> <%= user.lname %> !</h2> -->
-    <h2 class="center" style="font-weight: bold; font-size: 24px">Welcome to GradForce</h2>
-    <br>
-    <hr>
-    <br>
-    <p class="mb10 center">Please complete your profile so we can continue with the process.</p>
-    <p class="mb10 center">Follow the instructions we sent you to <span
-        style="font-weight: bold;"><%= user.email %></span></p><br>
-    <h2 class="center" style="font-weight: bold; font-size: 20px">Thanks!</h2>
-  </div>
-
+  
   <div w3-include-html="/partials/footer.html"></div>
 
   <script>
@@ -1765,58 +1751,6 @@
       $("#edit-education-form").submit();
     }
   </script>
-
-  <!-- Added for pop up message -->
-  <% popupCounter = 0 %>
-  <% if(user.status == "Profile Incomplete" && popupCounter == 0){ %>
-  <% popupCounter = 1 %>
-  <script>
-    //First log in pop up message
-
-    var lastFocus;
-
-    function onPopupOpen() {
-      $("#std-profile").focus();
-    }
-
-    function onPopupClose() {
-
-      //Cookie expires after 1 day
-      Cookies.set('colorboxShown', 'yes', {
-        expires: 1
-      });
-      var myElement = document.getElementById('popup-modal');
-      myElement.style.display = 'none';
-      lastFocus.focus();
-    }
-
-    function displayPopup() {
-
-      var myElement = document.getElementById('popup-modal');
-      myElement.style.display = "block";
-
-      $.colorbox({
-        inline: true,
-        top: "20%",
-        href: "#popup-modal",
-        onComplete: onPopupOpen,
-        onClosed: onPopupClose
-      });
-    }
-
-    setTimeout(function () {
-      var popupShown = 0;
-      //var popupShown = Cookies.get('colorboxShown');
-
-      if (popupShown) {
-        console.log("Cookie found. No action necessary");
-      } else {
-        lastFocus = document.activeElement;
-        displayPopup();
-      }
-    }, 2000);
-  </script>
-  <% } %>
 
   <% SkillCount = 0 %>
   <% user.Skills.softs.forEach(function(skill, i) { %>
