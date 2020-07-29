@@ -1,6 +1,6 @@
 ## GradForce - Talented Students, managed by Us, Working for You
 
-In this app, graduated students from the IT sector, and future employers have the possibility to upload their including personal information, educational records, work history (for students) and company’s data and roles information for employers. It looks like, but it is not LinkedIn!
+In this app, graduated students from the IT sector, and future employers, have the possibility to upload their profiles: personal information, educational records, work history (for students) and company’s data and roles information for employers. It looks like, but it is not LinkedIn!
 In addition, the administrator can manage all that information in a customized Admin Panel with the following features: 
 - Get notified when students completed their profiles.
 - Send an email with a link to a calendar invite include. 
